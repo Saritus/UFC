@@ -1,4 +1,4 @@
-var animation, i, j, layerA, layerArray, layerInput, reverseAnimation, reverseButton, startButton, stopButton, targetLayer,
+var i, input, j, layerA, layerArray, reverseButton, startButton, stopButton,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -7,10 +7,6 @@ layerA = new Layer({
 });
 
 layerA.centerY();
-
-layerInput = new Layer({
-  html: "<input id='vname' name='vname'>"
-});
 
 layerA.draggable.enabled = true;
 
@@ -56,20 +52,13 @@ for (i = j = 1; j <= 5; i = ++j) {
   });
   layerArray[i].onDragMove(function(event) {
     if (modulo(this.x, 100) !== 0) {
-      this.x = Math.round((event.pointX - layerA.x - (this.width / 2)) / 100) * 100;
+      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 100) * 100;
     }
     if (modulo(this.y, 25) !== 0) {
-      return this.y = Math.round((event.pointY - layerA.y - (this.height / 2)) / 25) * 25;
+      return this.y = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
     }
   });
 }
-
-targetLayer = new Layer({
-  x: 20,
-  y: 20
-});
-
-Utils.labelLayer(targetLayer, "targetLayer");
 
 startButton = new Layer({
   x: 20,
@@ -92,16 +81,17 @@ stopButton.x = 500;
 
 Utils.labelLayer(stopButton, "Stop");
 
-animation = new Animation({
-  layer: targetLayer,
-  properties: {
-    x: 450
-  },
-  curve: "ease-in-out",
-  time: 1
-});
 
-reverseAnimation = animation.reverse();
+/*
+animation = new Animation
+  layer: targetLayer
+  properties:
+    x: 450
+  curve: "ease-in-out"
+  time: 1
+
+reverseAnimation = animation.reverse()
+ */
 
 startButton.on(Events.Click, function() {
   i = layerArray.length;
@@ -129,10 +119,10 @@ startButton.on(Events.Click, function() {
   });
   return layerArray[i].onDragMove(function(event) {
     if (modulo(this.x, 100) !== 0) {
-      this.x = Math.round((event.pointX - layerA.x - (this.width / 2)) / 100) * 100;
+      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 100) * 100;
     }
     if (modulo(this.y, 25) !== 0) {
-      return this.y = Math.round((event.pointY - layerA.y - (this.height / 2)) / 25) * 25;
+      return this.y = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
     }
   });
 });
@@ -143,6 +133,18 @@ stopButton.on(Events.Click, function() {
 
 reverseButton.on(Events.Click, function() {
   return reverseAnimation.start();
+});
+
+input = new Input({
+  setup: true,
+  virtualKeyboard: false,
+  placeholder: "Username",
+  placeholderColor: "#fff",
+  type: "text",
+  y: 240,
+  x: 90,
+  width: 500,
+  height: 60
 });
 
 
