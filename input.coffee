@@ -1,13 +1,13 @@
-exports.keyboardLayer = new Layer
-	x:0, y:Screen.height, width:750, height:432, image:"modules/keyboard.png"
+keyboardLayer = new Layer
+	x:0, y:Screen.height, width:750, height:432, image:"resources/keyboard.png"
 
-exports.keyboardLayer.states.add
-	"shown": y: Screen.height - exports.keyboardLayer.height
+keyboardLayer.states.add
+	"shown": y: Screen.height - keyboardLayer.height
 
-exports.keyboardLayer.states.animationOptions =
+keyboardLayer.states.animationOptions =
 	curve: "spring(500,50,15)"
 
-class exports.Input extends Layer
+class Input extends Layer
 	@define "style",
 		get: -> @input.style
 		set: (value) ->
@@ -57,10 +57,10 @@ class exports.Input extends Layer
 
 		if !Utils.isMobile() || options.virtualKeyboard
 			@input.addEventListener "focus", ->
-				exports.keyboardLayer.bringToFront()
-				exports.keyboardLayer.states.next()
+				keyboardLayer.bringToFront()
+				keyboardLayer.states.next()
 			@input.addEventListener "blur", ->
-				exports.keyboardLayer.states.switch "default"
+				keyboardLayer.states.switch "default"
 
 	updatePlaceholderColor: (color) ->
 		@placeholderColor = color

@@ -1,25 +1,26 @@
-var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+var Input, keyboardLayer,
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
-exports.keyboardLayer = new Layer({
+keyboardLayer = new Layer({
   x: 0,
   y: Screen.height,
   width: 750,
   height: 432,
-  image: "modules/keyboard.png"
+  image: "resources/keyboard.png"
 });
 
-exports.keyboardLayer.states.add({
+keyboardLayer.states.add({
   "shown": {
-    y: Screen.height - exports.keyboardLayer.height
+    y: Screen.height - keyboardLayer.height
   }
 });
 
-exports.keyboardLayer.states.animationOptions = {
+keyboardLayer.states.animationOptions = {
   curve: "spring(500,50,15)"
 };
 
-exports.Input = (function(superClass) {
+Input = (function(superClass) {
   extend(Input, superClass);
 
   Input.define("style", {
@@ -108,11 +109,11 @@ exports.Input = (function(superClass) {
     }
     if (!Utils.isMobile() || options.virtualKeyboard) {
       this.input.addEventListener("focus", function() {
-        exports.keyboardLayer.bringToFront();
-        return exports.keyboardLayer.states.next();
+        keyboardLayer.bringToFront();
+        return keyboardLayer.states.next();
       });
       this.input.addEventListener("blur", function() {
-        return exports.keyboardLayer.states["switch"]("default");
+        return keyboardLayer.states["switch"]("default");
       });
     }
   }

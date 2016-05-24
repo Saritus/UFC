@@ -33,7 +33,7 @@ for i in [1..5]
     y: 50
     width: 100
     height: 50
-    image: "resources/Block.png"
+    image: "resources/Block1.png"
   layerA.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
@@ -87,7 +87,7 @@ startButton.on Events.Click, ->
     y: 50
     width: 100
     height: 50
-    image: "resources/Block.png"
+    image: "resources/Block1.png"
   layerA.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false

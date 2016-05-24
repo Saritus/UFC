@@ -37,7 +37,7 @@ for (i = j = 1; j <= 5; i = ++j) {
     y: 50,
     width: 100,
     height: 50,
-    image: "resources/Block.png"
+    image: "resources/Block1.png"
   });
   layerA.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
@@ -110,7 +110,7 @@ startButton.on(Events.Click, function() {
     y: 50,
     width: 100,
     height: 50,
-    image: "resources/Block.png"
+    image: "resources/Block1.png"
   });
   layerA.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;

@@ -45,111 +45,111 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Defaults, Framer, _;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Framer = {};
-	
+
 	Framer._ = _;
-	
+
 	Framer.Utils = __webpack_require__(4);
-	
+
 	Framer.Color = (__webpack_require__(10)).Color;
-	
+
 	Framer.Layer = (__webpack_require__(13)).Layer;
-	
+
 	Framer.BackgroundLayer = (__webpack_require__(35)).BackgroundLayer;
-	
+
 	Framer.VideoLayer = (__webpack_require__(36)).VideoLayer;
-	
+
 	Framer.Events = (__webpack_require__(15)).Events;
-	
+
 	Framer.Gestures = (__webpack_require__(16)).Gestures;
-	
+
 	Framer.Animation = (__webpack_require__(18)).Animation;
-	
+
 	Framer.AnimationGroup = (__webpack_require__(37)).AnimationGroup;
-	
+
 	Framer.Screen = (__webpack_require__(5)).Screen;
-	
+
 	Framer.Align = (__webpack_require__(38)).Align;
-	
+
 	Framer.print = (__webpack_require__(39)).print;
-	
+
 	Framer.ScrollComponent = (__webpack_require__(42)).ScrollComponent;
-	
+
 	Framer.PageComponent = (__webpack_require__(43)).PageComponent;
-	
+
 	Framer.SliderComponent = (__webpack_require__(44)).SliderComponent;
-	
+
 	Framer.DeviceComponent = (__webpack_require__(45)).DeviceComponent;
-	
+
 	Framer.GridComponent = (__webpack_require__(46)).GridComponent;
-	
+
 	Framer.DeviceView = Framer.DeviceComponent;
-	
+
 	if (window) {
 	  _.extend(window, Framer);
 	}
-	
+
 	Framer.Context = (__webpack_require__(40)).Context;
-	
+
 	Framer.Config = (__webpack_require__(14)).Config;
-	
+
 	Framer.EventEmitter = (__webpack_require__(7)).EventEmitter;
-	
+
 	Framer.BaseClass = (__webpack_require__(6)).BaseClass;
-	
+
 	Framer.LayerStyle = (__webpack_require__(25)).LayerStyle;
-	
+
 	Framer.AnimationLoop = (__webpack_require__(47)).AnimationLoop;
-	
+
 	Framer.LinearAnimator = (__webpack_require__(19)).LinearAnimator;
-	
+
 	Framer.BezierCurveAnimator = (__webpack_require__(21)).BezierCurveAnimator;
-	
+
 	Framer.SpringDHOAnimator = (__webpack_require__(24)).SpringDHOAnimator;
-	
+
 	Framer.SpringRK4Animator = (__webpack_require__(22)).SpringRK4Animator;
-	
+
 	Framer.LayerDraggable = (__webpack_require__(27)).LayerDraggable;
-	
+
 	Framer.Importer = (__webpack_require__(48)).Importer;
-	
+
 	Framer.Extras = __webpack_require__(49);
-	
+
 	Framer.GestureInputRecognizer = new (__webpack_require__(53)).GestureInputRecognizer;
-	
+
 	Framer.Version = __webpack_require__(54);
-	
+
 	Framer.Loop = new Framer.AnimationLoop();
-	
+
 	Utils.domComplete(Framer.Loop.start);
-	
+
 	if (window) {
 	  window.Framer = Framer;
 	}
-	
+
 	Defaults = (__webpack_require__(17)).Defaults;
-	
+
 	Defaults.setup();
-	
+
 	Framer.resetDefaults = Defaults.reset;
-	
+
 	Framer.DefaultContext = new Framer.Context({
 	  name: "Default"
 	});
-	
+
 	Framer.DefaultContext.backgroundColor = "white";
-	
+
 	Framer.CurrentContext = Framer.DefaultContext;
-	
+
 	window.Canvas = new (__webpack_require__(55)).Canvas;
-	
+
 	if (Utils.isMobile()) {
 	  Framer.Extras.MobileScrollFix.enable();
 	}
-	
+
 	if (!Utils.isTouch()) {
 	  Framer.Extras.TouchEmulator.enable();
 	}
@@ -176,13 +176,13 @@
 	 * Available under MIT license <https://lodash.com/license>
 	 */
 	;(function() {
-	
+
 	  /** Used as a safe reference for `undefined` in pre-ES5 environments. */
 	  var undefined;
-	
+
 	  /** Used as the semantic version number. */
 	  var VERSION = '3.10.1';
-	
+
 	  /** Used to compose bitmasks for wrapper metadata. */
 	  var BIND_FLAG = 1,
 	      BIND_KEY_FLAG = 2,
@@ -193,28 +193,28 @@
 	      PARTIAL_RIGHT_FLAG = 64,
 	      ARY_FLAG = 128,
 	      REARG_FLAG = 256;
-	
+
 	  /** Used as default options for `_.trunc`. */
 	  var DEFAULT_TRUNC_LENGTH = 30,
 	      DEFAULT_TRUNC_OMISSION = '...';
-	
+
 	  /** Used to detect when a function becomes hot. */
 	  var HOT_COUNT = 150,
 	      HOT_SPAN = 16;
-	
+
 	  /** Used as the size to enable large array optimizations. */
 	  var LARGE_ARRAY_SIZE = 200;
-	
+
 	  /** Used to indicate the type of lazy iteratees. */
 	  var LAZY_FILTER_FLAG = 1,
 	      LAZY_MAP_FLAG = 2;
-	
+
 	  /** Used as the `TypeError` message for "Functions" methods. */
 	  var FUNC_ERROR_TEXT = 'Expected a function';
-	
+
 	  /** Used as the internal argument placeholder. */
 	  var PLACEHOLDER = '__lodash_placeholder__';
-	
+
 	  /** `Object#toString` result references. */
 	  var argsTag = '[object Arguments]',
 	      arrayTag = '[object Array]',
@@ -229,7 +229,7 @@
 	      setTag = '[object Set]',
 	      stringTag = '[object String]',
 	      weakMapTag = '[object WeakMap]';
-	
+
 	  var arrayBufferTag = '[object ArrayBuffer]',
 	      float32Tag = '[object Float32Array]',
 	      float64Tag = '[object Float64Array]',
@@ -240,73 +240,73 @@
 	      uint8ClampedTag = '[object Uint8ClampedArray]',
 	      uint16Tag = '[object Uint16Array]',
 	      uint32Tag = '[object Uint32Array]';
-	
+
 	  /** Used to match empty string literals in compiled template source. */
 	  var reEmptyStringLeading = /\b__p \+= '';/g,
 	      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
 	      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
-	
+
 	  /** Used to match HTML entities and HTML characters. */
 	  var reEscapedHtml = /&(?:amp|lt|gt|quot|#39|#96);/g,
 	      reUnescapedHtml = /[&<>"'`]/g,
 	      reHasEscapedHtml = RegExp(reEscapedHtml.source),
 	      reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
-	
+
 	  /** Used to match template delimiters. */
 	  var reEscape = /<%-([\s\S]+?)%>/g,
 	      reEvaluate = /<%([\s\S]+?)%>/g,
 	      reInterpolate = /<%=([\s\S]+?)%>/g;
-	
+
 	  /** Used to match property names within property paths. */
 	  var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\n\\]|\\.)*?\1)\]/,
 	      reIsPlainProp = /^\w*$/,
 	      rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\n\\]|\\.)*?)\2)\]/g;
-	
+
 	  /**
 	   * Used to match `RegExp` [syntax characters](http://ecma-international.org/ecma-262/6.0/#sec-patterns)
 	   * and those outlined by [`EscapeRegExpPattern`](http://ecma-international.org/ecma-262/6.0/#sec-escaperegexppattern).
 	   */
 	  var reRegExpChars = /^[:!,]|[\\^$.*+?()[\]{}|\/]|(^[0-9a-fA-Fnrtuvx])|([\n\r\u2028\u2029])/g,
 	      reHasRegExpChars = RegExp(reRegExpChars.source);
-	
+
 	  /** Used to match [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks). */
 	  var reComboMark = /[\u0300-\u036f\ufe20-\ufe23]/g;
-	
+
 	  /** Used to match backslashes in property paths. */
 	  var reEscapeChar = /\\(\\)?/g;
-	
+
 	  /** Used to match [ES template delimiters](http://ecma-international.org/ecma-262/6.0/#sec-template-literal-lexical-components). */
 	  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
-	
+
 	  /** Used to match `RegExp` flags from their coerced string values. */
 	  var reFlags = /\w*$/;
-	
+
 	  /** Used to detect hexadecimal string values. */
 	  var reHasHexPrefix = /^0[xX]/;
-	
+
 	  /** Used to detect host constructors (Safari > 5). */
 	  var reIsHostCtor = /^\[object .+?Constructor\]$/;
-	
+
 	  /** Used to detect unsigned integer values. */
 	  var reIsUint = /^\d+$/;
-	
+
 	  /** Used to match latin-1 supplementary letters (excluding mathematical operators). */
 	  var reLatin1 = /[\xc0-\xd6\xd8-\xde\xdf-\xf6\xf8-\xff]/g;
-	
+
 	  /** Used to ensure capturing order of template delimiters. */
 	  var reNoMatch = /($^)/;
-	
+
 	  /** Used to match unescaped characters in compiled string literals. */
 	  var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
-	
+
 	  /** Used to match words to create compound words. */
 	  var reWords = (function() {
 	    var upper = '[A-Z\\xc0-\\xd6\\xd8-\\xde]',
 	        lower = '[a-z\\xdf-\\xf6\\xf8-\\xff]+';
-	
+
 	    return RegExp(upper + '+(?=' + upper + lower + ')|' + upper + '?' + lower + '|' + upper + '+|[0-9]+', 'g');
 	  }());
-	
+
 	  /** Used to assign default `context` object properties. */
 	  var contextProps = [
 	    'Array', 'ArrayBuffer', 'Date', 'Error', 'Float32Array', 'Float64Array',
@@ -315,10 +315,10 @@
 	    'parseFloat', 'parseInt', 'setTimeout', 'TypeError', 'Uint8Array',
 	    'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'WeakMap'
 	  ];
-	
+
 	  /** Used to make template sourceURLs easier to identify. */
 	  var templateCounter = -1;
-	
+
 	  /** Used to identify `toStringTag` values of typed arrays. */
 	  var typedArrayTags = {};
 	  typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
@@ -333,7 +333,7 @@
 	  typedArrayTags[numberTag] = typedArrayTags[objectTag] =
 	  typedArrayTags[regexpTag] = typedArrayTags[setTag] =
 	  typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
-	
+
 	  /** Used to identify `toStringTag` values supported by `_.clone`. */
 	  var cloneableTags = {};
 	  cloneableTags[argsTag] = cloneableTags[arrayTag] =
@@ -348,7 +348,7 @@
 	  cloneableTags[errorTag] = cloneableTags[funcTag] =
 	  cloneableTags[mapTag] = cloneableTags[setTag] =
 	  cloneableTags[weakMapTag] = false;
-	
+
 	  /** Used to map latin-1 supplementary letters to basic latin letters. */
 	  var deburredLetters = {
 	    '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
@@ -369,7 +369,7 @@
 	    '\xde': 'Th', '\xfe': 'th',
 	    '\xdf': 'ss'
 	  };
-	
+
 	  /** Used to map characters to HTML entities. */
 	  var htmlEscapes = {
 	    '&': '&amp;',
@@ -379,7 +379,7 @@
 	    "'": '&#39;',
 	    '`': '&#96;'
 	  };
-	
+
 	  /** Used to map HTML entities to characters. */
 	  var htmlUnescapes = {
 	    '&amp;': '&',
@@ -389,13 +389,13 @@
 	    '&#39;': "'",
 	    '&#96;': '`'
 	  };
-	
+
 	  /** Used to determine if values are of the language type `Object`. */
 	  var objectTypes = {
 	    'function': true,
 	    'object': true
 	  };
-	
+
 	  /** Used to escape characters for inclusion in compiled regexes. */
 	  var regexpEscapes = {
 	    '0': 'x30', '1': 'x31', '2': 'x32', '3': 'x33', '4': 'x34',
@@ -404,7 +404,7 @@
 	    'a': 'x61', 'b': 'x62', 'c': 'x63', 'd': 'x64', 'e': 'x65', 'f': 'x66',
 	    'n': 'x6e', 'r': 'x72', 't': 'x74', 'u': 'x75', 'v': 'x76', 'x': 'x78'
 	  };
-	
+
 	  /** Used to escape characters for inclusion in compiled string literals. */
 	  var stringEscapes = {
 	    '\\': '\\',
@@ -414,25 +414,25 @@
 	    '\u2028': 'u2028',
 	    '\u2029': 'u2029'
 	  };
-	
+
 	  /** Detect free variable `exports`. */
 	  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
-	
+
 	  /** Detect free variable `module`. */
 	  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
-	
+
 	  /** Detect free variable `global` from Node.js. */
 	  var freeGlobal = freeExports && freeModule && typeof global == 'object' && global && global.Object && global;
-	
+
 	  /** Detect free variable `self`. */
 	  var freeSelf = objectTypes[typeof self] && self && self.Object && self;
-	
+
 	  /** Detect free variable `window`. */
 	  var freeWindow = objectTypes[typeof window] && window && window.Object && window;
-	
+
 	  /** Detect the popular CommonJS extension `module.exports`. */
 	  var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
-	
+
 	  /**
 	   * Used as a reference to the global object.
 	   *
@@ -440,9 +440,9 @@
 	   * restricted `window` object, otherwise the `window` object is used.
 	   */
 	  var root = freeGlobal || ((freeWindow !== (this && this.window)) && freeWindow) || freeSelf || this;
-	
+
 	  /*--------------------------------------------------------------------------*/
-	
+
 	  /**
 	   * The base implementation of `compareAscending` which compares values and
 	   * sorts them in ascending order without guaranteeing a stable sort.
@@ -457,11 +457,11 @@
 	      var valIsNull = value === null,
 	          valIsUndef = value === undefined,
 	          valIsReflexive = value === value;
-	
+
 	      var othIsNull = other === null,
 	          othIsUndef = other === undefined,
 	          othIsReflexive = other === other;
-	
+
 	      if ((value > other && !othIsNull) || !valIsReflexive ||
 	          (valIsNull && !othIsUndef && othIsReflexive) ||
 	          (valIsUndef && othIsReflexive)) {
@@ -475,7 +475,7 @@
 	    }
 	    return 0;
 	  }
-	
+
 	  /**
 	   * The base implementation of `_.findIndex` and `_.findLastIndex` without
 	   * support for callback shorthands and `this` binding.
@@ -489,7 +489,7 @@
 	  function baseFindIndex(array, predicate, fromRight) {
 	    var length = array.length,
 	        index = fromRight ? length : -1;
-	
+
 	    while ((fromRight ? index-- : ++index < length)) {
 	      if (predicate(array[index], index, array)) {
 	        return index;
@@ -497,7 +497,7 @@
 	    }
 	    return -1;
 	  }
-	
+
 	  /**
 	   * The base implementation of `_.indexOf` without support for binary searches.
 	   *
@@ -513,7 +513,7 @@
 	    }
 	    var index = fromIndex - 1,
 	        length = array.length;
-	
+
 	    while (++index < length) {
 	      if (array[index] === value) {
 	        return index;
@@ -521,7 +521,7 @@
 	    }
 	    return -1;
 	  }
-	
+
 	  /**
 	   * The base implementation of `_.isFunction` without support for environments
 	   * with incorrect `typeof` results.
@@ -535,7 +535,7 @@
 	    // See https://github.com/jashkenas/underscore/issues/1621 for more details.
 	    return typeof value == 'function' || false;
 	  }
-	
+
 	  /**
 	   * Converts `value` to a string if it's not one. An empty string is returned
 	   * for `null` or `undefined` values.
@@ -547,7 +547,7 @@
 	  function baseToString(value) {
 	    return value == null ? '' : (value + '');
 	  }
-	
+
 	  /**
 	   * Used by `_.trim` and `_.trimLeft` to get the index of the first character
 	   * of `string` that is not found in `chars`.
@@ -560,11 +560,11 @@
 	  function charsLeftIndex(string, chars) {
 	    var index = -1,
 	        length = string.length;
-	
+
 	    while (++index < length && chars.indexOf(string.charAt(index)) > -1) {}
 	    return index;
 	  }
-	
+
 	  /**
 	   * Used by `_.trim` and `_.trimRight` to get the index of the last character
 	   * of `string` that is not found in `chars`.
@@ -576,11 +576,11 @@
 	   */
 	  function charsRightIndex(string, chars) {
 	    var index = string.length;
-	
+
 	    while (index-- && chars.indexOf(string.charAt(index)) > -1) {}
 	    return index;
 	  }
-	
+
 	  /**
 	   * Used by `_.sortBy` to compare transformed elements of a collection and stable
 	   * sort them in ascending order.
@@ -593,7 +593,7 @@
 	  function compareAscending(object, other) {
 	    return baseCompareAscending(object.criteria, other.criteria) || (object.index - other.index);
 	  }
-	
+
 	  /**
 	   * Used by `_.sortByOrder` to compare multiple properties of a value to another
 	   * and stable sort them.
@@ -614,7 +614,7 @@
 	        othCriteria = other.criteria,
 	        length = objCriteria.length,
 	        ordersLength = orders.length;
-	
+
 	    while (++index < length) {
 	      var result = baseCompareAscending(objCriteria[index], othCriteria[index]);
 	      if (result) {
@@ -634,7 +634,7 @@
 	    // See https://code.google.com/p/v8/issues/detail?id=90 for more details.
 	    return object.index - other.index;
 	  }
-	
+
 	  /**
 	   * Used by `_.deburr` to convert latin-1 supplementary letters to basic latin letters.
 	   *
@@ -645,7 +645,7 @@
 	  function deburrLetter(letter) {
 	    return deburredLetters[letter];
 	  }
-	
+
 	  /**
 	   * Used by `_.escape` to convert characters to HTML entities.
 	   *
@@ -656,7 +656,7 @@
 	  function escapeHtmlChar(chr) {
 	    return htmlEscapes[chr];
 	  }
-	
+
 	  /**
 	   * Used by `_.escapeRegExp` to escape characters for inclusion in compiled regexes.
 	   *
@@ -674,7 +674,7 @@
 	    }
 	    return '\\' + chr;
 	  }
-	
+
 	  /**
 	   * Used by `_.template` to escape characters for inclusion in compiled string literals.
 	   *
@@ -685,7 +685,7 @@
 	  function escapeStringChar(chr) {
 	    return '\\' + stringEscapes[chr];
 	  }
-	
+
 	  /**
 	   * Gets the index at which the first occurrence of `NaN` is found in `array`.
 	   *
@@ -698,7 +698,7 @@
 	  function indexOfNaN(array, fromIndex, fromRight) {
 	    var length = array.length,
 	        index = fromIndex + (fromRight ? 0 : -1);
-	
+
 	    while ((fromRight ? index-- : ++index < length)) {
 	      var other = array[index];
 	      if (other !== other) {
@@ -707,7 +707,7 @@
 	    }
 	    return -1;
 	  }
-	
+
 	  /**
 	   * Checks if `value` is object-like.
 	   *
@@ -718,7 +718,7 @@
 	  function isObjectLike(value) {
 	    return !!value && typeof value == 'object';
 	  }
-	
+
 	  /**
 	   * Used by `trimmedLeftIndex` and `trimmedRightIndex` to determine if a
 	   * character code is whitespace.
@@ -731,7 +731,7 @@
 	    return ((charCode <= 160 && (charCode >= 9 && charCode <= 13) || charCode == 32 || charCode == 160) || charCode == 5760 || charCode == 6158 ||
 	      (charCode >= 8192 && (charCode <= 8202 || charCode == 8232 || charCode == 8233 || charCode == 8239 || charCode == 8287 || charCode == 12288 || charCode == 65279)));
 	  }
-	
+
 	  /**
 	   * Replaces all `placeholder` elements in `array` with an internal placeholder
 	   * and returns an array of their indexes.
@@ -746,7 +746,7 @@
 	        length = array.length,
 	        resIndex = -1,
 	        result = [];
-	
+
 	    while (++index < length) {
 	      if (array[index] === placeholder) {
 	        array[index] = PLACEHOLDER;
@@ -755,7 +755,7 @@
 	    }
 	    return result;
 	  }
-	
+
 	  /**
 	   * An implementation of `_.uniq` optimized for sorted arrays without support
 	   * for callback shorthands and `this` binding.
@@ -771,11 +771,11 @@
 	        length = array.length,
 	        resIndex = -1,
 	        result = [];
-	
+
 	    while (++index < length) {
 	      var value = array[index],
 	          computed = iteratee ? iteratee(value, index, array) : value;
-	
+
 	      if (!index || seen !== computed) {
 	        seen = computed;
 	        result[++resIndex] = value;
@@ -783,7 +783,7 @@
 	    }
 	    return result;
 	  }
-	
+
 	  /**
 	   * Used by `_.trim` and `_.trimLeft` to get the index of the first non-whitespace
 	   * character of `string`.
@@ -795,11 +795,11 @@
 	  function trimmedLeftIndex(string) {
 	    var index = -1,
 	        length = string.length;
-	
+
 	    while (++index < length && isSpace(string.charCodeAt(index))) {}
 	    return index;
 	  }
-	
+
 	  /**
 	   * Used by `_.trim` and `_.trimRight` to get the index of the last non-whitespace
 	   * character of `string`.
@@ -810,11 +810,11 @@
 	   */
 	  function trimmedRightIndex(string) {
 	    var index = string.length;
-	
+
 	    while (index-- && isSpace(string.charCodeAt(index))) {}
 	    return index;
 	  }
-	
+
 	  /**
 	   * Used by `_.unescape` to convert HTML entities to characters.
 	   *
@@ -825,9 +825,9 @@
 	  function unescapeHtmlChar(chr) {
 	    return htmlUnescapes[chr];
 	  }
-	
+
 	  /*--------------------------------------------------------------------------*/
-	
+
 	  /**
 	   * Create a new pristine `lodash` function using the given `context` object.
 	   *
@@ -869,7 +869,7 @@
 	    // ES5 clears this up by stating that literals must use built-in constructors.
 	    // See https://es5.github.io/#x11.1.5 for more details.
 	    context = context ? _.defaults(root.Object(), context, _.pick(root, contextProps)) : root;
-	
+
 	    /** Native constructor references. */
 	    var Array = context.Array,
 	        Date = context.Date,
@@ -881,36 +881,36 @@
 	        RegExp = context.RegExp,
 	        String = context.String,
 	        TypeError = context.TypeError;
-	
+
 	    /** Used for native method references. */
 	    var arrayProto = Array.prototype,
 	        objectProto = Object.prototype,
 	        stringProto = String.prototype;
-	
+
 	    /** Used to resolve the decompiled source of functions. */
 	    var fnToString = Function.prototype.toString;
-	
+
 	    /** Used to check objects for own properties. */
 	    var hasOwnProperty = objectProto.hasOwnProperty;
-	
+
 	    /** Used to generate unique IDs. */
 	    var idCounter = 0;
-	
+
 	    /**
 	     * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
 	     * of values.
 	     */
 	    var objToString = objectProto.toString;
-	
+
 	    /** Used to restore the original `_` reference in `_.noConflict`. */
 	    var oldDash = root._;
-	
+
 	    /** Used to detect if a method is native. */
 	    var reIsNative = RegExp('^' +
 	      fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
 	      .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 	    );
-	
+
 	    /** Native method references. */
 	    var ArrayBuffer = context.ArrayBuffer,
 	        clearTimeout = context.clearTimeout,
@@ -922,7 +922,7 @@
 	        splice = arrayProto.splice,
 	        Uint8Array = context.Uint8Array,
 	        WeakMap = getNative(context, 'WeakMap');
-	
+
 	    /* Native method references for those with the same name as other `lodash` methods. */
 	    var nativeCeil = Math.ceil,
 	        nativeCreate = getNative(Object, 'create'),
@@ -935,30 +935,30 @@
 	        nativeNow = getNative(Date, 'now'),
 	        nativeParseInt = context.parseInt,
 	        nativeRandom = Math.random;
-	
+
 	    /** Used as references for `-Infinity` and `Infinity`. */
 	    var NEGATIVE_INFINITY = Number.NEGATIVE_INFINITY,
 	        POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
-	
+
 	    /** Used as references for the maximum length and index of an array. */
 	    var MAX_ARRAY_LENGTH = 4294967295,
 	        MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1,
 	        HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
-	
+
 	    /**
 	     * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
 	     * of an array-like value.
 	     */
 	    var MAX_SAFE_INTEGER = 9007199254740991;
-	
+
 	    /** Used to store function metadata. */
 	    var metaMap = WeakMap && new WeakMap;
-	
+
 	    /** Used to lookup unminified function names. */
 	    var realNames = {};
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates a `lodash` object which wraps `value` to enable implicit chaining.
 	     * Methods that operate on and return arrays, collections, and functions can
@@ -1066,7 +1066,7 @@
 	      }
 	      return new LodashWrapper(value);
 	    }
-	
+
 	    /**
 	     * The function whose prototype all chaining wrappers inherit from.
 	     *
@@ -1075,7 +1075,7 @@
 	    function baseLodash() {
 	      // No operation performed.
 	    }
-	
+
 	    /**
 	     * The base constructor for creating `lodash` wrapper objects.
 	     *
@@ -1089,7 +1089,7 @@
 	      this.__actions__ = actions || [];
 	      this.__chain__ = !!chainAll;
 	    }
-	
+
 	    /**
 	     * An object environment feature flags.
 	     *
@@ -1098,7 +1098,7 @@
 	     * @type Object
 	     */
 	    var support = lodash.support = {};
-	
+
 	    /**
 	     * By default, the template delimiters used by lodash are like those in
 	     * embedded Ruby (ERB). Change the following template settings to use
@@ -1109,7 +1109,7 @@
 	     * @type Object
 	     */
 	    lodash.templateSettings = {
-	
+
 	      /**
 	       * Used to detect `data` property values to be HTML-escaped.
 	       *
@@ -1117,7 +1117,7 @@
 	       * @type RegExp
 	       */
 	      'escape': reEscape,
-	
+
 	      /**
 	       * Used to detect code to be evaluated.
 	       *
@@ -1125,7 +1125,7 @@
 	       * @type RegExp
 	       */
 	      'evaluate': reEvaluate,
-	
+
 	      /**
 	       * Used to detect `data` property values to inject.
 	       *
@@ -1133,7 +1133,7 @@
 	       * @type RegExp
 	       */
 	      'interpolate': reInterpolate,
-	
+
 	      /**
 	       * Used to reference the data object in the template text.
 	       *
@@ -1141,7 +1141,7 @@
 	       * @type string
 	       */
 	      'variable': '',
-	
+
 	      /**
 	       * Used to import variables into the compiled template.
 	       *
@@ -1149,7 +1149,7 @@
 	       * @type Object
 	       */
 	      'imports': {
-	
+
 	        /**
 	         * A reference to the `lodash` function.
 	         *
@@ -1159,9 +1159,9 @@
 	        '_': lodash
 	      }
 	    };
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
 	     *
@@ -1177,7 +1177,7 @@
 	      this.__takeCount__ = POSITIVE_INFINITY;
 	      this.__views__ = [];
 	    }
-	
+
 	    /**
 	     * Creates a clone of the lazy wrapper object.
 	     *
@@ -1196,7 +1196,7 @@
 	      result.__views__ = arrayCopy(this.__views__);
 	      return result;
 	    }
-	
+
 	    /**
 	     * Reverses the direction of lazy iteration.
 	     *
@@ -1216,7 +1216,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Extracts the unwrapped value from its lazy wrapper.
 	     *
@@ -1240,25 +1240,25 @@
 	          iterLength = iteratees.length,
 	          resIndex = 0,
 	          takeCount = nativeMin(length, this.__takeCount__);
-	
+
 	      if (!isArr || arrLength < LARGE_ARRAY_SIZE || (arrLength == length && takeCount == length)) {
 	        return baseWrapperValue((isRight && isArr) ? array.reverse() : array, this.__actions__);
 	      }
 	      var result = [];
-	
+
 	      outer:
 	      while (length-- && resIndex < takeCount) {
 	        index += dir;
-	
+
 	        var iterIndex = -1,
 	            value = array[index];
-	
+
 	        while (++iterIndex < iterLength) {
 	          var data = iteratees[iterIndex],
 	              iteratee = data.iteratee,
 	              type = data.type,
 	              computed = iteratee(value);
-	
+
 	          if (type == LAZY_MAP_FLAG) {
 	            value = computed;
 	          } else if (!computed) {
@@ -1273,9 +1273,9 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates a cache object to store key/value pairs.
 	     *
@@ -1287,7 +1287,7 @@
 	    function MapCache() {
 	      this.__data__ = {};
 	    }
-	
+
 	    /**
 	     * Removes `key` and its value from the cache.
 	     *
@@ -1300,7 +1300,7 @@
 	    function mapDelete(key) {
 	      return this.has(key) && delete this.__data__[key];
 	    }
-	
+
 	    /**
 	     * Gets the cached value for `key`.
 	     *
@@ -1313,7 +1313,7 @@
 	    function mapGet(key) {
 	      return key == '__proto__' ? undefined : this.__data__[key];
 	    }
-	
+
 	    /**
 	     * Checks if a cached value for `key` exists.
 	     *
@@ -1326,7 +1326,7 @@
 	    function mapHas(key) {
 	      return key != '__proto__' && hasOwnProperty.call(this.__data__, key);
 	    }
-	
+
 	    /**
 	     * Sets `value` to `key` of the cache.
 	     *
@@ -1343,9 +1343,9 @@
 	      }
 	      return this;
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     *
 	     * Creates a cache object to store unique values.
@@ -1355,13 +1355,13 @@
 	     */
 	    function SetCache(values) {
 	      var length = values ? values.length : 0;
-	
+
 	      this.data = { 'hash': nativeCreate(null), 'set': new Set };
 	      while (length--) {
 	        this.push(values[length]);
 	      }
 	    }
-	
+
 	    /**
 	     * Checks if `value` is in `cache` mimicking the return signature of
 	     * `_.indexOf` by returning `0` if the value is found, else `-1`.
@@ -1374,10 +1374,10 @@
 	    function cacheIndexOf(cache, value) {
 	      var data = cache.data,
 	          result = (typeof value == 'string' || isObject(value)) ? data.set.has(value) : data.hash[value];
-	
+
 	      return result ? 0 : -1;
 	    }
-	
+
 	    /**
 	     * Adds `value` to the cache.
 	     *
@@ -1394,9 +1394,9 @@
 	        data.hash[value] = true;
 	      }
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates a new array joining `array` with `other`.
 	     *
@@ -1411,7 +1411,7 @@
 	          othIndex = -1,
 	          othLength = other.length,
 	          result = Array(length + othLength);
-	
+
 	      while (++index < length) {
 	        result[index] = array[index];
 	      }
@@ -1420,7 +1420,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Copies the values of `source` to `array`.
 	     *
@@ -1432,14 +1432,14 @@
 	    function arrayCopy(source, array) {
 	      var index = -1,
 	          length = source.length;
-	
+
 	      array || (array = Array(length));
 	      while (++index < length) {
 	        array[index] = source[index];
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.forEach` for arrays without support for callback
 	     * shorthands and `this` binding.
@@ -1452,7 +1452,7 @@
 	    function arrayEach(array, iteratee) {
 	      var index = -1,
 	          length = array.length;
-	
+
 	      while (++index < length) {
 	        if (iteratee(array[index], index, array) === false) {
 	          break;
@@ -1460,7 +1460,7 @@
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.forEachRight` for arrays without support for
 	     * callback shorthands and `this` binding.
@@ -1472,7 +1472,7 @@
 	     */
 	    function arrayEachRight(array, iteratee) {
 	      var length = array.length;
-	
+
 	      while (length--) {
 	        if (iteratee(array[length], length, array) === false) {
 	          break;
@@ -1480,7 +1480,7 @@
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.every` for arrays without support for callback
 	     * shorthands and `this` binding.
@@ -1494,7 +1494,7 @@
 	    function arrayEvery(array, predicate) {
 	      var index = -1,
 	          length = array.length;
-	
+
 	      while (++index < length) {
 	        if (!predicate(array[index], index, array)) {
 	          return false;
@@ -1502,7 +1502,7 @@
 	      }
 	      return true;
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseExtremum` for arrays which invokes `iteratee`
 	     * with one argument: (value).
@@ -1519,11 +1519,11 @@
 	          length = array.length,
 	          computed = exValue,
 	          result = computed;
-	
+
 	      while (++index < length) {
 	        var value = array[index],
 	            current = +iteratee(value);
-	
+
 	        if (comparator(current, computed)) {
 	          computed = current;
 	          result = value;
@@ -1531,7 +1531,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.filter` for arrays without support for callback
 	     * shorthands and `this` binding.
@@ -1546,7 +1546,7 @@
 	          length = array.length,
 	          resIndex = -1,
 	          result = [];
-	
+
 	      while (++index < length) {
 	        var value = array[index];
 	        if (predicate(value, index, array)) {
@@ -1555,7 +1555,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.map` for arrays without support for callback
 	     * shorthands and `this` binding.
@@ -1569,13 +1569,13 @@
 	      var index = -1,
 	          length = array.length,
 	          result = Array(length);
-	
+
 	      while (++index < length) {
 	        result[index] = iteratee(array[index], index, array);
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Appends the elements of `values` to `array`.
 	     *
@@ -1588,13 +1588,13 @@
 	      var index = -1,
 	          length = values.length,
 	          offset = array.length;
-	
+
 	      while (++index < length) {
 	        array[offset + index] = values[index];
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.reduce` for arrays without support for callback
 	     * shorthands and `this` binding.
@@ -1610,7 +1610,7 @@
 	    function arrayReduce(array, iteratee, accumulator, initFromArray) {
 	      var index = -1,
 	          length = array.length;
-	
+
 	      if (initFromArray && length) {
 	        accumulator = array[++index];
 	      }
@@ -1619,7 +1619,7 @@
 	      }
 	      return accumulator;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.reduceRight` for arrays without support for
 	     * callback shorthands and `this` binding.
@@ -1642,7 +1642,7 @@
 	      }
 	      return accumulator;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.some` for arrays without support for callback
 	     * shorthands and `this` binding.
@@ -1656,7 +1656,7 @@
 	    function arraySome(array, predicate) {
 	      var index = -1,
 	          length = array.length;
-	
+
 	      while (++index < length) {
 	        if (predicate(array[index], index, array)) {
 	          return true;
@@ -1664,7 +1664,7 @@
 	      }
 	      return false;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.sum` for arrays without support for callback
 	     * shorthands and `this` binding..
@@ -1677,13 +1677,13 @@
 	    function arraySum(array, iteratee) {
 	      var length = array.length,
 	          result = 0;
-	
+
 	      while (length--) {
 	        result += +iteratee(array[length]) || 0;
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Used by `_.defaults` to customize its `_.assign` use.
 	     *
@@ -1695,7 +1695,7 @@
 	    function assignDefaults(objectValue, sourceValue) {
 	      return objectValue === undefined ? sourceValue : objectValue;
 	    }
-	
+
 	    /**
 	     * Used by `_.template` to customize its `_.assign` use.
 	     *
@@ -1714,7 +1714,7 @@
 	        ? sourceValue
 	        : objectValue;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.assign` for customizing assigned values without
 	     * support for argument juggling, multiple sources, and `this` binding `customizer`
@@ -1730,12 +1730,12 @@
 	      var index = -1,
 	          props = keys(source),
 	          length = props.length;
-	
+
 	      while (++index < length) {
 	        var key = props[index],
 	            value = object[key],
 	            result = customizer(value, source[key], key, object, source);
-	
+
 	        if ((result === result ? (result !== value) : (value === value)) ||
 	            (value === undefined && !(key in object))) {
 	          object[key] = result;
@@ -1743,7 +1743,7 @@
 	      }
 	      return object;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.assign` without support for argument juggling,
 	     * multiple sources, and `customizer` functions.
@@ -1758,7 +1758,7 @@
 	        ? object
 	        : baseCopy(source, keys(source), object);
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.at` without support for string collections
 	     * and individual key arguments.
@@ -1775,7 +1775,7 @@
 	          length = isArr ? collection.length : 0,
 	          propsLength = props.length,
 	          result = Array(propsLength);
-	
+
 	      while(++index < propsLength) {
 	        var key = props[index];
 	        if (isArr) {
@@ -1786,7 +1786,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Copies properties of `source` to `object`.
 	     *
@@ -1798,17 +1798,17 @@
 	     */
 	    function baseCopy(source, props, object) {
 	      object || (object = {});
-	
+
 	      var index = -1,
 	          length = props.length;
-	
+
 	      while (++index < length) {
 	        var key = props[index];
 	        object[key] = source[key];
 	      }
 	      return object;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.callback` which supports specifying the
 	     * number of arguments to provide to `func`.
@@ -1836,7 +1836,7 @@
 	        ? property(func)
 	        : baseMatchesProperty(func, thisArg);
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.clone` without support for argument juggling
 	     * and `this` binding `customizer` functions.
@@ -1871,7 +1871,7 @@
 	      } else {
 	        var tag = objToString.call(value),
 	            isFunc = tag == funcTag;
-	
+
 	        if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
 	          result = initCloneObject(isFunc ? {} : value);
 	          if (!isDeep) {
@@ -1886,7 +1886,7 @@
 	      // Check for circular references and return its corresponding clone.
 	      stackA || (stackA = []);
 	      stackB || (stackB = []);
-	
+
 	      var length = stackA.length;
 	      while (length--) {
 	        if (stackA[length] == value) {
@@ -1896,14 +1896,14 @@
 	      // Add the source value to the stack of traversed objects and associate it with its clone.
 	      stackA.push(value);
 	      stackB.push(result);
-	
+
 	      // Recursively populate clone (susceptible to call stack limits).
 	      (isArr ? arrayEach : baseForOwn)(value, function(subValue, key) {
 	        result[key] = baseClone(subValue, isDeep, customizer, key, value, stackA, stackB);
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.create` without support for assigning
 	     * properties to the created object.
@@ -1923,7 +1923,7 @@
 	        return result || {};
 	      };
 	    }());
-	
+
 	    /**
 	     * The base implementation of `_.delay` and `_.defer` which accepts an index
 	     * of where to slice the arguments to provide to `func`.
@@ -1940,7 +1940,7 @@
 	      }
 	      return setTimeout(function() { func.apply(undefined, args); }, wait);
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.difference` which accepts a single array
 	     * of values to exclude.
@@ -1953,7 +1953,7 @@
 	    function baseDifference(array, values) {
 	      var length = array ? array.length : 0,
 	          result = [];
-	
+
 	      if (!length) {
 	        return result;
 	      }
@@ -1962,7 +1962,7 @@
 	          isCommon = indexOf == baseIndexOf,
 	          cache = (isCommon && values.length >= LARGE_ARRAY_SIZE) ? createCache(values) : null,
 	          valuesLength = values.length;
-	
+
 	      if (cache) {
 	        indexOf = cacheIndexOf;
 	        isCommon = false;
@@ -1971,7 +1971,7 @@
 	      outer:
 	      while (++index < length) {
 	        var value = array[index];
-	
+
 	        if (isCommon && value === value) {
 	          var valuesIndex = valuesLength;
 	          while (valuesIndex--) {
@@ -1987,7 +1987,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.forEach` without support for callback
 	     * shorthands and `this` binding.
@@ -1998,7 +1998,7 @@
 	     * @returns {Array|Object|string} Returns `collection`.
 	     */
 	    var baseEach = createBaseEach(baseForOwn);
-	
+
 	    /**
 	     * The base implementation of `_.forEachRight` without support for callback
 	     * shorthands and `this` binding.
@@ -2009,7 +2009,7 @@
 	     * @returns {Array|Object|string} Returns `collection`.
 	     */
 	    var baseEachRight = createBaseEach(baseForOwnRight, true);
-	
+
 	    /**
 	     * The base implementation of `_.every` without support for callback
 	     * shorthands and `this` binding.
@@ -2028,7 +2028,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * Gets the extremum value of `collection` invoking `iteratee` for each value
 	     * in `collection` to generate the criterion by which the value is ranked.
@@ -2044,7 +2044,7 @@
 	    function baseExtremum(collection, iteratee, comparator, exValue) {
 	      var computed = exValue,
 	          result = computed;
-	
+
 	      baseEach(collection, function(value, index, collection) {
 	        var current = +iteratee(value, index, collection);
 	        if (comparator(current, computed) || (current === exValue && current === result)) {
@@ -2054,7 +2054,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.fill` without an iteratee call guard.
 	     *
@@ -2067,7 +2067,7 @@
 	     */
 	    function baseFill(array, value, start, end) {
 	      var length = array.length;
-	
+
 	      start = start == null ? 0 : (+start || 0);
 	      if (start < 0) {
 	        start = -start > length ? 0 : (length + start);
@@ -2078,13 +2078,13 @@
 	      }
 	      length = start > end ? 0 : (end >>> 0);
 	      start >>>= 0;
-	
+
 	      while (start < length) {
 	        array[start++] = value;
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.filter` without support for callback
 	     * shorthands and `this` binding.
@@ -2103,7 +2103,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.find`, `_.findLast`, `_.findKey`, and `_.findLastKey`,
 	     * without support for callback shorthands and `this` binding, which iterates
@@ -2127,7 +2127,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.flatten` with added support for restricting
 	     * flattening and specifying the start index.
@@ -2141,10 +2141,10 @@
 	     */
 	    function baseFlatten(array, isDeep, isStrict, result) {
 	      result || (result = []);
-	
+
 	      var index = -1,
 	          length = array.length;
-	
+
 	      while (++index < length) {
 	        var value = array[index];
 	        if (isObjectLike(value) && isArrayLike(value) &&
@@ -2161,7 +2161,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `baseForIn` and `baseForOwn` which iterates
 	     * over `object` properties returned by `keysFunc` invoking `iteratee` for
@@ -2175,7 +2175,7 @@
 	     * @returns {Object} Returns `object`.
 	     */
 	    var baseFor = createBaseFor();
-	
+
 	    /**
 	     * This function is like `baseFor` except that it iterates over properties
 	     * in the opposite order.
@@ -2187,7 +2187,7 @@
 	     * @returns {Object} Returns `object`.
 	     */
 	    var baseForRight = createBaseFor(true);
-	
+
 	    /**
 	     * The base implementation of `_.forIn` without support for callback
 	     * shorthands and `this` binding.
@@ -2200,7 +2200,7 @@
 	    function baseForIn(object, iteratee) {
 	      return baseFor(object, iteratee, keysIn);
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.forOwn` without support for callback
 	     * shorthands and `this` binding.
@@ -2213,7 +2213,7 @@
 	    function baseForOwn(object, iteratee) {
 	      return baseFor(object, iteratee, keys);
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.forOwnRight` without support for callback
 	     * shorthands and `this` binding.
@@ -2226,7 +2226,7 @@
 	    function baseForOwnRight(object, iteratee) {
 	      return baseForRight(object, iteratee, keys);
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.functions` which creates an array of
 	     * `object` function property names filtered from those provided.
@@ -2241,7 +2241,7 @@
 	          length = props.length,
 	          resIndex = -1,
 	          result = [];
-	
+
 	      while (++index < length) {
 	        var key = props[index];
 	        if (isFunction(object[key])) {
@@ -2250,7 +2250,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `get` without support for string paths
 	     * and default values.
@@ -2270,13 +2270,13 @@
 	      }
 	      var index = 0,
 	          length = path.length;
-	
+
 	      while (object != null && index < length) {
 	        object = object[path[index++]];
 	      }
 	      return (index && index == length) ? object : undefined;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.isEqual` without support for `this` binding
 	     * `customizer` functions.
@@ -2299,7 +2299,7 @@
 	      }
 	      return baseIsEqualDeep(value, other, baseIsEqual, customizer, isLoose, stackA, stackB);
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseIsEqual` for arrays and objects which performs
 	     * deep comparisons and tracks traversed objects enabling objects with circular
@@ -2320,7 +2320,7 @@
 	          othIsArr = isArray(other),
 	          objTag = arrayTag,
 	          othTag = arrayTag;
-	
+
 	      if (!objIsArr) {
 	        objTag = objToString.call(object);
 	        if (objTag == argsTag) {
@@ -2340,14 +2340,14 @@
 	      var objIsObj = objTag == objectTag,
 	          othIsObj = othTag == objectTag,
 	          isSameTag = objTag == othTag;
-	
+
 	      if (isSameTag && !(objIsArr || objIsObj)) {
 	        return equalByTag(object, other, objTag);
 	      }
 	      if (!isLoose) {
 	        var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
 	            othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
-	
+
 	        if (objIsWrapped || othIsWrapped) {
 	          return equalFunc(objIsWrapped ? object.value() : object, othIsWrapped ? other.value() : other, customizer, isLoose, stackA, stackB);
 	        }
@@ -2359,7 +2359,7 @@
 	      // For more information on detecting circular references see https://es5.github.io/#JO.
 	      stackA || (stackA = []);
 	      stackB || (stackB = []);
-	
+
 	      var length = stackA.length;
 	      while (length--) {
 	        if (stackA[length] == object) {
@@ -2369,15 +2369,15 @@
 	      // Add `object` and `other` to the stack of traversed objects.
 	      stackA.push(object);
 	      stackB.push(other);
-	
+
 	      var result = (objIsArr ? equalArrays : equalObjects)(object, other, equalFunc, customizer, isLoose, stackA, stackB);
-	
+
 	      stackA.pop();
 	      stackB.pop();
-	
+
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.isMatch` without support for callback
 	     * shorthands and `this` binding.
@@ -2392,7 +2392,7 @@
 	      var index = matchData.length,
 	          length = index,
 	          noCustomizer = !customizer;
-	
+
 	      if (object == null) {
 	        return !length;
 	      }
@@ -2411,7 +2411,7 @@
 	        var key = data[0],
 	            objValue = object[key],
 	            srcValue = data[1];
-	
+
 	        if (noCustomizer && data[2]) {
 	          if (objValue === undefined && !(key in object)) {
 	            return false;
@@ -2425,7 +2425,7 @@
 	      }
 	      return true;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.map` without support for callback shorthands
 	     * and `this` binding.
@@ -2438,13 +2438,13 @@
 	    function baseMap(collection, iteratee) {
 	      var index = -1,
 	          result = isArrayLike(collection) ? Array(collection.length) : [];
-	
+
 	      baseEach(collection, function(value, key, collection) {
 	        result[++index] = iteratee(value, key, collection);
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.matches` which does not clone `source`.
 	     *
@@ -2457,7 +2457,7 @@
 	      if (matchData.length == 1 && matchData[0][2]) {
 	        var key = matchData[0][0],
 	            value = matchData[0][1];
-	
+
 	        return function(object) {
 	          if (object == null) {
 	            return false;
@@ -2469,7 +2469,7 @@
 	        return baseIsMatch(object, matchData);
 	      };
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.matchesProperty` which does not clone `srcValue`.
 	     *
@@ -2482,7 +2482,7 @@
 	      var isArr = isArray(path),
 	          isCommon = isKey(path) && isStrictComparable(srcValue),
 	          pathKey = (path + '');
-	
+
 	      path = toPath(path);
 	      return function(object) {
 	        if (object == null) {
@@ -2503,7 +2503,7 @@
 	          : baseIsEqual(srcValue, object[key], undefined, true);
 	      };
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.merge` without support for argument juggling,
 	     * multiple sources, and `this` binding `customizer` functions.
@@ -2522,7 +2522,7 @@
 	      }
 	      var isSrcArr = isArrayLike(source) && (isArray(source) || isTypedArray(source)),
 	          props = isSrcArr ? undefined : keys(source);
-	
+
 	      arrayEach(props || source, function(srcValue, key) {
 	        if (props) {
 	          key = srcValue;
@@ -2537,7 +2537,7 @@
 	          var value = object[key],
 	              result = customizer ? customizer(value, srcValue, key, object, source) : undefined,
 	              isCommon = result === undefined;
-	
+
 	          if (isCommon) {
 	            result = srcValue;
 	          }
@@ -2549,7 +2549,7 @@
 	      });
 	      return object;
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseMerge` for arrays and objects which performs
 	     * deep merges and tracks traversed objects enabling objects with circular
@@ -2568,7 +2568,7 @@
 	    function baseMergeDeep(object, source, key, mergeFunc, customizer, stackA, stackB) {
 	      var length = stackA.length,
 	          srcValue = source[key];
-	
+
 	      while (length--) {
 	        if (stackA[length] == srcValue) {
 	          object[key] = stackB[length];
@@ -2578,7 +2578,7 @@
 	      var value = object[key],
 	          result = customizer ? customizer(value, srcValue, key, object, source) : undefined,
 	          isCommon = result === undefined;
-	
+
 	      if (isCommon) {
 	        result = srcValue;
 	        if (isArrayLike(srcValue) && (isArray(srcValue) || isTypedArray(srcValue))) {
@@ -2599,7 +2599,7 @@
 	      // it with its merged value.
 	      stackA.push(srcValue);
 	      stackB.push(result);
-	
+
 	      if (isCommon) {
 	        // Recursively merge objects and arrays (susceptible to call stack limits).
 	        object[key] = mergeFunc(result, srcValue, customizer, stackA, stackB);
@@ -2607,7 +2607,7 @@
 	        object[key] = result;
 	      }
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.property` without support for deep paths.
 	     *
@@ -2620,7 +2620,7 @@
 	        return object == null ? undefined : object[key];
 	      };
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseProperty` which supports deep paths.
 	     *
@@ -2635,7 +2635,7 @@
 	        return baseGet(object, path, pathKey);
 	      };
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.pullAt` without support for individual
 	     * index arguments and capturing the removed elements.
@@ -2656,7 +2656,7 @@
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.random` without support for argument juggling
 	     * and returning floating-point numbers.
@@ -2669,7 +2669,7 @@
 	    function baseRandom(min, max) {
 	      return min + nativeFloor(nativeRandom() * (max - min + 1));
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.reduce` and `_.reduceRight` without support
 	     * for callback shorthands and `this` binding, which iterates over `collection`
@@ -2692,7 +2692,7 @@
 	      });
 	      return accumulator;
 	    }
-	
+
 	    /**
 	     * The base implementation of `setData` without support for hot loop detection.
 	     *
@@ -2705,7 +2705,7 @@
 	      metaMap.set(func, data);
 	      return func;
 	    };
-	
+
 	    /**
 	     * The base implementation of `_.slice` without an iteratee call guard.
 	     *
@@ -2718,7 +2718,7 @@
 	    function baseSlice(array, start, end) {
 	      var index = -1,
 	          length = array.length;
-	
+
 	      start = start == null ? 0 : (+start || 0);
 	      if (start < 0) {
 	        start = -start > length ? 0 : (length + start);
@@ -2729,14 +2729,14 @@
 	      }
 	      length = start > end ? 0 : ((end - start) >>> 0);
 	      start >>>= 0;
-	
+
 	      var result = Array(length);
 	      while (++index < length) {
 	        result[index] = array[index + start];
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.some` without support for callback shorthands
 	     * and `this` binding.
@@ -2749,14 +2749,14 @@
 	     */
 	    function baseSome(collection, predicate) {
 	      var result;
-	
+
 	      baseEach(collection, function(value, index, collection) {
 	        result = predicate(value, index, collection);
 	        return !result;
 	      });
 	      return !!result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.sortBy` which uses `comparer` to define
 	     * the sort order of `array` and replaces criteria objects with their
@@ -2769,14 +2769,14 @@
 	     */
 	    function baseSortBy(array, comparer) {
 	      var length = array.length;
-	
+
 	      array.sort(comparer);
 	      while (length--) {
 	        array[length] = array[length].value;
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.sortByOrder` without param guards.
 	     *
@@ -2789,19 +2789,19 @@
 	    function baseSortByOrder(collection, iteratees, orders) {
 	      var callback = getCallback(),
 	          index = -1;
-	
+
 	      iteratees = arrayMap(iteratees, function(iteratee) { return callback(iteratee); });
-	
+
 	      var result = baseMap(collection, function(value) {
 	        var criteria = arrayMap(iteratees, function(iteratee) { return iteratee(value); });
 	        return { 'criteria': criteria, 'index': ++index, 'value': value };
 	      });
-	
+
 	      return baseSortBy(result, function(object, other) {
 	        return compareMultiple(object, other, orders);
 	      });
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.sum` without support for callback shorthands
 	     * and `this` binding.
@@ -2818,7 +2818,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.uniq` without support for callback shorthands
 	     * and `this` binding.
@@ -2836,7 +2836,7 @@
 	          isLarge = isCommon && length >= LARGE_ARRAY_SIZE,
 	          seen = isLarge ? createCache() : null,
 	          result = [];
-	
+
 	      if (seen) {
 	        indexOf = cacheIndexOf;
 	        isCommon = false;
@@ -2848,7 +2848,7 @@
 	      while (++index < length) {
 	        var value = array[index],
 	            computed = iteratee ? iteratee(value, index, array) : value;
-	
+
 	        if (isCommon && value === value) {
 	          var seenIndex = seen.length;
 	          while (seenIndex--) {
@@ -2870,7 +2870,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.values` and `_.valuesIn` which creates an
 	     * array of `object` property values corresponding to the property names
@@ -2885,13 +2885,13 @@
 	      var index = -1,
 	          length = props.length,
 	          result = Array(length);
-	
+
 	      while (++index < length) {
 	        result[index] = object[props[index]];
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The base implementation of `_.dropRightWhile`, `_.dropWhile`, `_.takeRightWhile`,
 	     * and `_.takeWhile` without support for callback shorthands and `this` binding.
@@ -2906,13 +2906,13 @@
 	    function baseWhile(array, predicate, isDrop, fromRight) {
 	      var length = array.length,
 	          index = fromRight ? length : -1;
-	
+
 	      while ((fromRight ? index-- : ++index < length) && predicate(array[index], index, array)) {}
 	      return isDrop
 	        ? baseSlice(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
 	        : baseSlice(array, (fromRight ? index + 1 : 0), (fromRight ? length : index));
 	    }
-	
+
 	    /**
 	     * The base implementation of `wrapperValue` which returns the result of
 	     * performing a sequence of actions on the unwrapped `value`, where each
@@ -2930,14 +2930,14 @@
 	      }
 	      var index = -1,
 	          length = actions.length;
-	
+
 	      while (++index < length) {
 	        var action = actions[index];
 	        result = action.func.apply(action.thisArg, arrayPush([result], action.args));
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Performs a binary search of `array` to determine the index at which `value`
 	     * should be inserted into `array` in order to maintain its sort order.
@@ -2952,12 +2952,12 @@
 	    function binaryIndex(array, value, retHighest) {
 	      var low = 0,
 	          high = array ? array.length : low;
-	
+
 	      if (typeof value == 'number' && value === value && high <= HALF_MAX_ARRAY_LENGTH) {
 	        while (low < high) {
 	          var mid = (low + high) >>> 1,
 	              computed = array[mid];
-	
+
 	          if ((retHighest ? (computed <= value) : (computed < value)) && computed !== null) {
 	            low = mid + 1;
 	          } else {
@@ -2968,7 +2968,7 @@
 	      }
 	      return binaryIndexBy(array, value, identity, retHighest);
 	    }
-	
+
 	    /**
 	     * This function is like `binaryIndex` except that it invokes `iteratee` for
 	     * `value` and each element of `array` to compute their sort ranking. The
@@ -2984,19 +2984,19 @@
 	     */
 	    function binaryIndexBy(array, value, iteratee, retHighest) {
 	      value = iteratee(value);
-	
+
 	      var low = 0,
 	          high = array ? array.length : 0,
 	          valIsNaN = value !== value,
 	          valIsNull = value === null,
 	          valIsUndef = value === undefined;
-	
+
 	      while (low < high) {
 	        var mid = nativeFloor((low + high) / 2),
 	            computed = iteratee(array[mid]),
 	            isDef = computed !== undefined,
 	            isReflexive = computed === computed;
-	
+
 	        if (valIsNaN) {
 	          var setLow = isReflexive || retHighest;
 	        } else if (valIsNull) {
@@ -3016,7 +3016,7 @@
 	      }
 	      return nativeMin(high, MAX_ARRAY_INDEX);
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseCallback` which only supports `this` binding
 	     * and specifying the number of arguments to provide to `func`.
@@ -3052,7 +3052,7 @@
 	        return func.apply(thisArg, arguments);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a clone of the given array buffer.
 	     *
@@ -3063,11 +3063,11 @@
 	    function bufferClone(buffer) {
 	      var result = new ArrayBuffer(buffer.byteLength),
 	          view = new Uint8Array(result);
-	
+
 	      view.set(new Uint8Array(buffer));
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates an array that is the composition of partially applied arguments,
 	     * placeholders, and provided arguments into a single array of arguments.
@@ -3085,7 +3085,7 @@
 	          leftIndex = -1,
 	          leftLength = partials.length,
 	          result = Array(leftLength + argsLength);
-	
+
 	      while (++leftIndex < leftLength) {
 	        result[leftIndex] = partials[leftIndex];
 	      }
@@ -3097,7 +3097,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * This function is like `composeArgs` except that the arguments composition
 	     * is tailored for `_.partialRight`.
@@ -3116,7 +3116,7 @@
 	          rightIndex = -1,
 	          rightLength = partials.length,
 	          result = Array(argsLength + rightLength);
-	
+
 	      while (++argsIndex < argsLength) {
 	        result[argsIndex] = args[argsIndex];
 	      }
@@ -3129,7 +3129,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates a `_.countBy`, `_.groupBy`, `_.indexBy`, or `_.partition` function.
 	     *
@@ -3142,11 +3142,11 @@
 	      return function(collection, iteratee, thisArg) {
 	        var result = initializer ? initializer() : {};
 	        iteratee = getCallback(iteratee, thisArg, 3);
-	
+
 	        if (isArray(collection)) {
 	          var index = -1,
 	              length = collection.length;
-	
+
 	          while (++index < length) {
 	            var value = collection[index];
 	            setter(result, value, iteratee(value, index, collection), collection);
@@ -3159,7 +3159,7 @@
 	        return result;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
 	     *
@@ -3174,7 +3174,7 @@
 	            customizer = length > 2 ? sources[length - 2] : undefined,
 	            guard = length > 2 ? sources[2] : undefined,
 	            thisArg = length > 1 ? sources[length - 1] : undefined;
-	
+
 	        if (typeof customizer == 'function') {
 	          customizer = bindCallback(customizer, thisArg, 5);
 	          length -= 2;
@@ -3195,7 +3195,7 @@
 	        return object;
 	      });
 	    }
-	
+
 	    /**
 	     * Creates a `baseEach` or `baseEachRight` function.
 	     *
@@ -3212,7 +3212,7 @@
 	        }
 	        var index = fromRight ? length : -1,
 	            iterable = toObject(collection);
-	
+
 	        while ((fromRight ? index-- : ++index < length)) {
 	          if (iteratee(iterable[index], index, iterable) === false) {
 	            break;
@@ -3221,7 +3221,7 @@
 	        return collection;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a base function for `_.forIn` or `_.forInRight`.
 	     *
@@ -3235,7 +3235,7 @@
 	            props = keysFunc(object),
 	            length = props.length,
 	            index = fromRight ? length : -1;
-	
+
 	        while ((fromRight ? index-- : ++index < length)) {
 	          var key = props[index];
 	          if (iteratee(iterable[key], key, iterable) === false) {
@@ -3245,7 +3245,7 @@
 	        return object;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that wraps `func` and invokes it with the `this`
 	     * binding of `thisArg`.
@@ -3257,14 +3257,14 @@
 	     */
 	    function createBindWrapper(func, thisArg) {
 	      var Ctor = createCtorWrapper(func);
-	
+
 	      function wrapper() {
 	        var fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
 	        return fn.apply(thisArg, arguments);
 	      }
 	      return wrapper;
 	    }
-	
+
 	    /**
 	     * Creates a `Set` cache object to optimize linear searches of large arrays.
 	     *
@@ -3275,7 +3275,7 @@
 	    function createCache(values) {
 	      return (nativeCreate && Set) ? new SetCache(values) : null;
 	    }
-	
+
 	    /**
 	     * Creates a function that produces compound words out of the words in a
 	     * given string.
@@ -3290,14 +3290,14 @@
 	            array = words(deburr(string)),
 	            length = array.length,
 	            result = '';
-	
+
 	        while (++index < length) {
 	          result = callback(result, array[index], index);
 	        }
 	        return result;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that produces an instance of `Ctor` regardless of
 	     * whether it was invoked as part of a `new` expression or by `call` or `apply`.
@@ -3324,13 +3324,13 @@
 	        }
 	        var thisBinding = baseCreate(Ctor.prototype),
 	            result = Ctor.apply(thisBinding, args);
-	
+
 	        // Mimic the constructor's `return` behavior.
 	        // See https://es5.github.io/#x13.2.2 for more details.
 	        return isObject(result) ? result : thisBinding;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.curry` or `_.curryRight` function.
 	     *
@@ -3349,7 +3349,7 @@
 	      }
 	      return curryFunc;
 	    }
-	
+
 	    /**
 	     * Creates a `_.defaults` or `_.defaultsDeep` function.
 	     *
@@ -3368,7 +3368,7 @@
 	        return assigner.apply(undefined, args);
 	      });
 	    }
-	
+
 	    /**
 	     * Creates a `_.max` or `_.min` function.
 	     *
@@ -3393,7 +3393,7 @@
 	        return baseExtremum(collection, iteratee, comparator, exValue);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.find` or `_.findLast` function.
 	     *
@@ -3412,7 +3412,7 @@
 	        return baseFind(collection, predicate, eachFunc);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.findIndex` or `_.findLastIndex` function.
 	     *
@@ -3429,7 +3429,7 @@
 	        return baseFindIndex(array, predicate, fromRight);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.findKey` or `_.findLastKey` function.
 	     *
@@ -3443,7 +3443,7 @@
 	        return baseFind(object, predicate, objectFunc, true);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.flow` or `_.flowRight` function.
 	     *
@@ -3458,7 +3458,7 @@
 	            index = fromRight ? length : -1,
 	            leftIndex = 0,
 	            funcs = Array(length);
-	
+
 	        while ((fromRight ? index-- : ++index < length)) {
 	          var func = funcs[leftIndex++] = arguments[index];
 	          if (typeof func != 'function') {
@@ -3471,10 +3471,10 @@
 	        index = wrapper ? -1 : length;
 	        while (++index < length) {
 	          func = funcs[index];
-	
+
 	          var funcName = getFuncName(func),
 	              data = funcName == 'wrapper' ? getData(func) : undefined;
-	
+
 	          if (data && isLaziable(data[0]) && data[1] == (ARY_FLAG | CURRY_FLAG | PARTIAL_FLAG | REARG_FLAG) && !data[4].length && data[9] == 1) {
 	            wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
 	          } else {
@@ -3484,13 +3484,13 @@
 	        return function() {
 	          var args = arguments,
 	              value = args[0];
-	
+
 	          if (wrapper && args.length == 1 && isArray(value) && value.length >= LARGE_ARRAY_SIZE) {
 	            return wrapper.plant(value).value();
 	          }
 	          var index = 0,
 	              result = length ? funcs[index].apply(this, args) : value;
-	
+
 	          while (++index < length) {
 	            result = funcs[index].call(this, result);
 	          }
@@ -3498,7 +3498,7 @@
 	        };
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function for `_.forEach` or `_.forEachRight`.
 	     *
@@ -3514,7 +3514,7 @@
 	          : eachFunc(collection, bindCallback(iteratee, thisArg, 3));
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function for `_.forIn` or `_.forInRight`.
 	     *
@@ -3530,7 +3530,7 @@
 	        return objectFunc(object, iteratee, keysIn);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function for `_.forOwn` or `_.forOwnRight`.
 	     *
@@ -3546,7 +3546,7 @@
 	        return objectFunc(object, iteratee);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function for `_.mapKeys` or `_.mapValues`.
 	     *
@@ -3558,7 +3558,7 @@
 	      return function(object, iteratee, thisArg) {
 	        var result = {};
 	        iteratee = getCallback(iteratee, thisArg, 3);
-	
+
 	        baseForOwn(object, function(value, key, object) {
 	          var mapped = iteratee(value, key, object);
 	          key = isMapKeys ? mapped : key;
@@ -3568,7 +3568,7 @@
 	        return result;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function for `_.padLeft` or `_.padRight`.
 	     *
@@ -3582,7 +3582,7 @@
 	        return (fromRight ? string : '') + createPadding(string, length, chars) + (fromRight ? '' : string);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.partial` or `_.partialRight` function.
 	     *
@@ -3597,7 +3597,7 @@
 	      });
 	      return partialFunc;
 	    }
-	
+
 	    /**
 	     * Creates a function for `_.reduce` or `_.reduceRight`.
 	     *
@@ -3614,7 +3614,7 @@
 	          : baseReduce(collection, getCallback(iteratee, thisArg, 4), accumulator, initFromArray, eachFunc);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that wraps `func` and invokes it with optional `this`
 	     * binding of, partial application, and currying.
@@ -3640,14 +3640,14 @@
 	          isCurryBound = bitmask & CURRY_BOUND_FLAG,
 	          isCurryRight = bitmask & CURRY_RIGHT_FLAG,
 	          Ctor = isBindKey ? undefined : createCtorWrapper(func);
-	
+
 	      function wrapper() {
 	        // Avoid `arguments` object use disqualifying optimizations by
 	        // converting it to an array before providing it to other functions.
 	        var length = arguments.length,
 	            index = length,
 	            args = Array(length);
-	
+
 	        while (index--) {
 	          args[index] = arguments[index];
 	        }
@@ -3660,7 +3660,7 @@
 	        if (isCurry || isCurryRight) {
 	          var placeholder = wrapper.placeholder,
 	              argsHolders = replaceHolders(args, placeholder);
-	
+
 	          length -= argsHolders.length;
 	          if (length < arity) {
 	            var newArgPos = argPos ? arrayCopy(argPos) : undefined,
@@ -3669,16 +3669,16 @@
 	                newHoldersRight = isCurry ? undefined : argsHolders,
 	                newPartials = isCurry ? args : undefined,
 	                newPartialsRight = isCurry ? undefined : args;
-	
+
 	            bitmask |= (isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG);
 	            bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG);
-	
+
 	            if (!isCurryBound) {
 	              bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG);
 	            }
 	            var newData = [func, bitmask, thisArg, newPartials, newsHolders, newPartialsRight, newHoldersRight, newArgPos, ary, newArity],
 	                result = createHybridWrapper.apply(undefined, newData);
-	
+
 	            if (isLaziable(func)) {
 	              setData(result, newData);
 	            }
@@ -3688,7 +3688,7 @@
 	        }
 	        var thisBinding = isBind ? thisArg : this,
 	            fn = isBindKey ? thisBinding[func] : func;
-	
+
 	        if (argPos) {
 	          args = reorder(args, argPos);
 	        }
@@ -3702,7 +3702,7 @@
 	      }
 	      return wrapper;
 	    }
-	
+
 	    /**
 	     * Creates the padding required for `string` based on the given `length`.
 	     * The `chars` string is truncated if the number of characters exceeds `length`.
@@ -3716,7 +3716,7 @@
 	    function createPadding(string, length, chars) {
 	      var strLength = string.length;
 	      length = +length;
-	
+
 	      if (strLength >= length || !nativeIsFinite(length)) {
 	        return '';
 	      }
@@ -3724,7 +3724,7 @@
 	      chars = chars == null ? ' ' : (chars + '');
 	      return repeat(chars, nativeCeil(padLength / chars.length)).slice(0, padLength);
 	    }
-	
+
 	    /**
 	     * Creates a function that wraps `func` and invokes it with the optional `this`
 	     * binding of `thisArg` and the `partials` prepended to those provided to
@@ -3740,7 +3740,7 @@
 	    function createPartialWrapper(func, bitmask, thisArg, partials) {
 	      var isBind = bitmask & BIND_FLAG,
 	          Ctor = createCtorWrapper(func);
-	
+
 	      function wrapper() {
 	        // Avoid `arguments` object use disqualifying optimizations by
 	        // converting it to an array before providing it `func`.
@@ -3749,7 +3749,7 @@
 	            leftIndex = -1,
 	            leftLength = partials.length,
 	            args = Array(leftLength + argsLength);
-	
+
 	        while (++leftIndex < leftLength) {
 	          args[leftIndex] = partials[leftIndex];
 	        }
@@ -3761,7 +3761,7 @@
 	      }
 	      return wrapper;
 	    }
-	
+
 	    /**
 	     * Creates a `_.ceil`, `_.floor`, or `_.round` function.
 	     *
@@ -3780,7 +3780,7 @@
 	        return func(number);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a `_.sortedIndex` or `_.sortedLastIndex` function.
 	     *
@@ -3796,7 +3796,7 @@
 	          : binaryIndexBy(array, value, callback(iteratee, thisArg, 1), retHighest);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that either curries or invokes `func` with optional
 	     * `this` binding and partially applied arguments.
@@ -3836,12 +3836,12 @@
 	      if (bitmask & PARTIAL_RIGHT_FLAG) {
 	        var partialsRight = partials,
 	            holdersRight = holders;
-	
+
 	        partials = holders = undefined;
 	      }
 	      var data = isBindKey ? undefined : getData(func),
 	          newData = [func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity];
-	
+
 	      if (data) {
 	        mergeData(newData, data);
 	        bitmask = newData[1];
@@ -3850,7 +3850,7 @@
 	      newData[9] = arity == null
 	        ? (isBindKey ? 0 : func.length)
 	        : (nativeMax(arity - length, 0) || 0);
-	
+
 	      if (bitmask == BIND_FLAG) {
 	        var result = createBindWrapper(newData[0], newData[2]);
 	      } else if ((bitmask == PARTIAL_FLAG || bitmask == (BIND_FLAG | PARTIAL_FLAG)) && !newData[4].length) {
@@ -3861,7 +3861,7 @@
 	      var setter = data ? baseSetData : setData;
 	      return setter(result, newData);
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseIsEqualDeep` for arrays with support for
 	     * partial deep comparisons.
@@ -3880,7 +3880,7 @@
 	      var index = -1,
 	          arrLength = array.length,
 	          othLength = other.length;
-	
+
 	      if (arrLength != othLength && !(isLoose && othLength > arrLength)) {
 	        return false;
 	      }
@@ -3889,7 +3889,7 @@
 	        var arrValue = array[index],
 	            othValue = other[index],
 	            result = customizer ? customizer(isLoose ? othValue : arrValue, isLoose ? arrValue : othValue, index) : undefined;
-	
+
 	        if (result !== undefined) {
 	          if (result) {
 	            continue;
@@ -3909,7 +3909,7 @@
 	      }
 	      return true;
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseIsEqualDeep` for comparing objects of
 	     * the same `toStringTag`.
@@ -3930,16 +3930,16 @@
 	          // Coerce dates and booleans to numbers, dates to milliseconds and booleans
 	          // to `1` or `0` treating invalid dates coerced to `NaN` as not equal.
 	          return +object == +other;
-	
+
 	        case errorTag:
 	          return object.name == other.name && object.message == other.message;
-	
+
 	        case numberTag:
 	          // Treat `NaN` vs. `NaN` as equal.
 	          return (object != +object)
 	            ? other != +other
 	            : object == +other;
-	
+
 	        case regexpTag:
 	        case stringTag:
 	          // Coerce regexes to strings and treat strings primitives and string
@@ -3948,7 +3948,7 @@
 	      }
 	      return false;
 	    }
-	
+
 	    /**
 	     * A specialized version of `baseIsEqualDeep` for objects with support for
 	     * partial deep comparisons.
@@ -3968,7 +3968,7 @@
 	          objLength = objProps.length,
 	          othProps = keys(other),
 	          othLength = othProps.length;
-	
+
 	      if (objLength != othLength && !isLoose) {
 	        return false;
 	      }
@@ -3985,7 +3985,7 @@
 	        var objValue = object[key],
 	            othValue = other[key],
 	            result = customizer ? customizer(isLoose ? othValue : objValue, isLoose? objValue : othValue, key) : undefined;
-	
+
 	        // Recursively compare objects (susceptible to call stack limits).
 	        if (!(result === undefined ? equalFunc(objValue, othValue, customizer, isLoose, stackA, stackB) : result)) {
 	          return false;
@@ -3995,7 +3995,7 @@
 	      if (!skipCtor) {
 	        var objCtor = object.constructor,
 	            othCtor = other.constructor;
-	
+
 	        // Non `Object` object instances with different constructors are not equal.
 	        if (objCtor != othCtor &&
 	            ('constructor' in object && 'constructor' in other) &&
@@ -4006,7 +4006,7 @@
 	      }
 	      return true;
 	    }
-	
+
 	    /**
 	     * Gets the appropriate "callback" function. If the `_.callback` method is
 	     * customized this function returns the custom method, otherwise it returns
@@ -4021,7 +4021,7 @@
 	      result = result === callback ? baseCallback : result;
 	      return argCount ? result(func, thisArg, argCount) : result;
 	    }
-	
+
 	    /**
 	     * Gets metadata for `func`.
 	     *
@@ -4032,7 +4032,7 @@
 	    var getData = !metaMap ? noop : function(func) {
 	      return metaMap.get(func);
 	    };
-	
+
 	    /**
 	     * Gets the name of `func`.
 	     *
@@ -4044,7 +4044,7 @@
 	      var result = func.name,
 	          array = realNames[result],
 	          length = array ? array.length : 0;
-	
+
 	      while (length--) {
 	        var data = array[length],
 	            otherFunc = data.func;
@@ -4054,7 +4054,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Gets the appropriate "indexOf" function. If the `_.indexOf` method is
 	     * customized this function returns the custom method, otherwise it returns
@@ -4069,7 +4069,7 @@
 	      result = result === indexOf ? baseIndexOf : result;
 	      return collection ? result(collection, target, fromIndex) : result;
 	    }
-	
+
 	    /**
 	     * Gets the "length" property value of `object`.
 	     *
@@ -4081,7 +4081,7 @@
 	     * @returns {*} Returns the "length" value.
 	     */
 	    var getLength = baseProperty('length');
-	
+
 	    /**
 	     * Gets the propery names, values, and compare flags of `object`.
 	     *
@@ -4092,13 +4092,13 @@
 	    function getMatchData(object) {
 	      var result = pairs(object),
 	          length = result.length;
-	
+
 	      while (length--) {
 	        result[length][2] = isStrictComparable(result[length][1]);
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Gets the native function at `key` of `object`.
 	     *
@@ -4111,7 +4111,7 @@
 	      var value = object == null ? undefined : object[key];
 	      return isNative(value) ? value : undefined;
 	    }
-	
+
 	    /**
 	     * Gets the view, applying any `transforms` to the `start` and `end` positions.
 	     *
@@ -4125,11 +4125,11 @@
 	    function getView(start, end, transforms) {
 	      var index = -1,
 	          length = transforms.length;
-	
+
 	      while (++index < length) {
 	        var data = transforms[index],
 	            size = data.size;
-	
+
 	        switch (data.type) {
 	          case 'drop':      start += size; break;
 	          case 'dropRight': end -= size; break;
@@ -4139,7 +4139,7 @@
 	      }
 	      return { 'start': start, 'end': end };
 	    }
-	
+
 	    /**
 	     * Initializes an array clone.
 	     *
@@ -4150,7 +4150,7 @@
 	    function initCloneArray(array) {
 	      var length = array.length,
 	          result = new array.constructor(length);
-	
+
 	      // Add array properties assigned by `RegExp#exec`.
 	      if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
 	        result.index = array.index;
@@ -4158,7 +4158,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Initializes an object clone.
 	     *
@@ -4173,7 +4173,7 @@
 	      }
 	      return new Ctor;
 	    }
-	
+
 	    /**
 	     * Initializes an object clone based on its `toStringTag`.
 	     *
@@ -4191,28 +4191,28 @@
 	      switch (tag) {
 	        case arrayBufferTag:
 	          return bufferClone(object);
-	
+
 	        case boolTag:
 	        case dateTag:
 	          return new Ctor(+object);
-	
+
 	        case float32Tag: case float64Tag:
 	        case int8Tag: case int16Tag: case int32Tag:
 	        case uint8Tag: case uint8ClampedTag: case uint16Tag: case uint32Tag:
 	          var buffer = object.buffer;
 	          return new Ctor(isDeep ? bufferClone(buffer) : buffer, object.byteOffset, object.length);
-	
+
 	        case numberTag:
 	        case stringTag:
 	          return new Ctor(object);
-	
+
 	        case regexpTag:
 	          var result = new Ctor(object.source, reFlags.exec(object));
 	          result.lastIndex = object.lastIndex;
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Invokes the method at `path` on `object`.
 	     *
@@ -4231,7 +4231,7 @@
 	      var func = object == null ? object : object[path];
 	      return func == null ? undefined : func.apply(object, args);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is array-like.
 	     *
@@ -4242,7 +4242,7 @@
 	    function isArrayLike(value) {
 	      return value != null && isLength(getLength(value));
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a valid array-like index.
 	     *
@@ -4256,7 +4256,7 @@
 	      length = length == null ? MAX_SAFE_INTEGER : length;
 	      return value > -1 && value % 1 == 0 && value < length;
 	    }
-	
+
 	    /**
 	     * Checks if the provided arguments are from an iteratee call.
 	     *
@@ -4279,7 +4279,7 @@
 	      }
 	      return false;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a property name and not a property path.
 	     *
@@ -4299,7 +4299,7 @@
 	      var result = !reIsDeepProp.test(value);
 	      return result || (object != null && value in toObject(object));
 	    }
-	
+
 	    /**
 	     * Checks if `func` has a lazy counterpart.
 	     *
@@ -4319,7 +4319,7 @@
 	      var data = getData(other);
 	      return !!data && func === data[0];
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a valid array-like length.
 	     *
@@ -4332,7 +4332,7 @@
 	    function isLength(value) {
 	      return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
 	     *
@@ -4344,7 +4344,7 @@
 	    function isStrictComparable(value) {
 	      return value === value && !isObject(value);
 	    }
-	
+
 	    /**
 	     * Merges the function metadata of `source` into `data`.
 	     *
@@ -4365,12 +4365,12 @@
 	          srcBitmask = source[1],
 	          newBitmask = bitmask | srcBitmask,
 	          isCommon = newBitmask < ARY_FLAG;
-	
+
 	      var isCombo =
 	        (srcBitmask == ARY_FLAG && bitmask == CURRY_FLAG) ||
 	        (srcBitmask == ARY_FLAG && bitmask == REARG_FLAG && data[7].length <= source[8]) ||
 	        (srcBitmask == (ARY_FLAG | REARG_FLAG) && bitmask == CURRY_FLAG);
-	
+
 	      // Exit early if metadata can't be merged.
 	      if (!(isCommon || isCombo)) {
 	        return data;
@@ -4411,10 +4411,10 @@
 	      // Use source `func` and merge bitmasks.
 	      data[0] = source[0];
 	      data[1] = newBitmask;
-	
+
 	      return data;
 	    }
-	
+
 	    /**
 	     * Used by `_.defaultsDeep` to customize its `_.merge` use.
 	     *
@@ -4426,7 +4426,7 @@
 	    function mergeDefaults(objectValue, sourceValue) {
 	      return objectValue === undefined ? sourceValue : merge(objectValue, sourceValue, mergeDefaults);
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.pick` which picks `object` properties specified
 	     * by `props`.
@@ -4438,11 +4438,11 @@
 	     */
 	    function pickByArray(object, props) {
 	      object = toObject(object);
-	
+
 	      var index = -1,
 	          length = props.length,
 	          result = {};
-	
+
 	      while (++index < length) {
 	        var key = props[index];
 	        if (key in object) {
@@ -4451,7 +4451,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * A specialized version of `_.pick` which picks `object` properties `predicate`
 	     * returns truthy for.
@@ -4470,7 +4470,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * Reorder `array` according to the specified indexes where the element at
 	     * the first index is assigned as the first element, the element at
@@ -4485,14 +4485,14 @@
 	      var arrLength = array.length,
 	          length = nativeMin(indexes.length, arrLength),
 	          oldArray = arrayCopy(array);
-	
+
 	      while (length--) {
 	        var index = indexes[length];
 	        array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * Sets metadata for `func`.
 	     *
@@ -4509,11 +4509,11 @@
 	    var setData = (function() {
 	      var count = 0,
 	          lastCalled = 0;
-	
+
 	      return function(key, value) {
 	        var stamp = now(),
 	            remaining = HOT_SPAN - (stamp - lastCalled);
-	
+
 	        lastCalled = stamp;
 	        if (remaining > 0) {
 	          if (++count >= HOT_COUNT) {
@@ -4525,7 +4525,7 @@
 	        return baseSetData(key, value);
 	      };
 	    }());
-	
+
 	    /**
 	     * A fallback implementation of `Object.keys` which creates an array of the
 	     * own enumerable property names of `object`.
@@ -4538,13 +4538,13 @@
 	      var props = keysIn(object),
 	          propsLength = props.length,
 	          length = propsLength && object.length;
-	
+
 	      var allowIndexes = !!length && isLength(length) &&
 	        (isArray(object) || isArguments(object));
-	
+
 	      var index = -1,
 	          result = [];
-	
+
 	      while (++index < propsLength) {
 	        var key = props[index];
 	        if ((allowIndexes && isIndex(key, length)) || hasOwnProperty.call(object, key)) {
@@ -4553,7 +4553,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Converts `value` to an array-like object if it's not one.
 	     *
@@ -4570,7 +4570,7 @@
 	      }
 	      return isObject(value) ? value : Object(value);
 	    }
-	
+
 	    /**
 	     * Converts `value` to an object if it's not one.
 	     *
@@ -4581,7 +4581,7 @@
 	    function toObject(value) {
 	      return isObject(value) ? value : Object(value);
 	    }
-	
+
 	    /**
 	     * Converts `value` to property path array if it's not one.
 	     *
@@ -4599,7 +4599,7 @@
 	      });
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates a clone of `wrapper`.
 	     *
@@ -4612,9 +4612,9 @@
 	        ? wrapper.clone()
 	        : new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__, arrayCopy(wrapper.__actions__));
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates an array of elements split into groups the length of `size`.
 	     * If `collection` can't be split evenly, the final chunk will be the remaining
@@ -4645,13 +4645,13 @@
 	          length = array ? array.length : 0,
 	          resIndex = -1,
 	          result = Array(nativeCeil(length / size));
-	
+
 	      while (index < length) {
 	        result[++resIndex] = baseSlice(array, index, (index += size));
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates an array with all falsey values removed. The values `false`, `null`,
 	     * `0`, `""`, `undefined`, and `NaN` are falsey.
@@ -4671,7 +4671,7 @@
 	          length = array ? array.length : 0,
 	          resIndex = -1,
 	          result = [];
-	
+
 	      while (++index < length) {
 	        var value = array[index];
 	        if (value) {
@@ -4680,7 +4680,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates an array of unique `array` values not included in the other
 	     * provided arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -4702,7 +4702,7 @@
 	        ? baseDifference(array, baseFlatten(values, false, true))
 	        : [];
 	    });
-	
+
 	    /**
 	     * Creates a slice of `array` with `n` elements dropped from the beginning.
 	     *
@@ -4737,7 +4737,7 @@
 	      }
 	      return baseSlice(array, n < 0 ? 0 : n);
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` with `n` elements dropped from the end.
 	     *
@@ -4773,7 +4773,7 @@
 	      n = length - (+n || 0);
 	      return baseSlice(array, 0, n < 0 ? 0 : n);
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` excluding elements dropped from the end.
 	     * Elements are dropped until `predicate` returns falsey. The predicate is
@@ -4828,7 +4828,7 @@
 	        ? baseWhile(array, getCallback(predicate, thisArg, 3), true, true)
 	        : [];
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` excluding elements dropped from the beginning.
 	     * Elements are dropped until `predicate` returns falsey. The predicate is
@@ -4883,7 +4883,7 @@
 	        ? baseWhile(array, getCallback(predicate, thisArg, 3), true)
 	        : [];
 	    }
-	
+
 	    /**
 	     * Fills elements of `array` with `value` from `start` up to, but not
 	     * including, `end`.
@@ -4923,7 +4923,7 @@
 	      }
 	      return baseFill(array, value, start, end);
 	    }
-	
+
 	    /**
 	     * This method is like `_.find` except that it returns the index of the first
 	     * element `predicate` returns truthy for instead of the element itself.
@@ -4973,7 +4973,7 @@
 	     * // => 2
 	     */
 	    var findIndex = createFindIndex();
-	
+
 	    /**
 	     * This method is like `_.findIndex` except that it iterates over elements
 	     * of `collection` from right to left.
@@ -5023,7 +5023,7 @@
 	     * // => 0
 	     */
 	    var findLastIndex = createFindIndex(true);
-	
+
 	    /**
 	     * Gets the first element of `array`.
 	     *
@@ -5044,7 +5044,7 @@
 	    function first(array) {
 	      return array ? array[0] : undefined;
 	    }
-	
+
 	    /**
 	     * Flattens a nested array. If `isDeep` is `true` the array is recursively
 	     * flattened, otherwise it is only flattened a single level.
@@ -5072,7 +5072,7 @@
 	      }
 	      return length ? baseFlatten(array, isDeep) : [];
 	    }
-	
+
 	    /**
 	     * Recursively flattens a nested array.
 	     *
@@ -5090,7 +5090,7 @@
 	      var length = array ? array.length : 0;
 	      return length ? baseFlatten(array, true) : [];
 	    }
-	
+
 	    /**
 	     * Gets the index at which the first occurrence of `value` is found in `array`
 	     * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -5136,7 +5136,7 @@
 	      }
 	      return baseIndexOf(array, value, fromIndex || 0);
 	    }
-	
+
 	    /**
 	     * Gets all but the last element of `array`.
 	     *
@@ -5153,7 +5153,7 @@
 	    function initial(array) {
 	      return dropRight(array, 1);
 	    }
-	
+
 	    /**
 	     * Creates an array of unique values that are included in all of the provided
 	     * arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -5175,7 +5175,7 @@
 	          indexOf = getIndexOf(),
 	          isCommon = indexOf == baseIndexOf,
 	          result = [];
-	
+
 	      while (othIndex--) {
 	        var value = arrays[othIndex] = isArrayLike(value = arrays[othIndex]) ? value : [];
 	        caches[othIndex] = (isCommon && value.length >= 120) ? createCache(othIndex && value) : null;
@@ -5184,7 +5184,7 @@
 	          index = -1,
 	          length = array ? array.length : 0,
 	          seen = caches[0];
-	
+
 	      outer:
 	      while (++index < length) {
 	        value = array[index];
@@ -5204,7 +5204,7 @@
 	      }
 	      return result;
 	    });
-	
+
 	    /**
 	     * Gets the last element of `array`.
 	     *
@@ -5222,7 +5222,7 @@
 	      var length = array ? array.length : 0;
 	      return length ? array[length - 1] : undefined;
 	    }
-	
+
 	    /**
 	     * This method is like `_.indexOf` except that it iterates over elements of
 	     * `array` from right to left.
@@ -5274,7 +5274,7 @@
 	      }
 	      return -1;
 	    }
-	
+
 	    /**
 	     * Removes all provided values from `array` using
 	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -5299,25 +5299,25 @@
 	    function pull() {
 	      var args = arguments,
 	          array = args[0];
-	
+
 	      if (!(array && array.length)) {
 	        return array;
 	      }
 	      var index = 0,
 	          indexOf = getIndexOf(),
 	          length = args.length;
-	
+
 	      while (++index < length) {
 	        var fromIndex = 0,
 	            value = args[index];
-	
+
 	        while ((fromIndex = indexOf(array, value, fromIndex)) > -1) {
 	          splice.call(array, fromIndex, 1);
 	        }
 	      }
 	      return array;
 	    }
-	
+
 	    /**
 	     * Removes elements from `array` corresponding to the given indexes and returns
 	     * an array of the removed elements. Indexes may be specified as an array of
@@ -5345,12 +5345,12 @@
 	     */
 	    var pullAt = restParam(function(array, indexes) {
 	      indexes = baseFlatten(indexes);
-	
+
 	      var result = baseAt(array, indexes);
 	      basePullAt(array, indexes.sort(baseCompareAscending));
 	      return result;
 	    });
-	
+
 	    /**
 	     * Removes all elements from `array` that `predicate` returns truthy for
 	     * and returns an array of the removed elements. The predicate is bound to
@@ -5398,7 +5398,7 @@
 	      var index = -1,
 	          indexes = [],
 	          length = array.length;
-	
+
 	      predicate = getCallback(predicate, thisArg, 3);
 	      while (++index < length) {
 	        var value = array[index];
@@ -5410,7 +5410,7 @@
 	      basePullAt(array, indexes);
 	      return result;
 	    }
-	
+
 	    /**
 	     * Gets all but the first element of `array`.
 	     *
@@ -5428,7 +5428,7 @@
 	    function rest(array) {
 	      return drop(array, 1);
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` from `start` up to, but not including, `end`.
 	     *
@@ -5454,7 +5454,7 @@
 	      }
 	      return baseSlice(array, start, end);
 	    }
-	
+
 	    /**
 	     * Uses a binary search to determine the lowest index at which `value` should
 	     * be inserted into `array` in order to maintain its sort order. If an iteratee
@@ -5504,7 +5504,7 @@
 	     * // => 1
 	     */
 	    var sortedIndex = createSortedIndex();
-	
+
 	    /**
 	     * This method is like `_.sortedIndex` except that it returns the highest
 	     * index at which `value` should be inserted into `array` in order to
@@ -5526,7 +5526,7 @@
 	     * // => 4
 	     */
 	    var sortedLastIndex = createSortedIndex(true);
-	
+
 	    /**
 	     * Creates a slice of `array` with `n` elements taken from the beginning.
 	     *
@@ -5561,7 +5561,7 @@
 	      }
 	      return baseSlice(array, 0, n < 0 ? 0 : n);
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` with `n` elements taken from the end.
 	     *
@@ -5597,7 +5597,7 @@
 	      n = length - (+n || 0);
 	      return baseSlice(array, n < 0 ? 0 : n);
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` with elements taken from the end. Elements are
 	     * taken until `predicate` returns falsey. The predicate is bound to `thisArg`
@@ -5652,7 +5652,7 @@
 	        ? baseWhile(array, getCallback(predicate, thisArg, 3), false, true)
 	        : [];
 	    }
-	
+
 	    /**
 	     * Creates a slice of `array` with elements taken from the beginning. Elements
 	     * are taken until `predicate` returns falsey. The predicate is bound to
@@ -5707,7 +5707,7 @@
 	        ? baseWhile(array, getCallback(predicate, thisArg, 3))
 	        : [];
 	    }
-	
+
 	    /**
 	     * Creates an array of unique values, in order, from all of the provided arrays
 	     * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -5726,7 +5726,7 @@
 	    var union = restParam(function(arrays) {
 	      return baseUniq(baseFlatten(arrays, false, true));
 	    });
-	
+
 	    /**
 	     * Creates a duplicate-free version of an array, using
 	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -5794,7 +5794,7 @@
 	        ? sortedUniq(array, iteratee)
 	        : baseUniq(array, iteratee);
 	    }
-	
+
 	    /**
 	     * This method is like `_.zip` except that it accepts an array of grouped
 	     * elements and creates an array regrouping the elements to their pre-zip
@@ -5819,7 +5819,7 @@
 	      }
 	      var index = -1,
 	          length = 0;
-	
+
 	      array = arrayFilter(array, function(group) {
 	        if (isArrayLike(group)) {
 	          length = nativeMax(group.length, length);
@@ -5832,7 +5832,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * This method is like `_.unzip` except that it accepts an iteratee to specify
 	     * how regrouped values should be combined. The `iteratee` is bound to `thisArg`
@@ -5867,7 +5867,7 @@
 	        return arrayReduce(group, iteratee, undefined, true);
 	      });
 	    }
-	
+
 	    /**
 	     * Creates an array excluding all provided values using
 	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -5889,7 +5889,7 @@
 	        ? baseDifference(array, values)
 	        : [];
 	    });
-	
+
 	    /**
 	     * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
 	     * of the provided arrays.
@@ -5907,7 +5907,7 @@
 	    function xor() {
 	      var index = -1,
 	          length = arguments.length;
-	
+
 	      while (++index < length) {
 	        var array = arguments[index];
 	        if (isArrayLike(array)) {
@@ -5918,7 +5918,7 @@
 	      }
 	      return result ? baseUniq(result) : [];
 	    }
-	
+
 	    /**
 	     * Creates an array of grouped elements, the first of which contains the first
 	     * elements of the given arrays, the second of which contains the second elements
@@ -5935,7 +5935,7 @@
 	     * // => [['fred', 30, true], ['barney', 40, false]]
 	     */
 	    var zip = restParam(unzip);
-	
+
 	    /**
 	     * The inverse of `_.pairs`; this method returns an object composed from arrays
 	     * of property names and values. Provide either a single two dimensional array,
@@ -5961,7 +5961,7 @@
 	      var index = -1,
 	          length = props ? props.length : 0,
 	          result = {};
-	
+
 	      if (length && !values && !isArray(props[0])) {
 	        values = [];
 	      }
@@ -5975,7 +5975,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * This method is like `_.zip` except that it accepts an iteratee to specify
 	     * how grouped values should be combined. The `iteratee` is bound to `thisArg`
@@ -5997,7 +5997,7 @@
 	      var length = arrays.length,
 	          iteratee = length > 2 ? arrays[length - 2] : undefined,
 	          thisArg = length > 1 ? arrays[length - 1] : undefined;
-	
+
 	      if (length > 2 && typeof iteratee == 'function') {
 	        length -= 2;
 	      } else {
@@ -6007,9 +6007,9 @@
 	      arrays.length = length;
 	      return unzipWith(arrays, iteratee, thisArg);
 	    });
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates a `lodash` object that wraps `value` with explicit method
 	     * chaining enabled.
@@ -6041,7 +6041,7 @@
 	      result.__chain__ = true;
 	      return result;
 	    }
-	
+
 	    /**
 	     * This method invokes `interceptor` and returns `value`. The interceptor is
 	     * bound to `thisArg` and invoked with one argument; (value). The purpose of
@@ -6069,7 +6069,7 @@
 	      interceptor.call(thisArg, value);
 	      return value;
 	    }
-	
+
 	    /**
 	     * This method is like `_.tap` except that it returns the result of `interceptor`.
 	     *
@@ -6094,7 +6094,7 @@
 	    function thru(value, interceptor, thisArg) {
 	      return interceptor.call(thisArg, value);
 	    }
-	
+
 	    /**
 	     * Enables explicit method chaining on the wrapper object.
 	     *
@@ -6123,7 +6123,7 @@
 	    function wrapperChain() {
 	      return chain(this);
 	    }
-	
+
 	    /**
 	     * Executes the chained sequence and returns the wrapped result.
 	     *
@@ -6152,7 +6152,7 @@
 	    function wrapperCommit() {
 	      return new LodashWrapper(this.value(), this.__chain__);
 	    }
-	
+
 	    /**
 	     * Creates a new array joining a wrapped array with any additional arrays
 	     * and/or values.
@@ -6179,7 +6179,7 @@
 	        return arrayConcat(isArray(array) ? array : [toObject(array)], values);
 	      });
 	    });
-	
+
 	    /**
 	     * Creates a clone of the chained sequence planting `value` as the wrapped value.
 	     *
@@ -6206,7 +6206,7 @@
 	    function wrapperPlant(value) {
 	      var result,
 	          parent = this;
-	
+
 	      while (parent instanceof baseLodash) {
 	        var clone = wrapperClone(parent);
 	        if (result) {
@@ -6220,7 +6220,7 @@
 	      previous.__wrapped__ = value;
 	      return result;
 	    }
-	
+
 	    /**
 	     * Reverses the wrapped array so the first element becomes the last, the
 	     * second element becomes the second to last, and so on.
@@ -6243,7 +6243,7 @@
 	     */
 	    function wrapperReverse() {
 	      var value = this.__wrapped__;
-	
+
 	      var interceptor = function(value) {
 	        return (wrapped && wrapped.__dir__ < 0) ? value : value.reverse();
 	      };
@@ -6258,7 +6258,7 @@
 	      }
 	      return this.thru(interceptor);
 	    }
-	
+
 	    /**
 	     * Produces the result of coercing the unwrapped value to a string.
 	     *
@@ -6274,7 +6274,7 @@
 	    function wrapperToString() {
 	      return (this.value() + '');
 	    }
-	
+
 	    /**
 	     * Executes the chained sequence to extract the unwrapped value.
 	     *
@@ -6291,9 +6291,9 @@
 	    function wrapperValue() {
 	      return baseWrapperValue(this.__wrapped__, this.__actions__);
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates an array of elements corresponding to the given keys, or indexes,
 	     * of `collection`. Keys may be specified as individual arguments or as arrays
@@ -6317,7 +6317,7 @@
 	    var at = restParam(function(collection, props) {
 	      return baseAt(collection, baseFlatten(props));
 	    });
-	
+
 	    /**
 	     * Creates an object composed of keys generated from the results of running
 	     * each element of `collection` through `iteratee`. The corresponding value
@@ -6362,7 +6362,7 @@
 	    var countBy = createAggregator(function(result, value, key) {
 	      hasOwnProperty.call(result, key) ? ++result[key] : (result[key] = 1);
 	    });
-	
+
 	    /**
 	     * Checks if `predicate` returns truthy for **all** elements of `collection`.
 	     * The predicate is bound to `thisArg` and invoked with three arguments:
@@ -6421,7 +6421,7 @@
 	      }
 	      return func(collection, predicate);
 	    }
-	
+
 	    /**
 	     * Iterates over elements of `collection`, returning an array of all elements
 	     * `predicate` returns truthy for. The predicate is bound to `thisArg` and
@@ -6476,7 +6476,7 @@
 	      predicate = getCallback(predicate, thisArg, 3);
 	      return func(collection, predicate);
 	    }
-	
+
 	    /**
 	     * Iterates over elements of `collection`, returning the first element
 	     * `predicate` returns truthy for. The predicate is bound to `thisArg` and
@@ -6528,7 +6528,7 @@
 	     * // => 'barney'
 	     */
 	    var find = createFind(baseEach);
-	
+
 	    /**
 	     * This method is like `_.find` except that it iterates over elements of
 	     * `collection` from right to left.
@@ -6549,7 +6549,7 @@
 	     * // => 3
 	     */
 	    var findLast = createFind(baseEachRight, true);
-	
+
 	    /**
 	     * Performs a deep comparison between each element in `collection` and the
 	     * source object, returning the first element that has equivalent property
@@ -6582,7 +6582,7 @@
 	    function findWhere(collection, source) {
 	      return find(collection, baseMatches(source));
 	    }
-	
+
 	    /**
 	     * Iterates over elements of `collection` invoking `iteratee` for each element.
 	     * The `iteratee` is bound to `thisArg` and invoked with three arguments:
@@ -6614,7 +6614,7 @@
 	     * // => logs each value-key pair and returns the object (iteration order is not guaranteed)
 	     */
 	    var forEach = createForEach(arrayEach, baseEach);
-	
+
 	    /**
 	     * This method is like `_.forEach` except that it iterates over elements of
 	     * `collection` from right to left.
@@ -6635,7 +6635,7 @@
 	     * // => logs each value from right to left and returns the array
 	     */
 	    var forEachRight = createForEach(arrayEachRight, baseEachRight);
-	
+
 	    /**
 	     * Creates an object composed of keys generated from the results of running
 	     * each element of `collection` through `iteratee`. The corresponding value
@@ -6685,7 +6685,7 @@
 	        result[key] = [value];
 	      }
 	    });
-	
+
 	    /**
 	     * Checks if `value` is in `collection` using
 	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
@@ -6730,7 +6730,7 @@
 	        ? (fromIndex <= length && collection.indexOf(target, fromIndex) > -1)
 	        : (!!length && getIndexOf(collection, target, fromIndex) > -1);
 	    }
-	
+
 	    /**
 	     * Creates an object composed of keys generated from the results of running
 	     * each element of `collection` through `iteratee`. The corresponding value
@@ -6780,7 +6780,7 @@
 	    var indexBy = createAggregator(function(result, value, key) {
 	      result[key] = value;
 	    });
-	
+
 	    /**
 	     * Invokes the method at `path` of each element in `collection`, returning
 	     * an array of the results of each invoked method. Any additional arguments
@@ -6808,14 +6808,14 @@
 	          isFunc = typeof path == 'function',
 	          isProp = isKey(path),
 	          result = isArrayLike(collection) ? Array(collection.length) : [];
-	
+
 	      baseEach(collection, function(value) {
 	        var func = isFunc ? path : ((isProp && value != null) ? value[path] : undefined);
 	        result[++index] = func ? func.apply(value, args) : invokePath(value, path, args);
 	      });
 	      return result;
 	    });
-	
+
 	    /**
 	     * Creates an array of values by running each element in `collection` through
 	     * `iteratee`. The `iteratee` is bound to `thisArg` and invoked with three
@@ -6877,7 +6877,7 @@
 	      iteratee = getCallback(iteratee, thisArg, 3);
 	      return func(collection, iteratee);
 	    }
-	
+
 	    /**
 	     * Creates an array of elements split into two groups, the first of which
 	     * contains elements `predicate` returns truthy for, while the second of which
@@ -6940,7 +6940,7 @@
 	    var partition = createAggregator(function(result, value, key) {
 	      result[key ? 0 : 1].push(value);
 	    }, function() { return [[], []]; });
-	
+
 	    /**
 	     * Gets the property value of `path` from all elements in `collection`.
 	     *
@@ -6967,7 +6967,7 @@
 	    function pluck(collection, path) {
 	      return map(collection, property(path));
 	    }
-	
+
 	    /**
 	     * Reduces `collection` to a value which is the accumulated result of running
 	     * each element in `collection` through `iteratee`, where each successive
@@ -7006,7 +7006,7 @@
 	     * // => { 'a': 3, 'b': 6 } (iteration order is not guaranteed)
 	     */
 	    var reduce = createReduce(arrayReduce, baseEach);
-	
+
 	    /**
 	     * This method is like `_.reduce` except that it iterates over elements of
 	     * `collection` from right to left.
@@ -7030,7 +7030,7 @@
 	     * // => [4, 5, 2, 3, 0, 1]
 	     */
 	    var reduceRight = createReduce(arrayReduceRight, baseEachRight);
-	
+
 	    /**
 	     * The opposite of `_.filter`; this method returns the elements of `collection`
 	     * that `predicate` does **not** return truthy for.
@@ -7074,7 +7074,7 @@
 	        return !predicate(value, index, collection);
 	      });
 	    }
-	
+
 	    /**
 	     * Gets a random element or `n` random elements from a collection.
 	     *
@@ -7103,19 +7103,19 @@
 	          result = toArray(collection),
 	          length = result.length,
 	          lastIndex = length - 1;
-	
+
 	      n = nativeMin(n < 0 ? 0 : (+n || 0), length);
 	      while (++index < n) {
 	        var rand = baseRandom(index, lastIndex),
 	            value = result[rand];
-	
+
 	        result[rand] = result[index];
 	        result[index] = value;
 	      }
 	      result.length = n;
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates an array of shuffled values, using a version of the
 	     * [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher-Yates_shuffle).
@@ -7133,7 +7133,7 @@
 	    function shuffle(collection) {
 	      return sample(collection, POSITIVE_INFINITY);
 	    }
-	
+
 	    /**
 	     * Gets the size of `collection` by returning its length for array-like
 	     * values or the number of own enumerable properties for objects.
@@ -7158,7 +7158,7 @@
 	      var length = collection ? getLength(collection) : 0;
 	      return isLength(length) ? length : keys(collection).length;
 	    }
-	
+
 	    /**
 	     * Checks if `predicate` returns truthy for **any** element of `collection`.
 	     * The function returns as soon as it finds a passing value and does not iterate
@@ -7218,7 +7218,7 @@
 	      }
 	      return func(collection, predicate);
 	    }
-	
+
 	    /**
 	     * Creates an array of elements, sorted in ascending order by the results of
 	     * running each element in a collection through `iteratee`. This method performs
@@ -7276,13 +7276,13 @@
 	      }
 	      var index = -1;
 	      iteratee = getCallback(iteratee, thisArg, 3);
-	
+
 	      var result = baseMap(collection, function(value, key, collection) {
 	        return { 'criteria': iteratee(value, key, collection), 'index': ++index, 'value': value };
 	      });
 	      return baseSortBy(result, compareAscending);
 	    }
-	
+
 	    /**
 	     * This method is like `_.sortBy` except that it can sort by multiple iteratees
 	     * or property names.
@@ -7328,7 +7328,7 @@
 	      }
 	      return baseSortByOrder(collection, baseFlatten(iteratees), []);
 	    });
-	
+
 	    /**
 	     * This method is like `_.sortByAll` except that it allows specifying the
 	     * sort orders of the iteratees to sort by. If `orders` is unspecified, all
@@ -7378,7 +7378,7 @@
 	      }
 	      return baseSortByOrder(collection, iteratees, orders);
 	    }
-	
+
 	    /**
 	     * Performs a deep comparison between each element in `collection` and the
 	     * source object, returning an array of all elements that have equivalent
@@ -7411,9 +7411,9 @@
 	    function where(collection, source) {
 	      return filter(collection, baseMatches(source));
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Gets the number of milliseconds that have elapsed since the Unix epoch
 	     * (1 January 1970 00:00:00 UTC).
@@ -7431,9 +7431,9 @@
 	    var now = nativeNow || function() {
 	      return new Date().getTime();
 	    };
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * The opposite of `_.before`; this method creates a function that invokes
 	     * `func` once it is called `n` or more times.
@@ -7474,7 +7474,7 @@
 	        }
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that accepts up to `n` arguments ignoring any
 	     * additional arguments.
@@ -7498,7 +7498,7 @@
 	      n = (func && n == null) ? func.length : nativeMax(+n || 0, 0);
 	      return createWrapper(func, ARY_FLAG, undefined, undefined, undefined, undefined, n);
 	    }
-	
+
 	    /**
 	     * Creates a function that invokes `func`, with the `this` binding and arguments
 	     * of the created function, while it is called less than `n` times. Subsequent
@@ -7536,7 +7536,7 @@
 	        return result;
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that invokes `func` with the `this` binding of `thisArg`
 	     * and prepends any additional `_.bind` arguments to those provided to the
@@ -7580,7 +7580,7 @@
 	      }
 	      return createWrapper(func, bitmask, thisArg, partials, holders);
 	    });
-	
+
 	    /**
 	     * Binds methods of an object to the object itself, overwriting the existing
 	     * method. Method names may be specified as individual arguments or as arrays
@@ -7611,17 +7611,17 @@
 	     */
 	    var bindAll = restParam(function(object, methodNames) {
 	      methodNames = methodNames.length ? baseFlatten(methodNames) : functions(object);
-	
+
 	      var index = -1,
 	          length = methodNames.length;
-	
+
 	      while (++index < length) {
 	        var key = methodNames[index];
 	        object[key] = createWrapper(object[key], BIND_FLAG, object);
 	      }
 	      return object;
 	    });
-	
+
 	    /**
 	     * Creates a function that invokes the method at `object[key]` and prepends
 	     * any additional `_.bindKey` arguments to those provided to the bound function.
@@ -7674,7 +7674,7 @@
 	      }
 	      return createWrapper(key, bitmask, object, partials, holders);
 	    });
-	
+
 	    /**
 	     * Creates a function that accepts one or more arguments of `func` that when
 	     * called either invokes `func` returning its result, if all `func` arguments
@@ -7716,7 +7716,7 @@
 	     * // => [1, 2, 3]
 	     */
 	    var curry = createCurry(CURRY_FLAG);
-	
+
 	    /**
 	     * This method is like `_.curry` except that arguments are applied to `func`
 	     * in the manner of `_.partialRight` instead of `_.partial`.
@@ -7755,7 +7755,7 @@
 	     * // => [1, 2, 3]
 	     */
 	    var curryRight = createCurry(CURRY_RIGHT_FLAG);
-	
+
 	    /**
 	     * Creates a debounced function that delays invoking `func` until after `wait`
 	     * milliseconds have elapsed since the last time the debounced function was
@@ -7830,7 +7830,7 @@
 	          lastCalled = 0,
 	          maxWait = false,
 	          trailing = true;
-	
+
 	      if (typeof func != 'function') {
 	        throw new TypeError(FUNC_ERROR_TEXT);
 	      }
@@ -7843,7 +7843,7 @@
 	        maxWait = 'maxWait' in options && nativeMax(+options.maxWait || 0, wait);
 	        trailing = 'trailing' in options ? !!options.trailing : trailing;
 	      }
-	
+
 	      function cancel() {
 	        if (timeoutId) {
 	          clearTimeout(timeoutId);
@@ -7854,7 +7854,7 @@
 	        lastCalled = 0;
 	        maxTimeoutId = timeoutId = trailingCall = undefined;
 	      }
-	
+
 	      function complete(isCalled, id) {
 	        if (id) {
 	          clearTimeout(id);
@@ -7868,7 +7868,7 @@
 	          }
 	        }
 	      }
-	
+
 	      function delayed() {
 	        var remaining = wait - (now() - stamp);
 	        if (remaining <= 0 || remaining > wait) {
@@ -7877,17 +7877,17 @@
 	          timeoutId = setTimeout(delayed, remaining);
 	        }
 	      }
-	
+
 	      function maxDelayed() {
 	        complete(trailing, timeoutId);
 	      }
-	
+
 	      function debounced() {
 	        args = arguments;
 	        stamp = now();
 	        thisArg = this;
 	        trailingCall = trailing && (timeoutId || !leading);
-	
+
 	        if (maxWait === false) {
 	          var leadingCall = leading && !timeoutId;
 	        } else {
@@ -7896,7 +7896,7 @@
 	          }
 	          var remaining = maxWait - (stamp - lastCalled),
 	              isCalled = remaining <= 0 || remaining > maxWait;
-	
+
 	          if (isCalled) {
 	            if (maxTimeoutId) {
 	              maxTimeoutId = clearTimeout(maxTimeoutId);
@@ -7926,7 +7926,7 @@
 	      debounced.cancel = cancel;
 	      return debounced;
 	    }
-	
+
 	    /**
 	     * Defers invoking the `func` until the current call stack has cleared. Any
 	     * additional arguments are provided to `func` when it is invoked.
@@ -7947,7 +7947,7 @@
 	    var defer = restParam(function(func, args) {
 	      return baseDelay(func, 1, args);
 	    });
-	
+
 	    /**
 	     * Invokes `func` after `wait` milliseconds. Any additional arguments are
 	     * provided to `func` when it is invoked.
@@ -7969,7 +7969,7 @@
 	    var delay = restParam(function(func, wait, args) {
 	      return baseDelay(func, wait, args);
 	    });
-	
+
 	    /**
 	     * Creates a function that returns the result of invoking the provided
 	     * functions with the `this` binding of the created function, where each
@@ -7991,7 +7991,7 @@
 	     * // => 9
 	     */
 	    var flow = createFlow();
-	
+
 	    /**
 	     * This method is like `_.flow` except that it creates a function that
 	     * invokes the provided functions from right to left.
@@ -8013,7 +8013,7 @@
 	     * // => 9
 	     */
 	    var flowRight = createFlow(true);
-	
+
 	    /**
 	     * Creates a function that memoizes the result of `func`. If `resolver` is
 	     * provided it determines the cache key for storing the result based on the
@@ -8073,7 +8073,7 @@
 	        var args = arguments,
 	            key = resolver ? resolver.apply(this, args) : args[0],
 	            cache = memoized.cache;
-	
+
 	        if (cache.has(key)) {
 	          return cache.get(key);
 	        }
@@ -8084,7 +8084,7 @@
 	      memoized.cache = new memoize.Cache;
 	      return memoized;
 	    }
-	
+
 	    /**
 	     * Creates a function that runs each argument through a corresponding
 	     * transform function.
@@ -8130,7 +8130,7 @@
 	        return func.apply(this, args);
 	      });
 	    });
-	
+
 	    /**
 	     * Creates a function that negates the result of the predicate `func`. The
 	     * `func` predicate is invoked with the `this` binding and arguments of the
@@ -8158,7 +8158,7 @@
 	        return !predicate.apply(this, arguments);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that is restricted to invoking `func` once. Repeat calls
 	     * to the function return the value of the first call. The `func` is invoked
@@ -8179,7 +8179,7 @@
 	    function once(func) {
 	      return before(2, func);
 	    }
-	
+
 	    /**
 	     * Creates a function that invokes `func` with `partial` arguments prepended
 	     * to those provided to the new function. This method is like `_.bind` except
@@ -8213,7 +8213,7 @@
 	     * // => 'hi fred'
 	     */
 	    var partial = createPartial(PARTIAL_FLAG);
-	
+
 	    /**
 	     * This method is like `_.partial` except that partially applied arguments
 	     * are appended to those provided to the new function.
@@ -8246,7 +8246,7 @@
 	     * // => 'hello fred'
 	     */
 	    var partialRight = createPartial(PARTIAL_RIGHT_FLAG);
-	
+
 	    /**
 	     * Creates a function that invokes `func` with arguments arranged according
 	     * to the specified indexes where the argument value at the first index is
@@ -8278,7 +8278,7 @@
 	    var rearg = restParam(function(func, indexes) {
 	      return createWrapper(func, REARG_FLAG, undefined, undefined, undefined, baseFlatten(indexes));
 	    });
-	
+
 	    /**
 	     * Creates a function that invokes `func` with the `this` binding of the
 	     * created function and arguments from `start` and beyond provided as an array.
@@ -8311,7 +8311,7 @@
 	            index = -1,
 	            length = nativeMax(args.length - start, 0),
 	            rest = Array(length);
-	
+
 	        while (++index < length) {
 	          rest[index] = args[start + index];
 	        }
@@ -8329,7 +8329,7 @@
 	        return func.apply(this, otherArgs);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a function that invokes `func` with the `this` binding of the created
 	     * function and an array of arguments much like [`Function#apply`](https://es5.github.io/#x15.3.4.3).
@@ -8369,7 +8369,7 @@
 	        return func.apply(this, array);
 	      };
 	    }
-	
+
 	    /**
 	     * Creates a throttled function that only invokes `func` at most once per
 	     * every `wait` milliseconds. The throttled function comes with a `cancel`
@@ -8412,7 +8412,7 @@
 	    function throttle(func, wait, options) {
 	      var leading = true,
 	          trailing = true;
-	
+
 	      if (typeof func != 'function') {
 	        throw new TypeError(FUNC_ERROR_TEXT);
 	      }
@@ -8424,7 +8424,7 @@
 	      }
 	      return debounce(func, wait, { 'leading': leading, 'maxWait': +wait, 'trailing': trailing });
 	    }
-	
+
 	    /**
 	     * Creates a function that provides `value` to the wrapper function as its
 	     * first argument. Any additional arguments provided to the function are
@@ -8450,9 +8450,9 @@
 	      wrapper = wrapper == null ? identity : wrapper;
 	      return createWrapper(wrapper, PARTIAL_FLAG, undefined, [value], []);
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Creates a clone of `value`. If `isDeep` is `true` nested objects are cloned,
 	     * otherwise they are assigned by reference. If `customizer` is provided it is
@@ -8517,7 +8517,7 @@
 	        ? baseClone(value, isDeep, bindCallback(customizer, thisArg, 1))
 	        : baseClone(value, isDeep);
 	    }
-	
+
 	    /**
 	     * Creates a deep clone of `value`. If `customizer` is provided it is invoked
 	     * to produce the cloned values. If `customizer` returns `undefined` cloning
@@ -8568,7 +8568,7 @@
 	        ? baseClone(value, true, bindCallback(customizer, thisArg, 1))
 	        : baseClone(value, true);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is greater than `other`.
 	     *
@@ -8592,7 +8592,7 @@
 	    function gt(value, other) {
 	      return value > other;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is greater than or equal to `other`.
 	     *
@@ -8616,7 +8616,7 @@
 	    function gte(value, other) {
 	      return value >= other;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as an `arguments` object.
 	     *
@@ -8637,7 +8637,7 @@
 	      return isObjectLike(value) && isArrayLike(value) &&
 	        hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as an `Array` object.
 	     *
@@ -8657,7 +8657,7 @@
 	    var isArray = nativeIsArray || function(value) {
 	      return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
 	    };
-	
+
 	    /**
 	     * Checks if `value` is classified as a boolean primitive or object.
 	     *
@@ -8677,7 +8677,7 @@
 	    function isBoolean(value) {
 	      return value === true || value === false || (isObjectLike(value) && objToString.call(value) == boolTag);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as a `Date` object.
 	     *
@@ -8697,7 +8697,7 @@
 	    function isDate(value) {
 	      return isObjectLike(value) && objToString.call(value) == dateTag;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a DOM element.
 	     *
@@ -8717,7 +8717,7 @@
 	    function isElement(value) {
 	      return !!value && value.nodeType === 1 && isObjectLike(value) && !isPlainObject(value);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is empty. A value is considered empty unless it is an
 	     * `arguments` object, array, string, or jQuery-like collection with a length
@@ -8755,7 +8755,7 @@
 	      }
 	      return !keys(value).length;
 	    }
-	
+
 	    /**
 	     * Performs a deep comparison between two values to determine if they are
 	     * equivalent. If `customizer` is provided it is invoked to compare values.
@@ -8805,7 +8805,7 @@
 	      var result = customizer ? customizer(value, other) : undefined;
 	      return  result === undefined ? baseIsEqual(value, other, customizer) : !!result;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
 	     * `SyntaxError`, `TypeError`, or `URIError` object.
@@ -8826,7 +8826,7 @@
 	    function isError(value) {
 	      return isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a finite primitive number.
 	     *
@@ -8857,7 +8857,7 @@
 	    function isFinite(value) {
 	      return typeof value == 'number' && nativeIsFinite(value);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as a `Function` object.
 	     *
@@ -8880,7 +8880,7 @@
 	      // and Safari 8 equivalents which return 'object' for typed array constructors.
 	      return isObject(value) && objToString.call(value) == funcTag;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
 	     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
@@ -8907,7 +8907,7 @@
 	      var type = typeof value;
 	      return !!value && (type == 'object' || type == 'function');
 	    }
-	
+
 	    /**
 	     * Performs a deep comparison between `object` and `source` to determine if
 	     * `object` contains equivalent property values. If `customizer` is provided
@@ -8951,7 +8951,7 @@
 	      customizer = typeof customizer == 'function' ? bindCallback(customizer, thisArg, 3) : undefined;
 	      return baseIsMatch(object, getMatchData(source), customizer);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is `NaN`.
 	     *
@@ -8982,7 +8982,7 @@
 	      // Perform the `toStringTag` check first to avoid errors with some host objects in IE.
 	      return isNumber(value) && value != +value;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a native function.
 	     *
@@ -9008,7 +9008,7 @@
 	      }
 	      return isObjectLike(value) && reIsHostCtor.test(value);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is `null`.
 	     *
@@ -9028,7 +9028,7 @@
 	    function isNull(value) {
 	      return value === null;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as a `Number` primitive or object.
 	     *
@@ -9054,7 +9054,7 @@
 	    function isNumber(value) {
 	      return typeof value == 'number' || (isObjectLike(value) && objToString.call(value) == numberTag);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is a plain object, that is, an object created by the
 	     * `Object` constructor or one with a `[[Prototype]]` of `null`.
@@ -9087,7 +9087,7 @@
 	     */
 	    function isPlainObject(value) {
 	      var Ctor;
-	
+
 	      // Exit early for non `Object` objects.
 	      if (!(isObjectLike(value) && objToString.call(value) == objectTag && !isArguments(value)) ||
 	          (!hasOwnProperty.call(value, 'constructor') && (Ctor = value.constructor, typeof Ctor == 'function' && !(Ctor instanceof Ctor)))) {
@@ -9105,7 +9105,7 @@
 	      });
 	      return result === undefined || hasOwnProperty.call(value, result);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as a `RegExp` object.
 	     *
@@ -9125,7 +9125,7 @@
 	    function isRegExp(value) {
 	      return isObject(value) && objToString.call(value) == regexpTag;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as a `String` primitive or object.
 	     *
@@ -9145,7 +9145,7 @@
 	    function isString(value) {
 	      return typeof value == 'string' || (isObjectLike(value) && objToString.call(value) == stringTag);
 	    }
-	
+
 	    /**
 	     * Checks if `value` is classified as a typed array.
 	     *
@@ -9165,7 +9165,7 @@
 	    function isTypedArray(value) {
 	      return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
 	    }
-	
+
 	    /**
 	     * Checks if `value` is `undefined`.
 	     *
@@ -9185,7 +9185,7 @@
 	    function isUndefined(value) {
 	      return value === undefined;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is less than `other`.
 	     *
@@ -9209,7 +9209,7 @@
 	    function lt(value, other) {
 	      return value < other;
 	    }
-	
+
 	    /**
 	     * Checks if `value` is less than or equal to `other`.
 	     *
@@ -9233,7 +9233,7 @@
 	    function lte(value, other) {
 	      return value <= other;
 	    }
-	
+
 	    /**
 	     * Converts `value` to an array.
 	     *
@@ -9259,7 +9259,7 @@
 	      }
 	      return arrayCopy(value);
 	    }
-	
+
 	    /**
 	     * Converts `value` to a plain object flattening inherited enumerable
 	     * properties of `value` to own properties of the plain object.
@@ -9286,9 +9286,9 @@
 	    function toPlainObject(value) {
 	      return baseCopy(value, keysIn(value));
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Recursively merges own enumerable properties of the source object(s), that
 	     * don't resolve to `undefined` into the destination object. Subsequent sources
@@ -9338,7 +9338,7 @@
 	     * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot'] }
 	     */
 	    var merge = createAssigner(baseMerge);
-	
+
 	    /**
 	     * Assigns own enumerable properties of source object(s) to the destination
 	     * object. Subsequent sources overwrite property assignments of previous sources.
@@ -9376,7 +9376,7 @@
 	        ? assignWith(object, source, customizer)
 	        : baseAssign(object, source);
 	    });
-	
+
 	    /**
 	     * Creates an object that inherits from the given `prototype` object. If a
 	     * `properties` object is provided its own enumerable properties are assigned
@@ -9418,7 +9418,7 @@
 	      }
 	      return properties ? baseAssign(result, properties) : result;
 	    }
-	
+
 	    /**
 	     * Assigns own enumerable properties of source object(s) to the destination
 	     * object for all destination properties that resolve to `undefined`. Once a
@@ -9438,7 +9438,7 @@
 	     * // => { 'user': 'barney', 'age': 36 }
 	     */
 	    var defaults = createDefaults(assign, assignDefaults);
-	
+
 	    /**
 	     * This method is like `_.defaults` except that it recursively assigns
 	     * default properties.
@@ -9458,7 +9458,7 @@
 	     *
 	     */
 	    var defaultsDeep = createDefaults(merge, mergeDefaults);
-	
+
 	    /**
 	     * This method is like `_.find` except that it returns the key of the first
 	     * element `predicate` returns truthy for instead of the element itself.
@@ -9508,7 +9508,7 @@
 	     * // => 'barney'
 	     */
 	    var findKey = createFindKey(baseForOwn);
-	
+
 	    /**
 	     * This method is like `_.findKey` except that it iterates over elements of
 	     * a collection in the opposite order.
@@ -9558,7 +9558,7 @@
 	     * // => 'pebbles'
 	     */
 	    var findLastKey = createFindKey(baseForOwnRight);
-	
+
 	    /**
 	     * Iterates over own and inherited enumerable properties of an object invoking
 	     * `iteratee` for each property. The `iteratee` is bound to `thisArg` and invoked
@@ -9587,7 +9587,7 @@
 	     * // => logs 'a', 'b', and 'c' (iteration order is not guaranteed)
 	     */
 	    var forIn = createForIn(baseFor);
-	
+
 	    /**
 	     * This method is like `_.forIn` except that it iterates over properties of
 	     * `object` in the opposite order.
@@ -9614,7 +9614,7 @@
 	     * // => logs 'c', 'b', and 'a' assuming `_.forIn ` logs 'a', 'b', and 'c'
 	     */
 	    var forInRight = createForIn(baseForRight);
-	
+
 	    /**
 	     * Iterates over own enumerable properties of an object invoking `iteratee`
 	     * for each property. The `iteratee` is bound to `thisArg` and invoked with
@@ -9643,7 +9643,7 @@
 	     * // => logs 'a' and 'b' (iteration order is not guaranteed)
 	     */
 	    var forOwn = createForOwn(baseForOwn);
-	
+
 	    /**
 	     * This method is like `_.forOwn` except that it iterates over properties of
 	     * `object` in the opposite order.
@@ -9670,7 +9670,7 @@
 	     * // => logs 'b' and 'a' assuming `_.forOwn` logs 'a' and 'b'
 	     */
 	    var forOwnRight = createForOwn(baseForOwnRight);
-	
+
 	    /**
 	     * Creates an array of function property names from all enumerable properties,
 	     * own and inherited, of `object`.
@@ -9689,7 +9689,7 @@
 	    function functions(object) {
 	      return baseFunctions(object, keysIn(object));
 	    }
-	
+
 	    /**
 	     * Gets the property value at `path` of `object`. If the resolved value is
 	     * `undefined` the `defaultValue` is used in its place.
@@ -9718,7 +9718,7 @@
 	      var result = object == null ? undefined : baseGet(object, toPath(path), path + '');
 	      return result === undefined ? defaultValue : result;
 	    }
-	
+
 	    /**
 	     * Checks if `path` is a direct property.
 	     *
@@ -9758,7 +9758,7 @@
 	      return result || (isLength(object.length) && isIndex(path, object.length) &&
 	        (isArray(object) || isArguments(object)));
 	    }
-	
+
 	    /**
 	     * Creates an object composed of the inverted keys and values of `object`.
 	     * If `object` contains duplicate values, subsequent values overwrite property
@@ -9790,11 +9790,11 @@
 	          props = keys(object),
 	          length = props.length,
 	          result = {};
-	
+
 	      while (++index < length) {
 	        var key = props[index],
 	            value = object[key];
-	
+
 	        if (multiValue) {
 	          if (hasOwnProperty.call(result, value)) {
 	            result[value].push(key);
@@ -9808,7 +9808,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates an array of the own enumerable property names of `object`.
 	     *
@@ -9844,7 +9844,7 @@
 	      }
 	      return isObject(object) ? nativeKeys(object) : [];
 	    };
-	
+
 	    /**
 	     * Creates an array of the own and inherited enumerable property names of `object`.
 	     *
@@ -9877,13 +9877,13 @@
 	      var length = object.length;
 	      length = (length && isLength(length) &&
 	        (isArray(object) || isArguments(object)) && length) || 0;
-	
+
 	      var Ctor = object.constructor,
 	          index = -1,
 	          isProto = typeof Ctor == 'function' && Ctor.prototype === object,
 	          result = Array(length),
 	          skipIndexes = length > 0;
-	
+
 	      while (++index < length) {
 	        result[index] = (index + '');
 	      }
@@ -9895,7 +9895,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * The opposite of `_.mapValues`; this method creates an object with the
 	     * same values as `object` and keys generated by running each own enumerable
@@ -9917,7 +9917,7 @@
 	     * // => { 'a1': 1, 'b2': 2 }
 	     */
 	    var mapKeys = createObjectMapper(true);
-	
+
 	    /**
 	     * Creates an object with the same keys as `object` and values generated by
 	     * running each own enumerable property of `object` through `iteratee`. The
@@ -9960,7 +9960,7 @@
 	     * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
 	     */
 	    var mapValues = createObjectMapper();
-	
+
 	    /**
 	     * The opposite of `_.pick`; this method creates an object composed of the
 	     * own and inherited enumerable properties of `object` that are not omitted.
@@ -9997,7 +9997,7 @@
 	        return !predicate(value, key, object);
 	      });
 	    });
-	
+
 	    /**
 	     * Creates a two dimensional array of the key-value pairs for `object`,
 	     * e.g. `[[key1, value1], [key2, value2]]`.
@@ -10014,19 +10014,19 @@
 	     */
 	    function pairs(object) {
 	      object = toObject(object);
-	
+
 	      var index = -1,
 	          props = keys(object),
 	          length = props.length,
 	          result = Array(length);
-	
+
 	      while (++index < length) {
 	        var key = props[index];
 	        result[index] = [key, object[key]];
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Creates an object composed of the picked `object` properties. Property
 	     * names may be specified as individual arguments or as arrays of property
@@ -10061,7 +10061,7 @@
 	        ? pickByCallback(object, bindCallback(props[0], props[1], 3))
 	        : pickByArray(object, baseFlatten(props));
 	    });
-	
+
 	    /**
 	     * This method is like `_.get` except that if the resolved value is a function
 	     * it is invoked with the `this` binding of its parent object and its result
@@ -10102,7 +10102,7 @@
 	      }
 	      return isFunction(result) ? result.call(object) : result;
 	    }
-	
+
 	    /**
 	     * Sets the property value of `path` on `object`. If a portion of `path`
 	     * does not exist it is created.
@@ -10132,12 +10132,12 @@
 	      }
 	      var pathKey = (path + '');
 	      path = (object[pathKey] != null || isKey(path, object)) ? [pathKey] : toPath(path);
-	
+
 	      var index = -1,
 	          length = path.length,
 	          lastIndex = length - 1,
 	          nested = object;
-	
+
 	      while (nested != null && ++index < length) {
 	        var key = path[index];
 	        if (isObject(nested)) {
@@ -10151,7 +10151,7 @@
 	      }
 	      return object;
 	    }
-	
+
 	    /**
 	     * An alternative to `_.reduce`; this method transforms `object` to a new
 	     * `accumulator` object which is the result of running each of its own enumerable
@@ -10184,7 +10184,7 @@
 	    function transform(object, iteratee, accumulator, thisArg) {
 	      var isArr = isArray(object) || isTypedArray(object);
 	      iteratee = getCallback(iteratee, thisArg, 4);
-	
+
 	      if (accumulator == null) {
 	        if (isArr || isObject(object)) {
 	          var Ctor = object.constructor;
@@ -10202,7 +10202,7 @@
 	      });
 	      return accumulator;
 	    }
-	
+
 	    /**
 	     * Creates an array of the own enumerable property values of `object`.
 	     *
@@ -10231,7 +10231,7 @@
 	    function values(object) {
 	      return baseValues(object, keys(object));
 	    }
-	
+
 	    /**
 	     * Creates an array of the own and inherited enumerable property values
 	     * of `object`.
@@ -10258,9 +10258,9 @@
 	    function valuesIn(object) {
 	      return baseValues(object, keysIn(object));
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Checks if `n` is between `start` and up to but not including, `end`. If
 	     * `end` is not specified it is set to `start` with `start` then set to `0`.
@@ -10302,7 +10302,7 @@
 	      }
 	      return value >= nativeMin(start, end) && value < nativeMax(start, end);
 	    }
-	
+
 	    /**
 	     * Produces a random number between `min` and `max` (inclusive). If only one
 	     * argument is provided a number between `0` and the given number is returned.
@@ -10336,7 +10336,7 @@
 	      }
 	      var noMin = min == null,
 	          noMax = max == null;
-	
+
 	      if (floating == null) {
 	        if (noMax && typeof min == 'boolean') {
 	          floating = min;
@@ -10364,9 +10364,9 @@
 	      }
 	      return baseRandom(min, max);
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Converts `string` to [camel case](https://en.wikipedia.org/wiki/CamelCase).
 	     *
@@ -10390,7 +10390,7 @@
 	      word = word.toLowerCase();
 	      return result + (index ? (word.charAt(0).toUpperCase() + word.slice(1)) : word);
 	    });
-	
+
 	    /**
 	     * Capitalizes the first character of `string`.
 	     *
@@ -10408,7 +10408,7 @@
 	      string = baseToString(string);
 	      return string && (string.charAt(0).toUpperCase() + string.slice(1));
 	    }
-	
+
 	    /**
 	     * Deburrs `string` by converting [latin-1 supplementary letters](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)#Character_table)
 	     * to basic latin letters and removing [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
@@ -10427,7 +10427,7 @@
 	      string = baseToString(string);
 	      return string && string.replace(reLatin1, deburrLetter).replace(reComboMark, '');
 	    }
-	
+
 	    /**
 	     * Checks if `string` ends with the given target string.
 	     *
@@ -10452,16 +10452,16 @@
 	    function endsWith(string, target, position) {
 	      string = baseToString(string);
 	      target = (target + '');
-	
+
 	      var length = string.length;
 	      position = position === undefined
 	        ? length
 	        : nativeMin(position < 0 ? 0 : (+position || 0), length);
-	
+
 	      position -= target.length;
 	      return position >= 0 && string.indexOf(target, position) == position;
 	    }
-	
+
 	    /**
 	     * Converts the characters "&", "<", ">", '"', "'", and "\`", in `string` to
 	     * their corresponding HTML entities.
@@ -10501,7 +10501,7 @@
 	        ? string.replace(reUnescapedHtml, escapeHtmlChar)
 	        : string;
 	    }
-	
+
 	    /**
 	     * Escapes the `RegExp` special characters "\", "/", "^", "$", ".", "|", "?",
 	     * "*", "+", "(", ")", "[", "]", "{" and "}" in `string`.
@@ -10522,7 +10522,7 @@
 	        ? string.replace(reRegExpChars, escapeRegExpChar)
 	        : (string || '(?:)');
 	    }
-	
+
 	    /**
 	     * Converts `string` to [kebab case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
 	     *
@@ -10545,7 +10545,7 @@
 	    var kebabCase = createCompounder(function(result, word, index) {
 	      return result + (index ? '-' : '') + word.toLowerCase();
 	    });
-	
+
 	    /**
 	     * Pads `string` on the left and right sides if it's shorter than `length`.
 	     * Padding characters are truncated if they can't be evenly divided by `length`.
@@ -10571,7 +10571,7 @@
 	    function pad(string, length, chars) {
 	      string = baseToString(string);
 	      length = +length;
-	
+
 	      var strLength = string.length;
 	      if (strLength >= length || !nativeIsFinite(length)) {
 	        return string;
@@ -10579,11 +10579,11 @@
 	      var mid = (length - strLength) / 2,
 	          leftLength = nativeFloor(mid),
 	          rightLength = nativeCeil(mid);
-	
+
 	      chars = createPadding('', rightLength, chars);
 	      return chars.slice(0, leftLength) + string + chars;
 	    }
-	
+
 	    /**
 	     * Pads `string` on the left side if it's shorter than `length`. Padding
 	     * characters are truncated if they exceed `length`.
@@ -10607,7 +10607,7 @@
 	     * // => 'abc'
 	     */
 	    var padLeft = createPadDir();
-	
+
 	    /**
 	     * Pads `string` on the right side if it's shorter than `length`. Padding
 	     * characters are truncated if they exceed `length`.
@@ -10631,7 +10631,7 @@
 	     * // => 'abc'
 	     */
 	    var padRight = createPadDir(true);
-	
+
 	    /**
 	     * Converts `string` to an integer of the specified radix. If `radix` is
 	     * `undefined` or `0`, a `radix` of `10` is used unless `value` is a hexadecimal,
@@ -10667,7 +10667,7 @@
 	      string = trim(string);
 	      return nativeParseInt(string, radix || (reHasHexPrefix.test(string) ? 16 : 10));
 	    }
-	
+
 	    /**
 	     * Repeats the given string `n` times.
 	     *
@@ -10704,10 +10704,10 @@
 	        n = nativeFloor(n / 2);
 	        string += string;
 	      } while (n);
-	
+
 	      return result;
 	    }
-	
+
 	    /**
 	     * Converts `string` to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 	     *
@@ -10730,7 +10730,7 @@
 	    var snakeCase = createCompounder(function(result, word, index) {
 	      return result + (index ? '_' : '') + word.toLowerCase();
 	    });
-	
+
 	    /**
 	     * Converts `string` to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
 	     *
@@ -10753,7 +10753,7 @@
 	    var startCase = createCompounder(function(result, word, index) {
 	      return result + (index ? ' ' : '') + (word.charAt(0).toUpperCase() + word.slice(1));
 	    });
-	
+
 	    /**
 	     * Checks if `string` starts with the given target string.
 	     *
@@ -10780,10 +10780,10 @@
 	      position = position == null
 	        ? 0
 	        : nativeMin(position < 0 ? 0 : (+position || 0), string.length);
-	
+
 	      return string.lastIndexOf(target, position) == position;
 	    }
-	
+
 	    /**
 	     * Creates a compiled template function that can interpolate data properties
 	     * in "interpolate" delimiters, HTML-escape interpolated data properties in
@@ -10884,23 +10884,23 @@
 	      // Based on John Resig's `tmpl` implementation (http://ejohn.org/blog/javascript-micro-templating/)
 	      // and Laura Doktorova's doT.js (https://github.com/olado/doT).
 	      var settings = lodash.templateSettings;
-	
+
 	      if (otherOptions && isIterateeCall(string, options, otherOptions)) {
 	        options = otherOptions = undefined;
 	      }
 	      string = baseToString(string);
 	      options = assignWith(baseAssign({}, otherOptions || options), settings, assignOwnDefaults);
-	
+
 	      var imports = assignWith(baseAssign({}, options.imports), settings.imports, assignOwnDefaults),
 	          importsKeys = keys(imports),
 	          importsValues = baseValues(imports, importsKeys);
-	
+
 	      var isEscaping,
 	          isEvaluating,
 	          index = 0,
 	          interpolate = options.interpolate || reNoMatch,
 	          source = "__p += '";
-	
+
 	      // Compile the regexp to match each delimiter.
 	      var reDelimiters = RegExp(
 	        (options.escape || reNoMatch).source + '|' +
@@ -10908,20 +10908,20 @@
 	        (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
 	        (options.evaluate || reNoMatch).source + '|$'
 	      , 'g');
-	
+
 	      // Use a sourceURL for easier debugging.
 	      var sourceURL = '//# sourceURL=' +
 	        ('sourceURL' in options
 	          ? options.sourceURL
 	          : ('lodash.templateSources[' + (++templateCounter) + ']')
 	        ) + '\n';
-	
+
 	      string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
 	        interpolateValue || (interpolateValue = esTemplateValue);
-	
+
 	        // Escape characters that can't be included in string literals.
 	        source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
-	
+
 	        // Replace delimiters with snippets.
 	        if (escapeValue) {
 	          isEscaping = true;
@@ -10935,14 +10935,14 @@
 	          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
 	        }
 	        index = offset + match.length;
-	
+
 	        // The JS engine embedded in Adobe products requires returning the `match`
 	        // string in order to produce the correct `offset` value.
 	        return match;
 	      });
-	
+
 	      source += "';\n";
-	
+
 	      // If `variable` is not specified wrap a with-statement around the generated
 	      // code to add the data object to the top of the scope chain.
 	      var variable = options.variable;
@@ -10953,7 +10953,7 @@
 	      source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
 	        .replace(reEmptyStringMiddle, '$1')
 	        .replace(reEmptyStringTrailing, '$1;');
-	
+
 	      // Frame code as the function body.
 	      source = 'function(' + (variable || 'obj') + ') {\n' +
 	        (variable
@@ -10972,11 +10972,11 @@
 	        ) +
 	        source +
 	        'return __p\n}';
-	
+
 	      var result = attempt(function() {
 	        return Function(importsKeys, sourceURL + 'return ' + source).apply(undefined, importsValues);
 	      });
-	
+
 	      // Provide the compiled function's source by its `toString` method or
 	      // the `source` property as a convenience for inlining compiled templates.
 	      result.source = source;
@@ -10985,7 +10985,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Removes leading and trailing whitespace or specified characters from `string`.
 	     *
@@ -11019,7 +11019,7 @@
 	      chars = (chars + '');
 	      return string.slice(charsLeftIndex(string, chars), charsRightIndex(string, chars) + 1);
 	    }
-	
+
 	    /**
 	     * Removes leading whitespace or specified characters from `string`.
 	     *
@@ -11049,7 +11049,7 @@
 	      }
 	      return string.slice(charsLeftIndex(string, (chars + '')));
 	    }
-	
+
 	    /**
 	     * Removes trailing whitespace or specified characters from `string`.
 	     *
@@ -11079,7 +11079,7 @@
 	      }
 	      return string.slice(0, charsRightIndex(string, (chars + '')) + 1);
 	    }
-	
+
 	    /**
 	     * Truncates `string` if it's longer than the given maximum string length.
 	     * The last characters of the truncated string are replaced with the omission
@@ -11126,7 +11126,7 @@
 	      }
 	      var length = DEFAULT_TRUNC_LENGTH,
 	          omission = DEFAULT_TRUNC_OMISSION;
-	
+
 	      if (options != null) {
 	        if (isObject(options)) {
 	          var separator = 'separator' in options ? options.separator : separator;
@@ -11153,7 +11153,7 @@
 	          var match,
 	              newEnd,
 	              substring = string.slice(0, end);
-	
+
 	          if (!separator.global) {
 	            separator = RegExp(separator.source, (reFlags.exec(separator) || '') + 'g');
 	          }
@@ -11171,7 +11171,7 @@
 	      }
 	      return result + omission;
 	    }
-	
+
 	    /**
 	     * The inverse of `_.escape`; this method converts the HTML entities
 	     * `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`, and `&#96;` in `string` to their
@@ -11196,7 +11196,7 @@
 	        ? string.replace(reEscapedHtml, unescapeHtmlChar)
 	        : string;
 	    }
-	
+
 	    /**
 	     * Splits `string` into an array of its words.
 	     *
@@ -11222,9 +11222,9 @@
 	      string = baseToString(string);
 	      return string.match(pattern || reWords) || [];
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Attempts to invoke `func`, returning either the result or the caught error
 	     * object. Any additional arguments are provided to `func` when it is invoked.
@@ -11252,7 +11252,7 @@
 	        return isError(e) ? e : new Error(e);
 	      }
 	    });
-	
+
 	    /**
 	     * Creates a function that invokes `func` with the `this` binding of `thisArg`
 	     * and arguments of the created function. If `func` is a property name the
@@ -11299,7 +11299,7 @@
 	        ? matches(func)
 	        : baseCallback(func, thisArg);
 	    }
-	
+
 	    /**
 	     * Creates a function that returns `value`.
 	     *
@@ -11321,7 +11321,7 @@
 	        return value;
 	      };
 	    }
-	
+
 	    /**
 	     * This method returns the first argument provided to it.
 	     *
@@ -11340,7 +11340,7 @@
 	    function identity(value) {
 	      return value;
 	    }
-	
+
 	    /**
 	     * Creates a function that performs a deep comparison between a given object
 	     * and `source`, returning `true` if the given object has equivalent property
@@ -11369,7 +11369,7 @@
 	    function matches(source) {
 	      return baseMatches(baseClone(source, true));
 	    }
-	
+
 	    /**
 	     * Creates a function that compares the property value of `path` on a given
 	     * object to `value`.
@@ -11397,7 +11397,7 @@
 	    function matchesProperty(path, srcValue) {
 	      return baseMatchesProperty(path, baseClone(srcValue, true));
 	    }
-	
+
 	    /**
 	     * Creates a function that invokes the method at `path` on a given object.
 	     * Any additional arguments are provided to the invoked method.
@@ -11426,7 +11426,7 @@
 	        return invokePath(object, path, args);
 	      };
 	    });
-	
+
 	    /**
 	     * The opposite of `_.method`; this method creates a function that invokes
 	     * the method at a given path on `object`. Any additional arguments are
@@ -11454,7 +11454,7 @@
 	        return invokePath(object, path, args);
 	      };
 	    });
-	
+
 	    /**
 	     * Adds all own enumerable function properties of a source object to the
 	     * destination object. If `object` is a function then methods are added to
@@ -11496,7 +11496,7 @@
 	        var isObj = isObject(source),
 	            props = isObj ? keys(source) : undefined,
 	            methodNames = (props && props.length) ? baseFunctions(source, props) : undefined;
-	
+
 	        if (!(methodNames ? methodNames.length : isObj)) {
 	          methodNames = false;
 	          options = source;
@@ -11511,7 +11511,7 @@
 	          index = -1,
 	          isFunc = isFunction(object),
 	          length = methodNames.length;
-	
+
 	      if (options === false) {
 	        chain = false;
 	      } else if (isObject(options) && 'chain' in options) {
@@ -11520,7 +11520,7 @@
 	      while (++index < length) {
 	        var methodName = methodNames[index],
 	            func = source[methodName];
-	
+
 	        object[methodName] = func;
 	        if (isFunc) {
 	          object.prototype[methodName] = (function(func) {
@@ -11529,7 +11529,7 @@
 	              if (chain || chainAll) {
 	                var result = object(this.__wrapped__),
 	                    actions = result.__actions__ = arrayCopy(this.__actions__);
-	
+
 	                actions.push({ 'func': func, 'args': arguments, 'thisArg': object });
 	                result.__chain__ = chainAll;
 	                return result;
@@ -11541,7 +11541,7 @@
 	      }
 	      return object;
 	    }
-	
+
 	    /**
 	     * Reverts the `_` variable to its previous value and returns a reference to
 	     * the `lodash` function.
@@ -11558,7 +11558,7 @@
 	      root._ = oldDash;
 	      return this;
 	    }
-	
+
 	    /**
 	     * A no-operation function that returns `undefined` regardless of the
 	     * arguments it receives.
@@ -11576,7 +11576,7 @@
 	    function noop() {
 	      // No operation performed.
 	    }
-	
+
 	    /**
 	     * Creates a function that returns the property value at `path` on a
 	     * given object.
@@ -11602,7 +11602,7 @@
 	    function property(path) {
 	      return isKey(path) ? baseProperty(path) : basePropertyDeep(path);
 	    }
-	
+
 	    /**
 	     * The opposite of `_.property`; this method creates a function that returns
 	     * the property value at a given path on `object`.
@@ -11628,7 +11628,7 @@
 	        return baseGet(object, toPath(path), path + '');
 	      };
 	    }
-	
+
 	    /**
 	     * Creates an array of numbers (positive and/or negative) progressing from
 	     * `start` up to, but not including, `end`. If `end` is not specified it is
@@ -11668,7 +11668,7 @@
 	      }
 	      start = +start || 0;
 	      step = step == null ? 1 : (+step || 0);
-	
+
 	      if (end == null) {
 	        end = start;
 	        start = 0;
@@ -11680,14 +11680,14 @@
 	      var index = -1,
 	          length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
 	          result = Array(length);
-	
+
 	      while (++index < length) {
 	        result[index] = start;
 	        start += step;
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Invokes the iteratee function `n` times, returning an array of the results
 	     * of each invocation. The `iteratee` is bound to `thisArg` and invoked with
@@ -11717,7 +11717,7 @@
 	     */
 	    function times(n, iteratee, thisArg) {
 	      n = nativeFloor(n);
-	
+
 	      // Exit early to avoid a JSC JIT bug in Safari 8
 	      // where `Array(0)` is treated as `Array(1)`.
 	      if (n < 1 || !nativeIsFinite(n)) {
@@ -11725,7 +11725,7 @@
 	      }
 	      var index = -1,
 	          result = Array(nativeMin(n, MAX_ARRAY_LENGTH));
-	
+
 	      iteratee = bindCallback(iteratee, thisArg, 1);
 	      while (++index < n) {
 	        if (index < MAX_ARRAY_LENGTH) {
@@ -11736,7 +11736,7 @@
 	      }
 	      return result;
 	    }
-	
+
 	    /**
 	     * Generates a unique ID. If `prefix` is provided the ID is appended to it.
 	     *
@@ -11757,9 +11757,9 @@
 	      var id = ++idCounter;
 	      return baseToString(prefix) + id;
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * Adds two numbers.
 	     *
@@ -11777,7 +11777,7 @@
 	    function add(augend, addend) {
 	      return (+augend || 0) + (+addend || 0);
 	    }
-	
+
 	    /**
 	     * Calculates `n` rounded up to `precision`.
 	     *
@@ -11799,7 +11799,7 @@
 	     * // => 6100
 	     */
 	    var ceil = createRound('ceil');
-	
+
 	    /**
 	     * Calculates `n` rounded down to `precision`.
 	     *
@@ -11821,7 +11821,7 @@
 	     * // => 4000
 	     */
 	    var floor = createRound('floor');
-	
+
 	    /**
 	     * Gets the maximum value of `collection`. If `collection` is empty or falsey
 	     * `-Infinity` is returned. If an iteratee function is provided it is invoked
@@ -11870,7 +11870,7 @@
 	     * // => { 'user': 'fred', 'age': 40 }
 	     */
 	    var max = createExtremum(gt, NEGATIVE_INFINITY);
-	
+
 	    /**
 	     * Gets the minimum value of `collection`. If `collection` is empty or falsey
 	     * `Infinity` is returned. If an iteratee function is provided it is invoked
@@ -11919,7 +11919,7 @@
 	     * // => { 'user': 'barney', 'age': 36 }
 	     */
 	    var min = createExtremum(lt, POSITIVE_INFINITY);
-	
+
 	    /**
 	     * Calculates `n` rounded to `precision`.
 	     *
@@ -11941,7 +11941,7 @@
 	     * // => 4100
 	     */
 	    var round = createRound('round');
-	
+
 	    /**
 	     * Gets the sum of the values in `collection`.
 	     *
@@ -11983,30 +11983,30 @@
 	        ? arraySum(isArray(collection) ? collection : toIterable(collection), iteratee)
 	        : baseSum(collection, iteratee);
 	    }
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    // Ensure wrappers are instances of `baseLodash`.
 	    lodash.prototype = baseLodash.prototype;
-	
+
 	    LodashWrapper.prototype = baseCreate(baseLodash.prototype);
 	    LodashWrapper.prototype.constructor = LodashWrapper;
-	
+
 	    LazyWrapper.prototype = baseCreate(baseLodash.prototype);
 	    LazyWrapper.prototype.constructor = LazyWrapper;
-	
+
 	    // Add functions to the `Map` cache.
 	    MapCache.prototype['delete'] = mapDelete;
 	    MapCache.prototype.get = mapGet;
 	    MapCache.prototype.has = mapHas;
 	    MapCache.prototype.set = mapSet;
-	
+
 	    // Add functions to the `Set` cache.
 	    SetCache.prototype.push = cachePush;
-	
+
 	    // Assign cache to `_.memoize`.
 	    memoize.Cache = MapCache;
-	
+
 	    // Add functions that return wrapped values when chaining.
 	    lodash.after = after;
 	    lodash.ary = ary;
@@ -12117,7 +12117,7 @@
 	    lodash.zip = zip;
 	    lodash.zipObject = zipObject;
 	    lodash.zipWith = zipWith;
-	
+
 	    // Add aliases.
 	    lodash.backflow = flowRight;
 	    lodash.collect = map;
@@ -12131,12 +12131,12 @@
 	    lodash.select = filter;
 	    lodash.tail = rest;
 	    lodash.unique = uniq;
-	
+
 	    // Add functions to `lodash.prototype`.
 	    mixin(lodash, lodash);
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    // Add functions that return unwrapped values when chaining.
 	    lodash.add = add;
 	    lodash.attempt = attempt;
@@ -12225,7 +12225,7 @@
 	    lodash.unescape = unescape;
 	    lodash.uniqueId = uniqueId;
 	    lodash.words = words;
-	
+
 	    // Add aliases.
 	    lodash.all = every;
 	    lodash.any = some;
@@ -12237,7 +12237,7 @@
 	    lodash.head = first;
 	    lodash.include = includes;
 	    lodash.inject = reduce;
-	
+
 	    mixin(lodash, (function() {
 	      var source = {};
 	      baseForOwn(lodash, function(func, methodName) {
@@ -12247,12 +12247,12 @@
 	      });
 	      return source;
 	    }()), false);
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    // Add functions capable of returning wrapped and unwrapped values when chaining.
 	    lodash.sample = sample;
-	
+
 	    lodash.prototype.sample = function(n) {
 	      if (!this.__chain__ && n == null) {
 	        return sample(this.value());
@@ -12261,9 +12261,9 @@
 	        return sample(value, n);
 	      });
 	    };
-	
+
 	    /*------------------------------------------------------------------------*/
-	
+
 	    /**
 	     * The semantic version number.
 	     *
@@ -12272,12 +12272,12 @@
 	     * @type string
 	     */
 	    lodash.VERSION = VERSION;
-	
+
 	    // Assign default placeholders.
 	    arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function(methodName) {
 	      lodash[methodName].placeholder = lodash;
 	    });
-	
+
 	    // Add `LazyWrapper` methods for `_.drop` and `_.take` variants.
 	    arrayEach(['drop', 'take'], function(methodName, index) {
 	      LazyWrapper.prototype[methodName] = function(n) {
@@ -12286,7 +12286,7 @@
 	          return new LazyWrapper(this);
 	        }
 	        n = n == null ? 1 : nativeMax(nativeFloor(n) || 0, 0);
-	
+
 	        var result = this.clone();
 	        if (filtered) {
 	          result.__takeCount__ = nativeMin(result.__takeCount__, n);
@@ -12295,17 +12295,17 @@
 	        }
 	        return result;
 	      };
-	
+
 	      LazyWrapper.prototype[methodName + 'Right'] = function(n) {
 	        return this.reverse()[methodName](n).reverse();
 	      };
 	    });
-	
+
 	    // Add `LazyWrapper` methods that accept an `iteratee` value.
 	    arrayEach(['filter', 'map', 'takeWhile'], function(methodName, index) {
 	      var type = index + 1,
 	          isFilter = type != LAZY_MAP_FLAG;
-	
+
 	      LazyWrapper.prototype[methodName] = function(iteratee, thisArg) {
 	        var result = this.clone();
 	        result.__iteratees__.push({ 'iteratee': getCallback(iteratee, thisArg, 1), 'type': type });
@@ -12313,49 +12313,49 @@
 	        return result;
 	      };
 	    });
-	
+
 	    // Add `LazyWrapper` methods for `_.first` and `_.last`.
 	    arrayEach(['first', 'last'], function(methodName, index) {
 	      var takeName = 'take' + (index ? 'Right' : '');
-	
+
 	      LazyWrapper.prototype[methodName] = function() {
 	        return this[takeName](1).value()[0];
 	      };
 	    });
-	
+
 	    // Add `LazyWrapper` methods for `_.initial` and `_.rest`.
 	    arrayEach(['initial', 'rest'], function(methodName, index) {
 	      var dropName = 'drop' + (index ? '' : 'Right');
-	
+
 	      LazyWrapper.prototype[methodName] = function() {
 	        return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
 	      };
 	    });
-	
+
 	    // Add `LazyWrapper` methods for `_.pluck` and `_.where`.
 	    arrayEach(['pluck', 'where'], function(methodName, index) {
 	      var operationName = index ? 'filter' : 'map',
 	          createCallback = index ? baseMatches : property;
-	
+
 	      LazyWrapper.prototype[methodName] = function(value) {
 	        return this[operationName](createCallback(value));
 	      };
 	    });
-	
+
 	    LazyWrapper.prototype.compact = function() {
 	      return this.filter(identity);
 	    };
-	
+
 	    LazyWrapper.prototype.reject = function(predicate, thisArg) {
 	      predicate = getCallback(predicate, thisArg, 1);
 	      return this.filter(function(value) {
 	        return !predicate(value);
 	      });
 	    };
-	
+
 	    LazyWrapper.prototype.slice = function(start, end) {
 	      start = start == null ? 0 : (+start || 0);
-	
+
 	      var result = this;
 	      if (result.__filtered__ && (start > 0 || end < 0)) {
 	        return new LazyWrapper(result);
@@ -12371,21 +12371,21 @@
 	      }
 	      return result;
 	    };
-	
+
 	    LazyWrapper.prototype.takeRightWhile = function(predicate, thisArg) {
 	      return this.reverse().takeWhile(predicate, thisArg).reverse();
 	    };
-	
+
 	    LazyWrapper.prototype.toArray = function() {
 	      return this.take(POSITIVE_INFINITY);
 	    };
-	
+
 	    // Add `LazyWrapper` methods to `lodash.prototype`.
 	    baseForOwn(LazyWrapper.prototype, function(func, methodName) {
 	      var checkIteratee = /^(?:filter|map|reject)|While$/.test(methodName),
 	          retUnwrapped = /^(?:first|last)$/.test(methodName),
 	          lodashFunc = lodash[retUnwrapped ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName];
-	
+
 	      if (!lodashFunc) {
 	        return;
 	      }
@@ -12397,7 +12397,7 @@
 	            isLazy = value instanceof LazyWrapper,
 	            iteratee = args[0],
 	            useLazy = isLazy || isArray(value);
-	
+
 	        if (useLazy && checkIteratee && typeof iteratee == 'function' && iteratee.length != 1) {
 	          // Avoid lazy use if the iteratee has a "length" value other than `1`.
 	          isLazy = useLazy = false;
@@ -12407,10 +12407,10 @@
 	            ? lodashFunc(value, 1)[0]
 	            : lodashFunc.apply(undefined, arrayPush([value], args));
 	        };
-	
+
 	        var action = { 'func': thru, 'args': [interceptor], 'thisArg': undefined },
 	            onlyLazy = isLazy && !isHybrid;
-	
+
 	        if (retUnwrapped && !chainAll) {
 	          if (onlyLazy) {
 	            value = value.clone();
@@ -12428,13 +12428,13 @@
 	        return this.thru(interceptor);
 	      };
 	    });
-	
+
 	    // Add `Array` and `String` methods to `lodash.prototype`.
 	    arrayEach(['join', 'pop', 'push', 'replace', 'shift', 'sort', 'splice', 'split', 'unshift'], function(methodName) {
 	      var func = (/^(?:replace|split)$/.test(methodName) ? stringProto : arrayProto)[methodName],
 	          chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
 	          retUnwrapped = /^(?:join|pop|replace|shift)$/.test(methodName);
-	
+
 	      lodash.prototype[methodName] = function() {
 	        var args = arguments;
 	        if (retUnwrapped && !this.__chain__) {
@@ -12445,25 +12445,25 @@
 	        });
 	      };
 	    });
-	
+
 	    // Map minified function names to their real names.
 	    baseForOwn(LazyWrapper.prototype, function(func, methodName) {
 	      var lodashFunc = lodash[methodName];
 	      if (lodashFunc) {
 	        var key = lodashFunc.name,
 	            names = realNames[key] || (realNames[key] = []);
-	
+
 	        names.push({ 'name': methodName, 'func': lodashFunc });
 	      }
 	    });
-	
+
 	    realNames[createHybridWrapper(undefined, BIND_KEY_FLAG).name] = [{ 'name': 'wrapper', 'func': undefined }];
-	
+
 	    // Add functions to the lazy wrapper.
 	    LazyWrapper.prototype.clone = lazyClone;
 	    LazyWrapper.prototype.reverse = lazyReverse;
 	    LazyWrapper.prototype.value = lazyValue;
-	
+
 	    // Add chaining functions to the `lodash` wrapper.
 	    lodash.prototype.chain = wrapperChain;
 	    lodash.prototype.commit = wrapperCommit;
@@ -12472,21 +12472,21 @@
 	    lodash.prototype.reverse = wrapperReverse;
 	    lodash.prototype.toString = wrapperToString;
 	    lodash.prototype.run = lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
-	
+
 	    // Add function aliases to the `lodash` wrapper.
 	    lodash.prototype.collect = lodash.prototype.map;
 	    lodash.prototype.head = lodash.prototype.first;
 	    lodash.prototype.select = lodash.prototype.filter;
 	    lodash.prototype.tail = lodash.prototype.rest;
-	
+
 	    return lodash;
 	  }
-	
+
 	  /*--------------------------------------------------------------------------*/
-	
+
 	  // Export lodash.
 	  var _ = runInContext();
-	
+
 	  // Some AMD build optimizers like r.js check for condition patterns like the following:
 	  if (true) {
 	    // Expose lodash to the global object when an AMD loader is present to avoid
@@ -12494,7 +12494,7 @@
 	    // as an AMD module. See http://requirejs.org/docs/errors.html#mismatch for
 	    // more details.
 	    root._ = _;
-	
+
 	    // Define as an anonymous module so, through path mapping, it can be
 	    // referenced as the "underscore" module.
 	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
@@ -12517,7 +12517,7 @@
 	    root._ = _;
 	  }
 	}.call(this));
-	
+
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module), (function() { return this; }())))
 
 /***/ },
@@ -12543,26 +12543,26 @@
 	var Matrix, Screen, Utils, _, __domComplete, __domCompleteState, __domReady, _textSizeNode,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
 	  slice = [].slice;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Screen = __webpack_require__(5).Screen;
-	
+
 	Matrix = __webpack_require__(9).Matrix;
-	
+
 	Utils = {};
-	
+
 	Utils.reset = function() {
 	  return Framer.CurrentContext.reset();
 	};
-	
+
 	Utils.getValue = function(value) {
 	  if (_.isFunction(value)) {
 	    return value();
 	  }
 	  return value;
 	};
-	
+
 	Utils.getValueForKeyPath = function(obj, key) {
 	  var len, o, ref, ref1, result;
 	  result = obj;
@@ -12576,7 +12576,7 @@
 	  }
 	  return result;
 	};
-	
+
 	Utils.setValueForKeyPath = function(obj, path, val) {
 	  var field, fields, i, n, result;
 	  fields = path.split('.');
@@ -12596,34 +12596,34 @@
 	    i++;
 	  }
 	};
-	
+
 	Utils.valueOrDefault = function(value, defaultValue) {
 	  if (value === (void 0) || value === null) {
 	    value = defaultValue;
 	  }
 	  return value;
 	};
-	
+
 	Utils.arrayNext = function(arr, item) {
 	  return arr[arr.indexOf(item) + 1] || _.first(arr);
 	};
-	
+
 	Utils.arrayPrev = function(arr, item) {
 	  return arr[arr.indexOf(item) - 1] || _.last(arr);
 	};
-	
+
 	Utils.sum = function(arr) {
 	  return _.reduce(arr, function(a, b) {
 	    return a + b;
 	  });
 	};
-	
+
 	Utils.average = function(arr) {
 	  return Utils.sum(arr) / arr.length;
 	};
-	
+
 	Utils.mean = Utils.average;
-	
+
 	Utils.median = function(x) {
 	  var sorted;
 	  if (x.length === 0) {
@@ -12638,24 +12638,24 @@
 	    return (sorted[(sorted.length / 2) - 1] + sorted[sorted.length / 2]) / 2;
 	  }
 	};
-	
+
 	Utils.nearestIncrement = function(x, increment) {
 	  if (!increment) {
 	    return x;
 	  }
 	  return Math.round(x * (1 / increment)) / (1 / increment);
 	};
-	
+
 	if (window.requestAnimationFrame == null) {
 	  window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 	}
-	
+
 	if (window.requestAnimationFrame == null) {
 	  window.requestAnimationFrame = function(f) {
 	    return Utils.delay(1 / 60, f);
 	  };
 	}
-	
+
 	if (window.performance) {
 	  Utils.getTime = function() {
 	    return window.performance.now() / 1000;
@@ -12665,21 +12665,21 @@
 	    return Date.now() / 1000;
 	  };
 	}
-	
+
 	Utils.delay = function(time, f) {
 	  var timer;
 	  timer = setTimeout(f, time * 1000);
 	  Framer.CurrentContext.addTimer(timer);
 	  return timer;
 	};
-	
+
 	Utils.interval = function(time, f) {
 	  var timer;
 	  timer = setInterval(f, time * 1000);
 	  Framer.CurrentContext.addInterval(timer);
 	  return timer;
 	};
-	
+
 	Utils.debounce = function(threshold, fn, immediate) {
 	  var timeout;
 	  if (threshold == null) {
@@ -12705,7 +12705,7 @@
 	    return timeout = setTimeout(delayed, threshold);
 	  };
 	};
-	
+
 	Utils.throttle = function(delay, fn) {
 	  var timer;
 	  if (delay === 0) {
@@ -12726,7 +12726,7 @@
 	    return fn.apply(null, arguments);
 	  };
 	};
-	
+
 	Utils.memoize = function(fn) {
 	  return function() {
 	    var args, currentArg, hash, i;
@@ -12746,18 +12746,18 @@
 	    }
 	  };
 	};
-	
+
 	Utils.randomColor = function(alpha) {
 	  if (alpha == null) {
 	    alpha = 1.0;
 	  }
 	  return Color.random(alpha);
 	};
-	
+
 	Utils.randomChoice = function(arr) {
 	  return arr[Math.floor(Math.random() * arr.length)];
 	};
-	
+
 	Utils.randomNumber = function(a, b) {
 	  if (a == null) {
 	    a = 0;
@@ -12767,7 +12767,7 @@
 	  }
 	  return Utils.mapRange(Math.random(), 0, 1, a, b);
 	};
-	
+
 	Utils.randomImage = function(layer, offset) {
 	  var height, width;
 	  if (offset == null) {
@@ -12777,7 +12777,7 @@
 	  height = Utils.round(layer.height, 0, 100, 100);
 	  return "https://unsplash.it/" + width + "/" + height + "?image=" + (layer.id + offset);
 	};
-	
+
 	Utils.defineEnum = function(names, offset, geometric) {
 	  var Enum, i, j, len, name, o;
 	  if (names == null) {
@@ -12799,7 +12799,7 @@
 	  }
 	  return Enum;
 	};
-	
+
 	Utils.labelLayer = function(layer, text, style) {
 	  if (style == null) {
 	    style = {};
@@ -12813,7 +12813,7 @@
 	  layer.style = style;
 	  return layer.html = text;
 	};
-	
+
 	Utils.stringify = function(obj) {
 	  var error;
 	  try {
@@ -12834,7 +12834,7 @@
 	  }
 	  return obj;
 	};
-	
+
 	Utils.inspectObjectType = function(item) {
 	  var className, extract, ref, ref1, ref2, ref3;
 	  if ((((ref = item.constructor) != null ? ref.name : void 0) != null) && ((ref1 = item.constructor) != null ? ref1.name : void 0) !== "Object") {
@@ -12866,7 +12866,7 @@
 	  }
 	  return "Object";
 	};
-	
+
 	Utils.inspect = function(item, max, l) {
 	  var code, limit, objectInfo, objectType;
 	  if (max == null) {
@@ -12925,7 +12925,7 @@
 	  }
 	  return "" + item;
 	};
-	
+
 	Utils.uuid = function() {
 	  var chars, digit, o, output, r, random;
 	  chars = "0123456789abcdefghijklmnopqrstuvwxyz".split("");
@@ -12941,14 +12941,14 @@
 	  }
 	  return output.join("");
 	};
-	
+
 	Utils.arrayFromArguments = function(args) {
 	  if (_.isArray(args[0])) {
 	    return args[0];
 	  }
 	  return Array.prototype.slice.call(args);
 	};
-	
+
 	Utils.cycle = function() {
 	  var args, curr;
 	  args = Utils.arrayFromArguments(arguments);
@@ -12961,13 +12961,13 @@
 	    return args[curr];
 	  };
 	};
-	
+
 	Utils.toggle = Utils.cycle;
-	
+
 	Utils.isWebKit = function() {
 	  return window.WebKitCSSMatrix !== void 0;
 	};
-	
+
 	Utils.webkitVersion = function() {
 	  var regexp, result, version;
 	  version = -1;
@@ -12978,47 +12978,47 @@
 	  }
 	  return version;
 	};
-	
+
 	Utils.isChrome = function() {
 	  return /chrome/.test(navigator.userAgent.toLowerCase());
 	};
-	
+
 	Utils.isSafari = function() {
 	  return /safari/.test(navigator.userAgent.toLowerCase());
 	};
-	
+
 	Utils.isTouch = function() {
 	  return window.ontouchstart === null && window.ontouchmove === null && window.ontouchend === null;
 	};
-	
+
 	Utils.isDesktop = function() {
 	  return Utils.deviceType() === "desktop";
 	};
-	
+
 	Utils.isPhone = function() {
 	  return Utils.deviceType() === "phone";
 	};
-	
+
 	Utils.isTablet = function() {
 	  return Utils.deviceType() === "tablet";
 	};
-	
+
 	Utils.isMobile = function() {
 	  return Utils.isPhone() || Utils.isTablet();
 	};
-	
+
 	Utils.isFileUrl = function(url) {
 	  return _.startsWith(url, "file://");
 	};
-	
+
 	Utils.isRelativeUrl = function(url) {
 	  return !/^([a-zA-Z]{1,8}:\/\/).*$/.test(url);
 	};
-	
+
 	Utils.isLocalServerUrl = function(url) {
 	  return url.indexOf("127.0.0.1") !== -1 || url.indexOf("localhost") !== -1;
 	};
-	
+
 	Utils.isLocalUrl = function(url) {
 	  if (Utils.isFileUrl(url)) {
 	    return true;
@@ -13028,7 +13028,7 @@
 	  }
 	  return false;
 	};
-	
+
 	Utils.isLocalAssetUrl = function(url, baseUrl) {
 	  if (baseUrl == null) {
 	    baseUrl = window.location.href;
@@ -13041,11 +13041,11 @@
 	  }
 	  return false;
 	};
-	
+
 	Utils.isFramerStudio = function() {
 	  return navigator.userAgent.indexOf("FramerStudio") !== -1;
 	};
-	
+
 	Utils.framerStudioVersion = function() {
 	  var isBeta, isFuture, isLocal, matches, version;
 	  if (Utils.isFramerStudio()) {
@@ -13065,15 +13065,15 @@
 	  }
 	  return Number.MAX_VALUE;
 	};
-	
+
 	Utils.devicePixelRatio = function() {
 	  return window.devicePixelRatio;
 	};
-	
+
 	Utils.isJP2Supported = function() {
 	  return Utils.isWebKit() && !Utils.isChrome();
 	};
-	
+
 	Utils.deviceType = function() {
 	  if (/(tablet)|(iPad)|(Nexus 9)/i.test(navigator.userAgent)) {
 	    return "tablet";
@@ -13083,11 +13083,11 @@
 	  }
 	  return "desktop";
 	};
-	
+
 	Utils.pathJoin = function() {
 	  return Utils.arrayFromArguments(arguments).join("/");
 	};
-	
+
 	Utils.round = function(value, decimals, increment, min, max) {
 	  var d;
 	  if (decimals == null) {
@@ -13115,7 +13115,7 @@
 	  }
 	  return value;
 	};
-	
+
 	Utils.clamp = function(value, a, b) {
 	  var max, min;
 	  min = Math.min(a, b);
@@ -13128,11 +13128,11 @@
 	  }
 	  return value;
 	};
-	
+
 	Utils.mapRange = function(value, fromLow, fromHigh, toLow, toHigh) {
 	  return toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow));
 	};
-	
+
 	Utils.modulate = function(value, rangeA, rangeB, limit) {
 	  var fromHigh, fromLow, result, toHigh, toLow;
 	  if (limit == null) {
@@ -13160,7 +13160,7 @@
 	  }
 	  return result;
 	};
-	
+
 	Utils.parseFunction = function(str) {
 	  var result;
 	  result = {
@@ -13177,13 +13177,13 @@
 	  }
 	  return result;
 	};
-	
+
 	__domCompleteState = "interactive";
-	
+
 	__domComplete = [];
-	
+
 	__domReady = false;
-	
+
 	if (typeof document !== "undefined" && document !== null) {
 	  document.onreadystatechange = function(event) {
 	    var f, results;
@@ -13197,7 +13197,7 @@
 	    }
 	  };
 	}
-	
+
 	Utils.domComplete = function(f) {
 	  if (__domReady) {
 	    return f();
@@ -13205,11 +13205,11 @@
 	    return __domComplete.push(f);
 	  }
 	};
-	
+
 	Utils.domCompleteCancel = function(f) {
 	  return __domComplete = _.without(__domComplete, f);
 	};
-	
+
 	Utils.domValidEvent = function(element, eventName) {
 	  if (!eventName) {
 	    return;
@@ -13219,7 +13219,7 @@
 	  }
 	  return typeof element["on" + (eventName.toLowerCase())] !== "undefined";
 	};
-	
+
 	Utils.domLoadScript = function(url, callback) {
 	  var head, script;
 	  script = document.createElement("script");
@@ -13230,7 +13230,7 @@
 	  head.appendChild(script);
 	  return script;
 	};
-	
+
 	Utils.domLoadData = function(path, callback) {
 	  var request;
 	  request = new XMLHttpRequest();
@@ -13243,13 +13243,13 @@
 	  request.open("GET", path, true);
 	  return request.send(null);
 	};
-	
+
 	Utils.domLoadJSON = function(path, callback) {
 	  return Utils.domLoadData(path, function(err, data) {
 	    return callback(err, JSON.parse(data));
 	  });
 	};
-	
+
 	Utils.domLoadDataSync = function(path) {
 	  var e, error, handleError, ref, request;
 	  request = new XMLHttpRequest();
@@ -13272,18 +13272,18 @@
 	  }
 	  return request.responseText;
 	};
-	
+
 	Utils.domLoadJSONSync = function(path) {
 	  return JSON.parse(Utils.domLoadDataSync(path));
 	};
-	
+
 	Utils.domLoadScriptSync = function(path) {
 	  var scriptData;
 	  scriptData = Utils.domLoadDataSync(path);
 	  eval(scriptData);
 	  return scriptData;
 	};
-	
+
 	Utils.insertCSS = function(css) {
 	  var styleElement;
 	  styleElement = document.createElement("style");
@@ -13293,7 +13293,7 @@
 	    return document.body.appendChild(styleElement);
 	  });
 	};
-	
+
 	Utils.loadImage = function(url, callback, context) {
 	  var element;
 	  element = new Image;
@@ -13308,7 +13308,7 @@
 	  });
 	  return element.src = url;
 	};
-	
+
 	Utils.point = function(input) {
 	  var k, len, o, ref, result;
 	  if (_.isNumber(input)) {
@@ -13327,7 +13327,7 @@
 	  }
 	  return result;
 	};
-	
+
 	Utils.pointZero = function(n) {
 	  if (n == null) {
 	    n = 0;
@@ -13337,14 +13337,14 @@
 	    y: n
 	  };
 	};
-	
+
 	Utils.pointDivide = function(point, fraction) {
 	  return point = {
 	    x: point.x / fraction,
 	    y: point.y / fraction
 	  };
 	};
-	
+
 	Utils.pointAdd = function(pointA, pointB) {
 	  var point;
 	  return point = {
@@ -13352,7 +13352,7 @@
 	    y: pointA.y + pointB.y
 	  };
 	};
-	
+
 	Utils.pointSubtract = function(pointA, pointB) {
 	  var point;
 	  return point = {
@@ -13360,7 +13360,7 @@
 	    y: pointA.y - pointB.y
 	  };
 	};
-	
+
 	Utils.pointMin = function() {
 	  var point, points;
 	  points = Utils.arrayFromArguments(arguments);
@@ -13373,7 +13373,7 @@
 	    }))
 	  };
 	};
-	
+
 	Utils.pointMax = function() {
 	  var point, points;
 	  points = Utils.arrayFromArguments(arguments);
@@ -13386,7 +13386,7 @@
 	    }))
 	  };
 	};
-	
+
 	Utils.pointDelta = function(pointA, pointB) {
 	  var delta;
 	  return delta = {
@@ -13394,32 +13394,32 @@
 	    y: pointB.y - pointA.y
 	  };
 	};
-	
+
 	Utils.pointDistance = function(pointA, pointB) {
 	  var a, b;
 	  a = pointA.x - pointB.x;
 	  b = pointA.y - pointB.y;
 	  return Math.sqrt((a * a) + (b * b));
 	};
-	
+
 	Utils.pointInvert = function(point) {
 	  return point = {
 	    x: 0 - point.x,
 	    y: 0 - point.y
 	  };
 	};
-	
+
 	Utils.pointTotal = function(point) {
 	  return point.x + point.y;
 	};
-	
+
 	Utils.pointAbs = function(point) {
 	  return point = {
 	    x: Math.abs(point.x),
 	    y: Math.abs(point.y)
 	  };
 	};
-	
+
 	Utils.pointInFrame = function(point, frame) {
 	  if (point.x < Utils.frameGetMinX(frame) || point.x > Utils.frameGetMaxX(frame)) {
 	    return false;
@@ -13429,7 +13429,7 @@
 	  }
 	  return true;
 	};
-	
+
 	Utils.pointCenter = function(pointA, pointB) {
 	  var point;
 	  return point = {
@@ -13437,11 +13437,11 @@
 	    y: (pointA.y + pointB.y) / 2
 	  };
 	};
-	
+
 	Utils.pointAngle = function(pointA, pointB) {
 	  return Math.atan2(pointB.y - pointA.y, pointB.x - pointA.x) * 180 / Math.PI;
 	};
-	
+
 	Utils.size = function(input) {
 	  var k, len, o, ref, result;
 	  if (_.isNumber(input)) {
@@ -13460,7 +13460,7 @@
 	  }
 	  return result;
 	};
-	
+
 	Utils.sizeZero = function(n) {
 	  if (n == null) {
 	    n = 0;
@@ -13470,7 +13470,7 @@
 	    height: n
 	  };
 	};
-	
+
 	Utils.sizeMin = function() {
 	  var size, sizes;
 	  sizes = Utils.arrayFromArguments(arguments);
@@ -13483,7 +13483,7 @@
 	    }))
 	  };
 	};
-	
+
 	Utils.sizeMax = function() {
 	  var size, sizes;
 	  sizes = Utils.arrayFromArguments(arguments);
@@ -13496,7 +13496,7 @@
 	    }))
 	  };
 	};
-	
+
 	Utils.rectZero = function(args) {
 	  if (args == null) {
 	    args = {};
@@ -13508,7 +13508,7 @@
 	    left: 0
 	  });
 	};
-	
+
 	Utils.parseRect = function(args) {
 	  if (_.isArray(args) && _.isNumber(args[0])) {
 	    if (args.length === 1) {
@@ -13546,15 +13546,15 @@
 	  }
 	  return {};
 	};
-	
+
 	Utils.frameGetMinX = function(frame) {
 	  return frame.x;
 	};
-	
+
 	Utils.frameSetMinX = function(frame, value) {
 	  return frame.x = value;
 	};
-	
+
 	Utils.frameGetMidX = function(frame) {
 	  if (frame.width === 0) {
 	    return 0;
@@ -13562,11 +13562,11 @@
 	    return frame.x + (frame.width / 2.0);
 	  }
 	};
-	
+
 	Utils.frameSetMidX = function(frame, value) {
 	  return frame.x = frame.width === 0 ? 0 : value - (frame.width / 2.0);
 	};
-	
+
 	Utils.frameGetMaxX = function(frame) {
 	  if (frame.width === 0) {
 	    return 0;
@@ -13574,19 +13574,19 @@
 	    return frame.x + frame.width;
 	  }
 	};
-	
+
 	Utils.frameSetMaxX = function(frame, value) {
 	  return frame.x = frame.width === 0 ? 0 : value - frame.width;
 	};
-	
+
 	Utils.frameGetMinY = function(frame) {
 	  return frame.y;
 	};
-	
+
 	Utils.frameSetMinY = function(frame, value) {
 	  return frame.y = value;
 	};
-	
+
 	Utils.frameGetMidY = function(frame) {
 	  if (frame.height === 0) {
 	    return 0;
@@ -13594,11 +13594,11 @@
 	    return frame.y + (frame.height / 2.0);
 	  }
 	};
-	
+
 	Utils.frameSetMidY = function(frame, value) {
 	  return frame.y = frame.height === 0 ? 0 : value - (frame.height / 2.0);
 	};
-	
+
 	Utils.frameGetMaxY = function(frame) {
 	  if (frame.height === 0) {
 	    return 0;
@@ -13606,11 +13606,11 @@
 	    return frame.y + frame.height;
 	  }
 	};
-	
+
 	Utils.frameSetMaxY = function(frame, value) {
 	  return frame.y = frame.height === 0 ? 0 : value - frame.height;
 	};
-	
+
 	Utils.frame = function(input) {
 	  var k, len, o, ref, result;
 	  if (_.isNumber(input)) {
@@ -13629,7 +13629,7 @@
 	  }
 	  return result;
 	};
-	
+
 	Utils.frameZero = function(n) {
 	  if (n == null) {
 	    n = 0;
@@ -13639,7 +13639,7 @@
 	    y: n
 	  };
 	};
-	
+
 	Utils.frameSize = function(frame) {
 	  var size;
 	  return size = {
@@ -13647,7 +13647,7 @@
 	    height: frame.height
 	  };
 	};
-	
+
 	Utils.framePoint = function(frame) {
 	  var point;
 	  return point = {
@@ -13655,7 +13655,7 @@
 	    y: frame.y
 	  };
 	};
-	
+
 	Utils.pointsFromFrame = function(frame) {
 	  var corner1, corner2, corner3, corner4, maxX, maxY, minX, minY;
 	  minX = Utils.frameGetMinX(frame);
@@ -13680,7 +13680,7 @@
 	  };
 	  return [corner1, corner2, corner3, corner4];
 	};
-	
+
 	Utils.frameFromPoints = function(points) {
 	  var frame, maxX, maxY, minX, minY, xValues, yValues;
 	  xValues = _.pluck(points, "x");
@@ -13696,7 +13696,7 @@
 	    height: maxY - minY
 	  };
 	};
-	
+
 	Utils.pixelAlignedFrame = function(frame) {
 	  var result;
 	  return result = {
@@ -13706,7 +13706,7 @@
 	    y: Math.round(frame.y)
 	  };
 	};
-	
+
 	Utils.frameMerge = function() {
 	  var frame, frames;
 	  frames = Utils.arrayFromArguments(arguments);
@@ -13718,7 +13718,7 @@
 	  frame.height = _.max(frames.map(Utils.frameGetMaxY)) - frame.y;
 	  return frame;
 	};
-	
+
 	Utils.framePointForOrigin = function(frame, originX, originY) {
 	  return frame = {
 	    x: frame.x + (originX * frame.width),
@@ -13727,7 +13727,7 @@
 	    height: frame.height
 	  };
 	};
-	
+
 	Utils.frameInset = function(frame, inset) {
 	  if (_.isNumber(inset)) {
 	    inset = {
@@ -13745,7 +13745,7 @@
 	    height: frame.height - inset.top - inset.bottom
 	  };
 	};
-	
+
 	Utils.frameSortByAbsoluteDistance = function(point, frames, originX, originY) {
 	  var distance;
 	  if (originX == null) {
@@ -13765,7 +13765,7 @@
 	    return distance(a) - distance(b);
 	  });
 	};
-	
+
 	Utils.pointInPolygon = function(point, vs) {
 	  var i, inside, intersect, j, x, xi, xj, y, yi, yj;
 	  x = point[0];
@@ -13786,7 +13786,7 @@
 	  }
 	  return inside;
 	};
-	
+
 	Utils.frameCenterPoint = function(frame) {
 	  var point;
 	  return point = {
@@ -13794,7 +13794,7 @@
 	    y: Utils.frameGetMidY(frame)
 	  };
 	};
-	
+
 	Utils.rotationNormalizer = function() {
 	  var lastValue;
 	  lastValue = null;
@@ -13818,7 +13818,7 @@
 	    };
 	  })(this);
 	};
-	
+
 	Utils.convertPointToContext = function(point, layer, rootContext, includeLayer) {
 	  var ancestor, ancestors, len, o;
 	  if (point == null) {
@@ -13851,7 +13851,7 @@
 	  }
 	  return point;
 	};
-	
+
 	Utils.convertFrameToContext = function(frame, layer, rootContext, includeLayer) {
 	  var convertedCorners, corners;
 	  if (frame == null) {
@@ -13877,7 +13877,7 @@
 	  })(this));
 	  return Utils.frameFromPoints(convertedCorners);
 	};
-	
+
 	Utils.convertPointFromContext = function(point, layer, rootContext, includeLayer) {
 	  var ancestor, ancestors, len, node, o, parent;
 	  if (point == null) {
@@ -13914,7 +13914,7 @@
 	  }
 	  return point;
 	};
-	
+
 	Utils.convertFrameFromContext = function(frame, layer, rootContext, includeLayer) {
 	  var convertedCorners, corners;
 	  if (frame == null) {
@@ -13940,7 +13940,7 @@
 	  })(this));
 	  return Utils.frameFromPoints(convertedCorners);
 	};
-	
+
 	Utils.convertPoint = function(input, layerA, layerB, rootContext) {
 	  var node, point;
 	  if (rootContext == null) {
@@ -13963,7 +13963,7 @@
 	    return point;
 	  }
 	};
-	
+
 	Utils.boundingFrame = function(layer, rootContext) {
 	  var boundingFrame, contextCornerPoints, cornerPoints, frame;
 	  if (rootContext == null) {
@@ -13982,7 +13982,7 @@
 	  boundingFrame = Utils.frameFromPoints(contextCornerPoints);
 	  return Utils.pixelAlignedFrame(boundingFrame);
 	};
-	
+
 	Utils.perspectiveProjectionMatrix = function(element) {
 	  var m, p;
 	  p = element.perspective;
@@ -13992,7 +13992,7 @@
 	  }
 	  return m;
 	};
-	
+
 	Utils.perspectiveMatrix = function(element) {
 	  var ox, oy, ppm;
 	  ox = element.perspectiveOriginX * element.width;
@@ -14000,7 +14000,7 @@
 	  ppm = Utils.perspectiveProjectionMatrix(element);
 	  return new Matrix().translate(ox, oy).multiply(ppm).translate(-ox, -oy);
 	};
-	
+
 	Utils.globalLayers = function(importedLayers) {
 	  var layer, layerName;
 	  for (layerName in importedLayers) {
@@ -14014,9 +14014,9 @@
 	  }
 	  return window.Framer._globalWarningGiven = true;
 	};
-	
+
 	_textSizeNode = null;
-	
+
 	Utils.textSize = function(text, style, constraints) {
 	  var frame, rect, shouldCreateNode;
 	  if (style == null) {
@@ -14064,7 +14064,7 @@
 	    height: rect.bottom - rect.top
 	  };
 	};
-	
+
 	_.extend(exports, Utils);
 
 
@@ -14075,46 +14075,46 @@
 	var BaseClass, ScreenClass,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	ScreenClass = (function(superClass) {
 	  extend(ScreenClass, superClass);
-	
+
 	  function ScreenClass() {
 	    return ScreenClass.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  ScreenClass.define("width", {
 	    get: function() {
 	      return Framer.CurrentContext.width;
 	    }
 	  });
-	
+
 	  ScreenClass.define("height", {
 	    get: function() {
 	      return Framer.CurrentContext.height;
 	    }
 	  });
-	
+
 	  ScreenClass.define("size", {
 	    get: function() {
 	      return Framer.CurrentContext.size;
 	    }
 	  });
-	
+
 	  ScreenClass.define("frame", {
 	    get: function() {
 	      return Framer.CurrentContext.frame;
 	    }
 	  });
-	
+
 	  ScreenClass.define("canvasFrame", {
 	    get: function() {
 	      return Framer.CurrentContext.canvasFrame;
 	    }
 	  });
-	
+
 	  ScreenClass.define("backgroundColor", {
 	    importable: false,
 	    exportable: false,
@@ -14125,7 +14125,7 @@
 	      return Framer.Device.screen.backgroundColor = value;
 	    }
 	  });
-	
+
 	  ScreenClass.define("perspective", {
 	    importable: false,
 	    exportable: false,
@@ -14136,7 +14136,7 @@
 	      return Framer.CurrentContext.perspective = value;
 	    }
 	  });
-	
+
 	  ScreenClass.define("perspectiveOriginX", {
 	    importable: false,
 	    exportable: false,
@@ -14147,7 +14147,7 @@
 	      return Framer.CurrentContext.perspectiveOriginX = value;
 	    }
 	  });
-	
+
 	  ScreenClass.define("perspectiveOriginY", {
 	    importable: false,
 	    exportable: false,
@@ -14158,7 +14158,7 @@
 	      return Framer.CurrentContext.perspectiveOriginY = value;
 	    }
 	  });
-	
+
 	  ScreenClass.prototype.toInspect = function() {
 	    var round;
 	    round = function(value) {
@@ -14169,71 +14169,71 @@
 	    };
 	    return "<Screen " + (round(this.width)) + "x" + (round(this.height)) + ">";
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipe = function(cb) {
 	    return this.on(Events.EdgeSwipe, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeStart = function(cb) {
 	    return this.on(Events.EdgeSwipeStart, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeEnd = function(cb) {
 	    return this.on(Events.EdgeSwipeEnd, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeTop = function(cb) {
 	    return this.on(Events.EdgeSwipeTop, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeTopStart = function(cb) {
 	    return this.on(Events.EdgeSwipeTopStart, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeTopEnd = function(cb) {
 	    return this.on(Events.EdgeSwipeTopEnd, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeRight = function(cb) {
 	    return this.on(Events.EdgeSwipeRight, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeRightStart = function(cb) {
 	    return this.on(Events.EdgeSwipeRightStart, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeRightEnd = function(cb) {
 	    return this.on(Events.EdgeSwipeRightEnd, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeBottom = function(cb) {
 	    return this.on(Events.EdgeSwipeBottom, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeBottomStart = function(cb) {
 	    return this.on(Events.EdgeSwipeBottomStart, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeBottomEnd = function(cb) {
 	    return this.on(Events.EdgeSwipeBottomEnd, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeLeft = function(cb) {
 	    return this.on(Events.EdgeSwipeLeft, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeLeftStart = function(cb) {
 	    return this.on(Events.EdgeSwipeLeftStart, cb);
 	  };
-	
+
 	  ScreenClass.prototype.onEdgeSwipeLeftEnd = function(cb) {
 	    return this.on(Events.EdgeSwipeLeftEnd, cb);
 	  };
-	
+
 	  return ScreenClass;
-	
+
 	})(BaseClass);
-	
+
 	exports.Screen = new ScreenClass;
 
 
@@ -14246,28 +14246,28 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	EventEmitter = __webpack_require__(7).EventEmitter;
-	
+
 	CounterKey = "_ObjectCounter";
-	
+
 	DefinedPropertiesKey = "_DefinedPropertiesKey";
-	
+
 	DefinedPropertiesValuesKey = "_DefinedPropertiesValuesKey";
-	
+
 	DefinedPropertiesOrderKey = "_DefinedPropertiesOrderKey";
-	
+
 	capitalizeFirstLetter = function(string) {
 	  return string.charAt(0).toUpperCase() + string.slice(1);
 	};
-	
+
 	exports.BaseClass = (function(superClass) {
 	  extend(BaseClass, superClass);
-	
+
 	  BaseClass.define = function(propertyName, descriptor) {
 	    var getName, setName;
 	    if (this !== BaseClass) {
@@ -14283,7 +14283,7 @@
 	    }
 	    return Object.defineProperty(this.prototype, propertyName, descriptor);
 	  };
-	
+
 	  BaseClass._addDescriptor = function(propertyName, descriptor) {
 	    var depend, i, len, ref;
 	    descriptor.propertyName = propertyName;
@@ -14321,7 +14321,7 @@
 	      return this[DefinedPropertiesOrderKey].push(propertyName);
 	    }
 	  };
-	
+
 	  BaseClass.simpleProperty = function(name, fallback, options) {
 	    if (options == null) {
 	      options = {};
@@ -14336,7 +14336,7 @@
 	      }
 	    });
 	  };
-	
+
 	  BaseClass.proxyProperty = function(keyPath, options) {
 	    var descriptor, objectKey;
 	    if (options == null) {
@@ -14359,27 +14359,27 @@
 	      proxy: true
 	    });
 	  };
-	
+
 	  BaseClass.prototype._setPropertyValue = function(k, v) {
 	    return this[DefinedPropertiesValuesKey][k] = v;
 	  };
-	
+
 	  BaseClass.prototype._getPropertyValue = function(k) {
 	    return Utils.valueOrDefault(this[DefinedPropertiesValuesKey][k], this._getPropertyDefaultValue(k));
 	  };
-	
+
 	  BaseClass.prototype._getPropertyDefaultValue = function(k) {
 	    return this._propertyList()[k]["default"];
 	  };
-	
+
 	  BaseClass.prototype._propertyList = function() {
 	    return this.constructor[DefinedPropertiesKey];
 	  };
-	
+
 	  BaseClass.prototype.keys = function() {
 	    return _.keys(this.props);
 	  };
-	
+
 	  BaseClass.define("props", {
 	    importable: false,
 	    exportable: false,
@@ -14410,21 +14410,21 @@
 	      return results;
 	    }
 	  });
-	
+
 	  BaseClass.define("id", {
 	    get: function() {
 	      return this._id;
 	    }
 	  });
-	
+
 	  BaseClass.prototype.toInspect = function() {
 	    return "<" + this.constructor.name + " id:" + (this.id || null) + ">";
 	  };
-	
+
 	  BaseClass.prototype.onChange = function(name, cb) {
 	    return this.on("change:" + name, cb);
 	  };
-	
+
 	  function BaseClass(options) {
 	    this.toInspect = bind(this.toInspect, this);
 	    this._getPropertyValue = bind(this._getPropertyValue, this);
@@ -14440,7 +14440,7 @@
 	    this.constructor[CounterKey] += 1;
 	    this._id = this.constructor[CounterKey];
 	  }
-	
+
 	  BaseClass.prototype._applyDefaults = function(options) {
 	    var i, k, len, ref, results;
 	    if (!this.constructor[DefinedPropertiesOrderKey]) {
@@ -14457,7 +14457,7 @@
 	    }
 	    return results;
 	  };
-	
+
 	  BaseClass.prototype._applyProxyDefaults = function(options) {
 	    var descriptor, i, k, len, ref, results;
 	    if (!this.constructor[DefinedPropertiesOrderKey]) {
@@ -14478,7 +14478,7 @@
 	    }
 	    return results;
 	  };
-	
+
 	  BaseClass.prototype._applyDefault = function(key, optionValue) {
 	    var descriptor, value;
 	    descriptor = this.constructor[DefinedPropertiesKey][key];
@@ -14497,9 +14497,9 @@
 	    }
 	    return this[key] = value;
 	  };
-	
+
 	  return BaseClass;
-	
+
 	})(EventEmitter);
 
 
@@ -14510,24 +14510,24 @@
 	var EventEmitter3, EventKey, _,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	EventEmitter3 = __webpack_require__(8);
-	
+
 	EventKey = "_events";
-	
+
 	exports.EventEmitter = (function(superClass) {
 	  extend(EventEmitter, superClass);
-	
+
 	  function EventEmitter() {
 	    return EventEmitter.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  EventEmitter.prototype.listenerEvents = function() {
 	    return _.keys(this[EventKey]);
 	  };
-	
+
 	  EventEmitter.prototype.removeAllListeners = function(eventName) {
 	    var eventNames, i, len, listener, results;
 	    if (eventName) {
@@ -14551,9 +14551,9 @@
 	    }
 	    return results;
 	  };
-	
+
 	  return EventEmitter;
-	
+
 	})(EventEmitter3);
 
 
@@ -14562,9 +14562,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	var has = Object.prototype.hasOwnProperty;
-	
+
 	//
 	// We store our EE objects in a plain object whose properties are event names.
 	// If `Object.create(null)` is not supported we prefix the event names with a
@@ -14574,7 +14574,7 @@
 	// is an ES6 Symbol.
 	//
 	var prefix = typeof Object.create !== 'function' ? '~' : false;
-	
+
 	/**
 	 * Representation of a single EventEmitter function.
 	 *
@@ -14588,7 +14588,7 @@
 	  this.context = context;
 	  this.once = once || false;
 	}
-	
+
 	/**
 	 * Minimal EventEmitter interface that is molded against the Node.js
 	 * EventEmitter interface.
@@ -14597,7 +14597,7 @@
 	 * @api public
 	 */
 	function EventEmitter() { /* Nothing to set */ }
-	
+
 	/**
 	 * Hold the assigned EventEmitters by name.
 	 *
@@ -14605,7 +14605,7 @@
 	 * @private
 	 */
 	EventEmitter.prototype._events = undefined;
-	
+
 	/**
 	 * Return an array listing the events for which the emitter has registered
 	 * listeners.
@@ -14617,20 +14617,20 @@
 	  var events = this._events
 	    , names = []
 	    , name;
-	
+
 	  if (!events) return names;
-	
+
 	  for (name in events) {
 	    if (has.call(events, name)) names.push(prefix ? name.slice(1) : name);
 	  }
-	
+
 	  if (Object.getOwnPropertySymbols) {
 	    return names.concat(Object.getOwnPropertySymbols(events));
 	  }
-	
+
 	  return names;
 	};
-	
+
 	/**
 	 * Return a list of assigned event listeners.
 	 *
@@ -14642,18 +14642,18 @@
 	EventEmitter.prototype.listeners = function listeners(event, exists) {
 	  var evt = prefix ? prefix + event : event
 	    , available = this._events && this._events[evt];
-	
+
 	  if (exists) return !!available;
 	  if (!available) return [];
 	  if (available.fn) return [available.fn];
-	
+
 	  for (var i = 0, l = available.length, ee = new Array(l); i < l; i++) {
 	    ee[i] = available[i].fn;
 	  }
-	
+
 	  return ee;
 	};
-	
+
 	/**
 	 * Emit an event to all registered event listeners.
 	 *
@@ -14663,17 +14663,17 @@
 	 */
 	EventEmitter.prototype.emit = function emit(event, a1, a2, a3, a4, a5) {
 	  var evt = prefix ? prefix + event : event;
-	
+
 	  if (!this._events || !this._events[evt]) return false;
-	
+
 	  var listeners = this._events[evt]
 	    , len = arguments.length
 	    , args
 	    , i;
-	
+
 	  if ('function' === typeof listeners.fn) {
 	    if (listeners.once) this.removeListener(event, listeners.fn, undefined, true);
-	
+
 	    switch (len) {
 	      case 1: return listeners.fn.call(listeners.context), true;
 	      case 2: return listeners.fn.call(listeners.context, a1), true;
@@ -14682,19 +14682,19 @@
 	      case 5: return listeners.fn.call(listeners.context, a1, a2, a3, a4), true;
 	      case 6: return listeners.fn.call(listeners.context, a1, a2, a3, a4, a5), true;
 	    }
-	
+
 	    for (i = 1, args = new Array(len -1); i < len; i++) {
 	      args[i - 1] = arguments[i];
 	    }
-	
+
 	    listeners.fn.apply(listeners.context, args);
 	  } else {
 	    var length = listeners.length
 	      , j;
-	
+
 	    for (i = 0; i < length; i++) {
 	      if (listeners[i].once) this.removeListener(event, listeners[i].fn, undefined, true);
-	
+
 	      switch (len) {
 	        case 1: listeners[i].fn.call(listeners[i].context); break;
 	        case 2: listeners[i].fn.call(listeners[i].context, a1); break;
@@ -14703,15 +14703,15 @@
 	          if (!args) for (j = 1, args = new Array(len -1); j < len; j++) {
 	            args[j - 1] = arguments[j];
 	          }
-	
+
 	          listeners[i].fn.apply(listeners[i].context, args);
 	      }
 	    }
 	  }
-	
+
 	  return true;
 	};
-	
+
 	/**
 	 * Register a new EventListener for the given event.
 	 *
@@ -14723,7 +14723,7 @@
 	EventEmitter.prototype.on = function on(event, fn, context) {
 	  var listener = new EE(fn, context || this)
 	    , evt = prefix ? prefix + event : event;
-	
+
 	  if (!this._events) this._events = prefix ? {} : Object.create(null);
 	  if (!this._events[evt]) this._events[evt] = listener;
 	  else {
@@ -14732,10 +14732,10 @@
 	      this._events[evt], listener
 	    ];
 	  }
-	
+
 	  return this;
 	};
-	
+
 	/**
 	 * Add an EventListener that's only called once.
 	 *
@@ -14747,7 +14747,7 @@
 	EventEmitter.prototype.once = function once(event, fn, context) {
 	  var listener = new EE(fn, context || this, true)
 	    , evt = prefix ? prefix + event : event;
-	
+
 	  if (!this._events) this._events = prefix ? {} : Object.create(null);
 	  if (!this._events[evt]) this._events[evt] = listener;
 	  else {
@@ -14756,10 +14756,10 @@
 	      this._events[evt], listener
 	    ];
 	  }
-	
+
 	  return this;
 	};
-	
+
 	/**
 	 * Remove event listeners.
 	 *
@@ -14771,12 +14771,12 @@
 	 */
 	EventEmitter.prototype.removeListener = function removeListener(event, fn, context, once) {
 	  var evt = prefix ? prefix + event : event;
-	
+
 	  if (!this._events || !this._events[evt]) return this;
-	
+
 	  var listeners = this._events[evt]
 	    , events = [];
-	
+
 	  if (fn) {
 	    if (listeners.fn) {
 	      if (
@@ -14798,7 +14798,7 @@
 	      }
 	    }
 	  }
-	
+
 	  //
 	  // Reset the array, or remove it completely if we have no more listeners.
 	  //
@@ -14807,10 +14807,10 @@
 	  } else {
 	    delete this._events[evt];
 	  }
-	
+
 	  return this;
 	};
-	
+
 	/**
 	 * Remove all listeners or only the listeners for the specified event.
 	 *
@@ -14819,31 +14819,31 @@
 	 */
 	EventEmitter.prototype.removeAllListeners = function removeAllListeners(event) {
 	  if (!this._events) return this;
-	
+
 	  if (event) delete this._events[prefix ? prefix + event : event];
 	  else this._events = prefix ? {} : Object.create(null);
-	
+
 	  return this;
 	};
-	
+
 	//
 	// Alias methods names because people roll like that.
 	//
 	EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
 	EventEmitter.prototype.addListener = EventEmitter.prototype.on;
-	
+
 	//
 	// This function doesn't apply anymore.
 	//
 	EventEmitter.prototype.setMaxListeners = function setMaxListeners() {
 	  return this;
 	};
-	
+
 	//
 	// Expose the prefix.
 	//
 	EventEmitter.prefixed = prefix;
-	
+
 	//
 	// Expose the module.
 	//
@@ -14868,7 +14868,7 @@
 	  m.m21 = value;
 	  return this.multiply(m);
 	};
-	
+
 	WebKitCSSMatrix.prototype.point = function(point) {
 	  var ref, w, x, y, z;
 	  if (point == null) {
@@ -14887,7 +14887,7 @@
 	    z: (this.m13 * x + this.m23 * y + this.m33 * z + this.m43) / w
 	  };
 	};
-	
+
 	exports.Matrix = WebKitCSSMatrix;
 
 
@@ -14900,23 +14900,23 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  slice = [].slice;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	libhusl = __webpack_require__(11);
-	
+
 	ColorType = {
 	  RGB: "rgb",
 	  HSL: "hsl",
 	  HEX: "hex",
 	  NAME: "name"
 	};
-	
+
 	exports.Color = (function(superClass) {
 	  extend(Color, superClass);
-	
+
 	  function Color(color1, r, g, b) {
 	    var color, input;
 	    this.color = color1;
@@ -14939,57 +14939,57 @@
 	    this._l = input.l;
 	    this._roundA = Math.round(100 * this._a) / 100;
 	  }
-	
+
 	  Color.define("r", {
 	    get: function() {
 	      return this._r;
 	    }
 	  });
-	
+
 	  Color.define("g", {
 	    get: function() {
 	      return this._g;
 	    }
 	  });
-	
+
 	  Color.define("b", {
 	    get: function() {
 	      return this._b;
 	    }
 	  });
-	
+
 	  Color.define("a", {
 	    get: function() {
 	      return this._a;
 	    }
 	  });
-	
+
 	  Color.define("h", {
 	    get: function() {
 	      return this._h;
 	    }
 	  });
-	
+
 	  Color.define("s", {
 	    get: function() {
 	      return this._s;
 	    }
 	  });
-	
+
 	  Color.define("l", {
 	    get: function() {
 	      return this._l;
 	    }
 	  });
-	
+
 	  Color.prototype.toHex = function(allow3Char) {
 	    return rgbToHex(this._r, this._g, this._b, allow3Char);
 	  };
-	
+
 	  Color.prototype.toHexString = function(allow3Char) {
 	    return "#" + this.toHex(allow3Char);
 	  };
-	
+
 	  Color.prototype.toRgb = function() {
 	    if (this._rgb === void 0) {
 	      this._rgb = {
@@ -15001,7 +15001,7 @@
 	    }
 	    return _.clone(this._rgb);
 	  };
-	
+
 	  Color.prototype.toRgbString = function() {
 	    if (this._a === 1) {
 	      return "rgb(" + (Utils.round(this._r, 0)) + ", " + (Utils.round(this._g, 0)) + ", " + (Utils.round(this._b, 0)) + ")";
@@ -15009,7 +15009,7 @@
 	      return "rgba(" + (Utils.round(this._r, 0)) + ", " + (Utils.round(this._g, 0)) + ", " + (Utils.round(this._b, 0)) + ", " + this._roundA + ")";
 	    }
 	  };
-	
+
 	  Color.prototype.toHsl = function() {
 	    if (this._hsl === void 0) {
 	      this._hsl = {
@@ -15021,7 +15021,7 @@
 	    }
 	    return _.clone(this._hsl);
 	  };
-	
+
 	  Color.prototype.toHusl = function() {
 	    var c, husl;
 	    if (this._husl === void 0) {
@@ -15035,7 +15035,7 @@
 	    }
 	    return _.clone(this._husl);
 	  };
-	
+
 	  Color.prototype.toHslString = function() {
 	    var h, hsl, l, s;
 	    if (this._hslString === void 0) {
@@ -15051,7 +15051,7 @@
 	    }
 	    return this._hslString;
 	  };
-	
+
 	  Color.prototype.toName = function() {
 	    var hex, i, key, len, ref, value;
 	    if (this._a === 0) {
@@ -15071,7 +15071,7 @@
 	    }
 	    return false;
 	  };
-	
+
 	  Color.prototype.lighten = function(amount) {
 	    var hsl;
 	    if (amount == null) {
@@ -15082,7 +15082,7 @@
 	    hsl.l = Math.min(1, Math.max(0, hsl.l));
 	    return new Color(hsl);
 	  };
-	
+
 	  Color.prototype.brighten = function(amount) {
 	    var rgb;
 	    if (amount == null) {
@@ -15094,7 +15094,7 @@
 	    rgb.b = Math.max(0, Math.min(255, rgb.b - Math.round(255 * -(amount / 100))));
 	    return new Color(rgb);
 	  };
-	
+
 	  Color.prototype.darken = function(amount) {
 	    var hsl;
 	    if (amount == null) {
@@ -15105,7 +15105,7 @@
 	    hsl.l = Math.min(1, Math.max(0, hsl.l));
 	    return new Color(hsl);
 	  };
-	
+
 	  Color.prototype.desaturate = function(amount) {
 	    var hsl;
 	    if (amount == null) {
@@ -15116,7 +15116,7 @@
 	    hsl.s = Math.min(1, Math.max(0, hsl.s));
 	    return new Color(hsl);
 	  };
-	
+
 	  Color.prototype.saturate = function(amount) {
 	    var hsl;
 	    if (amount == null) {
@@ -15127,17 +15127,17 @@
 	    hsl.s = Math.min(1, Math.max(0, hsl.s));
 	    return new Color(hsl);
 	  };
-	
+
 	  Color.prototype.grayscale = function() {
 	    var hsl;
 	    hsl = this.toHsl();
 	    return new Color(hsl).desaturate(100);
 	  };
-	
+
 	  Color.prototype.toString = function() {
 	    return this.toRgbString();
 	  };
-	
+
 	  Color.prototype.alpha = function(alpha) {
 	    var result;
 	    if (alpha == null) {
@@ -15150,26 +15150,26 @@
 	      a: alpha
 	    });
 	  };
-	
+
 	  Color.prototype.transparent = function() {
 	    return this.alpha(0);
 	  };
-	
+
 	  Color.prototype.mix = function(colorB, fraction, limit, model) {
 	    if (limit == null) {
 	      limit = false;
 	    }
 	    return Color.mix(this, colorB, fraction, limit, model);
 	  };
-	
+
 	  Color.prototype.copy = function() {
 	    return new Color(this);
 	  };
-	
+
 	  Color.prototype.isEqual = function(colorB) {
 	    return Color.equal(this, colorB);
 	  };
-	
+
 	  Color.prototype.toInspect = function() {
 	    if (this._type === ColorType.HSL) {
 	      return "<" + this.constructor.name + " h:" + this.h + " s:" + this.s + " l:" + this.l + " a:" + this.a + ">";
@@ -15179,7 +15179,7 @@
 	      return "<" + this.constructor.name + " r:" + this.r + " g:" + this.g + " b:" + this.b + " a:" + this.a + ">";
 	    }
 	  };
-	
+
 	  Color.mix = function(colorA, colorB, fraction, limit, model) {
 	    var deltaH, fromH, hslA, hslB, result, toH, tween;
 	    if (fraction == null) {
@@ -15250,7 +15250,7 @@
 	    }
 	    return result;
 	  };
-	
+
 	  Color.random = function(alpha) {
 	    var c;
 	    if (alpha == null) {
@@ -15261,7 +15261,7 @@
 	    };
 	    return new Color("rgba(" + (c()) + ", " + (c()) + ", " + (c()) + ", " + alpha + ")");
 	  };
-	
+
 	  Color.grey = function(g, alpha) {
 	    if (g == null) {
 	      g = 0.5;
@@ -15272,21 +15272,21 @@
 	    g = parseInt(g * 255);
 	    return new Color("rgba(" + g + ", " + g + ", " + g + ", " + alpha + ")");
 	  };
-	
+
 	  Color.gray = function() {
 	    var args;
 	    args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
 	    return this.grey.apply(this, args);
 	  };
-	
+
 	  Color.toColor = function(color) {
 	    return new Color(color);
 	  };
-	
+
 	  Color.validColorValue = function(color) {
 	    return color instanceof Color || color === null;
 	  };
-	
+
 	  Color.isColor = function(color) {
 	    if (_.isString(color)) {
 	      return this.isColorString(color);
@@ -15294,18 +15294,18 @@
 	      return this.isColorObject(color);
 	    }
 	  };
-	
+
 	  Color.isColorObject = function(color) {
 	    return color instanceof Color;
 	  };
-	
+
 	  Color.isColorString = function(colorString) {
 	    if (_.isString(colorString)) {
 	      return stringToObject(colorString) !== false;
 	    }
 	    return false;
 	  };
-	
+
 	  Color.equal = function(colorA, colorB) {
 	    if (!this.validColorValue(colorA)) {
 	      if (!Color.isColorString(colorA)) {
@@ -15333,22 +15333,22 @@
 	    }
 	    return true;
 	  };
-	
+
 	  Color.rgbToHsl = function(a, b, c) {
 	    return rgbToHsl(a, b, c);
 	  };
-	
+
 	  return Color;
-	
+
 	})(BaseClass);
-	
+
 	ColorModel = {
 	  RGB: "rgb",
 	  RGBA: "rgba",
 	  HSL: "hsl",
 	  HSLA: "hsla"
 	};
-	
+
 	ColorModel.isRGB = function(colorModel) {
 	  var ref;
 	  if (_.isString(colorModel)) {
@@ -15356,7 +15356,7 @@
 	  }
 	  return false;
 	};
-	
+
 	ColorModel.isHSL = function(colorModel) {
 	  var ref;
 	  if (_.isString(colorModel)) {
@@ -15364,7 +15364,7 @@
 	  }
 	  return false;
 	};
-	
+
 	rgbaFromHusl = function(husl) {
 	  var c, rgb, rgba;
 	  c = libhusl._conv;
@@ -15377,7 +15377,7 @@
 	  };
 	  return rgba;
 	};
-	
+
 	inputData = function(color, g, b, alpha) {
 	  var a, h, hsl, l, ok, rgb, s, type;
 	  rgb = {
@@ -15463,11 +15463,11 @@
 	    a: a
 	  };
 	};
-	
+
 	numberFromString = function(string) {
 	  return string.match(/\d+/)[0];
 	};
-	
+
 	rgbToRgb = function(r, g, b) {
 	  return {
 	    r: isNumeric(r) ? bound01(r, 255) * 255 : 0,
@@ -15475,7 +15475,7 @@
 	    b: isNumeric(b) ? bound01(b, 255) * 255 : 0
 	  };
 	};
-	
+
 	rgbToHex = function(r, g, b, allow3Char) {
 	  var hex;
 	  hex = [pad2(Math.round(r).toString(16)), pad2(Math.round(g).toString(16)), pad2(Math.round(b).toString(16))];
@@ -15484,7 +15484,7 @@
 	  }
 	  return hex.join("");
 	};
-	
+
 	rgbToHsl = function(r, g, b) {
 	  var d, h, l, max, min, s;
 	  r = bound01(r, 255);
@@ -15516,7 +15516,7 @@
 	    l: l
 	  };
 	};
-	
+
 	hslToRgb = function(h, s, l) {
 	  var b, g, hue2rgb, p, q, r;
 	  r = void 0;
@@ -15558,14 +15558,14 @@
 	    b: b * 255
 	  };
 	};
-	
+
 	convertToPercentage = function(n) {
 	  if (n <= 1) {
 	    n = n * 100 + "%";
 	  }
 	  return n;
 	};
-	
+
 	correctAlpha = function(a) {
 	  a = parseFloat(a);
 	  if (a < 0) {
@@ -15576,7 +15576,7 @@
 	  }
 	  return a;
 	};
-	
+
 	bound01 = function(n, max) {
 	  var processPercent;
 	  if (isOnePointZero(n)) {
@@ -15592,15 +15592,15 @@
 	  }
 	  return n % max / parseFloat(max);
 	};
-	
+
 	isOnePointZero = function(n) {
 	  return typeof n === "string" && n.indexOf(".") !== -1 && parseFloat(n) === 1;
 	};
-	
+
 	isPercentage = function(n) {
 	  return typeof n === "string" && n.indexOf("%") !== -1;
 	};
-	
+
 	pad2 = function(char) {
 	  if (char.length === 1) {
 	    return "0" + char;
@@ -15608,7 +15608,7 @@
 	    return "" + char;
 	  }
 	};
-	
+
 	matchers = (function() {
 	  var css_integer, css_number, css_unit, permissive_match3, permissive_match4;
 	  css_integer = '[-\\+]?\\d+%?';
@@ -15625,15 +15625,15 @@
 	    hex6: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
 	  };
 	})();
-	
+
 	isNumeric = function(value) {
 	  return !isNaN(value) && isFinite(value);
 	};
-	
+
 	percentToFraction = function(percentage) {
 	  return numberFromString(percentage) / 100;
 	};
-	
+
 	stringToObject = function(color) {
 	  var match, named, trimLeft, trimRight;
 	  trimLeft = /^[\s,#]+/;
@@ -15706,7 +15706,7 @@
 	    return false;
 	  }
 	};
-	
+
 	cssNames = {
 	  aliceblue: "f0f8ff",
 	  antiquewhite: "faebd7",
@@ -15867,27 +15867,27 @@
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {// Generated by CoffeeScript 1.9.3
 	(function() {
 	  var L_to_Y, Y_to_L, conv, distanceFromPole, dotProduct, epsilon, fromLinear, getBounds, intersectLineLine, kappa, lengthOfRayUntilIntersect, m, m_inv, maxChromaForLH, maxSafeChromaForL, refU, refV, root, toLinear;
-	
+
 	  m = {
 	    R: [3.2409699419045214, -1.5373831775700935, -0.49861076029300328],
 	    G: [-0.96924363628087983, 1.8759675015077207, 0.041555057407175613],
 	    B: [0.055630079696993609, -0.20397695888897657, 1.0569715142428786]
 	  };
-	
+
 	  m_inv = {
 	    X: [0.41239079926595948, 0.35758433938387796, 0.18048078840183429],
 	    Y: [0.21263900587151036, 0.71516867876775593, 0.072192315360733715],
 	    Z: [0.019330818715591851, 0.11919477979462599, 0.95053215224966058]
 	  };
-	
+
 	  refU = 0.19783000664283681;
-	
+
 	  refV = 0.468319994938791;
-	
+
 	  kappa = 903.2962962962963;
-	
+
 	  epsilon = 0.0088564516790356308;
-	
+
 	  getBounds = function(L) {
 	    var bottom, channel, j, k, len1, len2, m1, m2, m3, ref, ref1, ref2, ret, sub1, sub2, t, top1, top2;
 	    sub1 = Math.pow(L + 16, 3) / 1560896;
@@ -15908,15 +15908,15 @@
 	    }
 	    return ret;
 	  };
-	
+
 	  intersectLineLine = function(line1, line2) {
 	    return (line1[1] - line2[1]) / (line2[0] - line1[0]);
 	  };
-	
+
 	  distanceFromPole = function(point) {
 	    return Math.sqrt(Math.pow(point[0], 2) + Math.pow(point[1], 2));
 	  };
-	
+
 	  lengthOfRayUntilIntersect = function(theta, line) {
 	    var b1, len, m1;
 	    m1 = line[0], b1 = line[1];
@@ -15926,7 +15926,7 @@
 	    }
 	    return len;
 	  };
-	
+
 	  maxSafeChromaForL = function(L) {
 	    var b1, j, len1, lengths, m1, ref, ref1, x;
 	    lengths = [];
@@ -15938,7 +15938,7 @@
 	    }
 	    return Math.min.apply(Math, lengths);
 	  };
-	
+
 	  maxChromaForLH = function(L, H) {
 	    var hrad, j, l, len1, lengths, line, ref;
 	    hrad = H / 360 * Math.PI * 2;
@@ -15953,7 +15953,7 @@
 	    }
 	    return Math.min.apply(Math, lengths);
 	  };
-	
+
 	  dotProduct = function(a, b) {
 	    var i, j, ref, ret;
 	    ret = 0;
@@ -15962,7 +15962,7 @@
 	    }
 	    return ret;
 	  };
-	
+
 	  fromLinear = function(c) {
 	    if (c <= 0.0031308) {
 	      return 12.92 * c;
@@ -15970,7 +15970,7 @@
 	      return 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
 	    }
 	  };
-	
+
 	  toLinear = function(c) {
 	    var a;
 	    a = 0.055;
@@ -15980,7 +15980,7 @@
 	      return c / 12.92;
 	    }
 	  };
-	
+
 	  conv = {
 	    'xyz': {},
 	    'luv': {},
@@ -15990,7 +15990,7 @@
 	    'rgb': {},
 	    'hex': {}
 	  };
-	
+
 	  conv.xyz.rgb = function(tuple) {
 	    var B, G, R;
 	    R = fromLinear(dotProduct(m.R, tuple));
@@ -15998,7 +15998,7 @@
 	    B = fromLinear(dotProduct(m.B, tuple));
 	    return [R, G, B];
 	  };
-	
+
 	  conv.rgb.xyz = function(tuple) {
 	    var B, G, R, X, Y, Z, rgbl;
 	    R = tuple[0], G = tuple[1], B = tuple[2];
@@ -16008,7 +16008,7 @@
 	    Z = dotProduct(m_inv.Z, rgbl);
 	    return [X, Y, Z];
 	  };
-	
+
 	  Y_to_L = function(Y) {
 	    if (Y <= epsilon) {
 	      return Y * kappa;
@@ -16016,7 +16016,7 @@
 	      return 116 * Math.pow(Y, 1 / 3) - 16;
 	    }
 	  };
-	
+
 	  L_to_Y = function(L) {
 	    if (L <= 8) {
 	      return L / kappa;
@@ -16024,7 +16024,7 @@
 	      return Math.pow((L + 16) / 116, 3);
 	    }
 	  };
-	
+
 	  conv.xyz.luv = function(tuple) {
 	    var L, U, V, X, Y, Z, varU, varV;
 	    X = tuple[0], Y = tuple[1], Z = tuple[2];
@@ -16038,7 +16038,7 @@
 	    V = 13 * L * (varV - refV);
 	    return [L, U, V];
 	  };
-	
+
 	  conv.luv.xyz = function(tuple) {
 	    var L, U, V, X, Y, Z, varU, varV;
 	    L = tuple[0], U = tuple[1], V = tuple[2];
@@ -16052,7 +16052,7 @@
 	    Z = (9 * Y - (15 * varV * Y) - (varV * X)) / (3 * varV);
 	    return [X, Y, Z];
 	  };
-	
+
 	  conv.luv.lch = function(tuple) {
 	    var C, H, Hrad, L, U, V;
 	    L = tuple[0], U = tuple[1], V = tuple[2];
@@ -16068,7 +16068,7 @@
 	    }
 	    return [L, C, H];
 	  };
-	
+
 	  conv.lch.luv = function(tuple) {
 	    var C, H, Hrad, L, U, V;
 	    L = tuple[0], C = tuple[1], H = tuple[2];
@@ -16077,7 +16077,7 @@
 	    V = Math.sin(Hrad) * C;
 	    return [L, U, V];
 	  };
-	
+
 	  conv.husl.lch = function(tuple) {
 	    var C, H, L, S, max;
 	    H = tuple[0], S = tuple[1], L = tuple[2];
@@ -16089,7 +16089,7 @@
 	    }
 	    return [L, C, H];
 	  };
-	
+
 	  conv.lch.husl = function(tuple) {
 	    var C, H, L, S, max;
 	    L = tuple[0], C = tuple[1], H = tuple[2];
@@ -16101,7 +16101,7 @@
 	    }
 	    return [H, S, L];
 	  };
-	
+
 	  conv.huslp.lch = function(tuple) {
 	    var C, H, L, S, max;
 	    H = tuple[0], S = tuple[1], L = tuple[2];
@@ -16113,7 +16113,7 @@
 	    }
 	    return [L, C, H];
 	  };
-	
+
 	  conv.lch.huslp = function(tuple) {
 	    var C, H, L, S, max;
 	    L = tuple[0], C = tuple[1], H = tuple[2];
@@ -16125,7 +16125,7 @@
 	    }
 	    return [H, S, L];
 	  };
-	
+
 	  conv.rgb.hex = function(tuple) {
 	    var ch, hex, j, len1;
 	    hex = "#";
@@ -16143,7 +16143,7 @@
 	    }
 	    return hex;
 	  };
-	
+
 	  conv.hex.rgb = function(hex) {
 	    var b, g, j, len1, n, r, ref, results;
 	    if (hex.charAt(0) === "#") {
@@ -16160,93 +16160,93 @@
 	    }
 	    return results;
 	  };
-	
+
 	  conv.lch.rgb = function(tuple) {
 	    return conv.xyz.rgb(conv.luv.xyz(conv.lch.luv(tuple)));
 	  };
-	
+
 	  conv.rgb.lch = function(tuple) {
 	    return conv.luv.lch(conv.xyz.luv(conv.rgb.xyz(tuple)));
 	  };
-	
+
 	  conv.husl.rgb = function(tuple) {
 	    return conv.lch.rgb(conv.husl.lch(tuple));
 	  };
-	
+
 	  conv.rgb.husl = function(tuple) {
 	    return conv.lch.husl(conv.rgb.lch(tuple));
 	  };
-	
+
 	  conv.huslp.rgb = function(tuple) {
 	    return conv.lch.rgb(conv.huslp.lch(tuple));
 	  };
-	
+
 	  conv.rgb.huslp = function(tuple) {
 	    return conv.lch.huslp(conv.rgb.lch(tuple));
 	  };
-	
+
 	  root = {};
-	
+
 	  root.fromRGB = function(R, G, B) {
 	    return conv.rgb.husl([R, G, B]);
 	  };
-	
+
 	  root.fromHex = function(hex) {
 	    return conv.rgb.husl(conv.hex.rgb(hex));
 	  };
-	
+
 	  root.toRGB = function(H, S, L) {
 	    return conv.husl.rgb([H, S, L]);
 	  };
-	
+
 	  root.toHex = function(H, S, L) {
 	    return conv.rgb.hex(conv.husl.rgb([H, S, L]));
 	  };
-	
+
 	  root.p = {};
-	
+
 	  root.p.toRGB = function(H, S, L) {
 	    return conv.xyz.rgb(conv.luv.xyz(conv.lch.luv(conv.huslp.lch([H, S, L]))));
 	  };
-	
+
 	  root.p.toHex = function(H, S, L) {
 	    return conv.rgb.hex(conv.xyz.rgb(conv.luv.xyz(conv.lch.luv(conv.huslp.lch([H, S, L])))));
 	  };
-	
+
 	  root.p.fromRGB = function(R, G, B) {
 	    return conv.lch.huslp(conv.luv.lch(conv.xyz.luv(conv.rgb.xyz([R, G, B]))));
 	  };
-	
+
 	  root.p.fromHex = function(hex) {
 	    return conv.lch.huslp(conv.luv.lch(conv.xyz.luv(conv.rgb.xyz(conv.hex.rgb(hex)))));
 	  };
-	
+
 	  root._conv = conv;
-	
+
 	  root._getBounds = getBounds;
-	
+
 	  root._maxChromaForLH = maxChromaForLH;
-	
+
 	  root._maxSafeChromaForL = maxSafeChromaForL;
-	
+
 	  if (!((typeof module !== "undefined" && module !== null) || (typeof jQuery !== "undefined" && jQuery !== null) || (typeof requirejs !== "undefined" && requirejs !== null))) {
 	    this.HUSL = root;
 	  }
-	
+
 	  if (typeof module !== "undefined" && module !== null) {
 	    module.exports = root;
 	  }
-	
+
 	  if (typeof jQuery !== "undefined" && jQuery !== null) {
 	    jQuery.husl = root;
 	  }
-	
+
 	  if ((typeof requirejs !== "undefined" && requirejs !== null) && ("function" !== "undefined" && __webpack_require__(12) !== null)) {
 	    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (root), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  }
-	
+
 	}).call(this);
-	
+
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
 
 /***/ },
@@ -16266,43 +16266,43 @@
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
 	  slice = [].slice;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	EventEmitter = __webpack_require__(7).EventEmitter;
-	
+
 	Color = __webpack_require__(10).Color;
-	
+
 	Matrix = __webpack_require__(9).Matrix;
-	
+
 	Animation = __webpack_require__(18).Animation;
-	
+
 	LayerStyle = __webpack_require__(25).LayerStyle;
-	
+
 	LayerStates = __webpack_require__(26).LayerStates;
-	
+
 	LayerDraggable = __webpack_require__(27).LayerDraggable;
-	
+
 	LayerPinchable = __webpack_require__(34).LayerPinchable;
-	
+
 	Gestures = __webpack_require__(16).Gestures;
-	
+
 	NoCacheDateKey = Date.now();
-	
+
 	layerValueTypeError = function(name, value) {
 	  throw new Error("Layer." + name + ": value '" + value + "' of type '" + (typeof value) + "'' is not valid");
 	};
-	
+
 	layerProperty = function(obj, name, cssProperty, fallback, validator, transformer, options, set) {
 	  var result;
 	  if (options == null) {
@@ -16350,17 +16350,17 @@
 	  };
 	  return result = _.extend(result, options);
 	};
-	
+
 	layerPropertyPointTransformer = function(value, layer, property) {
 	  if (_.isFunction(value)) {
 	    value = value(layer, property);
 	  }
 	  return value;
 	};
-	
+
 	exports.Layer = (function(superClass) {
 	  extend(Layer, superClass);
-	
+
 	  function Layer(options) {
 	    var i, len, p, ref;
 	    if (options == null) {
@@ -16402,42 +16402,42 @@
 	    }
 	    this._context.emit("layer:create", this);
 	  }
-	
+
 	  Layer.define("context", {
 	    get: function() {
 	      return this._context;
 	    }
 	  });
-	
+
 	  Layer.define("custom", Layer.simpleProperty("custom", void 0));
-	
+
 	  Layer.define("width", layerProperty(Layer, "width", "width", 100, _.isNumber));
-	
+
 	  Layer.define("height", layerProperty(Layer, "height", "height", 100, _.isNumber));
-	
+
 	  Layer.define("visible", layerProperty(Layer, "visible", "display", true, _.isBoolean));
-	
+
 	  Layer.define("opacity", layerProperty(Layer, "opacity", "opacity", 1, _.isNumber));
-	
+
 	  Layer.define("index", layerProperty(Layer, "index", "zIndex", 0, _.isNumber, null, {
 	    importable: false,
 	    exportable: false
 	  }));
-	
+
 	  Layer.define("clip", layerProperty(Layer, "clip", "overflow", false, _.isBoolean));
-	
+
 	  Layer.define("scrollHorizontal", layerProperty(Layer, "scrollHorizontal", "overflowX", false, _.isBoolean, null, {}, function(layer, value) {
 	    if (value === true) {
 	      return layer.ignoreEvents = false;
 	    }
 	  }));
-	
+
 	  Layer.define("scrollVertical", layerProperty(Layer, "scrollVertical", "overflowY", false, _.isBoolean, null, {}, function(layer, value) {
 	    if (value === true) {
 	      return layer.ignoreEvents = false;
 	    }
 	  }));
-	
+
 	  Layer.define("scroll", {
 	    get: function() {
 	      return this.scrollHorizontal === true || this.scrollVertical === true;
@@ -16446,51 +16446,51 @@
 	      return this.scrollHorizontal = this.scrollVertical = value;
 	    }
 	  });
-	
+
 	  Layer.define("ignoreEvents", layerProperty(Layer, "ignoreEvents", "pointerEvents", true, _.isBoolean));
-	
+
 	  Layer.define("x", layerProperty(Layer, "x", "webkitTransform", 0, _.isNumber, layerPropertyPointTransformer, {
 	    depends: ["width", "height", "parent"]
 	  }));
-	
+
 	  Layer.define("y", layerProperty(Layer, "y", "webkitTransform", 0, _.isNumber, layerPropertyPointTransformer, {
 	    depends: ["width", "height", "parent"]
 	  }));
-	
+
 	  Layer.define("z", layerProperty(Layer, "z", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("scaleX", layerProperty(Layer, "scaleX", "webkitTransform", 1, _.isNumber));
-	
+
 	  Layer.define("scaleY", layerProperty(Layer, "scaleY", "webkitTransform", 1, _.isNumber));
-	
+
 	  Layer.define("scaleZ", layerProperty(Layer, "scaleZ", "webkitTransform", 1, _.isNumber));
-	
+
 	  Layer.define("scale", layerProperty(Layer, "scale", "webkitTransform", 1, _.isNumber));
-	
+
 	  Layer.define("skewX", layerProperty(Layer, "skewX", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("skewY", layerProperty(Layer, "skewY", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("skew", layerProperty(Layer, "skew", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("originX", layerProperty(Layer, "originX", "webkitTransformOrigin", 0.5, _.isNumber));
-	
+
 	  Layer.define("originY", layerProperty(Layer, "originY", "webkitTransformOrigin", 0.5, _.isNumber));
-	
+
 	  Layer.define("originZ", layerProperty(Layer, "originZ", null, 0, _.isNumber));
-	
+
 	  Layer.define("perspective", layerProperty(Layer, "perspective", "webkitPerspective", 0, _.isNumber));
-	
+
 	  Layer.define("perspectiveOriginX", layerProperty(Layer, "perspectiveOriginX", "webkitPerspectiveOrigin", 0.5, _.isNumber));
-	
+
 	  Layer.define("perspectiveOriginY", layerProperty(Layer, "perspectiveOriginY", "webkitPerspectiveOrigin", 0.5, _.isNumber));
-	
+
 	  Layer.define("rotationX", layerProperty(Layer, "rotationX", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("rotationY", layerProperty(Layer, "rotationY", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("rotationZ", layerProperty(Layer, "rotationZ", "webkitTransform", 0, _.isNumber));
-	
+
 	  Layer.define("rotation", {
 	    get: function() {
 	      return this.rotationZ;
@@ -16499,47 +16499,47 @@
 	      return this.rotationZ = value;
 	    }
 	  });
-	
+
 	  Layer.define("blur", layerProperty(Layer, "blur", "webkitFilter", 0, _.isNumber));
-	
+
 	  Layer.define("brightness", layerProperty(Layer, "brightness", "webkitFilter", 100, _.isNumber));
-	
+
 	  Layer.define("saturate", layerProperty(Layer, "saturate", "webkitFilter", 100, _.isNumber));
-	
+
 	  Layer.define("hueRotate", layerProperty(Layer, "hueRotate", "webkitFilter", 0, _.isNumber));
-	
+
 	  Layer.define("contrast", layerProperty(Layer, "contrast", "webkitFilter", 100, _.isNumber));
-	
+
 	  Layer.define("invert", layerProperty(Layer, "invert", "webkitFilter", 0, _.isNumber));
-	
+
 	  Layer.define("grayscale", layerProperty(Layer, "grayscale", "webkitFilter", 0, _.isNumber));
-	
+
 	  Layer.define("sepia", layerProperty(Layer, "sepia", "webkitFilter", 0, _.isNumber));
-	
+
 	  Layer.define("shadowX", layerProperty(Layer, "shadowX", "boxShadow", 0, _.isNumber));
-	
+
 	  Layer.define("shadowY", layerProperty(Layer, "shadowY", "boxShadow", 0, _.isNumber));
-	
+
 	  Layer.define("shadowBlur", layerProperty(Layer, "shadowBlur", "boxShadow", 0, _.isNumber));
-	
+
 	  Layer.define("shadowSpread", layerProperty(Layer, "shadowSpread", "boxShadow", 0, _.isNumber));
-	
+
 	  Layer.define("shadowColor", layerProperty(Layer, "shadowColor", "boxShadow", "", Color.validColorValue, Color.toColor));
-	
+
 	  Layer.define("backgroundColor", layerProperty(Layer, "backgroundColor", "backgroundColor", null, Color.validColorValue, Color.toColor));
-	
+
 	  Layer.define("color", layerProperty(Layer, "color", "color", null, Color.validColorValue, Color.toColor));
-	
+
 	  Layer.define("borderColor", layerProperty(Layer, "borderColor", "border", null, Color.validColorValue, Color.toColor));
-	
+
 	  Layer.define("borderWidth", layerProperty(Layer, "borderWidth", "border", 0, _.isNumber));
-	
+
 	  Layer.define("force2d", layerProperty(Layer, "force2d", "webkitTransform", false, _.isBoolean));
-	
+
 	  Layer.define("flat", layerProperty(Layer, "flat", "webkitTransformStyle", false, _.isBoolean));
-	
+
 	  Layer.define("backfaceVisible", layerProperty(Layer, "backfaceVisible", "webkitBackfaceVisibility", true, _.isBoolean));
-	
+
 	  Layer.define("name", {
 	    "default": "",
 	    get: function() {
@@ -16550,7 +16550,7 @@
 	      return this._element.setAttribute("name", value);
 	    }
 	  });
-	
+
 	  Layer.define("matrix", {
 	    get: function() {
 	      if (this.force2d) {
@@ -16559,19 +16559,19 @@
 	      return new Matrix().translate(this.x, this.y, this.z).scale(this.scale).scale(this.scaleX, this.scaleY, this.scaleZ).skew(this.skew).skewX(this.skewX).skewY(this.skewY).translate(0, 0, this.originZ).rotate(this.rotationX, 0, 0).rotate(0, this.rotationY, 0).rotate(0, 0, this.rotationZ).translate(0, 0, -this.originZ);
 	    }
 	  });
-	
+
 	  Layer.define("_matrix2d", {
 	    get: function() {
 	      return new Matrix().translate(this.x, this.y).scale(this.scale).skewX(this.skew).skewY(this.skew).rotate(0, 0, this.rotationZ);
 	    }
 	  });
-	
+
 	  Layer.define("transformMatrix", {
 	    get: function() {
 	      return new Matrix().translate(this.originX * this.width, this.originY * this.height).multiply(this.matrix).translate(-this.originX * this.width, -this.originY * this.height);
 	    }
 	  });
-	
+
 	  Layer.define("matrix3d", {
 	    get: function() {
 	      var parent, ppm;
@@ -16580,7 +16580,7 @@
 	      return new Matrix().multiply(ppm).multiply(this.transformMatrix);
 	    }
 	  });
-	
+
 	  Layer.define("borderRadius", {
 	    importable: true,
 	    exportable: true,
@@ -16597,7 +16597,7 @@
 	      return this.emit("change:borderRadius", value);
 	    }
 	  });
-	
+
 	  Layer.define("cornerRadius", {
 	    importable: false,
 	    exportable: false,
@@ -16608,7 +16608,7 @@
 	      return this.borderRadius = value;
 	    }
 	  });
-	
+
 	  Layer.prototype._setGeometryValues = function(input, keys) {
 	    var i, j, k, len, len1, results, results1;
 	    if (_.isNumber(input)) {
@@ -16634,7 +16634,7 @@
 	      return results1;
 	    }
 	  };
-	
+
 	  Layer.define("point", {
 	    importable: true,
 	    exportable: false,
@@ -16647,7 +16647,7 @@
 	      return this._setGeometryValues(input, ["x", "y"]);
 	    }
 	  });
-	
+
 	  Layer.define("size", {
 	    importable: true,
 	    exportable: false,
@@ -16658,7 +16658,7 @@
 	      return this._setGeometryValues(input, ["width", "height"]);
 	    }
 	  });
-	
+
 	  Layer.define("frame", {
 	    importable: true,
 	    exportable: false,
@@ -16669,7 +16669,7 @@
 	      return this._setGeometryValues(input, ["x", "y", "width", "height"]);
 	    }
 	  });
-	
+
 	  Layer.define("minX", {
 	    importable: true,
 	    exportable: false,
@@ -16680,7 +16680,7 @@
 	      return this.x = value;
 	    }
 	  });
-	
+
 	  Layer.define("midX", {
 	    importable: true,
 	    exportable: false,
@@ -16691,7 +16691,7 @@
 	      return Utils.frameSetMidX(this, value);
 	    }
 	  });
-	
+
 	  Layer.define("maxX", {
 	    importable: true,
 	    exportable: false,
@@ -16702,7 +16702,7 @@
 	      return Utils.frameSetMaxX(this, value);
 	    }
 	  });
-	
+
 	  Layer.define("minY", {
 	    importable: true,
 	    exportable: false,
@@ -16713,7 +16713,7 @@
 	      return this.y = value;
 	    }
 	  });
-	
+
 	  Layer.define("midY", {
 	    importable: true,
 	    exportable: false,
@@ -16724,7 +16724,7 @@
 	      return Utils.frameSetMidY(this, value);
 	    }
 	  });
-	
+
 	  Layer.define("maxY", {
 	    importable: true,
 	    exportable: false,
@@ -16735,23 +16735,23 @@
 	      return Utils.frameSetMaxY(this, value);
 	    }
 	  });
-	
+
 	  Layer.prototype.convertPointFromScreen = function(point) {
 	    return Utils.convertPointFromContext(point, this, false);
 	  };
-	
+
 	  Layer.prototype.convertPointFromCanvas = function(point) {
 	    return Utils.convertPointFromContext(point, this, true);
 	  };
-	
+
 	  Layer.prototype.convertPointToScreen = function(point) {
 	    return Utils.convertPointToContext(point, this, false);
 	  };
-	
+
 	  Layer.prototype.convertPointToCanvas = function(point) {
 	    return Utils.convertPointToContext(point, this, true);
 	  };
-	
+
 	  Layer.define("canvasFrame", {
 	    importable: true,
 	    exportable: false,
@@ -16762,7 +16762,7 @@
 	      return this.frame = Utils.convertFrameFromContext(frame, this, true, false);
 	    }
 	  });
-	
+
 	  Layer.define("screenFrame", {
 	    importable: true,
 	    exportable: false,
@@ -16773,7 +16773,7 @@
 	      return this.frame = Utils.convertFrameFromContext(frame, this, false, false);
 	    }
 	  });
-	
+
 	  Layer.prototype.contentFrame = function() {
 	    if (!this.children.length) {
 	      return {
@@ -16785,7 +16785,7 @@
 	    }
 	    return Utils.frameMerge(_.pluck(this.children, "frame"));
 	  };
-	
+
 	  Layer.prototype.centerFrame = function() {
 	    var frame;
 	    if (this.parent) {
@@ -16800,12 +16800,12 @@
 	      return frame;
 	    }
 	  };
-	
+
 	  Layer.prototype.center = function() {
 	    this.frame = this.centerFrame();
 	    return this;
 	  };
-	
+
 	  Layer.prototype.centerX = function(offset) {
 	    if (offset == null) {
 	      offset = 0;
@@ -16813,7 +16813,7 @@
 	    this.x = this.centerFrame().x + offset;
 	    return this;
 	  };
-	
+
 	  Layer.prototype.centerY = function(offset) {
 	    if (offset == null) {
 	      offset = 0;
@@ -16821,12 +16821,12 @@
 	    this.y = this.centerFrame().y + offset;
 	    return this;
 	  };
-	
+
 	  Layer.prototype.pixelAlign = function() {
 	    this.x = parseInt(this.x);
 	    return this.y = parseInt(this.y);
 	  };
-	
+
 	  Layer.prototype.canvasScaleX = function() {
 	    var context, i, len, parent, ref, scale;
 	    scale = this.scale * this.scaleX;
@@ -16837,7 +16837,7 @@
 	    }
 	    return scale;
 	  };
-	
+
 	  Layer.prototype.canvasScaleY = function() {
 	    var context, i, len, parent, ref, scale;
 	    scale = this.scale * this.scaleY;
@@ -16848,7 +16848,7 @@
 	    }
 	    return scale;
 	  };
-	
+
 	  Layer.prototype.screenScaleX = function() {
 	    var context, i, len, parent, ref, scale;
 	    scale = this.scale * this.scaleX;
@@ -16859,7 +16859,7 @@
 	    }
 	    return scale;
 	  };
-	
+
 	  Layer.prototype.screenScaleY = function() {
 	    var context, i, len, parent, ref, scale;
 	    scale = this.scale * this.scaleY;
@@ -16870,7 +16870,7 @@
 	    }
 	    return scale;
 	  };
-	
+
 	  Layer.prototype.screenScaledFrame = function() {
 	    var context, factorX, factorY, frame, i, layerScaledFrame, layers, len, parent;
 	    frame = {
@@ -16892,7 +16892,7 @@
 	    }
 	    return frame;
 	  };
-	
+
 	  Layer.prototype.scaledFrame = function() {
 	    var frame, scaleX, scaleY;
 	    frame = this.frame;
@@ -16904,7 +16904,7 @@
 	    frame.y += (1 - scaleY) * this.originY * this.height;
 	    return frame;
 	  };
-	
+
 	  Layer.define("style", {
 	    importable: true,
 	    exportable: false,
@@ -16916,7 +16916,7 @@
 	      return this.emit("change:style");
 	    }
 	  });
-	
+
 	  Layer.prototype.computedStyle = function() {
 	    var getComputedStyle;
 	    getComputedStyle = document.defaultView.getComputedStyle;
@@ -16925,7 +16925,7 @@
 	    }
 	    return getComputedStyle(this._element);
 	  };
-	
+
 	  Layer.define("classList", {
 	    importable: true,
 	    exportable: false,
@@ -16933,7 +16933,7 @@
 	      return this._element.classList;
 	    }
 	  });
-	
+
 	  Layer.prototype._createElement = function() {
 	    if (this._element != null) {
 	      return;
@@ -16941,12 +16941,12 @@
 	    this._element = document.createElement("div");
 	    return this._element.classList.add("framerLayer");
 	  };
-	
+
 	  Layer.prototype._insertElement = function() {
 	    this.bringToFront();
 	    return this._context.element.appendChild(this._element);
 	  };
-	
+
 	  Layer.define("html", {
 	    get: function() {
 	      var ref;
@@ -16961,15 +16961,15 @@
 	      return this.emit("change:html");
 	    }
 	  });
-	
+
 	  Layer.prototype.querySelector = function(query) {
 	    return this._element.querySelector(query);
 	  };
-	
+
 	  Layer.prototype.querySelectorAll = function(query) {
 	    return this._element.querySelectorAll(query);
 	  };
-	
+
 	  Layer.prototype.destroy = function() {
 	    var ref;
 	    if (this.parent) {
@@ -16982,7 +16982,7 @@
 	    this._context.removeLayer(this);
 	    return this._context.emit("layer:destroy", this);
 	  };
-	
+
 	  Layer.prototype.copy = function() {
 	    var child, copiedChild, i, layer, len, ref;
 	    layer = this.copySingle();
@@ -16994,11 +16994,11 @@
 	    }
 	    return layer;
 	  };
-	
+
 	  Layer.prototype.copySingle = function() {
 	    return new this.constructor(this.props);
 	  };
-	
+
 	  Layer.define("image", {
 	    "default": "",
 	    get: function() {
@@ -17046,7 +17046,7 @@
 	      }
 	    }
 	  });
-	
+
 	  Layer.define("parent", {
 	    enumerable: false,
 	    exportable: false,
@@ -17094,7 +17094,7 @@
 	      return this.emit("change:superLayer");
 	    }
 	  });
-	
+
 	  Layer.define("children", {
 	    enumerable: false,
 	    exportable: false,
@@ -17103,7 +17103,7 @@
 	      return _.clone(this._children);
 	    }
 	  });
-	
+
 	  Layer.define("siblings", {
 	    enumerable: false,
 	    exportable: false,
@@ -17119,7 +17119,7 @@
 	      return _.without(this.parent.children, this);
 	    }
 	  });
-	
+
 	  Layer.define("descendants", {
 	    enumerable: false,
 	    exportable: false,
@@ -17135,30 +17135,30 @@
 	      return result;
 	    }
 	  });
-	
+
 	  Layer.prototype.addChild = function(layer) {
 	    return layer.parent = this;
 	  };
-	
+
 	  Layer.prototype.removeChild = function(layer) {
 	    if (indexOf.call(this.children, layer) < 0) {
 	      return;
 	    }
 	    return layer.parent = null;
 	  };
-	
+
 	  Layer.prototype.childrenWithName = function(name) {
 	    return _.filter(this.children, function(layer) {
 	      return layer.name === name;
 	    });
 	  };
-	
+
 	  Layer.prototype.siblingsWithName = function(name) {
 	    return _.filter(this.siblingLayers, function(layer) {
 	      return layer.name === name;
 	    });
 	  };
-	
+
 	  Layer.prototype.ancestors = function(context) {
 	    var currentLayer, parents;
 	    if (context == null) {
@@ -17179,7 +17179,7 @@
 	    }
 	    return parents;
 	  };
-	
+
 	  Layer.prototype.childrenAbove = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17191,7 +17191,7 @@
 	      return Utils.framePointForOrigin(layer.frame, originX, originY).y < point.y;
 	    });
 	  };
-	
+
 	  Layer.prototype.childrenBelow = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17203,7 +17203,7 @@
 	      return Utils.framePointForOrigin(layer.frame, originX, originY).y > point.y;
 	    });
 	  };
-	
+
 	  Layer.prototype.childrenLeft = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17215,7 +17215,7 @@
 	      return Utils.framePointForOrigin(layer.frame, originX, originY).x < point.x;
 	    });
 	  };
-	
+
 	  Layer.prototype.childrenRight = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17227,7 +17227,7 @@
 	      return Utils.framePointForOrigin(layer.frame, originX, originY).x > point.x;
 	    });
 	  };
-	
+
 	  Layer.prototype._parentOrContext = function() {
 	    if (this.parent) {
 	      return this.parent;
@@ -17236,7 +17236,7 @@
 	      return this._context._parent;
 	    }
 	  };
-	
+
 	  Layer.define("superLayer", {
 	    enumerable: false,
 	    exportable: false,
@@ -17248,7 +17248,7 @@
 	      return this.parent = value;
 	    }
 	  });
-	
+
 	  Layer.define("subLayers", {
 	    enumerable: false,
 	    exportable: false,
@@ -17257,7 +17257,7 @@
 	      return this.children;
 	    }
 	  });
-	
+
 	  Layer.define("siblingLayers", {
 	    enumerable: false,
 	    exportable: false,
@@ -17266,30 +17266,30 @@
 	      return this.siblings;
 	    }
 	  });
-	
+
 	  Layer.prototype.superLayers = function(context) {
 	    if (context == null) {
 	      context = false;
 	    }
 	    return this.ancestors(context);
 	  };
-	
+
 	  Layer.prototype.addSubLayer = function(layer) {
 	    return this.addChild(layer);
 	  };
-	
+
 	  Layer.prototype.removeSubLayer = function(layer) {
 	    return this.removeChild(layer);
 	  };
-	
+
 	  Layer.prototype.subLayersByName = function(name) {
 	    return this.childrenWithName(name);
 	  };
-	
+
 	  Layer.prototype.siblingLayersByName = function(name) {
 	    return this.siblingsWithName(name);
 	  };
-	
+
 	  Layer.prototype.subLayersAbove = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17299,7 +17299,7 @@
 	    }
 	    return this.childrenAbove(point, originX, originY);
 	  };
-	
+
 	  Layer.prototype.subLayersBelow = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17309,7 +17309,7 @@
 	    }
 	    return this.childrenBelow(point, originX, originY);
 	  };
-	
+
 	  Layer.prototype.subLayersLeft = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17319,7 +17319,7 @@
 	    }
 	    return this.childrenLeft(point, originX, originY);
 	  };
-	
+
 	  Layer.prototype.subLayersRight = function(point, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -17329,11 +17329,11 @@
 	    }
 	    return this.childrenRight(point, originX, originY);
 	  };
-	
+
 	  Layer.prototype._superOrParentLayer = function() {
 	    return this._parentOrContext();
 	  };
-	
+
 	  Layer.prototype.animate = function(options) {
 	    var animation, start;
 	    start = options.start;
@@ -17348,7 +17348,7 @@
 	    }
 	    return animation;
 	  };
-	
+
 	  Layer.prototype.animations = function() {
 	    return _.filter(this._context.animations, (function(_this) {
 	      return function(animation) {
@@ -17356,7 +17356,7 @@
 	      };
 	    })(this));
 	  };
-	
+
 	  Layer.prototype.animatingProperties = function() {
 	    var animation, i, j, len, len1, properties, propertyName, ref, ref1;
 	    properties = {};
@@ -17371,7 +17371,7 @@
 	    }
 	    return properties;
 	  };
-	
+
 	  Layer.define("isAnimating", {
 	    enumerable: false,
 	    exportable: false,
@@ -17379,25 +17379,25 @@
 	      return this.animations().length !== 0;
 	    }
 	  });
-	
+
 	  Layer.prototype.animateStop = function() {
 	    var ref;
 	    _.invoke(this.animations(), "stop");
 	    return (ref = this._draggable) != null ? ref.animateStop() : void 0;
 	  };
-	
+
 	  Layer.prototype.bringToFront = function() {
 	    return this.index = _.max(_.union([0], this.siblingLayers.map(function(layer) {
 	      return layer.index;
 	    }))) + 1;
 	  };
-	
+
 	  Layer.prototype.sendToBack = function() {
 	    return this.index = _.min(_.union([0], this.siblingLayers.map(function(layer) {
 	      return layer.index;
 	    }))) - 1;
 	  };
-	
+
 	  Layer.prototype.placeBefore = function(layer) {
 	    var i, l, len, ref;
 	    if (indexOf.call(this.siblingLayers, layer) < 0) {
@@ -17412,7 +17412,7 @@
 	    }
 	    return this.index = layer.index + 1;
 	  };
-	
+
 	  Layer.prototype.placeBehind = function(layer) {
 	    var i, l, len, ref;
 	    if (indexOf.call(this.siblingLayers, layer) < 0) {
@@ -17427,7 +17427,7 @@
 	    }
 	    return this.index = layer.index - 1;
 	  };
-	
+
 	  Layer.define("states", {
 	    enumerable: false,
 	    exportable: false,
@@ -17436,7 +17436,7 @@
 	      return this._states != null ? this._states : this._states = new LayerStates(this);
 	    }
 	  });
-	
+
 	  Layer.define("draggable", {
 	    importable: false,
 	    exportable: false,
@@ -17449,7 +17449,7 @@
 	      }
 	    }
 	  });
-	
+
 	  Layer.define("pinchable", {
 	    importable: false,
 	    exportable: false,
@@ -17462,7 +17462,7 @@
 	      }
 	    }
 	  });
-	
+
 	  Layer.define("scrollFrame", {
 	    importable: false,
 	    get: function() {
@@ -17479,7 +17479,7 @@
 	      return this.scrollY = frame.y;
 	    }
 	  });
-	
+
 	  Layer.define("scrollX", {
 	    get: function() {
 	      return this._element.scrollLeft;
@@ -17491,7 +17491,7 @@
 	      return this._element.scrollLeft = value;
 	    }
 	  });
-	
+
 	  Layer.define("scrollY", {
 	    get: function() {
 	      return this._element.scrollTop;
@@ -17503,13 +17503,13 @@
 	      return this._element.scrollTop = value;
 	    }
 	  });
-	
+
 	  Layer.define("_domEventManager", {
 	    get: function() {
 	      return this._context.domEventManager.wrap(this._element);
 	    }
 	  });
-	
+
 	  Layer.prototype.emit = function() {
 	    var args, eventName, ref, velocity;
 	    eventName = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
@@ -17528,12 +17528,12 @@
 	    }
 	    return Layer.__super__.emit.apply(this, [eventName].concat(slice.call(args), [this]));
 	  };
-	
+
 	  Layer.prototype.once = function(eventName, listener) {
 	    Layer.__super__.once.call(this, eventName, listener);
 	    return this._addListener(eventName, listener);
 	  };
-	
+
 	  Layer.prototype.addListener = function(eventName, listener) {
 	    if (!eventName) {
 	      throw Error("Layer.on needs a valid event name");
@@ -17544,7 +17544,7 @@
 	    Layer.__super__.addListener.call(this, eventName, listener);
 	    return this._addListener(eventName, listener);
 	  };
-	
+
 	  Layer.prototype.removeListener = function(eventName, listener) {
 	    if (!eventName) {
 	      throw Error("Layer.off needs a valid event name");
@@ -17552,7 +17552,7 @@
 	    Layer.__super__.removeListener.call(this, eventName, listener);
 	    return this._removeListener(eventName, listener);
 	  };
-	
+
 	  Layer.prototype._addListener = function(eventName, listener) {
 	    if (!_.startsWith(eventName, "change:")) {
 	      this.ignoreEvents = false;
@@ -17567,13 +17567,13 @@
 	      }
 	    }
 	  };
-	
+
 	  Layer.prototype._removeListener = function(eventName, listener) {
 	    if (!this.listeners(eventName).length) {
 	      return this._domEventManager.removeAllListeners(eventName);
 	    }
 	  };
-	
+
 	  Layer.prototype._parentDraggableLayer = function() {
 	    var i, layer, len, ref, ref1;
 	    ref = this.ancestors();
@@ -17585,330 +17585,330 @@
 	    }
 	    return null;
 	  };
-	
+
 	  Layer.prototype.on = Layer.prototype.addListener;
-	
+
 	  Layer.prototype.off = Layer.prototype.removeListener;
-	
+
 	  Layer.prototype.onClick = function(cb) {
 	    return this.on(Events.Click, cb);
 	  };
-	
+
 	  Layer.prototype.onDoubleClick = function(cb) {
 	    return this.on(Events.DoubleClick, cb);
 	  };
-	
+
 	  Layer.prototype.onScrollStart = function(cb) {
 	    return this.on(Events.ScrollStart, cb);
 	  };
-	
+
 	  Layer.prototype.onScroll = function(cb) {
 	    return this.on(Events.Scroll, cb);
 	  };
-	
+
 	  Layer.prototype.onScrollEnd = function(cb) {
 	    return this.on(Events.ScrollEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onScrollAnimationDidStart = function(cb) {
 	    return this.on(Events.ScrollAnimationDidStart, cb);
 	  };
-	
+
 	  Layer.prototype.onScrollAnimationDidEnd = function(cb) {
 	    return this.on(Events.ScrollAnimationDidEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onTouchStart = function(cb) {
 	    return this.on(Events.TouchStart, cb);
 	  };
-	
+
 	  Layer.prototype.onTouchEnd = function(cb) {
 	    return this.on(Events.TouchEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onTouchMove = function(cb) {
 	    return this.on(Events.TouchMove, cb);
 	  };
-	
+
 	  Layer.prototype.onMouseUp = function(cb) {
 	    return this.on(Events.MouseUp, cb);
 	  };
-	
+
 	  Layer.prototype.onMouseDown = function(cb) {
 	    return this.on(Events.MouseDown, cb);
 	  };
-	
+
 	  Layer.prototype.onMouseOver = function(cb) {
 	    return this.on(Events.MouseOver, cb);
 	  };
-	
+
 	  Layer.prototype.onMouseOut = function(cb) {
 	    return this.on(Events.MouseOut, cb);
 	  };
-	
+
 	  Layer.prototype.onMouseMove = function(cb) {
 	    return this.on(Events.MouseMove, cb);
 	  };
-	
+
 	  Layer.prototype.onMouseWheel = function(cb) {
 	    return this.on(Events.MouseWheel, cb);
 	  };
-	
+
 	  Layer.prototype.onAnimationStart = function(cb) {
 	    return this.on(Events.AnimationStart, cb);
 	  };
-	
+
 	  Layer.prototype.onAnimationStop = function(cb) {
 	    return this.on(Events.AnimationStop, cb);
 	  };
-	
+
 	  Layer.prototype.onAnimationEnd = function(cb) {
 	    return this.on(Events.AnimationEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onAnimationDidStart = function(cb) {
 	    return this.on(Events.AnimationDidStart, cb);
 	  };
-	
+
 	  Layer.prototype.onAnimationDidStop = function(cb) {
 	    return this.on(Events.AnimationDidStop, cb);
 	  };
-	
+
 	  Layer.prototype.onAnimationDidEnd = function(cb) {
 	    return this.on(Events.AnimationDidEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onImageLoaded = function(cb) {
 	    return this.on(Events.ImageLoaded, cb);
 	  };
-	
+
 	  Layer.prototype.onImageLoadError = function(cb) {
 	    return this.on(Events.ImageLoadError, cb);
 	  };
-	
+
 	  Layer.prototype.onMove = function(cb) {
 	    return this.on(Events.Move, cb);
 	  };
-	
+
 	  Layer.prototype.onDragStart = function(cb) {
 	    return this.on(Events.DragStart, cb);
 	  };
-	
+
 	  Layer.prototype.onDragWillMove = function(cb) {
 	    return this.on(Events.DragWillMove, cb);
 	  };
-	
+
 	  Layer.prototype.onDragMove = function(cb) {
 	    return this.on(Events.DragMove, cb);
 	  };
-	
+
 	  Layer.prototype.onDragDidMove = function(cb) {
 	    return this.on(Events.DragDidMove, cb);
 	  };
-	
+
 	  Layer.prototype.onDrag = function(cb) {
 	    return this.on(Events.Drag, cb);
 	  };
-	
+
 	  Layer.prototype.onDragEnd = function(cb) {
 	    return this.on(Events.DragEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onDragAnimationStart = function(cb) {
 	    return this.on(Events.DragAnimationStart, cb);
 	  };
-	
+
 	  Layer.prototype.onDragAnimationEnd = function(cb) {
 	    return this.on(Events.DragAnimationEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onDirectionLockStart = function(cb) {
 	    return this.on(Events.DirectionLockStart, cb);
 	  };
-	
+
 	  Layer.prototype.onStateDidSwitch = function(cb) {
 	    return this.on(Events.StateDidSwitch, cb);
 	  };
-	
+
 	  Layer.prototype.onStateWillSwitch = function(cb) {
 	    return this.on(Events.StateWillSwitch, cb);
 	  };
-	
+
 	  Layer.prototype.onTap = function(cb) {
 	    return this.on(Events.Tap, cb);
 	  };
-	
+
 	  Layer.prototype.onTapStart = function(cb) {
 	    return this.on(Events.TapStart, cb);
 	  };
-	
+
 	  Layer.prototype.onTapEnd = function(cb) {
 	    return this.on(Events.TapEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onDoubleTap = function(cb) {
 	    return this.on(Events.DoubleTap, cb);
 	  };
-	
+
 	  Layer.prototype.onForceTap = function(cb) {
 	    return this.on(Events.ForceTap, cb);
 	  };
-	
+
 	  Layer.prototype.onForceTapChange = function(cb) {
 	    return this.on(Events.ForceTapChange, cb);
 	  };
-	
+
 	  Layer.prototype.onForceTapStart = function(cb) {
 	    return this.on(Events.ForceTapStart, cb);
 	  };
-	
+
 	  Layer.prototype.onForceTapEnd = function(cb) {
 	    return this.on(Events.ForceTapEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onLongPress = function(cb) {
 	    return this.on(Events.LongPress, cb);
 	  };
-	
+
 	  Layer.prototype.onLongPressStart = function(cb) {
 	    return this.on(Events.LongPressStart, cb);
 	  };
-	
+
 	  Layer.prototype.onLongPressEnd = function(cb) {
 	    return this.on(Events.LongPressEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipe = function(cb) {
 	    return this.on(Events.Swipe, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeStart = function(cb) {
 	    return this.on(Events.SwipeStart, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeEnd = function(cb) {
 	    return this.on(Events.SwipeEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeUp = function(cb) {
 	    return this.on(Events.SwipeUp, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeUpStart = function(cb) {
 	    return this.on(Events.SwipeUpStart, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeUpEnd = function(cb) {
 	    return this.on(Events.SwipeUpEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeDown = function(cb) {
 	    return this.on(Events.SwipeDown, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeDownStart = function(cb) {
 	    return this.on(Events.SwipeDownStart, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeDownEnd = function(cb) {
 	    return this.on(Events.SwipeDownEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeLeft = function(cb) {
 	    return this.on(Events.SwipeLeft, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeLeftStart = function(cb) {
 	    return this.on(Events.SwipeLeftStart, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeLeftEnd = function(cb) {
 	    return this.on(Events.SwipeLeftEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeRight = function(cb) {
 	    return this.on(Events.SwipeRight, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeRightStart = function(cb) {
 	    return this.on(Events.SwipeRightStart, cb);
 	  };
-	
+
 	  Layer.prototype.onSwipeRightEnd = function(cb) {
 	    return this.on(Events.SwipeRightEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onPan = function(cb) {
 	    return this.on(Events.Pan, cb);
 	  };
-	
+
 	  Layer.prototype.onPanStart = function(cb) {
 	    return this.on(Events.PanStart, cb);
 	  };
-	
+
 	  Layer.prototype.onPanEnd = function(cb) {
 	    return this.on(Events.PanEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onPanLeft = function(cb) {
 	    return this.on(Events.PanLeft, cb);
 	  };
-	
+
 	  Layer.prototype.onPanRight = function(cb) {
 	    return this.on(Events.PanRight, cb);
 	  };
-	
+
 	  Layer.prototype.onPanUp = function(cb) {
 	    return this.on(Events.PanUp, cb);
 	  };
-	
+
 	  Layer.prototype.onPanDown = function(cb) {
 	    return this.on(Events.PanDown, cb);
 	  };
-	
+
 	  Layer.prototype.onPinch = function(cb) {
 	    return this.on(Events.Pinch, cb);
 	  };
-	
+
 	  Layer.prototype.onPinchStart = function(cb) {
 	    return this.on(Events.PinchStart, cb);
 	  };
-	
+
 	  Layer.prototype.onPinchEnd = function(cb) {
 	    return this.on(Events.PinchEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onScale = function(cb) {
 	    return this.on(Events.Scale, cb);
 	  };
-	
+
 	  Layer.prototype.onScaleStart = function(cb) {
 	    return this.on(Events.ScaleStart, cb);
 	  };
-	
+
 	  Layer.prototype.onScaleEnd = function(cb) {
 	    return this.on(Events.ScaleEnd, cb);
 	  };
-	
+
 	  Layer.prototype.onRotate = function(cb) {
 	    return this.on(Events.Rotate, cb);
 	  };
-	
+
 	  Layer.prototype.onRotateStart = function(cb) {
 	    return this.on(Events.RotateStart, cb);
 	  };
-	
+
 	  Layer.prototype.onRotateEnd = function(cb) {
 	    return this.on(Events.RotateEnd, cb);
 	  };
-	
+
 	  Layer.prototype.shouldShowHint = function() {
 	    if (this.ignoreEvents === false) {
 	      return true;
 	    }
 	    return false;
 	  };
-	
+
 	  Layer.prototype.showHint = function() {
 	    var animation, color, layer;
 	    if (!this.shouldShowHint()) {
@@ -17933,7 +17933,7 @@
 	    });
 	    return _.invoke(this.children, "showHint");
 	  };
-	
+
 	  Layer.prototype.toInspect = function() {
 	    var round;
 	    round = function(value) {
@@ -17947,9 +17947,9 @@
 	    }
 	    return "<" + this.constructor.name + " id:" + this.id + " (" + (round(this.x)) + "," + (round(this.y)) + ") " + (round(this.width)) + "x" + (round(this.height)) + ">";
 	  };
-	
+
 	  return Layer;
-	
+
 	})(BaseClass);
 
 
@@ -17958,11 +17958,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var FramerCSS, Utils;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	FramerCSS = "body {\n	margin: 0;\n}\n\n.framerContext {\n	position: absolute;\n	left: 0;\n	top: 0;\n	right: 0;\n	bottom: 0;\n	pointer-events: none;\n}\n\n.framerLayer {\n	display: block;\n	position: absolute;\n	left: 0;\n	top: 0;\n	background-repeat: no-repeat;\n	background-position: center;\n	background-size: cover;\n	-webkit-overflow-scrolling: touch;\n	-webkit-box-sizing: border-box;\n	-webkit-user-select: none;\n}\n\n@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { \n	.framerLayer {\n		image-rendering: pixelated;\n	}\n}\n\n.framerLayer input,\n.framerLayer textarea,\n.framerLayer select,\n.framerLayer option,\n.framerLayer div[contenteditable=true]\n{\n	pointer-events: auto;\n	-webkit-user-select: auto;\n}\n\n.framerDebug {\n	padding: 6px;\n	color: #fff;\n	font: 10px/1em Monaco;\n}\n";
-	
+
 	Utils.domComplete(function() {
 	  return Utils.insertCSS(FramerCSS);
 	});
@@ -17974,65 +17974,65 @@
 
 	var Events, Gestures, Utils, _,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Gestures = __webpack_require__(16).Gestures;
-	
+
 	Events = {};
-	
+
 	Events.TouchStart = "touchstart";
-	
+
 	Events.TouchEnd = "touchend";
-	
+
 	Events.TouchMove = "touchmove";
-	
+
 	Events.MouseUp = "mouseup";
-	
+
 	Events.MouseDown = "mousedown";
-	
+
 	Events.MouseOver = "mouseover";
-	
+
 	Events.MouseOut = "mouseout";
-	
+
 	Events.MouseMove = "mousemove";
-	
+
 	Events.MouseWheel = "mousewheel";
-	
+
 	Events.DoubleClick = "dblclick";
-	
+
 	Events.MouseDoubleClick = "dblclick";
-	
+
 	if (!Utils.isTouch()) {
 	  Events.TouchStart = Events.MouseDown;
 	  Events.TouchEnd = Events.MouseUp;
 	  Events.TouchMove = Events.MouseMove;
 	}
-	
+
 	Events.Click = Events.TouchEnd;
-	
+
 	Events.AnimationStart = "start";
-	
+
 	Events.AnimationStop = "stop";
-	
+
 	Events.AnimationEnd = "end";
-	
+
 	Events.AnimationDidStart = "start";
-	
+
 	Events.AnimationDidStop = "stop";
-	
+
 	Events.AnimationDidEnd = "end";
-	
+
 	Events.Scroll = "scroll";
-	
+
 	Events.ImageLoaded = "load";
-	
+
 	Events.ImageLoadError = "error";
-	
+
 	_.extend(Events, Gestures);
-	
+
 	Events.touchEvent = function(event) {
 	  var ref, ref1, touchEvent;
 	  touchEvent = (ref = event.touches) != null ? ref[0] : void 0;
@@ -18044,15 +18044,15 @@
 	  }
 	  return touchEvent;
 	};
-	
+
 	Events.wrap = function(element) {
 	  return Framer.CurrentContext.domEventManager.wrap(element);
 	};
-	
+
 	Events.isGesture = function(eventName) {
 	  return indexOf.call(Gestures, eventName) >= 0;
 	};
-	
+
 	exports.Events = Events;
 
 
@@ -18061,123 +18061,123 @@
 /***/ function(module, exports) {
 
 	var Gestures;
-	
+
 	Gestures = {};
-	
+
 	Gestures.Tap = "tap";
-	
+
 	Gestures.TapStart = "tapstart";
-	
+
 	Gestures.TapEnd = "tapend";
-	
+
 	Gestures.DoubleTap = "doubletap";
-	
+
 	Gestures.ForceTap = "forcetap";
-	
+
 	Gestures.ForceTapChange = "forcetapchange";
-	
+
 	Gestures.ForceTapStart = "forcetapstart";
-	
+
 	Gestures.ForceTapEnd = "forcetapend";
-	
+
 	Gestures.LongPress = "longpress";
-	
+
 	Gestures.LongPressStart = "longpressstart";
-	
+
 	Gestures.LongPressEnd = "longpressend";
-	
+
 	Gestures.Swipe = "swipe";
-	
+
 	Gestures.SwipeStart = "swipestart";
-	
+
 	Gestures.SwipeEnd = "swipeend";
-	
+
 	Gestures.SwipeUp = "swipeup";
-	
+
 	Gestures.SwipeUpStart = "swipeupstart";
-	
+
 	Gestures.SwipeUpEnd = "swipeupend";
-	
+
 	Gestures.SwipeDown = "swipedown";
-	
+
 	Gestures.SwipeDownStart = "swipedownstart";
-	
+
 	Gestures.SwipeDownEnd = "swipedownend";
-	
+
 	Gestures.SwipeLeft = "swipeleft";
-	
+
 	Gestures.SwipeLeftStart = "swipeleftstart";
-	
+
 	Gestures.SwipeLeftEnd = "swipeleftend";
-	
+
 	Gestures.SwipeRight = "swiperight";
-	
+
 	Gestures.SwipeRightStart = "swiperightstart";
-	
+
 	Gestures.SwipeRightEnd = "swiperightend";
-	
+
 	Gestures.EdgeSwipe = "edgeswipe";
-	
+
 	Gestures.EdgeSwipeStart = "edgeswipestart";
-	
+
 	Gestures.EdgeSwipeEnd = "edgeswipeend";
-	
+
 	Gestures.EdgeSwipeTop = "edgeswipetop";
-	
+
 	Gestures.EdgeSwipeTopStart = "edgeswipetopstart";
-	
+
 	Gestures.EdgeSwipeTopEnd = "edgeswipetopend";
-	
+
 	Gestures.EdgeSwipeRight = "edgeswiperight";
-	
+
 	Gestures.EdgeSwipeRightStart = "edgeswiperightstart";
-	
+
 	Gestures.EdgeSwipeRightEnd = "edgeswiperightend";
-	
+
 	Gestures.EdgeSwipeBottom = "edgeswipebottom";
-	
+
 	Gestures.EdgeSwipeBottomStart = "edgeswipebottomstart";
-	
+
 	Gestures.EdgeSwipeBottomEnd = "edgeswipebottomend";
-	
+
 	Gestures.EdgeSwipeLeft = "edgeswipeleft";
-	
+
 	Gestures.EdgeSwipeLeftStart = "edgeswipeleftstart";
-	
+
 	Gestures.EdgeSwipeLeftEnd = "edgeswipeleftend";
-	
+
 	Gestures.Pan = "pan";
-	
+
 	Gestures.PanStart = "panstart";
-	
+
 	Gestures.PanEnd = "panend";
-	
+
 	Gestures.PanLeft = "panleft";
-	
+
 	Gestures.PanRight = "panright";
-	
+
 	Gestures.PanUp = "panup";
-	
+
 	Gestures.PanDown = "pandown";
-	
+
 	Gestures.Pinch = "pinch";
-	
+
 	Gestures.PinchStart = "pinchstart";
-	
+
 	Gestures.PinchEnd = "pinchend";
-	
+
 	Gestures.Scale = "scale";
-	
+
 	Gestures.ScaleStart = "scalestart";
-	
+
 	Gestures.ScaleEnd = "scaleend";
-	
+
 	Gestures.Rotate = "rotate";
-	
+
 	Gestures.RotateStart = "rotatestart";
-	
+
 	Gestures.RotateEnd = "rotateend";
-	
+
 	exports.Gestures = Gestures;
 
 
@@ -18186,11 +18186,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Originals, Utils, _;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Originals = {
 	  Layer: {
 	    backgroundColor: "rgba(123,123,123,0.5)",
@@ -18279,7 +18279,7 @@
 	    backgroundColor: null
 	  }
 	};
-	
+
 	exports.Defaults = {
 	  getDefaults: function(className, options) {
 	    var defaults, k, ref, v;
@@ -18334,46 +18334,46 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	LinearAnimator = __webpack_require__(19).LinearAnimator;
-	
+
 	BezierCurveAnimator = __webpack_require__(21).BezierCurveAnimator;
-	
+
 	SpringRK4Animator = __webpack_require__(22).SpringRK4Animator;
-	
+
 	SpringDHOAnimator = __webpack_require__(24).SpringDHOAnimator;
-	
+
 	AnimatorClasses = {
 	  "linear": LinearAnimator,
 	  "bezier-curve": BezierCurveAnimator,
 	  "spring-rk4": SpringRK4Animator,
 	  "spring-dho": SpringDHOAnimator
 	};
-	
+
 	AnimatorClasses["spring"] = AnimatorClasses["spring-rk4"];
-	
+
 	AnimatorClasses["cubic-bezier"] = AnimatorClasses["bezier-curve"];
-	
+
 	AnimatorClassBezierPresets = ["ease", "ease-in", "ease-out", "ease-in-out"];
-	
+
 	numberRE = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/;
-	
+
 	relativePropertyRE = new RegExp('^(?:([+-])=|)(' + numberRE.source + ')([a-z%]*)$', 'i');
-	
+
 	isRelativeProperty = function(v) {
 	  return _.isString(v) && relativePropertyRE.test(v);
 	};
-	
+
 	evaluateRelativeProperty = function(target, k, v) {
 	  var match, number, ref, rest, sign, unit;
 	  ref = relativePropertyRE.exec(v), match = ref[0], sign = ref[1], number = ref[2], unit = ref[3], rest = 5 <= ref.length ? slice.call(ref, 4) : [];
@@ -18382,10 +18382,10 @@
 	  }
 	  return +number;
 	};
-	
+
 	exports.Animation = (function(superClass) {
 	  extend(Animation, superClass);
-	
+
 	  function Animation(options) {
 	    if (options == null) {
 	      options = {};
@@ -18417,13 +18417,13 @@
 	    this._originalState = this._currentState();
 	    this._repeatCounter = this.options.repeat;
 	  }
-	
+
 	  Animation.define("isAnimating", {
 	    get: function() {
 	      return indexOf.call(this.options.layer.context.animations, this) >= 0;
 	    }
 	  });
-	
+
 	  Animation.prototype.start = function() {
 	    var AnimatorClass, animation, k, property, ref, ref1, ref2, v;
 	    if (this.options.layer === null) {
@@ -18499,7 +18499,7 @@
 	    }
 	    return true;
 	  };
-	
+
 	  Animation.prototype.stop = function(emit) {
 	    if (emit == null) {
 	      emit = true;
@@ -18510,7 +18510,7 @@
 	    }
 	    return Framer.Loop.off("update", this._update);
 	  };
-	
+
 	  Animation.prototype.reverse = function() {
 	    var animation, options;
 	    options = _.clone(this.options);
@@ -18518,32 +18518,32 @@
 	    animation = new Animation(options);
 	    return animation;
 	  };
-	
+
 	  Animation.prototype.copy = function() {
 	    return new Animation(_.clone(this.options));
 	  };
-	
+
 	  Animation.prototype.revert = function() {
 	    return this.reverse();
 	  };
-	
+
 	  Animation.prototype.inverse = function() {
 	    return this.reverse();
 	  };
-	
+
 	  Animation.prototype.invert = function() {
 	    return this.reverse();
 	  };
-	
+
 	  Animation.prototype.emit = function(event) {
 	    Animation.__super__.emit.apply(this, arguments);
 	    return this.options.layer.emit(event, this);
 	  };
-	
+
 	  Animation.prototype.animatingProperties = function() {
 	    return _.keys(this._stateA);
 	  };
-	
+
 	  Animation.prototype._start = function() {
 	    var k, ref, results, v;
 	    this.options.layer.context.addAnimation(this);
@@ -18562,7 +18562,7 @@
 	    }
 	    return results;
 	  };
-	
+
 	  Animation.prototype._update = function(delta) {
 	    var emit;
 	    if (this._animator.finished()) {
@@ -18574,7 +18574,7 @@
 	      return this._updateValues(this._animator.next(delta));
 	    }
 	  };
-	
+
 	  Animation.prototype._updateValues = function(value) {
 	    var k, ref, v;
 	    ref = this._stateB;
@@ -18584,19 +18584,19 @@
 	    }
 	    return null;
 	  };
-	
+
 	  Animation.prototype._updateNumberValue = function(key, value) {
 	    return this._target[key] = Utils.mapRange(value, 0, 1, this._stateA[key], this._stateB[key]);
 	  };
-	
+
 	  Animation.prototype._updateColorValue = function(key, value) {
 	    return this._target[key] = Color.mix(this._stateA[key], this._stateB[key], value, false, this.options.colorModel);
 	  };
-	
+
 	  Animation.prototype._currentState = function() {
 	    return _.pick(this.options.layer, _.keys(this.options.properties));
 	  };
-	
+
 	  Animation.prototype._animatorClass = function() {
 	    var animatorClassName, parsedCurve;
 	    parsedCurve = Utils.parseFunction(this.options.curve);
@@ -18609,7 +18609,7 @@
 	    }
 	    return LinearAnimator;
 	  };
-	
+
 	  Animation.prototype._parseAnimatorOptions = function() {
 	    var animatorClass, animatorClassName, base, base1, i, j, k, l, len, len1, parsedCurve, ref, ref1, results, value;
 	    animatorClass = this._animatorClass();
@@ -18663,7 +18663,7 @@
 	      }
 	    }
 	  };
-	
+
 	  Animation.filterAnimatableProperties = function(properties) {
 	    var animatableProperties, k, v;
 	    animatableProperties = {};
@@ -18679,37 +18679,37 @@
 	    }
 	    return animatableProperties;
 	  };
-	
+
 	  Animation.prototype.toInspect = function() {
 	    return "<" + this.constructor.name + " id:" + this.id + " isAnimating:" + this.isAnimating + " [" + (_.keys(this.options.properties)) + "]>";
 	  };
-	
+
 	  Animation.prototype.onAnimationStart = function(cb) {
 	    return this.on(Events.AnimationStart, cb);
 	  };
-	
+
 	  Animation.prototype.onAnimationStop = function(cb) {
 	    return this.on(Events.AnimationStop, cb);
 	  };
-	
+
 	  Animation.prototype.onAnimationEnd = function(cb) {
 	    return this.on(Events.AnimationEnd, cb);
 	  };
-	
+
 	  Animation.prototype.onAnimationDidStart = function(cb) {
 	    return this.on(Events.AnimationDidStart, cb);
 	  };
-	
+
 	  Animation.prototype.onAnimationDidStop = function(cb) {
 	    return this.on(Events.AnimationDidStop, cb);
 	  };
-	
+
 	  Animation.prototype.onAnimationDidEnd = function(cb) {
 	    return this.on(Events.AnimationDidEnd, cb);
 	  };
-	
+
 	  return Animation;
-	
+
 	})(BaseClass);
 
 
@@ -18720,18 +18720,18 @@
 	var Animator, Utils,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Animator = __webpack_require__(20).Animator;
-	
+
 	exports.LinearAnimator = (function(superClass) {
 	  extend(LinearAnimator, superClass);
-	
+
 	  function LinearAnimator() {
 	    return LinearAnimator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  LinearAnimator.prototype.setup = function(options) {
 	    this.options = _.defaults(options, {
 	      time: 1,
@@ -18739,7 +18739,7 @@
 	    });
 	    return this._time = 0;
 	  };
-	
+
 	  LinearAnimator.prototype.next = function(delta) {
 	    this._time += delta;
 	    if (this.finished()) {
@@ -18747,13 +18747,13 @@
 	    }
 	    return this._time / this.options.time;
 	  };
-	
+
 	  LinearAnimator.prototype.finished = function() {
 	    return this._time >= this.options.time - this.options.precision;
 	  };
-	
+
 	  return LinearAnimator;
-	
+
 	})(Animator);
 
 
@@ -18762,11 +18762,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Config, Utils;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	exports.Animator = (function() {
 	  "The animator class is a very simple class that\n	- Takes a set of input values at setup({input values})\n	- Emits an output value for progress (0 -> 1) in value(progress)";
 	  function Animator(options) {
@@ -18775,19 +18775,19 @@
 	    }
 	    this.setup(options);
 	  }
-	
+
 	  Animator.prototype.setup = function(options) {
 	    throw Error("Not implemented");
 	  };
-	
+
 	  Animator.prototype.next = function(delta) {
 	    throw Error("Not implemented");
 	  };
-	
+
 	  Animator.prototype.finished = function() {
 	    throw Error("Not implemented");
 	  };
-	
+
 	  return Animator;
 
 	})();
@@ -18800,13 +18800,13 @@
 	var Animator, BezierCurveDefaults, UnitBezier, Utils, _,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Animator = __webpack_require__(20).Animator;
-	
+
 	BezierCurveDefaults = {
 	  "linear": [0, 0, 1, 1],
 	  "ease": [.25, .1, .25, 1],
@@ -18814,14 +18814,14 @@
 	  "ease-out": [0, 0, .58, 1],
 	  "ease-in-out": [.42, 0, .58, 1]
 	};
-	
+
 	exports.BezierCurveAnimator = (function(superClass) {
 	  extend(BezierCurveAnimator, superClass);
-	
+
 	  function BezierCurveAnimator() {
 	    return BezierCurveAnimator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  BezierCurveAnimator.prototype.setup = function(options) {
 	    if (_.isString(options) && BezierCurveDefaults.hasOwnProperty(options.toLowerCase())) {
 	      options = {
@@ -18846,7 +18846,7 @@
 	    });
 	    return this._unitBezier = new UnitBezier(this.options.values[0], this.options.values[1], this.options.values[2], this.options.values[3], this._time = 0);
 	  };
-	
+
 	  BezierCurveAnimator.prototype.next = function(delta) {
 	    this._time += delta;
 	    if (this.finished()) {
@@ -18854,18 +18854,18 @@
 	    }
 	    return this._unitBezier.solve(this._time / this.options.time);
 	  };
-	
+
 	  BezierCurveAnimator.prototype.finished = function() {
 	    return this._time >= this.options.time - this.options.precision;
 	  };
-	
+
 	  return BezierCurveAnimator;
-	
+
 	})(Animator);
-	
+
 	UnitBezier = (function() {
 	  UnitBezier.prototype.epsilon = 1e-6;
-	
+
 	  function UnitBezier(p1x, p1y, p2x, p2y) {
 	    this.cx = 3.0 * p1x;
 	    this.bx = 3.0 * (p2x - p1x) - this.cx;
@@ -18874,19 +18874,19 @@
 	    this.by = 3.0 * (p2y - p1y) - this.cy;
 	    this.ay = 1.0 - this.cy - this.by;
 	  }
-	
+
 	  UnitBezier.prototype.sampleCurveX = function(t) {
 	    return ((this.ax * t + this.bx) * t + this.cx) * t;
 	  };
-	
+
 	  UnitBezier.prototype.sampleCurveY = function(t) {
 	    return ((this.ay * t + this.by) * t + this.cy) * t;
 	  };
-	
+
 	  UnitBezier.prototype.sampleCurveDerivativeX = function(t) {
 	    return (3.0 * this.ax * t + 2.0 * this.bx) * t + this.cx;
 	  };
-	
+
 	  UnitBezier.prototype.solveCurveX = function(x) {
 	    var d2, i, t0, t1, t2, x2;
 	    t2 = x;
@@ -18926,11 +18926,11 @@
 	    }
 	    return t2;
 	  };
-	
+
 	  UnitBezier.prototype.solve = function(x) {
 	    return this.sampleCurveY(this.solveCurveX(x));
 	  };
-	
+
 	  return UnitBezier;
 
 	})();
@@ -18944,21 +18944,21 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Animator = __webpack_require__(20).Animator;
-	
+
 	Integrator = __webpack_require__(23).Integrator;
-	
+
 	exports.SpringRK4Animator = (function(superClass) {
 	  extend(SpringRK4Animator, superClass);
-	
+
 	  function SpringRK4Animator() {
 	    this.finished = bind(this.finished, this);
 	    return SpringRK4Animator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  SpringRK4Animator.prototype.setup = function(options) {
 	    this.options = _.defaults(options, {
 	      tension: 250,
@@ -18977,7 +18977,7 @@
 	      };
 	    })(this));
 	  };
-	
+
 	  SpringRK4Animator.prototype.next = function(delta) {
 	    var finalVelocity, net1DVelocity, netFloat, netValueIsLow, netVelocityIsLow, stateAfter, stateBefore;
 	    if (this.finished()) {
@@ -18999,13 +18999,13 @@
 	    this._velocity = finalVelocity;
 	    return this._value;
 	  };
-	
+
 	  SpringRK4Animator.prototype.finished = function() {
 	    return this._stopSpring;
 	  };
-	
+
 	  return SpringRK4Animator;
-	
+
 	})(Animator);
 
 
@@ -19014,11 +19014,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Config, Utils;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	exports.Integrator = (function() {
 	  "Usage:\n	- Instantiate with a function that takes (state) -> acceleration\n	- Call integrateState with state={x, v} and delta";
 	  function Integrator(_accelerationForState) {
@@ -19030,7 +19030,7 @@
 	      };
 	    }
 	  }
-	
+
 	  Integrator.prototype.integrateState = function(state, dt) {
 	    var a, b, c, d, dvdt, dxdt;
 	    a = this._evaluateState(state);
@@ -19043,7 +19043,7 @@
 	    state.v = state.v + dvdt * dt;
 	    return state;
 	  };
-	
+
 	  Integrator.prototype._evaluateState = function(initialState) {
 	    var output;
 	    output = {};
@@ -19051,7 +19051,7 @@
 	    output.dv = this._accelerationForState(initialState);
 	    return output;
 	  };
-	
+
 	  Integrator.prototype._evaluateStateWithDerivative = function(initialState, dt, derivative) {
 	    var output, state;
 	    state = {};
@@ -19062,7 +19062,7 @@
 	    output.dv = this._accelerationForState(state);
 	    return output;
 	  };
-	
+
 	  return Integrator;
 
 	})();
@@ -19076,19 +19076,19 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Animator = __webpack_require__(20).Animator;
-	
+
 	exports.SpringDHOAnimator = (function(superClass) {
 	  extend(SpringDHOAnimator, superClass);
-	
+
 	  function SpringDHOAnimator() {
 	    this.finished = bind(this.finished, this);
 	    return SpringDHOAnimator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  SpringDHOAnimator.prototype.setup = function(options) {
 	    this.options = _.defaults(options, {
 	      velocity: 0,
@@ -19103,7 +19103,7 @@
 	    this._value = 0;
 	    return this._velocity = this.options.velocity;
 	  };
-	
+
 	  SpringDHOAnimator.prototype.next = function(delta) {
 	    var F_damper, F_spring, b, k;
 	    if (this.finished()) {
@@ -19118,13 +19118,13 @@
 	    this._value += this._velocity * delta;
 	    return this._value;
 	  };
-	
+
 	  SpringDHOAnimator.prototype.finished = function() {
 	    return this._time > 0 && Math.abs(this._velocity) < this.options.tolerance;
 	  };
-	
+
 	  return SpringDHOAnimator;
-	
+
 	})(Animator);
 
 
@@ -19133,13 +19133,13 @@
 /***/ function(module, exports) {
 
 	var _Force2DProperties, _WebkitProperties, filterFormat;
-	
+
 	filterFormat = function(value, unit) {
 	  return "" + (Utils.round(value, 2)) + unit;
 	};
-	
+
 	_WebkitProperties = [["blur", "blur", 0, "px"], ["brightness", "brightness", 100, "%"], ["saturate", "saturate", 100, "%"], ["hue-rotate", "hueRotate", 0, "deg"], ["contrast", "contrast", 100, "%"], ["invert", "invert", 0, "%"], ["grayscale", "grayscale", 0, "%"], ["sepia", "sepia", 0, "%"]];
-	
+
 	_Force2DProperties = {
 	  "z": 0,
 	  "scaleX": 1,
@@ -19150,7 +19150,7 @@
 	  "rotationX": 0,
 	  "rotationY": 0
 	};
-	
+
 	exports.LayerStyle = {
 	  width: function(layer) {
 	    return layer._properties.width + "px";
@@ -19296,24 +19296,24 @@
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
 	  slice = [].slice;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	LayerStatesIgnoredKeys = ["ignoreEvents"];
-	
+
 	Events.StateWillSwitch = "willSwitch";
-	
+
 	Events.StateDidSwitch = "didSwitch";
-	
+
 	exports.LayerStates = (function(superClass) {
 	  extend(LayerStates, superClass);
-	
+
 	  function LayerStates(layer) {
 	    this.layer = layer;
 	    this._states = {};
@@ -19324,7 +19324,7 @@
 	    this._previousStates = [];
 	    LayerStates.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  LayerStates.prototype.add = function(stateName, properties) {
 	    var error, k, v;
 	    if (_.isObject(stateName)) {
@@ -19346,7 +19346,7 @@
 	    this._orderedStates.push(stateName);
 	    return this._states[stateName] = LayerStates.filterStateProperties(properties);
 	  };
-	
+
 	  LayerStates.prototype.remove = function(stateName) {
 	    if (!this._states.hasOwnProperty(stateName)) {
 	      return;
@@ -19354,7 +19354,7 @@
 	    delete this._states[stateName];
 	    return this._orderedStates = _.without(this._orderedStates, stateName);
 	  };
-	
+
 	  LayerStates.prototype["switch"] = function(stateName, animationOptions, instant) {
 	    var animatablePropertyKeys, animatingKeys, k, properties, propertyName, ref, ref1, v, value;
 	    if (instant == null) {
@@ -19421,33 +19421,33 @@
 	      };
 	    })(this));
 	  };
-	
+
 	  LayerStates.prototype.switchInstant = function(stateName) {
 	    return this["switch"](stateName, null, true);
 	  };
-	
+
 	  LayerStates.define("state", {
 	    get: function() {
 	      return this._currentState;
 	    }
 	  });
-	
+
 	  LayerStates.define("current", {
 	    get: function() {
 	      return this._currentState;
 	    }
 	  });
-	
+
 	  LayerStates.define("all", {
 	    get: function() {
 	      return _.clone(this._orderedStates);
 	    }
 	  });
-	
+
 	  LayerStates.prototype.states = function() {
 	    return _.clone(this._orderedStates);
 	  };
-	
+
 	  LayerStates.prototype.animatingKeys = function() {
 	    var keys, ref, state, stateName;
 	    keys = [];
@@ -19458,14 +19458,14 @@
 	    }
 	    return keys;
 	  };
-	
+
 	  LayerStates.prototype.previous = function(states, animationOptions) {
 	    if (states == null) {
 	      states = this.states();
 	    }
 	    return this["switch"](Utils.arrayPrev(states, this._currentState), animationOptions);
 	  };
-	
+
 	  LayerStates.prototype.next = function() {
 	    var states;
 	    states = Utils.arrayFromArguments(arguments);
@@ -19474,18 +19474,18 @@
 	    }
 	    return this["switch"](Utils.arrayNext(states, this._currentState));
 	  };
-	
+
 	  LayerStates.prototype.last = function(animationOptions) {
 	    return this["switch"](_.last(this._previousStates), animationOptions);
 	  };
-	
+
 	  LayerStates.prototype.emit = function() {
 	    var args, ref;
 	    args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
 	    LayerStates.__super__.emit.apply(this, arguments);
 	    return (ref = this.layer).emit.apply(ref, args);
 	  };
-	
+
 	  LayerStates.filterStateProperties = function(properties) {
 	    var k, stateProperties, v;
 	    stateProperties = {};
@@ -19501,14 +19501,14 @@
 	    }
 	    return stateProperties;
 	  };
-	
+
 	  LayerStates._isValidColor = function(k, v) {
 	    if (_.endsWith(k.toLowerCase(), "color") && _.isString(v) && Color.isColorString(v)) {
 	      return true;
 	    }
 	    return false;
 	  };
-	
+
 	  LayerStates._isValidProperty = function(k, v) {
 	    var ref;
 	    if (_.isNumber(v)) {
@@ -19534,9 +19534,9 @@
 	    }
 	    return false;
 	  };
-	
+
 	  return LayerStates;
-	
+
 	})(BaseClass);
 
 
@@ -19548,79 +19548,79 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	Simulation = __webpack_require__(28).Simulation;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	EventBuffer = __webpack_require__(33).EventBuffer;
-	
+
 	Gestures = __webpack_require__(16).Gestures;
-	
+
 	Events.Move = "move";
-	
+
 	Events.DragStart = "dragstart";
-	
+
 	Events.DragWillMove = "dragwillmove";
-	
+
 	Events.DragMove = "dragmove";
-	
+
 	Events.DragDidMove = "dragmove";
-	
+
 	Events.Drag = "dragmove";
-	
+
 	Events.DragEnd = "dragend";
-	
+
 	Events.DragAnimationStart = "draganimationstart";
-	
+
 	Events.DragAnimationEnd = "draganimationend";
-	
+
 	Events.DirectionLockStart = "directionlockstart";
-	
+
 	Events.DragSessionStart = "dragsessionstart";
-	
+
 	Events.DragSessionMove = "dragsessionmove";
-	
+
 	Events.DragSessionEnd = "dragsessionend";
-	
+
 	Events.DragAnimationDidStart = Events.DragAnimationStart;
-	
+
 	Events.DragAnimationDidEnd = Events.DragAnimationEnd;
-	
+
 	Events.DirectionLockDidStart = Events.DirectionLockStart;
-	
+
 	"\n┌──────┐                   │\n│      │\n│      │  ───────────────▶ │ ◀────▶\n│      │\n└──────┘                   │\n\n════════  ═════════════════ ═══════\n\n  Drag         Momentum      Bounce\n";
-	
+
 	exports.LayerDraggable = (function(superClass) {
 	  extend(LayerDraggable, superClass);
-	
+
 	  LayerDraggable.define("speedX", LayerDraggable.simpleProperty("speedX", 1));
-	
+
 	  LayerDraggable.define("speedY", LayerDraggable.simpleProperty("speedY", 1));
-	
+
 	  LayerDraggable.define("horizontal", LayerDraggable.simpleProperty("horizontal", true));
-	
+
 	  LayerDraggable.define("vertical", LayerDraggable.simpleProperty("vertical", true));
-	
+
 	  LayerDraggable.define("momentumVelocityMultiplier", LayerDraggable.simpleProperty("momentumVelocityMultiplier", 800));
-	
+
 	  LayerDraggable.define("directionLock", LayerDraggable.simpleProperty("directionLock", true));
-	
+
 	  LayerDraggable.define("directionLockThreshold", LayerDraggable.simpleProperty("directionLockThreshold", {
 	    x: 10,
 	    y: 10
 	  }));
-	
+
 	  LayerDraggable.define("propagateEvents", LayerDraggable.simpleProperty("propagateEvents", true));
-	
+
 	  LayerDraggable.define("constraints", {
 	    get: function() {
 	      return this._constraints;
@@ -19648,31 +19648,31 @@
 	      }
 	    }
 	  });
-	
+
 	  LayerDraggable.define("isDragging", {
 	    get: function() {
 	      return this._isDragging || false;
 	    }
 	  });
-	
+
 	  LayerDraggable.define("isAnimating", {
 	    get: function() {
 	      return this._isAnimating || false;
 	    }
 	  });
-	
+
 	  LayerDraggable.define("isMoving", {
 	    get: function() {
 	      return this._isMoving || false;
 	    }
 	  });
-	
+
 	  LayerDraggable.define("layerStartPoint", {
 	    get: function() {
 	      return this._layerStartPoint || this.layer.point;
 	    }
 	  });
-	
+
 	  LayerDraggable.define("cursorStartPoint", {
 	    get: function() {
 	      return this._cursorStartPoint || {
@@ -19681,7 +19681,7 @@
 	      };
 	    }
 	  });
-	
+
 	  LayerDraggable.define("layerCursorOffset", {
 	    get: function() {
 	      return this._layerCursorOffset || {
@@ -19690,7 +19690,7 @@
 	      };
 	    }
 	  });
-	
+
 	  LayerDraggable.define("offset", {
 	    get: function() {
 	      var offset;
@@ -19706,7 +19706,7 @@
 	      };
 	    }
 	  });
-	
+
 	  function LayerDraggable(layer) {
 	    var options;
 	    this.layer = layer;
@@ -19727,34 +19727,34 @@
 	    this._ignoreUpdateLayerPosition = true;
 	    this.attach();
 	  }
-	
+
 	  LayerDraggable.prototype.attach = function() {
 	    this.layer.on(Gestures.TapStart, this.touchStart);
 	    this.layer.on("change:x", this._updateLayerPosition);
 	    return this.layer.on("change:y", this._updateLayerPosition);
 	  };
-	
+
 	  LayerDraggable.prototype.remove = function() {
 	    this.layer.off(Gestures.TapStart, this.touchStart);
 	    this.layer.off(Gestures.Pan, this._touchMove);
 	    return this.layer.off(Gestures.PanEnd, this._touchEnd);
 	  };
-	
+
 	  LayerDraggable.prototype.updatePosition = function(point) {
 	    return point;
 	  };
-	
+
 	  LayerDraggable.prototype.touchStart = function(event) {
 	    return this._touchStart(event);
 	  };
-	
+
 	  LayerDraggable.prototype._updateLayerPosition = function() {
 	    if (this._ignoreUpdateLayerPosition === true) {
 	      return;
 	    }
 	    return this._point = this.layer.point;
 	  };
-	
+
 	  LayerDraggable.prototype._touchStart = function(event) {
 	    var animation, i, len, properties, ref, touchEvent;
 	    Events.wrap(document).addEventListener(Gestures.Pan, this._touchMove);
@@ -19797,7 +19797,7 @@
 	    this._ignoreUpdateLayerPosition = false;
 	    return this.emit(Events.DragSessionStart, event);
 	  };
-	
+
 	  LayerDraggable.prototype._touchMove = function(event) {
 	    var offset, point, scaleX, scaleY, touchEvent;
 	    if (!this.enabled) {
@@ -19873,7 +19873,7 @@
 	    }
 	    return this.emit(Events.DragSessionMove, event);
 	  };
-	
+
 	  LayerDraggable.prototype._touchEnd = function(event) {
 	    Events.wrap(document).removeEventListener(Gestures.Pan, this._touchMove);
 	    Events.wrap(document).removeEventListener(Gestures.TapEnd, this._touchEnd);
@@ -19888,7 +19888,7 @@
 	    this._isDragging = false;
 	    return this._ignoreUpdateLayerPosition = true;
 	  };
-	
+
 	  LayerDraggable.define("constraintsOffset", {
 	    get: function() {
 	      var constrainedPoint, maxX, maxY, minX, minY, offset, point, ref;
@@ -19911,7 +19911,7 @@
 	      return offset;
 	    }
 	  });
-	
+
 	  LayerDraggable.define("isBeyondConstraints", {
 	    get: function() {
 	      var constraintsOffset;
@@ -19925,7 +19925,7 @@
 	      return false;
 	    }
 	  });
-	
+
 	  LayerDraggable.prototype._clampAndScale = function(value, min, max, scale) {
 	    if (value < min) {
 	      value = min + (value - min) * scale;
@@ -19935,7 +19935,7 @@
 	    }
 	    return value;
 	  };
-	
+
 	  LayerDraggable.prototype._calculateConstraints = function(bounds) {
 	    var constraints;
 	    if (!bounds) {
@@ -19962,7 +19962,7 @@
 	    constraints.maxY -= this.layer.height;
 	    return constraints;
 	  };
-	
+
 	  LayerDraggable.prototype._constrainPosition = function(proposedPoint, bounds, scale) {
 	    var maxX, maxY, minX, minY, point, ref;
 	    ref = this._calculateConstraints(this._constraints), minX = ref.minX, maxX = ref.maxX, minY = ref.minY, maxY = ref.maxY;
@@ -19985,7 +19985,7 @@
 	    }
 	    return point;
 	  };
-	
+
 	  LayerDraggable.define("velocity", {
 	    get: function() {
 	      if (this.isAnimating) {
@@ -19998,13 +19998,13 @@
 	      };
 	    }
 	  });
-	
+
 	  LayerDraggable.define("angle", {
 	    get: function() {
 	      return this._eventBuffer.angle;
 	    }
 	  });
-	
+
 	  LayerDraggable.define("direction", {
 	    get: function() {
 	      var velocity;
@@ -20022,11 +20022,11 @@
 	      }
 	    }
 	  });
-	
+
 	  LayerDraggable.prototype.calculateVelocity = function() {
 	    return this.velocity;
 	  };
-	
+
 	  LayerDraggable.prototype._calculateSimulationVelocity = function() {
 	    var velocity, xFinished, yFinished;
 	    xFinished = this._simulation.x.finished();
@@ -20043,12 +20043,12 @@
 	    }
 	    return velocity;
 	  };
-	
+
 	  LayerDraggable.prototype.emit = function(eventName, event) {
 	    this.layer.emit(eventName, event);
 	    return LayerDraggable.__super__.emit.call(this, eventName, event);
 	  };
-	
+
 	  LayerDraggable.prototype._updatedirectionLock = function(correctedDelta) {
 	    this._directionLockEnabledX = Math.abs(correctedDelta.y) > this.directionLockThreshold.y;
 	    this._directionLockEnabledY = Math.abs(correctedDelta.x) > this.directionLockThreshold.x;
@@ -20059,12 +20059,12 @@
 	      });
 	    }
 	  };
-	
+
 	  LayerDraggable.prototype._resetdirectionLock = function() {
 	    this._directionLockEnabledX = false;
 	    return this._directionLockEnabledY = false;
 	  };
-	
+
 	  LayerDraggable.prototype._setupSimulation = function() {
 	    if (this._simulation) {
 	      return;
@@ -20075,7 +20075,7 @@
 	    };
 	    return this._updateSimulationConstraints(this.constraints);
 	  };
-	
+
 	  LayerDraggable.prototype._setupSimulationForAxis = function(axis) {
 	    var properties, simulation;
 	    properties = {};
@@ -20101,7 +20101,7 @@
 	    })(this));
 	    return simulation;
 	  };
-	
+
 	  LayerDraggable.prototype._updateSimulationConstraints = function(constraints) {
 	    var maxX, maxY, minX, minY, ref;
 	    if (!this._simulation) {
@@ -20128,7 +20128,7 @@
 	      };
 	    }
 	  };
-	
+
 	  LayerDraggable.prototype._onSimulationStep = function(axis, state) {
 	    var delta, maxX, maxY, minX, minY, ref, updatePoint;
 	    if (axis === "x" && this.horizontal === false) {
@@ -20163,7 +20163,7 @@
 	    this.layer[axis] = this.updatePosition(updatePoint)[axis];
 	    return this.emit(Events.Move, this.layer.point);
 	  };
-	
+
 	  LayerDraggable.prototype._onSimulationStop = function(axis, state) {
 	    if (axis === "x" && this.horizontal === false) {
 	      return;
@@ -20181,7 +20181,7 @@
 	      return this._stopSimulation();
 	    }
 	  };
-	
+
 	  LayerDraggable.prototype._startSimulation = function() {
 	    var maxX, maxY, minX, minY, ref, startSimulationX, startSimulationY, velocity, velocityX, velocityY;
 	    if (!(this.momentum || this.bounce)) {
@@ -20221,7 +20221,7 @@
 	    }
 	    return this.emit(Events.DragAnimationStart);
 	  };
-	
+
 	  LayerDraggable.prototype._stopSimulation = function() {
 	    var ref, ref1;
 	    this._isAnimating = false;
@@ -20238,53 +20238,53 @@
 	    this.emit(Events.Move, this.layer.point);
 	    return this.emit(Events.DragAnimationEnd);
 	  };
-	
+
 	  LayerDraggable.prototype.animateStop = function() {
 	    return this._stopSimulation();
 	  };
-	
+
 	  LayerDraggable.prototype.onMove = function(cb) {
 	    return this.on(Events.Move, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragStart = function(cb) {
 	    return this.on(Events.DragStart, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragWillMove = function(cb) {
 	    return this.on(Events.DragWillMove, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragMove = function(cb) {
 	    return this.on(Events.DragMove, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragDidMove = function(cb) {
 	    return this.on(Events.DragDidMove, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDrag = function(cb) {
 	    return this.on(Events.Drag, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragEnd = function(cb) {
 	    return this.on(Events.DragEnd, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragAnimationStart = function(cb) {
 	    return this.on(Events.DragAnimationStart, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDragAnimationEnd = function(cb) {
 	    return this.on(Events.DragAnimationEnd, cb);
 	  };
-	
+
 	  LayerDraggable.prototype.onDirectionLockStart = function(cb) {
 	    return this.on(Events.DirectionLockStart, cb);
 	  };
-	
+
 	  return LayerDraggable;
-	
+
 	})(BaseClass);
 
 
@@ -20297,40 +20297,40 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	SpringSimulator = __webpack_require__(29).SpringSimulator;
-	
+
 	FrictionSimulator = __webpack_require__(31).FrictionSimulator;
-	
+
 	MomentumBounceSimulator = __webpack_require__(32).MomentumBounceSimulator;
-	
+
 	Events.SimulationStart = 'simulationStart';
-	
+
 	Events.SimulationStep = 'simulationStep';
-	
+
 	Events.SimulationStop = 'simulationStop';
-	
+
 	SimulatorClasses = {
 	  "spring": SpringSimulator,
 	  "friction": FrictionSimulator,
 	  "inertial-scroll": MomentumBounceSimulator
 	};
-	
+
 	exports.Simulation = (function(superClass) {
 	  extend(Simulation, superClass);
-	
+
 	  function Simulation(options) {
 	    var SimulatorClass;
 	    if (options == null) {
@@ -20352,11 +20352,11 @@
 	    SimulatorClass = SimulatorClasses[this.options.model] || SpringSimulator;
 	    this._simulator = new SimulatorClass(this.options.modelOptions);
 	  }
-	
+
 	  Simulation.prototype.animatingProperties = function() {
 	    return _.keys(this.options.properties);
 	  };
-	
+
 	  Simulation.prototype.start = function() {
 	    var animatingProperties, animation, property, ref;
 	    if (this.options.layer === null) {
@@ -20380,7 +20380,7 @@
 	    }
 	    return true;
 	  };
-	
+
 	  Simulation.prototype.stop = function(emit) {
 	    if (emit == null) {
 	      emit = true;
@@ -20395,12 +20395,12 @@
 	    }
 	    return Framer.Loop.off("update", this._update);
 	  };
-	
+
 	  Simulation.prototype.emit = function(event) {
 	    Simulation.__super__.emit.apply(this, arguments);
 	    return this.options.layer.emit(event, this);
 	  };
-	
+
 	  Simulation.prototype._start = function() {
 	    if (this._running) {
 	      return;
@@ -20410,7 +20410,7 @@
 	    this.emit(Events.SimulationStart);
 	    return Framer.Loop.on("update", this._update);
 	  };
-	
+
 	  Simulation.prototype._update = function(delta) {
 	    var emit, result;
 	    if (this._simulator.finished()) {
@@ -20422,19 +20422,19 @@
 	      return this.emit(Events.SimulationStep, result, delta);
 	    }
 	  };
-	
+
 	  Simulation.define("simulator", {
 	    get: function() {
 	      return this._simulator;
 	    }
 	  });
-	
+
 	  Simulation.prototype.finished = function() {
 	    return this._simulator.finished();
 	  };
-	
+
 	  return Simulation;
-	
+
 	})(BaseClass);
 
 
@@ -20446,23 +20446,23 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	Simulator = __webpack_require__(30).Simulator;
-	
+
 	Integrator = __webpack_require__(23).Integrator;
-	
+
 	exports.SpringSimulator = (function(superClass) {
 	  extend(SpringSimulator, superClass);
-	
+
 	  function SpringSimulator() {
 	    this.finished = bind(this.finished, this);
 	    return SpringSimulator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  SpringSimulator.prototype.setup = function(options) {
 	    this.options = Defaults.getDefaults("SpringSimulator", options);
 	    this.options = _.defaults(options, {
@@ -20480,26 +20480,26 @@
 	      };
 	    })(this));
 	  };
-	
+
 	  SpringSimulator.prototype.next = function(delta) {
 	    this._state = this._integrator.integrateState(this._state, delta);
 	    return this.getState();
 	  };
-	
+
 	  SpringSimulator.prototype.finished = function() {
 	    var positionNearZero, velocityNearZero;
 	    positionNearZero = Math.abs(this._state.x) < this.options.tolerance;
 	    velocityNearZero = Math.abs(this._state.v) < this.options.tolerance;
 	    return positionNearZero && velocityNearZero;
 	  };
-	
+
 	  SpringSimulator.prototype.setState = function(state) {
 	    return this._state = {
 	      x: state.x - this.options.offset,
 	      v: state.v
 	    };
 	  };
-	
+
 	  SpringSimulator.prototype.getState = function() {
 	    var state;
 	    return state = {
@@ -20507,9 +20507,9 @@
 	      v: this._state.v
 	    };
 	  };
-	
+
 	  return SpringSimulator;
-	
+
 	})(Simulator);
 
 
@@ -20520,19 +20520,19 @@
 	var BaseClass, Config, Utils, _,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	exports.Simulator = (function(superClass) {
 	  "The simulator class runs a physics simulation based on a set of input values\nat setup({input values}), and emits an output state {x, v}";
 	  extend(Simulator, superClass);
-	
+
 	  Simulator.define("state", {
 	    get: function() {
 	      return _.clone(this._state);
@@ -20541,7 +20541,7 @@
 	      return this._state = _.clone(state);
 	    }
 	  });
-	
+
 	  function Simulator(options) {
 	    if (options == null) {
 	      options = {};
@@ -20553,21 +20553,21 @@
 	    this.options = null;
 	    this.setup(options);
 	  }
-	
+
 	  Simulator.prototype.setup = function(options) {
 	    throw Error("Not implemented");
 	  };
-	
+
 	  Simulator.prototype.next = function(delta) {
 	    throw Error("Not implemented");
 	  };
-	
+
 	  Simulator.prototype.finished = function() {
 	    throw Error("Not implemented");
 	  };
-	
+
 	  return Simulator;
-	
+
 	})(BaseClass);
 
 
@@ -20579,23 +20579,23 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	Simulator = __webpack_require__(30).Simulator;
-	
+
 	Integrator = __webpack_require__(23).Integrator;
-	
+
 	exports.FrictionSimulator = (function(superClass) {
 	  extend(FrictionSimulator, superClass);
-	
+
 	  function FrictionSimulator() {
 	    this.finished = bind(this.finished, this);
 	    return FrictionSimulator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  FrictionSimulator.prototype.setup = function(options) {
 	    this.options = Defaults.getDefaults("FrictionSimulator", options);
 	    this.options = _.defaults(options, {
@@ -20612,18 +20612,18 @@
 	      };
 	    })(this));
 	  };
-	
+
 	  FrictionSimulator.prototype.next = function(delta) {
 	    this._state = this._integrator.integrateState(this._state, delta);
 	    return this._state;
 	  };
-	
+
 	  FrictionSimulator.prototype.finished = function() {
 	    return Math.abs(this._state.v) < this.options.tolerance;
 	  };
-	
+
 	  return FrictionSimulator;
-	
+
 	})(Simulator);
 
 
@@ -20635,25 +20635,25 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	Simulator = __webpack_require__(30).Simulator;
-	
+
 	SpringSimulator = __webpack_require__(29).SpringSimulator;
-	
+
 	FrictionSimulator = __webpack_require__(31).FrictionSimulator;
-	
+
 	exports.MomentumBounceSimulator = (function(superClass) {
 	  extend(MomentumBounceSimulator, superClass);
-	
+
 	  function MomentumBounceSimulator() {
 	    this.finished = bind(this.finished, this);
 	    return MomentumBounceSimulator.__super__.constructor.apply(this, arguments);
 	  }
-	
+
 	  MomentumBounceSimulator.prototype.setup = function(options) {
 	    this.options = Defaults.getDefaults("MomentumBounceSimulator", options);
 	    this.options = _.defaults(options, {
@@ -20681,7 +20681,7 @@
 	    };
 	    return this._useSpring = false;
 	  };
-	
+
 	  MomentumBounceSimulator.prototype.next = function(delta) {
 	    if (this._useSpring) {
 	      this._state = this._springSimulator.next(delta);
@@ -20691,14 +20691,14 @@
 	    }
 	    return this._state;
 	  };
-	
+
 	  MomentumBounceSimulator.prototype.finished = function() {
 	    if (this._useSpring) {
 	      return this._springSimulator.finished();
 	    }
 	    return this._frictionSimulator.finished();
 	  };
-	
+
 	  MomentumBounceSimulator.prototype.setState = function(state) {
 	    var bound;
 	    this._state = {
@@ -20718,7 +20718,7 @@
 	      return this._transitionToSpring(bound);
 	    }
 	  };
-	
+
 	  MomentumBounceSimulator.prototype._tryTransitionToSpring = function(force) {
 	    var aboveMaxWithVelocity, belowMinWithVelocity, bound;
 	    belowMinWithVelocity = this._state.x < this.options.min && this._state.v <= 0;
@@ -20735,13 +20735,13 @@
 	      return this._useSpring = false;
 	    }
 	  };
-	
+
 	  MomentumBounceSimulator.prototype._transitionToSpring = function(bound) {
 	    this._useSpring = true;
 	    this._springSimulator.options.offset = bound;
 	    return this._springSimulator.setState(this._state);
 	  };
-	
+
 	  MomentumBounceSimulator.prototype._isValidState = function() {
 	    var aboveMaxTravelingBack, belowMinTravelingBack, bound, check, friction, solution;
 	    belowMinTravelingBack = this._state.x < this.options.min && this._state.v > 0;
@@ -20761,9 +20761,9 @@
 	    }
 	    return true;
 	  };
-	
+
 	  return MomentumBounceSimulator;
-	
+
 	})(Simulator);
 
 
@@ -20774,22 +20774,22 @@
 	var BaseClass, Events, Utils, _,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	Events.EventBufferReset = "eventbufferreset";
-	
+
 	Events.EventBufferUpdated = "eventbufferupdated";
-	
+
 	exports.EventBuffer = (function(superClass) {
 	  extend(EventBuffer, superClass);
-	
+
 	  function EventBuffer(options) {
 	    if (options == null) {
 	      options = {};
@@ -20799,29 +20799,29 @@
 	    });
 	    this._events = [];
 	  }
-	
+
 	  EventBuffer.prototype.push = function(event) {
 	    this._events.push(event);
 	    return this.emit(Events.EventBufferUpdated, event);
 	  };
-	
+
 	  EventBuffer.prototype.reset = function() {
 	    this._events.length = 0;
 	    return this.emit(Events.EventBufferReset);
 	  };
-	
+
 	  EventBuffer.define("length", {
 	    get: function() {
 	      return this._events.length;
 	    }
 	  });
-	
+
 	  EventBuffer.define("first", {
 	    get: function() {
 	      return this._events[0];
 	    }
 	  });
-	
+
 	  EventBuffer.define("offset", {
 	    get: function() {
 	      var current, first, offset;
@@ -20839,7 +20839,7 @@
 	      };
 	    }
 	  });
-	
+
 	  EventBuffer.define("events", {
 	    get: function() {
 	      var timeout;
@@ -20851,7 +20851,7 @@
 	      })(this));
 	    }
 	  });
-	
+
 	  EventBuffer.define("angle", {
 	    get: function() {
 	      var events, p1, p2;
@@ -20864,7 +20864,7 @@
 	      return Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
 	    }
 	  });
-	
+
 	  EventBuffer.define("velocity", {
 	    get: function() {
 	      var current, events, first, time, velocity;
@@ -20891,9 +20891,9 @@
 	      return velocity;
 	    }
 	  });
-	
+
 	  return EventBuffer;
-	
+
 	})(BaseClass);
 
 
@@ -20905,62 +20905,62 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	Gestures = __webpack_require__(16).Gestures;
-	
+
 	Events.PinchStart = "pinchstart";
-	
+
 	Events.Pinch = "pinch";
-	
+
 	Events.PinchEnd = "pinchend";
-	
+
 	Events.RotateStart = "rotatestart";
-	
+
 	Events.Rotate = "rotate";
-	
+
 	Events.RotateEnd = "rotateend";
-	
+
 	Events.ScaleStart = "scalestart";
-	
+
 	Events.Scale = "scale";
-	
+
 	Events.ScaleEnd = "scaleend";
-	
+
 	exports.LayerPinchable = (function(superClass) {
 	  extend(LayerPinchable, superClass);
-	
+
 	  LayerPinchable.define("enabled", LayerPinchable.simpleProperty("enabled", true));
-	
+
 	  LayerPinchable.define("threshold", LayerPinchable.simpleProperty("threshold", 0));
-	
+
 	  LayerPinchable.define("centerOrigin", LayerPinchable.simpleProperty("centerOrigin", true));
-	
+
 	  LayerPinchable.define("scale", LayerPinchable.simpleProperty("scale", true));
-	
+
 	  LayerPinchable.define("scaleIncrements", LayerPinchable.simpleProperty("scaleIncrements", 0));
-	
+
 	  LayerPinchable.define("minScale", LayerPinchable.simpleProperty("minScale", 0));
-	
+
 	  LayerPinchable.define("maxScale", LayerPinchable.simpleProperty("maxScale", Number.MAX_VALUE));
-	
+
 	  LayerPinchable.define("scaleFactor", LayerPinchable.simpleProperty("scaleFactor", 1));
-	
+
 	  LayerPinchable.define("rotate", LayerPinchable.simpleProperty("rotate", true));
-	
+
 	  LayerPinchable.define("rotateIncrements", LayerPinchable.simpleProperty("rotateIncrements", 0));
-	
+
 	  LayerPinchable.define("rotateMin", LayerPinchable.simpleProperty("rotateMin", 0));
-	
+
 	  LayerPinchable.define("rotateMax", LayerPinchable.simpleProperty("rotateMax", 0));
-	
+
 	  LayerPinchable.define("rotateFactor", LayerPinchable.simpleProperty("rotateFactor", 1));
-	
+
 	  function LayerPinchable(layer) {
 	    this.layer = layer;
 	    this._pinchEnd = bind(this._pinchEnd, this);
@@ -20970,22 +20970,22 @@
 	    LayerPinchable.__super__.constructor.apply(this, arguments);
 	    this._attach();
 	  }
-	
+
 	  LayerPinchable.prototype._attach = function() {
 	    this.layer.on(Gestures.PinchStart, this._pinchStart);
 	    this.layer.on(Gestures.Pinch, this._pinch);
 	    this.layer.on(Gestures.PinchEnd, this._pinchEnd);
 	    return this.layer.on(Gestures.TapStart, this._tapStart);
 	  };
-	
+
 	  LayerPinchable.prototype._reset = function() {
 	    this._scaleStart = null;
 	    this._rotationStart = null;
 	    return this._rotationOffset = null;
 	  };
-	
+
 	  LayerPinchable.prototype._tapStart = function(event) {};
-	
+
 	  LayerPinchable.prototype._centerOrigin = function(event) {
 	    var originDelta, pinchLocation, topInSuperAfter, topInSuperBefore;
 	    topInSuperBefore = Utils.convertPoint({}, this.layer, this.layer.superLayer);
@@ -21000,7 +21000,7 @@
 	    this.layer.x -= originDelta.x;
 	    return this.layer.y -= originDelta.y;
 	  };
-	
+
 	  LayerPinchable.prototype._pinchStart = function(event) {
 	    this._reset();
 	    if (this.centerOrigin) {
@@ -21008,7 +21008,7 @@
 	    }
 	    return this.normalizeRotation = Utils.rotationNormalizer();
 	  };
-	
+
 	  LayerPinchable.prototype._pinch = function(event) {
 	    var pointA, pointB, rotation, scale;
 	    if (event.fingers !== 2) {
@@ -21065,13 +21065,13 @@
 	      return this.layer.rotation = rotation;
 	    }
 	  };
-	
+
 	  LayerPinchable.prototype._pinchEnd = function(event) {
 	    return this._reset();
 	  };
-	
+
 	  return LayerPinchable;
-	
+
 	})(BaseClass);
 
 
@@ -21083,14 +21083,14 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Layer = __webpack_require__(13).Layer;
-	
+
 	"Todo: make it work in a parent layer";
-	
+
 	exports.BackgroundLayer = (function(superClass) {
 	  extend(BackgroundLayer, superClass);
-	
+
 	  function BackgroundLayer(options) {
 	    if (options == null) {
 	      options = {};
@@ -21104,7 +21104,7 @@
 	    this.layout();
 	    this._context.domEventManager.wrap(window).addEventListener("resize", this.layout);
 	  }
-	
+
 	  BackgroundLayer.prototype.layout = function() {
 	    if (this.parent) {
 	      return this.frame = this.parent.frame;
@@ -21112,9 +21112,9 @@
 	      return this.frame = this._context.frame;
 	    }
 	  };
-	
+
 	  return BackgroundLayer;
-	
+
 	})(Layer);
 
 
@@ -21125,12 +21125,12 @@
 	var Layer,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Layer = __webpack_require__(13).Layer;
-	
+
 	exports.VideoLayer = (function(superClass) {
 	  extend(VideoLayer, superClass);
-	
+
 	  function VideoLayer(options) {
 	    if (options == null) {
 	      options = {};
@@ -21145,7 +21145,7 @@
 	    this.video = options.video;
 	    this._element.appendChild(this.player);
 	  }
-	
+
 	  VideoLayer.define("video", {
 	    get: function() {
 	      return this.player.src;
@@ -21154,9 +21154,9 @@
 	      return this.player.src = video;
 	    }
 	  });
-	
+
 	  return VideoLayer;
-	
+
 	})(Layer);
 
 
@@ -21167,14 +21167,14 @@
 	var AnimationGroup, EventEmitter, _,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	EventEmitter = __webpack_require__(7).EventEmitter;
-	
+
 	AnimationGroup = (function(superClass) {
 	  extend(AnimationGroup, superClass);
-	
+
 	  function AnimationGroup(animations) {
 	    if (animations == null) {
 	      animations = [];
@@ -21182,13 +21182,13 @@
 	    this.setAnimations(animations);
 	    this._currentAnimation = null;
 	  }
-	
+
 	  AnimationGroup.prototype.setAnimations = function(animations) {
 	    return this._animations = _.map(animations, function(animation) {
 	      return animation.copy();
 	    });
 	  };
-	
+
 	  AnimationGroup.prototype.start = function() {
 	    this.emit("start");
 	    _.map(this._animations, (function(_this) {
@@ -21210,14 +21210,14 @@
 	    })(this));
 	    return this._animations[0].start();
 	  };
-	
+
 	  AnimationGroup.prototype.stop = function() {
 	    var ref;
 	    return (ref = this._currentAnimation) != null ? ref.stop() : void 0;
 	  };
-	
+
 	  return AnimationGroup;
-	
+
 	})(EventEmitter);
 
 
@@ -21226,7 +21226,7 @@
 /***/ function(module, exports) {
 
 	var bottom, center, left, right, top, wrapper;
-	
+
 	center = function(layer, property, offset) {
 	  var borderWidth, parent, x, y;
 	  if (offset == null) {
@@ -21256,7 +21256,7 @@
 	  }
 	  return 0;
 	};
-	
+
 	left = function(layer, property, offset) {
 	  var parent;
 	  if (offset == null) {
@@ -21271,7 +21271,7 @@
 	  }
 	  return 0 + offset;
 	};
-	
+
 	right = function(layer, property, offset) {
 	  var borderWidth, parent;
 	  if (offset == null) {
@@ -21290,7 +21290,7 @@
 	  }
 	  return parent.width - (2 * borderWidth) - layer.width + offset;
 	};
-	
+
 	top = function(layer, property, offset) {
 	  var parent;
 	  if (offset == null) {
@@ -21305,7 +21305,7 @@
 	  }
 	  return 0 + offset;
 	};
-	
+
 	bottom = function(layer, property, offset) {
 	  var borderWidth, parent;
 	  if (offset == null) {
@@ -21324,7 +21324,7 @@
 	  }
 	  return parent.height - (2 * borderWidth) - layer.height + offset;
 	};
-	
+
 	wrapper = function(f) {
 	  return function(a, b) {
 	    if ((a == null) || _.isNumber(a)) {
@@ -21335,7 +21335,7 @@
 	    return f(a, b, 0);
 	  };
 	};
-	
+
 	exports.Align = {
 	  center: wrapper(center),
 	  left: wrapper(left),
@@ -21351,17 +21351,17 @@
 
 	var Context, Utils, printContext, printLayer,
 	  slice = [].slice;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Context = __webpack_require__(40).Context;
-	
+
 	"\nTodo:\n- Better looks\n- Resizable\n- Live in own space on top of all Framer stuff\n";
-	
+
 	printContext = null;
-	
+
 	printLayer = null;
-	
+
 	exports.print = function() {
 	  var args;
 	  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
@@ -21419,57 +21419,57 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	DOMEventManager = __webpack_require__(41).DOMEventManager;
-	
-	
+
+
 	/*
-	
+
 	An easy way to think of the context is a bucket of things related to a set of layers. There
 	is always at least one context on the screen, but often many more. For example, the device has
 	a special context and replaces the default one (so it renders in the screen), and the print
 	function uses on to draw the console.
-	
+
 	The default context lives under Framer.DefaultContext and the current one in
 	Framer.CurrentContext. You can create layers in any context by using the run function.
-	
+
 	A context keeps track of everyting around those layers, so it can clean it up again. We use
 	this a lot in Framer Studio's autocomplete function. Async things like running animations and
 	timers get stopped too.
-	
+
 	Contexts can live inside another context (with a layer as a parent) so you can only reload
 	a part of a prototype. This is mainly how device works.
-	
+
 	Another feature is to temporarily freeze/resume a context. If you freeze it, all user event
 	will temporarily get blocked so in theory nothing will change in the context. You can restore
 	these at any time.
 	 */
-	
+
 	exports.Context = (function(superClass) {
 	  extend(Context, superClass);
-	
+
 	  Context.define("parent", {
 	    get: function() {
 	      return this._parent;
 	    }
 	  });
-	
+
 	  Context.define("element", {
 	    get: function() {
 	      return this._element;
 	    }
 	  });
-	
+
 	  function Context(options) {
 	    if (options == null) {
 	      options = {};
@@ -21486,7 +21486,7 @@
 	    this.perspectiveOriginY = options.perspectiveOriginY;
 	    this.reset();
 	  }
-	
+
 	  Context.prototype.reset = function() {
 	    this._createDOMEventManager();
 	    this._createRootElement();
@@ -21496,24 +21496,24 @@
 	    this.resetIntervals();
 	    return this.emit("reset", this);
 	  };
-	
+
 	  Context.prototype.destroy = function() {
 	    this.reset();
 	    return this._destroyRootElement();
 	  };
-	
+
 	  Context.define("layers", {
 	    get: function() {
 	      return _.clone(this._layers);
 	    }
 	  });
-	
+
 	  Context.define("layerCounter", {
 	    get: function() {
 	      return this._layerCounter;
 	    }
 	  });
-	
+
 	  Context.define("rootLayers", {
 	    get: function() {
 	      return _.filter(this._layers, function(layer) {
@@ -21521,7 +21521,7 @@
 	      });
 	    }
 	  });
-	
+
 	  Context.prototype.addLayer = function(layer) {
 	    if (indexOf.call(this._layers, layer) >= 0) {
 	      return;
@@ -21529,17 +21529,17 @@
 	    this._layerCounter++;
 	    return this._layers.push(layer);
 	  };
-	
+
 	  Context.prototype.removeLayer = function(layer) {
 	    return this._layers = _.without(this._layers, layer);
 	  };
-	
+
 	  Context.prototype.resetLayers = function() {
 	    this.resetGestures();
 	    this._layers = [];
 	    return this._layerCounter = 0;
 	  };
-	
+
 	  Context.prototype.layerForElement = function(element) {
 	    var i, layer, len, ref;
 	    ref = this._layers;
@@ -21551,7 +21551,7 @@
 	    }
 	    return null;
 	  };
-	
+
 	  Context.prototype.layerForId = function(layerId) {
 	    var i, layer, len, ref;
 	    ref = this._layers;
@@ -21563,29 +21563,29 @@
 	    }
 	    return null;
 	  };
-	
+
 	  Context.define("animations", {
 	    get: function() {
 	      return _.clone(this._animations);
 	    }
 	  });
-	
+
 	  Context.prototype.addAnimation = function(animation) {
 	    if (indexOf.call(this._animations, animation) >= 0) {
 	      return;
 	    }
 	    return this._animations.push(animation);
 	  };
-	
+
 	  Context.prototype.removeAnimation = function(animation) {
 	    return this._animations = _.without(this._animations, animation);
 	  };
-	
+
 	  Context.prototype.resetAnimations = function() {
 	    this.stopAnimations();
 	    return this._animations = [];
 	  };
-	
+
 	  Context.prototype.stopAnimations = function() {
 	    if (!this._animations) {
 	      return;
@@ -21594,55 +21594,55 @@
 	      return animation.stop(true);
 	    });
 	  };
-	
+
 	  Context.define("timers", {
 	    get: function() {
 	      return _.clone(this._timers);
 	    }
 	  });
-	
+
 	  Context.prototype.addTimer = function(timer) {
 	    if (indexOf.call(this._timers, timer) >= 0) {
 	      return;
 	    }
 	    return this._timers.push(timer);
 	  };
-	
+
 	  Context.prototype.removeTimer = function(timer) {
 	    return this._timers = _.without(this._timers, timer);
 	  };
-	
+
 	  Context.prototype.resetTimers = function() {
 	    if (this._timers) {
 	      this._timers.map(window.clearTimeout);
 	    }
 	    return this._timers = [];
 	  };
-	
+
 	  Context.define("intervals", {
 	    get: function() {
 	      return _.clone(this._intervals);
 	    }
 	  });
-	
+
 	  Context.prototype.addInterval = function(interval) {
 	    if (indexOf.call(this._intervals, interval) >= 0) {
 	      return;
 	    }
 	    return this._intervals.push(interval);
 	  };
-	
+
 	  Context.prototype.removeInterval = function(interval) {
 	    return this._intervals = _.without(this._intervals, interval);
 	  };
-	
+
 	  Context.prototype.resetIntervals = function() {
 	    if (this._intervals) {
 	      this._intervals.map(window.clearInterval);
 	    }
 	    return this._intervals = [];
 	  };
-	
+
 	  Context.prototype.resetGestures = function() {
 	    var i, layer, len, ref;
 	    if (!this._layers) {
@@ -21656,7 +21656,7 @@
 	      }
 	    }
 	  };
-	
+
 	  Context.prototype.run = function(fn) {
 	    var previousContext;
 	    previousContext = Framer.CurrentContext;
@@ -21664,7 +21664,7 @@
 	    fn();
 	    return Framer.CurrentContext = previousContext;
 	  };
-	
+
 	  Context.prototype.freeze = function() {
 	    var eventName, i, j, layer, layerId, layerListeners, len, len1, ref, ref1;
 	    if (this._frozenEvents != null) {
@@ -21688,7 +21688,7 @@
 	    this.resetTimers();
 	    return this.resetIntervals();
 	  };
-	
+
 	  Context.prototype.resume = function() {
 	    var eventName, events, i, layer, layerId, len, listener, listeners, ref;
 	    if (this._frozenEvents == null) {
@@ -21708,7 +21708,7 @@
 	    }
 	    return delete this._frozenEvents;
 	  };
-	
+
 	  Context.prototype._createDOMEventManager = function() {
 	    var ref;
 	    if ((ref = this.domEventManager) != null) {
@@ -21716,7 +21716,7 @@
 	    }
 	    return this.domEventManager = new DOMEventManager;
 	  };
-	
+
 	  Context.prototype._createRootElement = function() {
 	    this._destroyRootElement();
 	    this._element = document.createElement("div");
@@ -21736,7 +21736,7 @@
 	    })(this);
 	    return Utils.domComplete(this.__pendingElementAppend);
 	  };
-	
+
 	  Context.prototype._destroyRootElement = function() {
 	    var ref;
 	    if ((ref = this._element) != null ? ref.parentNode : void 0) {
@@ -21748,7 +21748,7 @@
 	    }
 	    return this._element = null;
 	  };
-	
+
 	  Context.define("width", {
 	    get: function() {
 	      if (this.parent != null) {
@@ -21757,7 +21757,7 @@
 	      return window.innerWidth;
 	    }
 	  });
-	
+
 	  Context.define("height", {
 	    get: function() {
 	      if (this.parent != null) {
@@ -21766,7 +21766,7 @@
 	      return window.innerHeight;
 	    }
 	  });
-	
+
 	  Context.define("frame", {
 	    get: function() {
 	      return {
@@ -21777,19 +21777,19 @@
 	      };
 	    }
 	  });
-	
+
 	  Context.define("size", {
 	    get: function() {
 	      return _.pick(this.frame, ["width", "height"]);
 	    }
 	  });
-	
+
 	  Context.define("point", {
 	    get: function() {
 	      return _.pick(this.frame, ["x", "y"]);
 	    }
 	  });
-	
+
 	  Context.define("canvasFrame", {
 	    get: function() {
 	      if (this.parent == null) {
@@ -21798,7 +21798,7 @@
 	      return this.parent.canvasFrame;
 	    }
 	  });
-	
+
 	  Context.define("backgroundColor", {
 	    get: function() {
 	      if (Color.isColor(this._backgroundColor)) {
@@ -21814,7 +21814,7 @@
 	      }
 	    }
 	  });
-	
+
 	  Context.define("perspective", {
 	    get: function() {
 	      return this._perspective;
@@ -21827,12 +21827,12 @@
 	      }
 	    }
 	  });
-	
+
 	  Context.prototype._updatePerspective = function() {
 	    var ref;
 	    return (ref = this._element) != null ? ref.style["webkitPerspectiveOrigin"] = (this.perspectiveOriginX * 100) + "% " + (this.perspectiveOriginY * 100) + "%" : void 0;
 	  };
-	
+
 	  Context.define("perspectiveOriginX", {
 	    get: function() {
 	      if (_.isNumber(this._perspectiveOriginX)) {
@@ -21847,7 +21847,7 @@
 	      }
 	    }
 	  });
-	
+
 	  Context.define("perspectiveOriginY", {
 	    get: function() {
 	      if (_.isNumber(this._perspectiveOriginY)) {
@@ -21862,7 +21862,7 @@
 	      }
 	    }
 	  });
-	
+
 	  Context.prototype.toInspect = function() {
 	    var round;
 	    round = function(value) {
@@ -21873,9 +21873,9 @@
 	    };
 	    return "<" + this.constructor.name + " id:" + this.id + " name:" + this._name + " " + (round(this.width)) + "x" + (round(this.height)) + ">";
 	  };
-	
+
 	  return Context;
-	
+
 	})(BaseClass);
 
 
@@ -21887,22 +21887,22 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	EventEmitter = __webpack_require__(7).EventEmitter;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	EventManagerIdCounter = 0;
-	
+
 	DOMEventManagerElement = (function(superClass) {
 	  extend(DOMEventManagerElement, superClass);
-	
+
 	  function DOMEventManagerElement(element1) {
 	    this.element = element1;
 	  }
-	
+
 	  DOMEventManagerElement.prototype.addListener = function(eventName, listener, capture) {
 	    if (capture == null) {
 	      capture = false;
@@ -21910,30 +21910,30 @@
 	    DOMEventManagerElement.__super__.addListener.call(this, eventName, listener);
 	    return this.element.addEventListener(eventName, listener, false);
 	  };
-	
+
 	  DOMEventManagerElement.prototype.removeListener = function(eventName, listener) {
 	    DOMEventManagerElement.__super__.removeListener.call(this, eventName, listener);
 	    return this.element.removeEventListener(eventName, listener, false);
 	  };
-	
+
 	  DOMEventManagerElement.prototype.addEventListener = DOMEventManagerElement.prototype.addListener;
-	
+
 	  DOMEventManagerElement.prototype.removeEventListener = DOMEventManagerElement.prototype.removeListener;
-	
+
 	  DOMEventManagerElement.prototype.on = DOMEventManagerElement.prototype.addListener;
-	
+
 	  DOMEventManagerElement.prototype.off = DOMEventManagerElement.prototype.removeListener;
-	
+
 	  return DOMEventManagerElement;
-	
+
 	})(EventEmitter);
-	
+
 	exports.DOMEventManager = (function() {
 	  function DOMEventManager(element) {
 	    this.wrap = bind(this.wrap, this);
 	    this._elements = {};
 	  }
-	
+
 	  DOMEventManager.prototype.wrap = function(element) {
 	    if (!element._eventManagerId) {
 	      element._eventManagerId = EventManagerIdCounter++;
@@ -21943,7 +21943,7 @@
 	    }
 	    return this._elements[element._eventManagerId];
 	  };
-	
+
 	  DOMEventManager.prototype.reset = function() {
 	    var element, elementEventManager, ref, results;
 	    ref = this._elements;
@@ -21954,7 +21954,7 @@
 	    }
 	    return results;
 	  };
-	
+
 	  return DOMEventManager;
 
 	})();
@@ -21970,79 +21970,79 @@
 	  hasProp = {}.hasOwnProperty,
 	  slice = [].slice,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Layer = __webpack_require__(13).Layer;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	"ScrollComponent\n\ncontent <Layer>\ncontentSize <{width:n, height:n}>\ncontentInset <{top:n, right:n, bottom:n, left:n}> TODO\ncontentOffset <{x:n, y:n}> TODO\nscrollFrame <{x:n, y:n, width:n, height:n}>\nscrollPoint <{x:n, y:n}>\nscrollHorizontal <bool>\nscrollVertical <bool>\nspeedX <number>\nspeedY <number>\ndelaysContentTouches <bool> TODO\nloadPreset(<\"ios\"|\"android\">) TODO\nscrollToPoint(<{x:n, y:n}>, animate=true, animationOptions={})\nscrollToLayer(contentLayer, originX=0, originY=0)\nscrollFrameForContentLayer(<x:n, y:n>) <{x:n, y:n, width:n, height:n}> TODO\nclosestContentLayer(<x:n, y:n>) <Layer> TODO\n\nScrollComponent Events\n\n(all of the draggable events)\nScrollStart -> DragStart\nScrollWillMove -> DragWillMove\nScrollDidMove -> DragDidMove\nscroll -> DragMove (html compat)\nScrollEnd -> DragEnd";
-	
+
 	Events.ScrollStart = "scrollstart";
-	
+
 	Events.Scroll = "scroll";
-	
+
 	Events.ScrollMove = Events.Scroll;
-	
+
 	Events.ScrollEnd = "scrollend";
-	
+
 	Events.ScrollAnimationDidStart = "scrollanimationdidstart";
-	
+
 	Events.ScrollAnimationDidEnd = "scrollanimationdidend";
-	
+
 	EventMappers = {};
-	
+
 	EventMappers[Events.Move] = Events.Move;
-	
+
 	EventMappers[Events.ScrollStart] = Events.DragStart;
-	
+
 	EventMappers[Events.ScrollMove] = Events.DragMove;
-	
+
 	EventMappers[Events.ScrollEnd] = Events.DragEnd;
-	
+
 	EventMappers[Events.ScrollAnimationDidStart] = Events.DragAnimationStart;
-	
+
 	EventMappers[Events.ScrollAnimationDidEnd] = Events.DragAnimationEnd;
-	
+
 	EventMappers[Events.DirectionLockStart] = Events.DirectionLockStart;
-	
+
 	exports.ScrollComponent = (function(superClass) {
 	  extend(ScrollComponent, superClass);
-	
+
 	  ScrollComponent.define("velocity", ScrollComponent.proxyProperty("content.draggable.velocity", {
 	    importable: false,
 	    exportable: false
 	  }));
-	
+
 	  ScrollComponent.define("scrollHorizontal", ScrollComponent.proxyProperty("content.draggable.horizontal"));
-	
+
 	  ScrollComponent.define("scrollVertical", ScrollComponent.proxyProperty("content.draggable.vertical"));
-	
+
 	  ScrollComponent.define("speedX", ScrollComponent.proxyProperty("content.draggable.speedX"));
-	
+
 	  ScrollComponent.define("speedY", ScrollComponent.proxyProperty("content.draggable.speedY"));
-	
+
 	  ScrollComponent.define("isDragging", ScrollComponent.proxyProperty("content.draggable.isDragging", {
 	    importable: false,
 	    exportable: false
 	  }));
-	
+
 	  ScrollComponent.define("isMoving", ScrollComponent.proxyProperty("content.draggable.isMoving", {
 	    importable: false,
 	    exportable: false
 	  }));
-	
+
 	  ScrollComponent.define("propagateEvents", ScrollComponent.proxyProperty("content.draggable.propagateEvents"));
-	
+
 	  ScrollComponent.define("directionLock", ScrollComponent.proxyProperty("content.draggable.directionLock"));
-	
+
 	  ScrollComponent.define("directionLockThreshold", ScrollComponent.proxyProperty("content.draggable.directionLockThreshold"));
-	
+
 	  ScrollComponent.define("content", {
 	    importable: false,
 	    exportable: false,
@@ -22050,9 +22050,9 @@
 	      return this._content;
 	    }
 	  });
-	
+
 	  ScrollComponent.define("mouseWheelSpeedMultiplier", ScrollComponent.simpleProperty("mouseWheelSpeedMultiplier", 1));
-	
+
 	  function ScrollComponent(options) {
 	    if (options == null) {
 	      options = {};
@@ -22068,7 +22068,7 @@
 	      wrapComponent(this, options.wrap);
 	    }
 	  }
-	
+
 	  ScrollComponent.prototype.calculateContentFrame = function() {
 	    var contentFrame, size;
 	    if (!this.content) {
@@ -22082,7 +22082,7 @@
 	      height: Math.max(this.height, contentFrame.y + contentFrame.height)
 	    };
 	  };
-	
+
 	  ScrollComponent.prototype.setContentLayer = function(layer) {
 	    if (this.content) {
 	      this._content.destroy();
@@ -22103,7 +22103,7 @@
 	    };
 	    return this._content;
 	  };
-	
+
 	  ScrollComponent.prototype.updateContent = function() {
 	    var constraintsFrame, contentFrame, ref;
 	    if (!this.content) {
@@ -22127,7 +22127,7 @@
 	      }
 	    }
 	  };
-	
+
 	  ScrollComponent.define("scroll", {
 	    exportable: false,
 	    get: function() {
@@ -22143,7 +22143,7 @@
 	      return this.scrollHorizontal = this.scrollVertical = value;
 	    }
 	  });
-	
+
 	  ScrollComponent.prototype._calculateContentPoint = function(scrollPoint) {
 	    var point;
 	    scrollPoint = _.defaults(scrollPoint, {
@@ -22155,7 +22155,7 @@
 	    point = this._pointInConstraints(scrollPoint);
 	    return Utils.pointInvert(point);
 	  };
-	
+
 	  ScrollComponent.define("scrollX", {
 	    get: function() {
 	      if (!this.content) {
@@ -22174,7 +22174,7 @@
 	      }).x;
 	    }
 	  });
-	
+
 	  ScrollComponent.define("scrollY", {
 	    get: function() {
 	      if (!this.content) {
@@ -22193,7 +22193,7 @@
 	      }).y;
 	    }
 	  });
-	
+
 	  ScrollComponent.define("scrollPoint", {
 	    importable: true,
 	    exportable: false,
@@ -22212,7 +22212,7 @@
 	      return this.scrollY = point.y;
 	    }
 	  });
-	
+
 	  ScrollComponent.define("scrollFrame", {
 	    importable: true,
 	    exportable: false,
@@ -22227,7 +22227,7 @@
 	      return this.scrollPoint = value;
 	    }
 	  });
-	
+
 	  ScrollComponent.define("contentInset", {
 	    get: function() {
 	      return _.clone(this._contentInset);
@@ -22245,7 +22245,7 @@
 	      return this.updateContent();
 	    }
 	  });
-	
+
 	  ScrollComponent.define("direction", {
 	    importable: false,
 	    exportable: false,
@@ -22267,7 +22267,7 @@
 	      return direction;
 	    }
 	  });
-	
+
 	  ScrollComponent.define("angle", {
 	    importable: false,
 	    exportable: false,
@@ -22278,7 +22278,7 @@
 	      return -this.content.draggable.angle;
 	    }
 	  });
-	
+
 	  ScrollComponent.prototype.scrollToPoint = function(point, animate, animationOptions) {
 	    var contentPoint;
 	    if (animate == null) {
@@ -22306,7 +22306,7 @@
 	      return this.content.point = contentPoint;
 	    }
 	  };
-	
+
 	  ScrollComponent.prototype.scrollToTop = function(animate, animationOptions) {
 	    if (animate == null) {
 	      animate = true;
@@ -22321,7 +22321,7 @@
 	      y: 0
 	    }, animate, animationOptions);
 	  };
-	
+
 	  ScrollComponent.prototype.scrollToLayer = function(contentLayer, originX, originY, animate, animationOptions) {
 	    var scrollPoint;
 	    if (originX == null) {
@@ -22354,7 +22354,7 @@
 	    this.scrollToPoint(scrollPoint, animate, animationOptions);
 	    return contentLayer;
 	  };
-	
+
 	  ScrollComponent.prototype.scrollToClosestLayer = function(originX, originY, animate, animationOptions) {
 	    var closestLayer;
 	    if (originX == null) {
@@ -22385,7 +22385,7 @@
 	      return null;
 	    }
 	  };
-	
+
 	  ScrollComponent.prototype.closestContentLayer = function(originX, originY) {
 	    var scrollPoint;
 	    if (originX == null) {
@@ -22397,7 +22397,7 @@
 	    scrollPoint = Utils.framePointForOrigin(this.scrollFrame, originX, originY);
 	    return this.closestContentLayerForScrollPoint(scrollPoint, originX, originY);
 	  };
-	
+
 	  ScrollComponent.prototype.closestContentLayerForScrollPoint = function(scrollPoint, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -22407,7 +22407,7 @@
 	    }
 	    return _.first(this._contentLayersSortedByDistanceForScrollPoint(scrollPoint, originX, originY));
 	  };
-	
+
 	  ScrollComponent.prototype._scrollPointForLayer = function(layer, originX, originY, clamp) {
 	    if (originX == null) {
 	      originX = 0;
@@ -22420,7 +22420,7 @@
 	    }
 	    return Utils.framePointForOrigin(layer, originX, originY);
 	  };
-	
+
 	  ScrollComponent.prototype._contentLayersSortedByDistanceForScrollPoint = function(scrollPoint, originX, originY) {
 	    if (originX == null) {
 	      originX = 0;
@@ -22430,7 +22430,7 @@
 	    }
 	    return Utils.frameSortByAbsoluteDistance(scrollPoint, this.content.children, originX, originY);
 	  };
-	
+
 	  ScrollComponent.prototype._pointInConstraints = function(point) {
 	    var maxX, maxY, minX, minY, ref;
 	    ref = this.content.draggable._calculateConstraints(this.content.draggable.constraints), minX = ref.minX, maxX = ref.maxX, minY = ref.minY, maxY = ref.maxY;
@@ -22440,7 +22440,7 @@
 	    };
 	    return point;
 	  };
-	
+
 	  ScrollComponent.prototype.addListener = function() {
 	    var eventName, eventNames, i, j, len, listener, results;
 	    eventNames = 2 <= arguments.length ? slice.call(arguments, 0, i = arguments.length - 1) : (i = 0, []), listener = arguments[i++];
@@ -22456,7 +22456,7 @@
 	    }
 	    return results;
 	  };
-	
+
 	  ScrollComponent.prototype.removeListener = function() {
 	    var eventName, eventNames, i, j, len, listener, results;
 	    eventNames = 2 <= arguments.length ? slice.call(arguments, 0, i = arguments.length - 1) : (i = 0, []), listener = arguments[i++];
@@ -22472,11 +22472,11 @@
 	    }
 	    return results;
 	  };
-	
+
 	  ScrollComponent.prototype.on = ScrollComponent.prototype.addListener;
-	
+
 	  ScrollComponent.prototype.off = ScrollComponent.prototype.removeListener;
-	
+
 	  ScrollComponent.define("mouseWheelEnabled", {
 	    get: function() {
 	      return this._mouseWheelEnabled;
@@ -22486,7 +22486,7 @@
 	      return this._enableMouseWheelHandling(value);
 	    }
 	  });
-	
+
 	  ScrollComponent.prototype._enableMouseWheelHandling = function(enable) {
 	    if (enable) {
 	      return this.on(Events.MouseWheel, this._onMouseWheel);
@@ -22494,7 +22494,7 @@
 	      return this.off(Events.MouseWheel, this._onMouseWheel);
 	    }
 	  };
-	
+
 	  ScrollComponent.prototype._onMouseWheel = function(event) {
 	    var maxX, maxY, minX, minY, point, ref;
 	    if (!this._mouseWheelScrolling) {
@@ -22511,12 +22511,12 @@
 	    this.emit(Events.Scroll, event);
 	    return this._onMouseWheelEnd(event);
 	  };
-	
+
 	  ScrollComponent.prototype._onMouseWheelEnd = Utils.debounce(0.3, function(event) {
 	    this.emit(Events.ScrollEnd, event);
 	    return this._mouseWheelScrolling = false;
 	  });
-	
+
 	  ScrollComponent.prototype.copy = function() {
 	    var contentLayer, copy;
 	    copy = ScrollComponent.__super__.copy.apply(this, arguments);
@@ -22525,15 +22525,15 @@
 	    copy.props = this.props;
 	    return copy;
 	  };
-	
+
 	  ScrollComponent.wrap = function(layer, options) {
 	    return wrapComponent(new this(options), layer, options);
 	  };
-	
+
 	  return ScrollComponent;
-	
+
 	})(Layer);
-	
+
 	wrapComponent = function(instance, layer, options) {
 	  var i, l, len, ref, ref1, screenFrame, scroll, wrapper;
 	  if (options == null) {
@@ -22602,26 +22602,26 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	ScrollComponent = __webpack_require__(42).ScrollComponent;
-	
+
 	"PageComponent\n\noriginX <number>\noriginY <number>\n\nvelocityThreshold <number>\nanimationOptions <animationOptions={}>\ncurrentPage <Layer>\nclosestPage(<originX:n, originY:n>) <Layer>\n\nnextPage(direction=\"\", currentPage)\nsnapToNextPage(direction=\"\", animate, animationOptions={})\n";
-	
+
 	exports.PageComponent = (function(superClass) {
 	  extend(PageComponent, superClass);
-	
+
 	  PageComponent.define("originX", PageComponent.simpleProperty("originX", .5));
-	
+
 	  PageComponent.define("originY", PageComponent.simpleProperty("originY", .5));
-	
+
 	  PageComponent.define("velocityThreshold", PageComponent.simpleProperty("velocityThreshold", 0.1));
-	
+
 	  PageComponent.define("animationOptions", PageComponent.simpleProperty("animationOptions", {
 	    curve: "spring(500,50,0)"
 	  }));
-	
+
 	  function PageComponent() {
 	    this._resetHistory = bind(this._resetHistory, this);
 	    this._scrollEnd = bind(this._scrollEnd, this);
@@ -22639,25 +22639,25 @@
 	    this.content.on("change:children", this._resetHistory);
 	    this._resetHistory();
 	  }
-	
+
 	  PageComponent.define("closestPage", {
 	    get: function() {
 	      return this.closestContentLayerForScrollPoint(this._originScrollPoint(), this.originX, this.originY);
 	    }
 	  });
-	
+
 	  PageComponent.define("currentPage", {
 	    get: function() {
 	      return _.last(this._previousPages);
 	    }
 	  });
-	
+
 	  PageComponent.define("previousPage", {
 	    get: function() {
 	      return this._previousPages[this._previousPages.length - 2];
 	    }
 	  });
-	
+
 	  PageComponent.prototype.nextPage = function(direction, currentPage, withoutCurrentPage) {
 	    var layers, point;
 	    if (direction == null) {
@@ -22703,7 +22703,7 @@
 	    layers = Utils.frameSortByAbsoluteDistance(point, layers, this.originX, this.originY);
 	    return _.first(layers);
 	  };
-	
+
 	  PageComponent.prototype.snapToPage = function(page, animate, animationOptions) {
 	    if (animate == null) {
 	      animate = true;
@@ -22718,7 +22718,7 @@
 	      return this.emit("change:currentPage", this.currentPage);
 	    }
 	  };
-	
+
 	  PageComponent.prototype.snapToNextPage = function(direction, animate, animationOptions) {
 	    var nextPage;
 	    if (direction == null) {
@@ -22739,7 +22739,7 @@
 	    }
 	    return this.snapToPage(nextPage, animate, animationOptions);
 	  };
-	
+
 	  PageComponent.prototype.snapToPreviousPage = function() {
 	    if (!this.previousPage) {
 	      return;
@@ -22747,7 +22747,7 @@
 	    this.snapToPage(this.previousPage);
 	    return this._previousPages = this._previousPages.slice(0, +(this._previousPages.length - 3) + 1 || 9e9);
 	  };
-	
+
 	  PageComponent.prototype.addPage = function(page, direction) {
 	    var directions, point, ref;
 	    if (direction == null) {
@@ -22774,7 +22774,7 @@
 	      return this.updateContent();
 	    }
 	  };
-	
+
 	  PageComponent.prototype.setContentLayer = function(contentLayer) {
 	    if (this.content) {
 	      this._onAnimationStop();
@@ -22785,23 +22785,23 @@
 	    this.content.on(Events.AnimationStart, this._onAnimationStart);
 	    return this.content.on(Events.AnimationStop, this._onAnimationStop);
 	  };
-	
+
 	  PageComponent.prototype.horizontalPageIndex = function(page) {
 	    return (_.sortBy(this.content.children, function(l) {
 	      return l.x;
 	    })).indexOf(page);
 	  };
-	
+
 	  PageComponent.prototype.verticalPageIndex = function(page) {
 	    return (_.sortBy(this.content.children, function(l) {
 	      return l.y;
 	    })).indexOf(page);
 	  };
-	
+
 	  PageComponent.prototype._scrollStart = function() {
 	    return this._currentPage = this.currentPage;
 	  };
-	
+
 	  PageComponent.prototype._scrollMove = function() {
 	    var currentPage;
 	    currentPage = this.currentPage;
@@ -22813,23 +22813,23 @@
 	      });
 	    }
 	  };
-	
+
 	  PageComponent.prototype._onAnimationStart = function() {
 	    this._isMoving = true;
 	    this._isAnimating = true;
 	    return this.content.on("change:frame", this._onAnimationStep);
 	  };
-	
+
 	  PageComponent.prototype._onAnimationStep = function() {
 	    return this.emit(Events.Move, this.content.point);
 	  };
-	
+
 	  PageComponent.prototype._onAnimationStop = function() {
 	    this._isMoving = false;
 	    this._isAnimating = false;
 	    return this.content.off("change:frame", this._onAnimationStep);
 	  };
-	
+
 	  PageComponent.prototype._scrollEnd = function() {
 	    var maximumVelocity, nextPage, velocity, xDisabled, xLock, yDisabled, yLock;
 	    if (this.content.isAnimating) {
@@ -22850,7 +22850,7 @@
 	    }
 	    return this.snapToPage(nextPage, true, this.animationOptions);
 	  };
-	
+
 	  PageComponent.prototype._originScrollPoint = function() {
 	    var scrollPoint;
 	    scrollPoint = this.scrollPoint;
@@ -22858,14 +22858,14 @@
 	    scrollPoint.y += this.height * this.originY;
 	    return scrollPoint;
 	  };
-	
+
 	  PageComponent.prototype._resetHistory = function() {
 	    this._currentPage = this.closestPage;
 	    return this._previousPages = [this._currentPage];
 	  };
-	
+
 	  return PageComponent;
-	
+
 	})(ScrollComponent);
 
 
@@ -22877,33 +22877,33 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Layer = __webpack_require__(13).Layer;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	"SliderComponent\n\nknob <layer>\nknobSize <width, height>\nfill <layer>\nmin <number>\nmax <number>\n\npointForValue(<n>)\nvalueForPoint(<n>)\n\nanimateToValue(value, animationOptions={})";
-	
+
 	Events.SliderValueChange = "sliderValueChange";
-	
+
 	Knob = (function(superClass) {
 	  extend(Knob, superClass);
-	
+
 	  function Knob(options) {
 	    Knob.__super__.constructor.call(this, options);
 	  }
-	
+
 	  Knob.define("constrained", Knob.simpleProperty("constrained", false));
-	
+
 	  return Knob;
-	
+
 	})(Layer);
-	
+
 	exports.SliderComponent = (function(superClass) {
 	  extend(SliderComponent, superClass);
-	
+
 	  function SliderComponent(options) {
 	    if (options == null) {
 	      options = {};
@@ -22973,7 +22973,7 @@
 	    this.sliderOverlay.on(Events.TapStart, this._touchStart);
 	    this.sliderOverlay.on(Events.TapEnd, this._touchEnd);
 	  }
-	
+
 	  SliderComponent.prototype._touchStart = function(event) {
 	    var offsetX, offsetY;
 	    event.preventDefault();
@@ -22987,11 +22987,11 @@
 	    this.knob.draggable._touchStart(event);
 	    return this._updateValue();
 	  };
-	
+
 	  SliderComponent.prototype._touchEnd = function(event) {
 	    return this._updateValue();
 	  };
-	
+
 	  SliderComponent.prototype._updateFill = function() {
 	    if (this.width > this.height) {
 	      return this.fill.width = this.knob.midX;
@@ -22999,7 +22999,7 @@
 	      return this.fill.height = this.knob.midY;
 	    }
 	  };
-	
+
 	  SliderComponent.prototype._updateKnob = function() {
 	    if (this.width > this.height) {
 	      this.knob.midX = this.fill.width;
@@ -23009,7 +23009,7 @@
 	      return this.knob.centerX();
 	    }
 	  };
-	
+
 	  SliderComponent.prototype._updateFrame = function() {
 	    this.knob.draggable.constraints = {
 	      x: -this.knob.width / 2,
@@ -23039,13 +23039,13 @@
 	    }
 	    return this.sliderOverlay.center();
 	  };
-	
+
 	  SliderComponent.prototype._setRadius = function() {
 	    var radius;
 	    radius = this.borderRadius;
 	    return this.fill.style.borderRadius = radius + "px 0 0 " + radius + "px";
 	  };
-	
+
 	  SliderComponent.define("knobSize", {
 	    get: function() {
 	      return this._knobSize;
@@ -23057,7 +23057,7 @@
 	      return this._updateFrame();
 	    }
 	  });
-	
+
 	  SliderComponent.define("hitArea", {
 	    get: function() {
 	      return this._hitArea;
@@ -23073,7 +23073,7 @@
 	      }
 	    }
 	  });
-	
+
 	  SliderComponent.define("min", {
 	    get: function() {
 	      return this._min || 0;
@@ -23082,7 +23082,7 @@
 	      return this._min = value;
 	    }
 	  });
-	
+
 	  SliderComponent.define("max", {
 	    get: function() {
 	      return this._max || 1;
@@ -23091,7 +23091,7 @@
 	      return this._max = value;
 	    }
 	  });
-	
+
 	  SliderComponent.define("value", {
 	    get: function() {
 	      if (this.width > this.height) {
@@ -23110,7 +23110,7 @@
 	      return this._updateValue();
 	    }
 	  });
-	
+
 	  SliderComponent.prototype._updateValue = function() {
 	    if (this._lastUpdatedValue === this.value) {
 	      return;
@@ -23119,7 +23119,7 @@
 	    this.emit("change:value", this.value);
 	    return this.emit(Events.SliderValueChange, this.value);
 	  };
-	
+
 	  SliderComponent.prototype.pointForValue = function(value) {
 	    if (this.width > this.height) {
 	      if (this.knob.constrained) {
@@ -23135,7 +23135,7 @@
 	      }
 	    }
 	  };
-	
+
 	  SliderComponent.prototype.valueForPoint = function(value) {
 	    if (this.width > this.height) {
 	      if (this.knob.constrained) {
@@ -23151,7 +23151,7 @@
 	      }
 	    }
 	  };
-	
+
 	  SliderComponent.prototype.animateToValue = function(value, animationOptions) {
 	    if (animationOptions == null) {
 	      animationOptions = {
@@ -23169,13 +23169,13 @@
 	    }
 	    return this.knob.animate(animationOptions);
 	  };
-	
+
 	  SliderComponent.prototype.onValueChange = function(cb) {
 	    return this.on(Events.SliderValueChange, cb);
 	  };
-	
+
 	  return SliderComponent;
-	
+
 	})(Layer);
 
 
@@ -23188,54 +23188,54 @@
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Layer = __webpack_require__(13).Layer;
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	Events = __webpack_require__(15).Events;
-	
-	
+
+
 	/*
-	
+
 	Device._setup()
 	Device._update()
 	Device._setupContext()
-	
+
 	Device.fullScreen bool
 	Device.deviceType str
 	Device.padding int
-	
+
 	Device.orientation(orientation:float)
 	Device.orientationName landscape|portrait|unknown
 	Device.rotateLeft()
 	Device.rotateRight()
-	
+
 	Device.setDeviceScale(zoom:float, animate:bool)
 	Device.setContentScale(zoom:float, animate:bool)
-	
+
 	Device.nextHand()
-	
+
 	 * Events
 	Events.DeviceTypeDidChange
 	Events.DeviceFullScreenDidChange
 	 */
-	
+
 	exports.DeviceComponent = (function(superClass) {
 	  extend(DeviceComponent, superClass);
-	
+
 	  DeviceComponent.define("context", {
 	    get: function() {
 	      return this._context;
 	    }
 	  });
-	
+
 	  function DeviceComponent(options) {
 	    var defaults;
 	    if (options == null) {
@@ -23254,7 +23254,7 @@
 	    _.extend(this, _.defaults(options, defaults));
 	    window.addEventListener("orientationchange", this._orientationChange, true);
 	  }
-	
+
 	  DeviceComponent.prototype._setup = function() {
 	    var i, layer, len, ref;
 	    if (this._setupDone) {
@@ -23310,7 +23310,7 @@
 	    });
 	    return this._context.perspective = 1200;
 	  };
-	
+
 	  DeviceComponent.prototype._update = function() {
 	    var backgroundOverlap, contentScaleFactor, height, i, layer, len, ref, ref1, width;
 	    contentScaleFactor = this.contentScale;
@@ -23347,7 +23347,7 @@
 	      }
 	    }
 	  };
-	
+
 	  DeviceComponent.prototype._shouldRenderFullScreen = function() {
 	    if (!this._device) {
 	      return true;
@@ -23369,11 +23369,11 @@
 	    }
 	    return false;
 	  };
-	
+
 	  DeviceComponent.prototype.setupContext = function() {
 	    return Framer.CurrentContext = this._context;
 	  };
-	
+
 	  DeviceComponent.define("fullScreen", {
 	    get: function() {
 	      return this._fullScreen;
@@ -23382,7 +23382,7 @@
 	      return this._setFullScreen(fullScreen);
 	    }
 	  });
-	
+
 	  DeviceComponent.prototype._setFullScreen = function(fullScreen) {
 	    if (this._deviceType === "fullscreen") {
 	      return;
@@ -23403,7 +23403,7 @@
 	    this._update();
 	    return this.emit("change:fullScreen");
 	  };
-	
+
 	  DeviceComponent.define("deviceType", {
 	    get: function() {
 	      return this._deviceType;
@@ -23447,7 +23447,7 @@
 	      }
 	    }
 	  });
-	
+
 	  DeviceComponent.prototype._updateDeviceImage = function() {
 	    if (/PhantomJS/.test(navigator.userAgent)) {
 	      return;
@@ -23466,14 +23466,14 @@
 	      return this.hands.height = this.phone.height;
 	    }
 	  };
-	
+
 	  DeviceComponent.prototype._deviceImageName = function() {
 	    if (this._device.hasOwnProperty("deviceImage")) {
 	      return this._device.deviceImage;
 	    }
 	    return this._deviceType + ".png";
 	  };
-	
+
 	  DeviceComponent.prototype._deviceImageUrl = function(name) {
 	    var ref, resourceUrl;
 	    if (!name) {
@@ -23498,7 +23498,7 @@
 	    }
 	    return resourceUrl + "/" + name;
 	  };
-	
+
 	  DeviceComponent.define("deviceScale", {
 	    get: function() {
 	      if (this._shouldRenderFullScreen()) {
@@ -23510,7 +23510,7 @@
 	      return this.setDeviceScale(deviceScale, false);
 	    }
 	  });
-	
+
 	  DeviceComponent.prototype.setDeviceScale = function(deviceScale, animate) {
 	    var phoneScale;
 	    if (animate == null) {
@@ -23546,7 +23546,7 @@
 	    }
 	    return this.emit("change:deviceScale");
 	  };
-	
+
 	  DeviceComponent.prototype._calculatePhoneScale = function() {
 	    var height, paddingOffset, phoneScale, ref, ref1, width;
 	    ref = this._getOrientationDimensions(this.phone.width, this.phone.height), width = ref[0], height = ref[1];
@@ -23561,7 +23561,7 @@
 	    }
 	    return phoneScale;
 	  };
-	
+
 	  DeviceComponent.define("contentScale", {
 	    get: function() {
 	      return this._contentScale || 1;
@@ -23570,7 +23570,7 @@
 	      return this.setContentScale(contentScale, false);
 	    }
 	  });
-	
+
 	  DeviceComponent.prototype.setContentScale = function(contentScale, animate) {
 	    if (animate == null) {
 	      animate = false;
@@ -23595,7 +23595,7 @@
 	    this._update();
 	    return this.emit("change:contentScale");
 	  };
-	
+
 	  DeviceComponent.define("orientation", {
 	    get: function() {
 	      if (Utils.isMobile()) {
@@ -23607,7 +23607,7 @@
 	      return this.setOrientation(orientation, false);
 	    }
 	  });
-	
+
 	  DeviceComponent.prototype.setOrientation = function(orientation, animate) {
 	    var animation, contentProperties, height, offset, phoneProperties, ref, ref1, width, x, y;
 	    if (animate == null) {
@@ -23678,21 +23678,21 @@
 	    }
 	    return this.emit("change:orientation", this._orientation);
 	  };
-	
+
 	  DeviceComponent.prototype._orientationChange = function() {
 	    this._orientation = window.orientation;
 	    this._update();
 	    return this.emit("change:orientation", window.orientation);
 	  };
-	
+
 	  DeviceComponent.prototype.isPortrait = function() {
 	    return Math.abs(this.orientation) === 0;
 	  };
-	
+
 	  DeviceComponent.prototype.isLandscape = function() {
 	    return !this.isPortrait();
 	  };
-	
+
 	  DeviceComponent.define("orientationName", {
 	    get: function() {
 	      if (this.isPortrait()) {
@@ -23706,7 +23706,7 @@
 	      return this.setOrientation(orientationName, false);
 	    }
 	  });
-	
+
 	  DeviceComponent.prototype.rotateLeft = function(animate) {
 	    if (animate == null) {
 	      animate = true;
@@ -23716,7 +23716,7 @@
 	    }
 	    return this.setOrientation(this.orientation + 90, animate);
 	  };
-	
+
 	  DeviceComponent.prototype.rotateRight = function(animate) {
 	    if (animate == null) {
 	      animate = true;
@@ -23726,7 +23726,7 @@
 	    }
 	    return this.setOrientation(this.orientation - 90, animate);
 	  };
-	
+
 	  DeviceComponent.prototype._getOrientationDimensions = function(width, height) {
 	    if (this.isLandscape()) {
 	      return [height, width];
@@ -23734,11 +23734,11 @@
 	      return [width, height];
 	    }
 	  };
-	
+
 	  DeviceComponent.prototype.handSwitchingSupported = function() {
 	    return this._device.hands !== void 0;
 	  };
-	
+
 	  DeviceComponent.prototype.nextHand = function() {
 	    var hand, hands, nextHand, nextHandIndex;
 	    if (this.hands.rotationZ !== 0) {
@@ -23759,7 +23759,7 @@
 	    }
 	    return false;
 	  };
-	
+
 	  DeviceComponent.prototype.setHand = function(hand) {
 	    var handData;
 	    this.selectedHand = hand;
@@ -23781,7 +23781,7 @@
 	      return hand;
 	    }
 	  };
-	
+
 	  DeviceComponent.prototype.handImageUrl = function(hand) {
 	    var resourceUrl;
 	    resourceUrl = "//resources.framerjs.com/static/DeviceResources";
@@ -23790,15 +23790,15 @@
 	    }
 	    return resourceUrl + "/" + hand + ".png";
 	  };
-	
+
 	  return DeviceComponent;
-	
+
 	})(BaseClass);
-	
+
 	newDeviceMinVersion = 53;
-	
+
 	oldDeviceMaxVersion = 52;
-	
+
 	iPadAir2BaseDevice = {
 	  deviceImageWidth: 1856,
 	  deviceImageHeight: 2608,
@@ -23808,7 +23808,7 @@
 	  deviceType: "tablet",
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	iPadMini4BaseDevice = {
 	  deviceImageWidth: 1936,
 	  deviceImageHeight: 2688,
@@ -23818,7 +23818,7 @@
 	  deviceType: "tablet",
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	iPadProBaseDevice = {
 	  deviceImageWidth: 2448,
 	  deviceImageHeight: 3432,
@@ -23828,7 +23828,7 @@
 	  deviceType: "tablet",
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	iPhone6BaseDevice = {
 	  deviceImageWidth: 874,
 	  deviceImageHeight: 1792,
@@ -23848,7 +23848,7 @@
 	    }
 	  }
 	};
-	
+
 	iPhone6PlusBaseDevice = {
 	  deviceImageWidth: 1452,
 	  deviceImageHeight: 2968,
@@ -23868,7 +23868,7 @@
 	    }
 	  }
 	};
-	
+
 	iPhone5BaseDevice = {
 	  deviceImageWidth: 768,
 	  deviceImageHeight: 1612,
@@ -23890,7 +23890,7 @@
 	    }
 	  }
 	};
-	
+
 	iPhone5CBaseDevice = {
 	  deviceImageWidth: 776,
 	  deviceImageHeight: 1620,
@@ -23912,7 +23912,7 @@
 	    }
 	  }
 	};
-	
+
 	Nexus4BaseDevice = {
 	  deviceImageWidth: 860,
 	  deviceImageHeight: 1668,
@@ -23934,7 +23934,7 @@
 	    }
 	  }
 	};
-	
+
 	Nexus5BaseDevice = {
 	  deviceImageWidth: 1204,
 	  deviceImageHeight: 2432,
@@ -23956,7 +23956,7 @@
 	    }
 	  }
 	};
-	
+
 	Nexus6BaseDevice = {
 	  deviceImageWidth: 1576,
 	  deviceImageHeight: 3220,
@@ -23978,7 +23978,7 @@
 	    }
 	  }
 	};
-	
+
 	Nexus9BaseDevice = {
 	  deviceImageWidth: 1896,
 	  deviceImageHeight: 2648,
@@ -23988,7 +23988,7 @@
 	  deviceType: "tablet",
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	HTCa9BaseDevice = {
 	  deviceImageWidth: 1252,
 	  deviceImageHeight: 2592,
@@ -24010,7 +24010,7 @@
 	    }
 	  }
 	};
-	
+
 	HTCm8BaseDevice = {
 	  deviceImageWidth: 1232,
 	  deviceImageHeight: 2572,
@@ -24032,7 +24032,7 @@
 	    }
 	  }
 	};
-	
+
 	MSFTLumia950BaseDevice = {
 	  deviceImageWidth: 1660,
 	  deviceImageHeight: 3292,
@@ -24054,7 +24054,7 @@
 	    }
 	  }
 	};
-	
+
 	SamsungGalaxyNote5BaseDevice = {
 	  deviceImageWidth: 1572,
 	  deviceImageHeight: 3140,
@@ -24076,7 +24076,7 @@
 	    }
 	  }
 	};
-	
+
 	AppleWatch42Device = {
 	  deviceImageWidth: 512,
 	  deviceImageHeight: 990,
@@ -24085,7 +24085,7 @@
 	  screenHeight: 390,
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	AppleWatch38Device = {
 	  deviceImageWidth: 472,
 	  deviceImageHeight: 772,
@@ -24094,7 +24094,7 @@
 	  screenHeight: 340,
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	AppleWatch38BlackLeatherDevice = {
 	  deviceImageWidth: 472,
 	  deviceImageHeight: 796,
@@ -24103,7 +24103,7 @@
 	  screenHeight: 340,
 	  minStudioVersion: newDeviceMinVersion
 	};
-	
+
 	old_iPhone6BaseDevice = {
 	  deviceImageWidth: 870,
 	  deviceImageHeight: 1738,
@@ -24113,7 +24113,7 @@
 	  deviceType: "phone",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_iPhone6BaseDeviceHand = _.extend({}, old_iPhone6BaseDevice, {
 	  deviceImageWidth: 1988,
 	  deviceImageHeight: 2368,
@@ -24121,7 +24121,7 @@
 	  paddingOffset: -150,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_iPhone6PlusBaseDevice = {
 	  deviceImageWidth: 1460,
 	  deviceImageHeight: 2900,
@@ -24131,7 +24131,7 @@
 	  deviceType: "phone",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_iPhone6PlusBaseDeviceHand = _.extend({}, old_iPhone6PlusBaseDevice, {
 	  deviceImageWidth: 3128,
 	  deviceImageHeight: 3487,
@@ -24139,7 +24139,7 @@
 	  paddingOffset: -150,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_iPhone5BaseDevice = {
 	  deviceImageWidth: 780,
 	  deviceImageHeight: 1608,
@@ -24149,7 +24149,7 @@
 	  deviceType: "phone",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_iPhone5BaseDeviceHand = _.extend({}, old_iPhone5BaseDevice, {
 	  deviceImageWidth: 1884,
 	  deviceImageHeight: 2234,
@@ -24157,7 +24157,7 @@
 	  paddingOffset: -200,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_iPhone5CBaseDevice = {
 	  deviceImageWidth: 776,
 	  deviceImageHeight: 1612,
@@ -24167,7 +24167,7 @@
 	  deviceType: "phone",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_iPhone5CBaseDeviceHand = _.extend({}, old_iPhone5CBaseDevice, {
 	  deviceImageWidth: 1894,
 	  deviceImageHeight: 2244,
@@ -24175,7 +24175,7 @@
 	  paddingOffset: -200,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_iPadMiniBaseDevice = {
 	  deviceImageWidth: 872,
 	  deviceImageHeight: 1292,
@@ -24185,7 +24185,7 @@
 	  deviceType: "tablet",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_iPadMiniBaseDeviceHand = _.extend({}, old_iPadMiniBaseDevice, {
 	  deviceImageWidth: 1380,
 	  deviceImageHeight: 2072,
@@ -24193,7 +24193,7 @@
 	  paddingOffset: -120,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_iPadAirBaseDevice = {
 	  deviceImageWidth: 1769,
 	  deviceImageHeight: 2509,
@@ -24203,7 +24203,7 @@
 	  deviceType: "tablet",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_iPadAirBaseDeviceHand = _.extend({}, old_iPadAirBaseDevice, {
 	  deviceImageWidth: 4744,
 	  deviceImageHeight: 4101,
@@ -24211,7 +24211,7 @@
 	  paddingOffset: -120,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_Nexus5BaseDevice = {
 	  deviceImageWidth: 1208,
 	  deviceImageHeight: 2440,
@@ -24221,7 +24221,7 @@
 	  deviceType: "phone",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_Nexus5BaseDeviceHand = _.extend({}, old_Nexus5BaseDevice, {
 	  deviceImageWidth: 2692,
 	  deviceImageHeight: 2996,
@@ -24229,7 +24229,7 @@
 	  paddingOffset: -120,
 	  maxStudioVersion: oldDeviceMaxVersion
 	});
-	
+
 	old_Nexus9BaseDevice = {
 	  deviceImageWidth: 1733,
 	  deviceImageHeight: 2575,
@@ -24239,7 +24239,7 @@
 	  deviceType: "tablet",
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_AppleWatch42Device = {
 	  deviceImageWidth: 552,
 	  deviceImageHeight: 938,
@@ -24248,7 +24248,7 @@
 	  screenHeight: 390,
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	old_AppleWatch38Device = {
 	  deviceImageWidth: 508,
 	  deviceImageHeight: 900,
@@ -24257,7 +24257,7 @@
 	  screenHeight: 340,
 	  maxStudioVersion: oldDeviceMaxVersion
 	};
-	
+
 	Devices = {
 	  "fullscreen": {
 	    name: "Fullscreen",
@@ -24429,9 +24429,9 @@
 	  "applewatchedition-42-gold-sportband-black": _.clone(old_AppleWatch42Device),
 	  "applewatchedition-42-gold-sportband-white": _.clone(old_AppleWatch42Device)
 	};
-	
+
 	exports.DeviceComponent.Devices = Devices;
-	
+
 	BuiltInDevices = _.keys(Devices);
 
 
@@ -24442,23 +24442,23 @@
 	var Defaults, Layer, Utils,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Defaults = __webpack_require__(17).Defaults;
-	
+
 	Layer = __webpack_require__(13).Layer;
-	
+
 	exports.GridComponent = (function(superClass) {
 	  extend(GridComponent, superClass);
-	
+
 	  function GridComponent(options) {
 	    if (options == null) {
 	      options = {};
 	    }
 	    GridComponent.__super__.constructor.call(this, Defaults.getDefaults("GridComponent", options));
 	  }
-	
+
 	  GridComponent.define("rows", {
 	    get: function() {
 	      return this._rows;
@@ -24468,7 +24468,7 @@
 	      return this._render();
 	    }
 	  });
-	
+
 	  GridComponent.define("columns", {
 	    get: function() {
 	      return this._columns;
@@ -24478,7 +24478,7 @@
 	      return this._render();
 	    }
 	  });
-	
+
 	  GridComponent.define("spacing", {
 	    get: function() {
 	      return this._spacing || {
@@ -24497,7 +24497,7 @@
 	      return this._render();
 	    }
 	  });
-	
+
 	  GridComponent.define("renderCell", {
 	    get: function() {
 	      return this._renderCell || this._defaultRenderCell;
@@ -24513,33 +24513,33 @@
 	      return this.render();
 	    }
 	  });
-	
+
 	  GridComponent.define("cellWidth", {
 	    get: function() {
 	      return (this.width - (this.spacing.horizontal * (this.columns - 1))) / this.columns;
 	    }
 	  });
-	
+
 	  GridComponent.define("cellHeight", {
 	    get: function() {
 	      return (this.height - (this.spacing.vertical * (this.rows - 1))) / this.rows;
 	    }
 	  });
-	
+
 	  GridComponent.define("cells", {
 	    get: function() {
 	      return _.values(this._cells);
 	    }
 	  });
-	
+
 	  GridComponent.prototype.cellX = function(row) {
 	    return row * (this.cellWidth + this.spacing.horizontal);
 	  };
-	
+
 	  GridComponent.prototype.cellY = function(column) {
 	    return column * (this.cellHeight + this.spacing.vertical);
 	  };
-	
+
 	  GridComponent.prototype.cellFrame = function(column, row) {
 	    var frame;
 	    return frame = {
@@ -24549,15 +24549,15 @@
 	      height: this.cellHeight
 	    };
 	  };
-	
+
 	  GridComponent.prototype.cell = function(column, row) {
 	    return this._cells[column + ":" + row];
 	  };
-	
+
 	  GridComponent.prototype.render = function() {
 	    return this._render();
 	  };
-	
+
 	  GridComponent.prototype._render = function() {
 	    var cell, column, frame, i, ref, results, row;
 	    this._reset();
@@ -24586,19 +24586,19 @@
 	    }
 	    return results;
 	  };
-	
+
 	  GridComponent.prototype._defaultRenderCell = function(cell, column, row) {
 	    cell.backgroundColor = Utils.randomColor();
 	    return Utils.labelLayer(cell, row + ":" + column);
 	  };
-	
+
 	  GridComponent.prototype._reset = function() {
 	    _.invoke(this.cells, "destroy");
 	    return this._cells = {};
 	  };
-	
+
 	  return GridComponent;
-	
+
 	})(Layer);
 
 
@@ -24610,22 +24610,22 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	Config = __webpack_require__(14).Config;
-	
+
 	EventEmitter = __webpack_require__(7).EventEmitter;
-	
+
 	getTime = function() {
 	  return Utils.getTime() * 1000;
 	};
-	
+
 	exports.AnimationLoop = (function(superClass) {
 	  extend(AnimationLoop, superClass);
-	
+
 	  function AnimationLoop() {
 	    this.start = bind(this.start, this);
 	    this.delta = 1 / 60;
@@ -24637,7 +24637,7 @@
 	    }
 	    this.maximumListeners = Infinity;
 	  }
-	
+
 	  AnimationLoop.prototype.start = function() {
 	    var _timestamp, animationLoop, tick, update;
 	    animationLoop = this;
@@ -24667,9 +24667,9 @@
 	    };
 	    return tick();
 	  };
-	
+
 	  return AnimationLoop;
-	
+
 	})(EventEmitter);
 
 
@@ -24678,13 +24678,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ChromeAlert, Utils, _, getScaleFromName, resizeFrame, sanitizeLayerName, startsWithNumber;
-	
+
 	_ = __webpack_require__(1)._;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	ChromeAlert = "Importing layers is currently only supported on Safari. If you really want it to work with Chrome quit it, open a terminal and run:\nopen -a Google\ Chrome -–allow-file-access-from-files";
-	
+
 	resizeFrame = function(scale, frame) {
 	  var i, key, len, ref, result;
 	  if (scale === 1) {
@@ -24700,7 +24700,7 @@
 	  }
 	  return result;
 	};
-	
+
 	getScaleFromName = function(str) {
 	  var m, re;
 	  re = /@([\d]+|[\d]+.[\d]+)x/;
@@ -24712,11 +24712,11 @@
 	  }
 	  return null;
 	};
-	
+
 	startsWithNumber = function(str) {
 	  return (new RegExp("^[0-9]")).test(str);
 	};
-	
+
 	sanitizeLayerName = function(name) {
 	  var i, len, ref, suffix;
 	  ref = ["*", "-", ".png", ".jpg", ".pdf"];
@@ -24728,7 +24728,7 @@
 	  }
 	  return name;
 	};
-	
+
 	exports.Importer = (function() {
 	  function Importer(path1, scale1, extraLayerProperties) {
 	    this.path = path1;
@@ -24742,7 +24742,7 @@
 	    this._createdLayers = [];
 	    this._createdLayersByName = {};
 	  }
-	
+
 	  Importer.prototype.load = function() {
 	    var i, j, layer, layerInfo, layersByName, len, len1, ref, ref1;
 	    layersByName = {};
@@ -24770,7 +24770,7 @@
 	    }
 	    return this._createdLayersByName;
 	  };
-	
+
 	  Importer.prototype._loadlayerInfo = function() {
 	    var importedKey, ref;
 	    importedKey = this.paths.documentName + "/layers.json.js";
@@ -24779,7 +24779,7 @@
 	    }
 	    return Framer.Utils.domLoadJSONSync(this.paths.layerInfo);
 	  };
-	
+
 	  Importer.prototype._createLayer = function(info, parent) {
 	    var LayerClass, layer, layerInfo, ref, ref1;
 	    if (info.layerFrame) {
@@ -24851,7 +24851,7 @@
 	    this._createdLayers.push(layer);
 	    return this._createdLayersByName[layer.name] = layer;
 	  };
-	
+
 	  Importer.prototype._correctArtboards = function(layers) {
 	    var i, j, layer, leftMostLayer, len, len1, pointOffset, results;
 	    leftMostLayer = null;
@@ -24881,7 +24881,7 @@
 	    }
 	    return results;
 	  };
-	
+
 	  Importer.prototype._correctLayer = function(layer) {
 	    var traverse;
 	    traverse = function(layer) {
@@ -24901,11 +24901,11 @@
 	      return traverse(layer);
 	    }
 	  };
-	
+
 	  return Importer;
-	
+
 	})();
-	
+
 	exports.Importer.load = function(path, scale) {
 	  var importer;
 	  if (scale == null) {
@@ -24924,9 +24924,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports.TouchEmulator = __webpack_require__(50);
-	
+
 	exports.MobileScrollFix = __webpack_require__(51);
-	
+
 	exports.OmitNew = __webpack_require__(52);
 
 
@@ -24938,11 +24938,11 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	createTouch = function(event, identifier, offset) {
 	  var touch;
 	  if (offset == null) {
@@ -24962,7 +24962,7 @@
 	    screenY: event.screenY - offset.y
 	  };
 	};
-	
+
 	dispatchTouchEvent = function(type, target, event, offset) {
 	  var touchEvent, touches;
 	  if (target == null) {
@@ -24978,15 +24978,15 @@
 	  touchEvent.touches = touchEvent.changedTouches = touchEvent.targetTouches = touches;
 	  return target.dispatchEvent(touchEvent);
 	};
-	
+
 	cancelEvent = function(event) {
 	  event.preventDefault();
 	  return event.stopPropagation();
 	};
-	
+
 	TouchEmulator = (function(superClass) {
 	  extend(TouchEmulator, superClass);
-	
+
 	  function TouchEmulator() {
 	    this.mousemovePosition = bind(this.mousemovePosition, this);
 	    this.mouseout = bind(this.mouseout, this);
@@ -25032,12 +25032,12 @@
 	      };
 	    })(this));
 	  }
-	
+
 	  TouchEmulator.prototype.destroy = function() {
 	    this.context.reset();
 	    return this.context = null;
 	  };
-	
+
 	  TouchEmulator.prototype.keydown = function(event) {
 	    if (event.keyCode === this.keyPinchCode) {
 	      this.isPinchKeyDown = true;
@@ -25051,7 +25051,7 @@
 	      return cancelEvent(event);
 	    }
 	  };
-	
+
 	  TouchEmulator.prototype.keyup = function(event) {
 	    if (event.keyCode === this.keyPinchCode) {
 	      cancelEvent(event);
@@ -25066,7 +25066,7 @@
 	      }
 	    }
 	  };
-	
+
 	  TouchEmulator.prototype.mousedown = function(event) {
 	    this.isMouseDown = true;
 	    this.target = event.target;
@@ -25077,7 +25077,7 @@
 	    }
 	    return this.touchPointLayer.style.backgroundImage = this.touchPointerImageActive;
 	  };
-	
+
 	  TouchEmulator.prototype.mousemove = function(event) {
 	    this.point = {
 	      x: event.pageX,
@@ -25115,7 +25115,7 @@
 	      }
 	    }
 	  };
-	
+
 	  TouchEmulator.prototype.mouseup = function(event) {
 	    if (this.isPinchKeyDown || this.isPanKeyDown) {
 	      dispatchTouchEvent("touchend", this.target, event, this.touchPointDelta);
@@ -25124,7 +25124,7 @@
 	    }
 	    return this.endMultiTouch();
 	  };
-	
+
 	  TouchEmulator.prototype.mouseout = function(event) {
 	    var fromElement;
 	    if (this.isMouseDown) {
@@ -25135,7 +25135,7 @@
 	      return this.endMultiTouch();
 	    }
 	  };
-	
+
 	  TouchEmulator.prototype.showTouchCursor = function() {
 	    if (!this.point) {
 	      this.point = {
@@ -25156,7 +25156,7 @@
 	      curve: "ease-out"
 	    });
 	  };
-	
+
 	  TouchEmulator.prototype.hideTouchCursor = function() {
 	    this.touchPointLayer.animateStop();
 	    return this.touchPointLayer.animate({
@@ -25167,41 +25167,41 @@
 	      time: 0.08
 	    });
 	  };
-	
+
 	  TouchEmulator.prototype.mousemovePosition = function(event) {
 	    return this.point = {
 	      x: event.pageX,
 	      y: event.pageY
 	    };
 	  };
-	
+
 	  TouchEmulator.prototype.endMultiTouch = function() {
 	    this.isMouseDown = false;
 	    this.touchPointLayer.style.backgroundImage = this.touchPointerImage;
 	    return this.hideTouchCursor();
 	  };
-	
+
 	  TouchEmulator.prototype.pinchPoint = function(point, centerPoint) {
 	    return Utils.pointSubtract(centerPoint, Utils.pointSubtract(point, centerPoint));
 	  };
-	
+
 	  TouchEmulator.prototype.panPoint = function(point, offsetPoint) {
 	    return Utils.pointSubtract(point, offsetPoint);
 	  };
-	
+
 	  return TouchEmulator;
-	
+
 	})(BaseClass);
-	
+
 	touchEmulator = null;
-	
+
 	exports.enable = function() {
 	  if (Utils.isTouch()) {
 	    return;
 	  }
 	  return touchEmulator != null ? touchEmulator : touchEmulator = new TouchEmulator();
 	};
-	
+
 	exports.disable = function() {
 	  if (!touchEmulator) {
 	    return;
@@ -25219,9 +25219,9 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	exports.enable = function() {
 	  var MobileScrollFixLayer, handleScrollingLayerTouchMove, handleScrollingLayerTouchStart;
 	  document.ontouchmove = function(event) {
@@ -25245,7 +25245,7 @@
 	  };
 	  MobileScrollFixLayer = (function(superClass) {
 	    extend(MobileScrollFixLayer, superClass);
-	
+
 	    function MobileScrollFixLayer(options) {
 	      this._updateScrollListeners = bind(this._updateScrollListeners, this);
 	      MobileScrollFixLayer.__super__.constructor.call(this, options);
@@ -25254,7 +25254,7 @@
 	        this._updateScrollListeners();
 	      }
 	    }
-	
+
 	    MobileScrollFixLayer.prototype._updateScrollListeners = function() {
 	      if (this.scrollVertical === true) {
 	        this.on("touchmove", handleScrollingLayerTouchMove);
@@ -25264,9 +25264,9 @@
 	        return this.off("touchstart", handleScrollingLayerTouchStart);
 	      }
 	    };
-	
+
 	    return MobileScrollFixLayer;
-	
+
 	  })(Framer.Layer);
 	  return window.Layer = window.Framer.Layer = MobileScrollFixLayer;
 	};
@@ -25277,7 +25277,7 @@
 /***/ function(module, exports) {
 
 	var slice = [].slice;
-	
+
 	exports.enable = function(module) {
 	  var ClassWrapper;
 	  if (module == null) {
@@ -25308,29 +25308,29 @@
 
 	var DOMEventManager, GestureInputDoubleTapTime, GestureInputEdgeSwipeDistance, GestureInputForceTapDesktop, GestureInputForceTapMobile, GestureInputForceTapMobilePollTime, GestureInputLongPressTime, GestureInputMinimumFingerDistance, GestureInputSwipeThreshold, GestureInputVelocityTime, Utils,
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-	
+
 	Utils = __webpack_require__(4);
-	
+
 	GestureInputLongPressTime = 0.5;
-	
+
 	GestureInputDoubleTapTime = 0.25;
-	
+
 	GestureInputSwipeThreshold = 30;
-	
+
 	GestureInputEdgeSwipeDistance = 30;
-	
+
 	GestureInputVelocityTime = 0.1;
-	
+
 	GestureInputForceTapDesktop = MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN;
-	
+
 	GestureInputForceTapMobile = 0.7;
-	
+
 	GestureInputForceTapMobilePollTime = 1 / 30;
-	
+
 	GestureInputMinimumFingerDistance = 30;
-	
+
 	DOMEventManager = __webpack_require__(41).DOMEventManager;
-	
+
 	exports.GestureInputRecognizer = (function() {
 	  function GestureInputRecognizer() {
 	    this._process = bind(this._process, this);
@@ -25379,16 +25379,16 @@
 	    this.em.wrap(window).addEventListener("mousedown", this.startMouse);
 	    this.em.wrap(window).addEventListener("touchstart", this.startTouch);
 	  }
-	
+
 	  GestureInputRecognizer.prototype.destroy = function() {
 	    return this.em.removeAllListeners();
 	  };
-	
+
 	  GestureInputRecognizer.prototype.cancel = function() {
 	    window.clearTimeout(this.session.pressTimer);
 	    return this.session = null;
 	  };
-	
+
 	  GestureInputRecognizer.prototype.startMouse = function(event) {
 	    if (this.session) {
 	      return;
@@ -25397,7 +25397,7 @@
 	    this.em.wrap(window).addEventListener("mouseup", this.touchend);
 	    return this.touchstart(event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.startTouch = function(event) {
 	    if (this.session) {
 	      return;
@@ -25406,7 +25406,7 @@
 	    this.em.wrap(window).addEventListener("touchend", this.touchend);
 	    return this.touchstart(event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.touchstart = function(event) {
 	    if (this.session) {
 	      return;
@@ -25434,11 +25434,11 @@
 	      return this._updateTouchForce();
 	    }
 	  };
-	
+
 	  GestureInputRecognizer.prototype.touchmove = function(event) {
 	    return this._process(this._getGestureEvent(event));
 	  };
-	
+
 	  GestureInputRecognizer.prototype.touchend = function(event) {
 	    var eventName, ref, ref1, value;
 	    if (event.touches != null) {
@@ -25473,23 +25473,23 @@
 	    this.tapend(event);
 	    return this.cancel();
 	  };
-	
+
 	  GestureInputRecognizer.prototype.tap = function(event) {
 	    return this._dispatchEvent("tap", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.tapstart = function(event) {
 	    return this._dispatchEvent("tapstart", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.tapend = function(event) {
 	    return this._dispatchEvent("tapend", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.doubletap = function(event) {
 	    return this._dispatchEvent("doubletap", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.longpressstart = function() {
 	    var event;
 	    if (!this.session) {
@@ -25503,11 +25503,11 @@
 	    this._dispatchEvent("longpressstart", event);
 	    return this._dispatchEvent("longpress", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.longpressend = function(event) {
 	    return this._dispatchEvent("longpressend", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype._updateTouchForce = function() {
 	    var event, ref, ref1, ref2;
 	    if (!((ref = this.session) != null ? (ref1 = ref.lastEvent) != null ? (ref2 = ref1.touches) != null ? ref2.length : void 0 : void 0 : void 0)) {
@@ -25523,7 +25523,7 @@
 	    }
 	    return setTimeout(this._updateTouchForce, GestureInputForceTapMobilePollTime);
 	  };
-	
+
 	  GestureInputRecognizer.prototype._updateMacForce = function(event) {
 	    if (!this.session) {
 	      return;
@@ -25536,11 +25536,11 @@
 	      return this.forcetapend(event);
 	    }
 	  };
-	
+
 	  GestureInputRecognizer.prototype.forcetapchange = function(event) {
 	    return this._dispatchEvent("forcetapchange", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.forcetapstart = function(event) {
 	    if (!this.session) {
 	      return;
@@ -25552,7 +25552,7 @@
 	    this._dispatchEvent("forcetapstart", event);
 	    return this._dispatchEvent("forcetap", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.forcetapend = function(event) {
 	    if (!this.session) {
 	      return;
@@ -25563,12 +25563,12 @@
 	    this.session.started.forcetap = null;
 	    return this._dispatchEvent("forcetapend", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.panstart = function(event) {
 	    this.session.started.pan = event;
 	    return this._dispatchEvent("panstart", event, this.session.started.pan.target);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.pan = function(event) {
 	    var direction;
 	    this._dispatchEvent("pan", event, this.session.started.pan.target);
@@ -25577,87 +25577,87 @@
 	      return this["pan" + direction](event);
 	    }
 	  };
-	
+
 	  GestureInputRecognizer.prototype.panend = function(event) {
 	    this._dispatchEvent("panend", event, this.session.started.pan.target);
 	    return this.session.started.pan = null;
 	  };
-	
+
 	  GestureInputRecognizer.prototype.panup = function(event) {
 	    return this._dispatchEvent("panup", event, this.session.started.pan.target);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.pandown = function(event) {
 	    return this._dispatchEvent("pandown", event, this.session.started.pan.target);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.panleft = function(event) {
 	    return this._dispatchEvent("panleft", event, this.session.started.pan.target);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.panright = function(event) {
 	    return this._dispatchEvent("panright", event, this.session.started.pan.target);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.pinchstart = function(event) {
 	    this.session.started.pinch = event;
 	    this.scalestart(event, this.session.started.pinch.target);
 	    this.rotatestart(event, this.session.started.pinch.target);
 	    return this._dispatchEvent("pinchstart", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.pinch = function(event) {
 	    this._dispatchEvent("pinch", event);
 	    this.scale(event, this.session.started.pinch.target);
 	    return this.rotate(event, this.session.started.pinch.target);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.pinchend = function(event) {
 	    this._dispatchEvent("pinchend", event);
 	    this.scaleend(event, this.session.started.pinch.target);
 	    this.rotateend(event, this.session.started.pinch.target);
 	    return this.session.started.pinch = null;
 	  };
-	
+
 	  GestureInputRecognizer.prototype.scalestart = function(event) {
 	    return this._dispatchEvent("scalestart", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.scale = function(event) {
 	    return this._dispatchEvent("scale", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.scaleend = function(event) {
 	    return this._dispatchEvent("scaleend", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.rotatestart = function(event) {
 	    return this._dispatchEvent("rotatestart", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.rotate = function(event) {
 	    return this._dispatchEvent("rotate", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.rotateend = function(event) {
 	    return this._dispatchEvent("rotateend", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.swipestart = function(event) {
 	    this._dispatchEvent("swipestart", event);
 	    this.session.started.swipe = event;
 	    return this.swipedirectionstart(event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.swipe = function(event) {
 	    this._dispatchEvent("swipe", event);
 	    return this.swipedirection(event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.swipeend = function(event) {
 	    return this._dispatchEvent("swipeend", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.swipedirectionstart = function(event) {
 	    var direction, maxX, maxY, ref, ref1, ref2, ref3, swipeEdge;
 	    if (!event.offsetDirection) {
@@ -25685,7 +25685,7 @@
 	      return this.edgeswipedirectionstart(event);
 	    }
 	  };
-	
+
 	  GestureInputRecognizer.prototype.swipedirection = function(event) {
 	    var direction;
 	    if (!this.session.started.swipedirection) {
@@ -25697,7 +25697,7 @@
 	      return this.edgeswipedirection(event);
 	    }
 	  };
-	
+
 	  GestureInputRecognizer.prototype.swipedirectionend = function(event) {
 	    var direction;
 	    if (!this.session.started.swipedirection) {
@@ -25706,14 +25706,14 @@
 	    direction = this.session.started.swipedirection.offsetDirection;
 	    return this._dispatchEvent("swipe" + direction + "end", event);
 	  };
-	
+
 	  GestureInputRecognizer.prototype.edgeswipedirection = function(event) {
 	    var swipeEdge;
 	    swipeEdge = this._edgeForSwipeDirection(this.session.started.edgeswipedirection.offsetDirection);
 	    Screen.emit("edgeswipe", this._createEvent("edgeswipe", event));
 	    return Screen.emit("edgeswipe" + swipeEdge, this._createEvent("edgeswipe" + swipeEdge, event));
 	  };
-	
+
 	  GestureInputRecognizer.prototype.edgeswipedirectionstart = function(event) {
 	    var swipeEdge;
 	    if (this.session.started.edgeswipedirection) {
@@ -25724,14 +25724,14 @@
 	    Screen.emit("edgeswipestart", this._createEvent("edgeswipestart", event));
 	    return Screen.emit("edgeswipe" + swipeEdge + "start", this._createEvent("edgeswipe" + swipeEdge + "start", event));
 	  };
-	
+
 	  GestureInputRecognizer.prototype.edgeswipedirectionend = function(event) {
 	    var swipeEdge;
 	    swipeEdge = this._edgeForSwipeDirection(this.session.started.edgeswipedirection.offsetDirection);
 	    Screen.emit("edgeswipeend", this._createEvent("edgeswipeend", event));
 	    return Screen.emit("edgeswipe" + swipeEdge + "end", this._createEvent("edgeswipe" + swipeEdge + "end", event));
 	  };
-	
+
 	  GestureInputRecognizer.prototype._process = function(event) {
 	    if (!this.session) {
 	      return;
@@ -25759,7 +25759,7 @@
 	    }
 	    return this.session.lastEvent = event;
 	  };
-	
+
 	  GestureInputRecognizer.prototype._getEventPoint = function(event) {
 	    var ref;
 	    if ((ref = event.touches) != null ? ref.length : void 0) {
@@ -25770,7 +25770,7 @@
 	      y: event.pageY
 	    };
 	  };
-	
+
 	  GestureInputRecognizer.prototype._getGestureEvent = function(event) {
 	    var events, i, len, pointKey, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, touchPointA, touchPointB;
 	    _.extend(event, {
@@ -25871,7 +25871,7 @@
 	    }
 	    return event;
 	  };
-	
+
 	  GestureInputRecognizer.prototype._getTouchPoint = function(event, index) {
 	    var point;
 	    return point = {
@@ -25879,7 +25879,7 @@
 	      y: event.touches[index].pageY
 	    };
 	  };
-	
+
 	  GestureInputRecognizer.prototype._getDirection = function(offset) {
 	    if (Math.abs(offset.x) > Math.abs(offset.y)) {
 	      if (offset.x > 0) {
@@ -25899,7 +25899,7 @@
 	    }
 	    return null;
 	  };
-	
+
 	  GestureInputRecognizer.prototype._edgeForSwipeDirection = function(direction) {
 	    if (direction === "down") {
 	      return "top";
@@ -25915,7 +25915,7 @@
 	    }
 	    return null;
 	  };
-	
+
 	  GestureInputRecognizer.prototype._getScaleDirection = function(offset) {
 	    if (offset > 0) {
 	      return "up";
@@ -25925,7 +25925,7 @@
 	    }
 	    return null;
 	  };
-	
+
 	  GestureInputRecognizer.prototype._createEvent = function(type, event) {
 	    var k, touchEvent, v;
 	    touchEvent = document.createEvent("MouseEvent");
@@ -25939,7 +25939,7 @@
 	    }
 	    return touchEvent;
 	  };
-	
+
 	  GestureInputRecognizer.prototype._dispatchEvent = function(type, event, target) {
 	    var ref, ref1, touchEvent;
 	    touchEvent = this._createEvent(type, event);
@@ -25951,7 +25951,7 @@
 	    }
 	    return target.dispatchEvent(touchEvent);
 	  };
-	
+
 	  GestureInputRecognizer.prototype._getVelocity = function(events) {
 	    var current, first, time, velocity;
 	    if (events.length < 2) {
@@ -25975,7 +25975,7 @@
 	    }
 	    return velocity;
 	  };
-	
+
 	  return GestureInputRecognizer;
 
 	})();
@@ -25986,13 +25986,13 @@
 /***/ function(module, exports) {
 
 	exports.date = 1462871917;
-	
+
 	exports.branch = "master";
-	
+
 	exports.hash = "528a1cc";
-	
+
 	exports.build = 1706;
-	
+
 	exports.version = exports.branch + "/" + exports.hash;
 
 
@@ -26004,26 +26004,26 @@
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
-	
+
 	BaseClass = __webpack_require__(6).BaseClass;
-	
+
 	Events = __webpack_require__(15).Events;
-	
+
 	Canvas = (function(superClass) {
 	  extend(Canvas, superClass);
-	
+
 	  Canvas.define("width", {
 	    get: function() {
 	      return window.innerWidth;
 	    }
 	  });
-	
+
 	  Canvas.define("height", {
 	    get: function() {
 	      return window.innerHeight;
 	    }
 	  });
-	
+
 	  Canvas.define("size", {
 	    get: function() {
 	      return {
@@ -26032,7 +26032,7 @@
 	      };
 	    }
 	  });
-	
+
 	  Canvas.define("frame", {
 	    get: function() {
 	      return {
@@ -26043,7 +26043,7 @@
 	      };
 	    }
 	  });
-	
+
 	  Canvas.define("backgroundColor", {
 	    importable: false,
 	    exportable: false,
@@ -26054,7 +26054,7 @@
 	      return Framer.Device.background.backgroundColor = value;
 	    }
 	  });
-	
+
 	  Canvas.define("image", {
 	    importable: false,
 	    exportable: false,
@@ -26065,7 +26065,7 @@
 	      return Framer.Device.background.image = value;
 	    }
 	  });
-	
+
 	  function Canvas(options) {
 	    if (options == null) {
 	      options = {};
@@ -26074,15 +26074,15 @@
 	    Canvas.__super__.constructor.call(this, options);
 	    Events.wrap(window).addEventListener("resize", this._handleResize);
 	  }
-	
+
 	  Canvas.prototype.onResize = function(cb) {
 	    return this.on("resize", cb);
 	  };
-	
+
 	  Canvas.prototype.toInspect = function() {
 	    return "<" + this.constructor.name + " " + this.width + "x" + this.height + ">";
 	  };
-	
+
 	  Canvas.prototype._handleResize = function(event) {
 	    this.emit("resize");
 	    this.emit("change:width");
@@ -26090,11 +26090,11 @@
 	    this.emit("change:size");
 	    return this.emit("change:frame");
 	  };
-	
+
 	  return Canvas;
-	
+
 	})(BaseClass);
-	
+
 	exports.Canvas = Canvas;
 
 
