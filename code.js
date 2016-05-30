@@ -1,4 +1,4 @@
-var i, input, j, layerA, layerArray, reverseButton, startButton, stopButton,
+var i, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -60,26 +60,18 @@ for (i = j = 1; j <= 5; i = ++j) {
   });
 }
 
-startButton = new Layer({
-  x: 20,
-  y: 700,
-  height: 50,
-  backgroundColor: "#ff7606"
+newTone = new Layer({
+  height: 100,
+  width: 100,
+  image: "resources/addTone.png"
 });
 
-Utils.labelLayer(startButton, "Start");
-
-reverseButton = startButton.copy();
-
-reverseButton.x = 260;
-
-Utils.labelLayer(reverseButton, "Reverse");
-
-stopButton = startButton.copy();
-
-stopButton.x = 500;
-
-Utils.labelLayer(stopButton, "Stop");
+newTone.fluid({
+  xAlign: 'right',
+  xOffset: -5,
+  yAlign: 'bottom',
+  yOffset: -5
+});
 
 
 /*
@@ -93,7 +85,7 @@ animation = new Animation
 reverseAnimation = animation.reverse()
  */
 
-startButton.on(Events.Click, function() {
+newTone.on(Events.Click, function() {
   i = layerArray.length;
   layerArray[i] = new Layer({
     x: i * 100,
@@ -127,25 +119,60 @@ startButton.on(Events.Click, function() {
   });
 });
 
-stopButton.on(Events.Click, function() {
-  return targetLayer.animateStop();
-});
-
-reverseButton.on(Events.Click, function() {
-  return reverseAnimation.start();
-});
-
-input = new Input({
+inputText = new Input({
   setup: true,
   virtualKeyboard: false,
-  placeholder: "Username",
+  placeholder: "Text",
   placeholderColor: "#fff",
   type: "text",
-  y: 240,
-  x: 90,
-  width: 500,
-  height: 60
+  width: Screen.width / 2,
+  height: 50
 });
+
+inputText.fluid({
+  xOffset: 5,
+  yOffset: -105,
+  autoWidth: true,
+  xAlign: 'left',
+  yAlign: 'bottom'
+});
+
+inputStart = new Input({
+  setup: true,
+  virtualKeyboard: false,
+  placeholder: "Start",
+  placeholderColor: "#fff",
+  type: "number",
+  width: Screen.width / 2,
+  height: 50
+});
+
+inputStart.fluid({
+  xOffset: 5,
+  yOffset: -25,
+  autoWidth: true,
+  xAlign: 'left',
+  yAlign: 'bottom'
+});
+
+
+/*
+inputColor = new Input
+    setup: true # Change to true when positioning the input so you can see it
+    virtualKeyboard: false # Enable or disable virtual keyboard for when viewing on computer
+    placeholder: "Start"
+    placeholderColor: "#fff"
+    type: "color"
+    width: Screen.width / 2
+    height: 50
+
+inputColor.fluid
+  xOffset: (Screen.width / 2) + 5
+  yOffset: -25
+  autoWidth: true
+  xAlign: 'left'
+  yAlign: 'bottom'
+ */
 
 
 /*
@@ -155,22 +182,95 @@ video = new VideoPlayer
   y: 200
   video: "resources/video.mp4"
 
-
-
 video.playButtonImage = "resources/button_play.jpg"
 video.pauseButtonImage = "resources/button_stop.png"
 video.showProgress = true
-
-
-
-input = new InputModule.Input
-    setup: false # Change to true when positioning the input so you can see it
-    virtualKeyboard: true # Enable or disable virtual keyboard for when viewing on computer
-    placeholder: "Username"
-    placeholderColor: "#fff"
-    type: "text" # Use any of the available HTML input types. Take into account that on the computer the same keyboard image will appear regarding the type used.
-    y: 240
-    x: 90
-    width: 500
-    height: 60
  */
+
+music_skipleft = new Layer({
+  height: 100,
+  width: 100,
+  image: "resources/music_skipleft.png"
+});
+
+music_playpause = new Layer({
+  x: 100,
+  height: 100,
+  width: 100,
+  image: "resources/music_skipleft.png"
+});
+
+music_stop = new Layer({
+  x: 200,
+  height: 100,
+  width: 100,
+  image: "resources/music_skipleft.png"
+});
+
+music_skipright = new Layer({
+  x: 300,
+  height: 100,
+  width: 100,
+  image: "resources/music_skipleft.png"
+});
+
+
+/*
+programControl = new Layer
+  height: 100
+  width: 450
+  image: "resources/TopBar Right.png"
+programControl.fluid
+  xAlign: 'right'
+ */
+
+program_open = new Layer({
+  width: 100,
+  height: 100,
+  image: "resources/program_open.png"
+});
+
+program_open.fluid({
+  xAlign: 'right',
+  xOffset: -200
+});
+
+program_open.on(Events.Click, function() {
+  var filereader;
+  return filereader = new FileReader;
+});
+
+program_save = new Layer({
+  width: 100,
+  height: 100,
+  image: "resources/program_open.png"
+});
+
+program_save.fluid({
+  xAlign: 'right',
+  xOffset: -100
+});
+
+program_settings = new Layer({
+  width: 100,
+  height: 100,
+  image: "resources/program_settings.png"
+});
+
+program_settings.fluid({
+  xAlign: 'right',
+  xOffset: 0
+});
+
+minimap = new Layer({
+  height: 100,
+  y: 100
+});
+
+minimap.fluid({
+  autoWidth: true
+});
+
+window.addEventListener('resize', (function(event) {
+  return inputText.width = Screen.width / 2;
+}), false);

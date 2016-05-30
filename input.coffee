@@ -1,12 +1,3 @@
-keyboardLayer = new Layer
-	x:0, y:Screen.height, width:750, height:432, image:"resources/keyboard.png"
-
-keyboardLayer.states.add
-	"shown": y: Screen.height - keyboardLayer.height
-
-keyboardLayer.states.animationOptions =
-	curve: "spring(500,50,15)"
-
 class Input extends Layer
 	@define "style",
 		get: -> @input.style
@@ -31,7 +22,7 @@ class Input extends Layer
 		options.placeholder ?= ""
 		options.virtualKeyboard ?= if Utils.isMobile() then false else true
 		options.type ?= "text"
-		options.goButton ?= false
+		options.goButton ?= true
 
 		super options
 
@@ -48,6 +39,7 @@ class Input extends Layer
 			@form.action = "#"
 			@form.addEventListener "submit", (event) ->
 				event.preventDefault()
+				print @input.value
 
 		@form.appendChild @input
 		@_element.appendChild @form
@@ -55,12 +47,6 @@ class Input extends Layer
 		@backgroundColor = "transparent"
 		@updatePlaceholderColor options.placeholderColor if @placeholderColor
 
-		if !Utils.isMobile() || options.virtualKeyboard
-			@input.addEventListener "focus", ->
-				keyboardLayer.bringToFront()
-				keyboardLayer.states.next()
-			@input.addEventListener "blur", ->
-				keyboardLayer.states.switch "default"
 
 	updatePlaceholderColor: (color) ->
 		@placeholderColor = color

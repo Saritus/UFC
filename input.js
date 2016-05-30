@@ -1,24 +1,6 @@
-var Input, keyboardLayer,
+var Input,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
-
-keyboardLayer = new Layer({
-  x: 0,
-  y: Screen.height,
-  width: 750,
-  height: 432,
-  image: "resources/keyboard.png"
-});
-
-keyboardLayer.states.add({
-  "shown": {
-    y: Screen.height - keyboardLayer.height
-  }
-});
-
-keyboardLayer.states.animationOptions = {
-  curve: "spring(500,50,15)"
-};
 
 Input = (function(superClass) {
   extend(Input, superClass);
@@ -82,7 +64,7 @@ Input = (function(superClass) {
       options.type = "text";
     }
     if (options.goButton == null) {
-      options.goButton = false;
+      options.goButton = true;
     }
     Input.__super__.constructor.call(this, options);
     if (options.placeholderColor != null) {
@@ -98,7 +80,8 @@ Input = (function(superClass) {
     if (options.goButton) {
       this.form.action = "#";
       this.form.addEventListener("submit", function(event) {
-        return event.preventDefault();
+        event.preventDefault();
+        return print(this.input.value);
       });
     }
     this.form.appendChild(this.input);
@@ -106,15 +89,6 @@ Input = (function(superClass) {
     this.backgroundColor = "transparent";
     if (this.placeholderColor) {
       this.updatePlaceholderColor(options.placeholderColor);
-    }
-    if (!Utils.isMobile() || options.virtualKeyboard) {
-      this.input.addEventListener("focus", function() {
-        keyboardLayer.bringToFront();
-        return keyboardLayer.states.next();
-      });
-      this.input.addEventListener("blur", function() {
-        return keyboardLayer.states["switch"]("default");
-      });
     }
   }
 
