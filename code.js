@@ -1,4 +1,4 @@
-var i, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings,
+var i, inputFrame, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -119,20 +119,29 @@ newTone.on(Events.Click, function() {
   });
 });
 
+inputFrame = new Layer({
+  height: 200
+});
+
+inputFrame.fluid({
+  yAlign: 'bottom',
+  autoWidth: true
+});
+
 inputText = new Input({
   setup: true,
   virtualKeyboard: false,
   placeholder: "Text",
   placeholderColor: "#fff",
   type: "text",
-  width: Screen.width / 2,
-  height: 50
+  width: inputFrame.width / 2,
+  height: 50,
+  parent: inputFrame
 });
 
 inputText.fluid({
   xOffset: 5,
   yOffset: -105,
-  autoWidth: true,
   xAlign: 'left',
   yAlign: 'bottom'
 });
@@ -143,14 +152,14 @@ inputStart = new Input({
   placeholder: "Start",
   placeholderColor: "#fff",
   type: "number",
-  width: Screen.width / 2,
-  height: 50
+  width: inputFrame.width / 2,
+  height: 50,
+  parent: inputFrame
 });
 
 inputStart.fluid({
   xOffset: 5,
   yOffset: -25,
-  autoWidth: true,
   xAlign: 'left',
   yAlign: 'bottom'
 });
@@ -197,21 +206,21 @@ music_playpause = new Layer({
   x: 100,
   height: 100,
   width: 100,
-  image: "resources/music_skipleft.png"
+  image: "resources/music_playpause.png"
 });
 
 music_stop = new Layer({
   x: 200,
   height: 100,
   width: 100,
-  image: "resources/music_skipleft.png"
+  image: "resources/music_stop.png"
 });
 
 music_skipright = new Layer({
   x: 300,
   height: 100,
   width: 100,
-  image: "resources/music_skipleft.png"
+  image: "resources/music_skipright.png"
 });
 
 
@@ -243,7 +252,7 @@ program_open.on(Events.Click, function() {
 program_save = new Layer({
   width: 100,
   height: 100,
-  image: "resources/program_open.png"
+  image: "resources/program_save.png"
 });
 
 program_save.fluid({
@@ -272,5 +281,5 @@ minimap.fluid({
 });
 
 window.addEventListener('resize', (function(event) {
-  return inputText.width = Screen.width / 2;
+  return inputText.width = inputFrame.width / 2;
 }), false);

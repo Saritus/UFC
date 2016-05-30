@@ -6,17 +6,12 @@ class Tone extends Layer
     @Layer = null
 
     # internal instance vars we may create
-    @_currentlyPlaying = null
-    @_shyPlayButton = null
-    @_shyControls = null
-    @_isScrubbing = null
-    @_showProgress = null
-    @_showTimeElapsed = null
-    @_showTimeLeft = null
-    @_showTimeTotal = null
-    @_controlsArray = []
+    @text = ""
+    @start = 0
+    @length = 1
+    @pitch = 0
 
-    options.backgroundColor ?= "#000"
+    options.backgroundColor ?= "rgb(0, 0, 0)"
     options.width ?= 480
     options.height ?= 270
     if options.fullscreen

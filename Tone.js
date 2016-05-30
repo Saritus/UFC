@@ -10,17 +10,12 @@ Tone = (function(superClass) {
       options = {};
     }
     this.Layer = null;
-    this._currentlyPlaying = null;
-    this._shyPlayButton = null;
-    this._shyControls = null;
-    this._isScrubbing = null;
-    this._showProgress = null;
-    this._showTimeElapsed = null;
-    this._showTimeLeft = null;
-    this._showTimeTotal = null;
-    this._controlsArray = [];
+    this.text = "";
+    this.start = 0;
+    this.length = 1;
+    this.pitch = 0;
     if (options.backgroundColor == null) {
-      options.backgroundColor = "#000";
+      options.backgroundColor = "rgb(0, 0, 0)";
     }
     if (options.width == null) {
       options.width = 480;

@@ -100,6 +100,12 @@ newTone.on Events.Click, ->
     if @y %% 25 isnt 0
       @y = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
 
+inputFrame = new Layer
+  height: 200
+
+inputFrame.fluid
+  yAlign: 'bottom'
+  autoWidth: true
 
 
 inputText = new Input
@@ -108,13 +114,13 @@ inputText = new Input
     placeholder: "Text"
     placeholderColor: "#fff"
     type: "text"
-    width: Screen.width / 2
+    width: inputFrame.width / 2
     height: 50
+    parent: inputFrame
 
 inputText.fluid
   xOffset: 5
   yOffset: -105
-  autoWidth: true
   xAlign: 'left'
   yAlign: 'bottom'
 
@@ -124,13 +130,13 @@ inputStart = new Input
     placeholder: "Start"
     placeholderColor: "#fff"
     type: "number"#color
-    width: Screen.width / 2
+    width: inputFrame.width / 2
     height: 50
+    parent: inputFrame
 
 inputStart.fluid
   xOffset: 5
   yOffset: -25
-  autoWidth: true
   xAlign: 'left'
   yAlign: 'bottom'
 
@@ -175,19 +181,19 @@ music_playpause = new Layer
   x: 100
   height: 100
   width: 100
-  image: "resources/music_skipleft.png"
+  image: "resources/music_playpause.png"
 
 music_stop = new Layer
   x: 200
   height: 100
   width: 100
-  image: "resources/music_skipleft.png"
+  image: "resources/music_stop.png"
 
 music_skipright = new Layer
   x: 300
   height: 100
   width: 100
-  image: "resources/music_skipleft.png"
+  image: "resources/music_skipright.png"
 
 ###
 programControl = new Layer
@@ -212,7 +218,7 @@ program_open.on Events.Click, ->
 program_save = new Layer
   width: 100
   height: 100
-  image: "resources/program_open.png"
+  image: "resources/program_save.png"
 program_save.fluid
   xAlign: 'right'
   xOffset: -100
@@ -233,5 +239,5 @@ minimap.fluid
   autoWidth: true
 
 window.addEventListener 'resize', ((event) ->
-  inputText.width = Screen.width / 2
+  inputText.width = inputFrame.width / 2
 ), false
