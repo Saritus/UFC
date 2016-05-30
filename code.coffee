@@ -7,7 +7,9 @@ layerA = new Layer
   #image: "resources/workfield.png"
 
 layerA.centerY()
-#layerA.fluid
+layerA.fluid
+  yAlign: 'bottom'
+  yOffset: -350
 #  autoHeight: true
 
 #layerInput = new Layer
@@ -47,8 +49,8 @@ for i in [1..5]
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
   layerArray[i].onDragMove (event) ->
-    if @x %% 100 isnt 0
-      @x = Math.round((event.pointX - @parent.x - (@width / 2)) / 100) * 100
+    if @x %% 50 isnt 0
+      @x = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
     if @y %% 25 isnt 0
       @y = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
 
@@ -95,8 +97,8 @@ newTone.on Events.Click, ->
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
   layerArray[i].onDragMove (event) ->
-    if @x %% 100 isnt 0
-      @x = Math.round((event.pointX - @parent.x - (@width / 2)) / 100) * 100
+    if @x %% 50 isnt 0
+      @x = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
     if @y %% 25 isnt 0
       @y = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
 

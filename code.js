@@ -8,6 +8,11 @@ layerA = new Layer({
 
 layerA.centerY();
 
+layerA.fluid({
+  yAlign: 'bottom',
+  yOffset: -350
+});
+
 layerA.draggable.enabled = true;
 
 layerA.draggable.overdrag = false;
@@ -51,8 +56,8 @@ for (i = j = 1; j <= 5; i = ++j) {
     return layerA.draggable.enabled = true;
   });
   layerArray[i].onDragMove(function(event) {
-    if (modulo(this.x, 100) !== 0) {
-      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 100) * 100;
+    if (modulo(this.x, 50) !== 0) {
+      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
     }
     if (modulo(this.y, 25) !== 0) {
       return this.y = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
@@ -110,8 +115,8 @@ newTone.on(Events.Click, function() {
     return layerA.draggable.enabled = true;
   });
   return layerArray[i].onDragMove(function(event) {
-    if (modulo(this.x, 100) !== 0) {
-      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 100) * 100;
+    if (modulo(this.x, 50) !== 0) {
+      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
     }
     if (modulo(this.y, 25) !== 0) {
       return this.y = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
