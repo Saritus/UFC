@@ -243,7 +243,7 @@ program_open.fluid
   xOffset: -200
 
 program_open.on Events.Click, ->
-  filereader = new FileReader
+  fileLoader.click()
 
 program_save = new Layer
   width: 100
@@ -252,6 +252,9 @@ program_save = new Layer
 program_save.fluid
   xAlign: 'right'
   xOffset: -100
+
+program_save.on Events.Click, ->
+  fileSaver.click()
 
 program_settings = new Layer
   width: 100

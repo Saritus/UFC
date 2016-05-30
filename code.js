@@ -282,8 +282,7 @@ program_open.fluid({
 });
 
 program_open.on(Events.Click, function() {
-  var filereader;
-  return filereader = new FileReader;
+  return fileLoader.click();
 });
 
 program_save = new Layer({
@@ -295,6 +294,10 @@ program_save = new Layer({
 program_save.fluid({
   xAlign: 'right',
   xOffset: -100
+});
+
+program_save.on(Events.Click, function() {
+  return fileSaver.click();
 });
 
 program_settings = new Layer({
