@@ -1,4 +1,4 @@
-var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings,
+var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings, settings, settings_programm, settings_projekt,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -77,18 +77,6 @@ newTone.fluid({
   yAlign: 'bottom',
   yOffset: -205
 });
-
-
-/*
-animation = new Animation
-  layer: targetLayer
-  properties:
-    x: 450
-  curve: "ease-in-out"
-  time: 1
-
-reverseAnimation = animation.reverse()
- */
 
 newTone.on(Events.Click, function() {
   i = layerArray.length;
@@ -201,38 +189,6 @@ inputPitch.fluid({
   yAlign: 'bottom'
 });
 
-
-/*
-inputColor = new Input
-    setup: true # Change to true when positioning the input so you can see it
-    virtualKeyboard: false # Enable or disable virtual keyboard for when viewing on computer
-    placeholder: "Start"
-    placeholderColor: "#fff"
-    type: "color"
-    width: Screen.width / 2
-    height: 50
-
-inputColor.fluid
-  xOffset: (Screen.width / 2) + 5
-  yOffset: -25
-  autoWidth: true
-  xAlign: 'left'
-  yAlign: 'bottom'
- */
-
-
-/*
-
-video = new VideoPlayer
-  x: 200
-  y: 200
-  video: "resources/video.mp4"
-
-video.playButtonImage = "resources/button_play.jpg"
-video.pauseButtonImage = "resources/button_stop.png"
-video.showProgress = true
- */
-
 music_skipleft = new Layer({
   height: 100,
   width: 100,
@@ -260,16 +216,6 @@ music_skipright = new Layer({
   image: "resources/music_skipright.png"
 });
 
-
-/*
-programControl = new Layer
-  height: 100
-  width: 450
-  image: "resources/TopBar Right.png"
-programControl.fluid
-  xAlign: 'right'
- */
-
 program_open = new Layer({
   width: 100,
   height: 100,
@@ -278,7 +224,7 @@ program_open = new Layer({
 
 program_open.fluid({
   xAlign: 'right',
-  xOffset: -200
+  xOffset: -250
 });
 
 program_open.on(Events.Click, function() {
@@ -293,7 +239,7 @@ program_save = new Layer({
 
 program_save.fluid({
   xAlign: 'right',
-  xOffset: -100
+  xOffset: -150
 });
 
 program_save.on(Events.Click, function() {
@@ -308,7 +254,15 @@ program_settings = new Layer({
 
 program_settings.fluid({
   xAlign: 'right',
-  xOffset: 0
+  xOffset: -45
+});
+
+program_settings.on(Events.Click, function() {
+  settings.fluid({
+    xAlign: 'right',
+    xOffset: -10
+  });
+  return settings.states.next();
 });
 
 minimap = new Layer({
@@ -323,3 +277,58 @@ minimap.fluid({
 window.addEventListener('resize', (function(event) {
   return inputText.width = inputFrame.width / 2;
 }), false);
+
+settings = new Layer({
+  width: 545,
+  height: 700,
+  x: window.innerWidth,
+  y: 100,
+  image: "resources/Settings Project.png",
+  scale: 0
+});
+
+settings.fluid({
+  xAlign: 'right',
+  xOffset: -10
+});
+
+settings.states.add({
+  fade: {
+    scale: 1
+  }
+});
+
+settings_programm = new Layer({
+  parent: settings,
+  width: 222,
+  height: 51,
+  x: 273,
+  y: 80,
+  backgroundColor: "#f400ff"
+});
+
+Utils.labelLayer(settings_programm, "Programm");
+
+settings_projekt = new Layer({
+  parent: settings,
+  width: 222,
+  height: 51,
+  x: 50,
+  y: 80,
+  backgroundColor: "#1cff00"
+});
+
+Utils.labelLayer(settings_projekt, "Projekt");
+
+
+/*
+
+video = new VideoPlayer
+  x: 200
+  y: 200
+  video: "resources/video.mp4"
+
+video.playButtonImage = "resources/button_play.jpg"
+video.pauseButtonImage = "resources/button_stop.png"
+video.showProgress = true
+ */
