@@ -61,7 +61,7 @@ newTone.fluid
   xAlign: 'right'
   xOffset: -5
   yAlign: 'bottom'
-  yOffset: -5
+  yOffset: -205
 
 ###
 animation = new Animation
@@ -110,34 +110,62 @@ inputFrame.fluid
 
 inputText = new Input
     setup: true # Change to true when positioning the input so you can see it
-    virtualKeyboard: false # Enable or disable virtual keyboard for when viewing on computer
     placeholder: "Text"
     placeholderColor: "#fff"
     type: "text"
-    width: inputFrame.width / 2
+    width: window.innerWidth / 2 - 35
     height: 50
     parent: inputFrame
 
 inputText.fluid
-  xOffset: 5
-  yOffset: -105
+  xOffset: 10
+  yOffset: -110
   xAlign: 'left'
   yAlign: 'bottom'
 
 inputStart = new Input
     setup: true # Change to true when positioning the input so you can see it
-    virtualKeyboard: false # Enable or disable virtual keyboard for when viewing on computer
     placeholder: "Start"
     placeholderColor: "#fff"
-    type: "number"#color
-    width: inputFrame.width / 2
+    type: "number"
+    width: window.innerWidth / 2 - 35
     height: 50
     parent: inputFrame
 
 inputStart.fluid
-  xOffset: 5
-  yOffset: -25
+  xOffset: 10
+  yOffset: -30
   xAlign: 'left'
+  yAlign: 'bottom'
+
+inputLength = new Input
+    setup: true # Change to true when positioning the input so you can see it
+    placeholder: "Länge"
+    placeholderColor: "#fff"
+    type: "number"
+    width: window.innerWidth / 2 - 35
+    height: 50
+    parent: inputFrame
+
+inputLength.fluid
+  xOffset: -30
+  yOffset: -110
+  xAlign: 'right'
+  yAlign: 'bottom'
+
+inputPitch = new Input
+    setup: true # Change to true when positioning the input so you can see it
+    placeholder: "Tonhöhe"
+    placeholderColor: "#fff"
+    type: "number"
+    width: window.innerWidth / 2 - 35
+    height: 50
+    parent: inputFrame
+
+inputPitch.fluid
+  xOffset: -30
+  yOffset: -30
+  xAlign: 'right'
   yAlign: 'bottom'
 
 ###

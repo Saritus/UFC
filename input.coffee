@@ -20,7 +20,6 @@ class Input extends Layer
 		options.padding ?= 10
 		options.text ?= ""
 		options.placeholder ?= ""
-		options.virtualKeyboard ?= if Utils.isMobile() then false else true
 		options.type ?= "text"
 		options.goButton ?= true
 

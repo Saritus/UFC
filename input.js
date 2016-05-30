@@ -57,9 +57,6 @@ Input = (function(superClass) {
     if (options.placeholder == null) {
       options.placeholder = "";
     }
-    if (options.virtualKeyboard == null) {
-      options.virtualKeyboard = Utils.isMobile() ? false : true;
-    }
     if (options.type == null) {
       options.type = "text";
     }

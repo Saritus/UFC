@@ -1,4 +1,4 @@
-var i, inputFrame, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings,
+var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -70,7 +70,7 @@ newTone.fluid({
   xAlign: 'right',
   xOffset: -5,
   yAlign: 'bottom',
-  yOffset: -5
+  yOffset: -205
 });
 
 
@@ -130,37 +130,69 @@ inputFrame.fluid({
 
 inputText = new Input({
   setup: true,
-  virtualKeyboard: false,
   placeholder: "Text",
   placeholderColor: "#fff",
   type: "text",
-  width: inputFrame.width / 2,
+  width: window.innerWidth / 2 - 35,
   height: 50,
   parent: inputFrame
 });
 
 inputText.fluid({
-  xOffset: 5,
-  yOffset: -105,
+  xOffset: 10,
+  yOffset: -110,
   xAlign: 'left',
   yAlign: 'bottom'
 });
 
 inputStart = new Input({
   setup: true,
-  virtualKeyboard: false,
   placeholder: "Start",
   placeholderColor: "#fff",
   type: "number",
-  width: inputFrame.width / 2,
+  width: window.innerWidth / 2 - 35,
   height: 50,
   parent: inputFrame
 });
 
 inputStart.fluid({
-  xOffset: 5,
-  yOffset: -25,
+  xOffset: 10,
+  yOffset: -30,
   xAlign: 'left',
+  yAlign: 'bottom'
+});
+
+inputLength = new Input({
+  setup: true,
+  placeholder: "Länge",
+  placeholderColor: "#fff",
+  type: "number",
+  width: window.innerWidth / 2 - 35,
+  height: 50,
+  parent: inputFrame
+});
+
+inputLength.fluid({
+  xOffset: -30,
+  yOffset: -110,
+  xAlign: 'right',
+  yAlign: 'bottom'
+});
+
+inputPitch = new Input({
+  setup: true,
+  placeholder: "Tonhöhe",
+  placeholderColor: "#fff",
+  type: "number",
+  width: window.innerWidth / 2 - 35,
+  height: 50,
+  parent: inputFrame
+});
+
+inputPitch.fluid({
+  xOffset: -30,
+  yOffset: -30,
+  xAlign: 'right',
   yAlign: 'bottom'
 });
 
