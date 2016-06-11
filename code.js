@@ -1,4 +1,4 @@
-var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings, settings, settings_programm, settings_projekt,
+var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -132,8 +132,6 @@ inputText = new Input({
 
 inputText.lyric = "Test";
 
-print(inputText.lyric);
-
 inputText.fluid({
   xOffset: 10,
   yOffset: -110,
@@ -210,21 +208,32 @@ music_playpause = new Layer({
   image: "resources/music_playpause.png"
 });
 
+playing = false;
+
 music_playpause.on(Events.Click, function() {
-  minimapSelection.animate({
-    properties: {
-      x: Screen.width - minimapSelection.width
-    },
-    curve: "linear",
-    time: 10
-  });
-  return layerA.animate({
-    properties: {
-      x: Screen.width - layerA.width
-    },
-    curve: "linear",
-    time: 10
-  });
+  if (playing) {
+    minimapSelection.animateStop();
+    layerA.animateStop();
+    print('animation aus');
+  } else {
+    minimapSelection.animate({
+      properties: {
+        x: Screen.width - minimapSelection.width
+      },
+      curve: "linear",
+      time: 10
+    });
+    layerA.animate({
+      properties: {
+        x: Screen.width - layerA.width
+      },
+      curve: "linear",
+      time: 10
+    });
+    print('animation an');
+  }
+  print(playing);
+  return playing = !playing;
 });
 
 music_stop = new Layer({
@@ -232,6 +241,12 @@ music_stop = new Layer({
   height: 100,
   width: 100,
   image: "resources/music_stop.png"
+});
+
+music_stop.on(Events.Click, function() {
+  playing = false;
+  minimapSelection.animateStop();
+  return layerA.animateStop();
 });
 
 music_skipright = new Layer({

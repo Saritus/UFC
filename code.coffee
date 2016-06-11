@@ -99,8 +99,6 @@ inputText = new Input
     height: 50
 inputText.lyric = "Test"
 
-print inputText.lyric
-
 inputText.fluid
   xOffset: 10
   yOffset: -110
@@ -167,25 +165,39 @@ music_playpause = new Layer
   width: 100
   image: "resources/music_playpause.png"
 
+playing = false
+
 music_playpause.on Events.Click, ->
-  minimapSelection.animate
-    properties:
-        x: Screen.width - minimapSelection.width
-    curve: "linear"
-    time: 10
+  if playing
+    minimapSelection.animateStop()
+    layerA.animateStop()
+    print 'animation aus'
+  else
+    minimapSelection.animate
+      properties:
+          x: Screen.width - minimapSelection.width
+      curve: "linear"
+      time: 10
+    layerA.animate
+      properties:
+          x: Screen.width - layerA.width
+      curve: "linear"
+      time: 10
+    print 'animation an'
 
-  layerA.animate
-    properties:
-        x: Screen.width - layerA.width
-    curve: "linear"
-    time: 10
-
+  print playing
+  playing = !playing
 
 music_stop = new Layer
   x: 200
   height: 100
   width: 100
   image: "resources/music_stop.png"
+
+music_stop.on Events.Click, ->
+  playing = false
+  minimapSelection.animateStop()
+  layerA.animateStop()
 
 music_skipright = new Layer
   x: 300
