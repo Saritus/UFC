@@ -1,4 +1,4 @@
-var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings, settings, settings_programm, settings_projekt,
+var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, program_open, program_save, program_settings, settings, settings_programm, settings_projekt,
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 layerA = new Layer({
@@ -127,9 +127,12 @@ inputText = new Input({
   placeholderColor: "#fff",
   type: "text",
   width: window.innerWidth / 2 - 35,
-  height: 50,
-  parent: inputFrame
+  height: 50
 });
+
+inputText.lyric = "Test";
+
+print(inputText.lyric);
 
 inputText.fluid({
   xOffset: 10,
@@ -195,11 +198,33 @@ music_skipleft = new Layer({
   image: "resources/music_skipleft.png"
 });
 
+music_skipleft.on(Events.Click, function() {
+  minimapSelection.x = 0;
+  return layerA.x = 0;
+});
+
 music_playpause = new Layer({
   x: 100,
   height: 100,
   width: 100,
   image: "resources/music_playpause.png"
+});
+
+music_playpause.on(Events.Click, function() {
+  minimapSelection.animate({
+    properties: {
+      x: Screen.width - minimapSelection.width
+    },
+    curve: "linear",
+    time: 10
+  });
+  return layerA.animate({
+    properties: {
+      x: Screen.width - layerA.width
+    },
+    curve: "linear",
+    time: 10
+  });
 });
 
 music_stop = new Layer({
@@ -214,6 +239,18 @@ music_skipright = new Layer({
   height: 100,
   width: 100,
   image: "resources/music_skipright.png"
+});
+
+music_skipright.on(Events.Click, function() {
+  minimapSelection.x = Screen.width - minimapSelection.width;
+  return layerA.x = Screen.width - layerA.width;
+});
+
+music_line = new Layer({
+  parent: layerA,
+  width: 18,
+  height: 300,
+  image: "resources/music_line.png"
 });
 
 program_open = new Layer({
@@ -274,8 +311,33 @@ minimap.fluid({
   autoWidth: true
 });
 
+minimapSelection = new Layer({
+  width: 180,
+  height: 100,
+  image: "resources/Overview.png",
+  parent: minimap
+});
+
+minimapSelection.draggable.enabled = true;
+
+minimapSelection.draggable.enabled = true;
+
+minimapSelection.draggable.overdrag = false;
+
+minimapSelection.draggable.bounce = false;
+
+minimapSelection.draggable.momentum = false;
+
+minimapSelection.draggable.constraints = {
+  width: Screen.width,
+  height: minimap.height
+};
+
 window.addEventListener('resize', (function(event) {
-  return inputText.width = inputFrame.width / 2;
+  return minimapSelection.draggable.constraints = {
+    width: minimap.width,
+    height: minimap.height
+  };
 }), false);
 
 settings = new Layer({

@@ -97,7 +97,9 @@ inputText = new Input
     type: "text"
     width: window.innerWidth / 2 - 35
     height: 50
-    parent: inputFrame
+inputText.lyric = "Test"
+
+print inputText.lyric
 
 inputText.fluid
   xOffset: 10
@@ -155,11 +157,29 @@ music_skipleft = new Layer
   width: 100
   image: "resources/music_skipleft.png"
 
+music_skipleft.on Events.Click, ->
+  minimapSelection.x = 0
+  layerA.x = 0
+
 music_playpause = new Layer
   x: 100
   height: 100
   width: 100
   image: "resources/music_playpause.png"
+
+music_playpause.on Events.Click, ->
+  minimapSelection.animate
+    properties:
+        x: Screen.width - minimapSelection.width
+    curve: "linear"
+    time: 10
+
+  layerA.animate
+    properties:
+        x: Screen.width - layerA.width
+    curve: "linear"
+    time: 10
+
 
 music_stop = new Layer
   x: 200
@@ -172,6 +192,16 @@ music_skipright = new Layer
   height: 100
   width: 100
   image: "resources/music_skipright.png"
+
+music_skipright.on Events.Click, ->
+  minimapSelection.x = Screen.width - minimapSelection.width
+  layerA.x = Screen.width - layerA.width
+
+music_line = new Layer
+  parent: layerA
+  width: 18
+  height: 300
+  image: "resources/music_line.png"
 
 program_open = new Layer
   width: 100
@@ -216,8 +246,25 @@ minimap = new Layer
 minimap.fluid
   autoWidth: true
 
+minimapSelection = new Layer
+  width: 180
+  height: 100
+  image: "resources/Overview.png"
+  parent: minimap
+
+minimapSelection.draggable.enabled = true
+minimapSelection.draggable.enabled=true
+minimapSelection.draggable.overdrag = false
+minimapSelection.draggable.bounce = false
+minimapSelection.draggable.momentum = false
+minimapSelection.draggable.constraints =
+  width: Screen.width
+  height: minimap.height
+
 window.addEventListener 'resize', ((event) ->
-  inputText.width = inputFrame.width / 2
+  minimapSelection.draggable.constraints =
+    width: minimap.width
+    height: minimap.height
 ), false
 
 settings = new Layer
