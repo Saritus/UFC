@@ -12,72 +12,85 @@ logo = new Layer
 logo.centerX()
 
 version = new Layer
-  backgroundColor: "rgba(0, 0, 0, 1)"
-  width: 150
-  height: 20
-  html: "<b>Version: 0.4.31</b>"
+  backgroundColor: "rgba(0, 0, 0, 0.5)"
+  height: 50
+  html: "<p><center><b>Version: 0.4.31</b></center></p>"
 
 version.fluid
   xAlign: 'left'
-  yOffset: -5
+  #yOffset: -5
   yAlign: 'bottom'
+  autoWidth: true
+
+audio = new Layer
+  width: 600
 
 label_audio = new Layer
-  width: 670
+  width: 470
   height: 70
 label_audio.centerX()
 
 label_audio.fluid
   yAlign: 'bottom'
-  yOffset: -480
+  yOffset: -580
 
 input_audio = new Input
   setup: true # Change to true when positioning the input so you can see it
   placeholder: "Audio-Datei"
   placeholderColor: "#fff"
   type: "text"
-  width: 650
+  width: 450
   height: 50
 input_audio.centerX()
 
 input_audio.fluid
   yAlign: 'bottom'
-  yOffset: -400
+  yOffset: -500
 
 input_lyric = new Input
   setup: true # Change to true when positioning the input so you can see it
   placeholder: "Lyric-Datei"
   placeholderColor: "#fff"
   type: "text"
-  width: 650
+  width: 450
   height: 50
 input_lyric.centerX()
 
 input_lyric.fluid
   yAlign: 'bottom'
-  yOffset: -300
+  yOffset: -400
 
 label_ufg = new Layer
-  width: 670
+  width: 470
   height: 70
 label_ufg.centerX()
 
 label_ufg.fluid
   yAlign: 'bottom'
-  yOffset: -180
+  yOffset: -280
 
 input_ufg = new Input
   setup: true # Change to true when positioning the input so you can see it
   placeholder: "UFG-Datei"
   placeholderColor: "#fff"
   type: "text"
-  width: 650
+  width: 450
   height: 50
 input_ufg.centerX()
 
 input_ufg.fluid
   yAlign: 'bottom'
-  yOffset: -100
+  yOffset: -200
+
+label_ok = new Layer
+  width: 470
+  height: 70
+  image: "resources/okButton.png"
+label_ok.centerX()
+
+label_ok.fluid
+  yAlign: 'bottom'
+  yOffset: -80
 
 window.addEventListener 'resize', ((event) ->
   logo.centerX()
@@ -85,4 +98,6 @@ window.addEventListener 'resize', ((event) ->
   input_audio.centerX()
   input_lyric.centerX()
   label_ufg.centerX()
+  label_audio.centerX()
+  label_ok.centerX()
 ), false

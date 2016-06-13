@@ -1,4 +1,4 @@
-var background, input_audio, input_lyric, input_ufg, label_audio, label_ufg, logo, version;
+var audio, background, input_audio, input_lyric, input_ufg, label_audio, label_ok, label_ufg, logo, version;
 
 background = new Layer({
   image: "resources/background2.png"
@@ -18,20 +18,23 @@ logo = new Layer({
 logo.centerX();
 
 version = new Layer({
-  backgroundColor: "rgba(0, 0, 0, 1)",
-  width: 150,
-  height: 20,
-  html: "<b>Version: 0.4.31</b>"
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  height: 50,
+  html: "<p><center><b>Version: 0.4.31</b></center></p>"
 });
 
 version.fluid({
   xAlign: 'left',
-  yOffset: -5,
-  yAlign: 'bottom'
+  yAlign: 'bottom',
+  autoWidth: true
+});
+
+audio = new Layer({
+  width: 600
 });
 
 label_audio = new Layer({
-  width: 670,
+  width: 470,
   height: 70
 });
 
@@ -39,7 +42,7 @@ label_audio.centerX();
 
 label_audio.fluid({
   yAlign: 'bottom',
-  yOffset: -480
+  yOffset: -580
 });
 
 input_audio = new Input({
@@ -47,7 +50,7 @@ input_audio = new Input({
   placeholder: "Audio-Datei",
   placeholderColor: "#fff",
   type: "text",
-  width: 650,
+  width: 450,
   height: 50
 });
 
@@ -55,7 +58,7 @@ input_audio.centerX();
 
 input_audio.fluid({
   yAlign: 'bottom',
-  yOffset: -400
+  yOffset: -500
 });
 
 input_lyric = new Input({
@@ -63,7 +66,7 @@ input_lyric = new Input({
   placeholder: "Lyric-Datei",
   placeholderColor: "#fff",
   type: "text",
-  width: 650,
+  width: 450,
   height: 50
 });
 
@@ -71,11 +74,11 @@ input_lyric.centerX();
 
 input_lyric.fluid({
   yAlign: 'bottom',
-  yOffset: -300
+  yOffset: -400
 });
 
 label_ufg = new Layer({
-  width: 670,
+  width: 470,
   height: 70
 });
 
@@ -83,7 +86,7 @@ label_ufg.centerX();
 
 label_ufg.fluid({
   yAlign: 'bottom',
-  yOffset: -180
+  yOffset: -280
 });
 
 input_ufg = new Input({
@@ -91,7 +94,7 @@ input_ufg = new Input({
   placeholder: "UFG-Datei",
   placeholderColor: "#fff",
   type: "text",
-  width: 650,
+  width: 450,
   height: 50
 });
 
@@ -99,7 +102,20 @@ input_ufg.centerX();
 
 input_ufg.fluid({
   yAlign: 'bottom',
-  yOffset: -100
+  yOffset: -200
+});
+
+label_ok = new Layer({
+  width: 470,
+  height: 70,
+  image: "resources/okButton.png"
+});
+
+label_ok.centerX();
+
+label_ok.fluid({
+  yAlign: 'bottom',
+  yOffset: -80
 });
 
 window.addEventListener('resize', (function(event) {
@@ -107,5 +123,7 @@ window.addEventListener('resize', (function(event) {
   input_ufg.centerX();
   input_audio.centerX();
   input_lyric.centerX();
-  return label_ufg.centerX();
+  label_ufg.centerX();
+  label_audio.centerX();
+  return label_ok.centerX();
 }), false);
