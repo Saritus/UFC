@@ -1,4 +1,4 @@
-var checkArray, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video_close, video_player, video_window;
+var checkArray, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window;
 
 checkArray = function(x, y) {
   return square(x) * x;
@@ -90,7 +90,7 @@ for (i = j = 1; j <= 5; i = ++j) {
 newTone = new Layer({
   height: 100,
   width: 100,
-  image: "resources/addTone.png"
+  image: "resources/addBubble.png"
 });
 
 newTone.fluid({
@@ -233,7 +233,7 @@ inputPitch.fluid({
 music_skipleft = new Layer({
   height: 100,
   width: 100,
-  image: "resources/music_skipleft.png"
+  image: "resources/button_blue_first.png"
 });
 
 music_skipleft.on(Events.Click, function() {
@@ -245,7 +245,7 @@ music_playpause = new Layer({
   x: 100,
   height: 100,
   width: 100,
-  image: "resources/music_playpause.png"
+  image: "resources/button_blue_play.png"
 });
 
 playing = false;
@@ -277,7 +277,7 @@ music_stop = new Layer({
   x: 200,
   height: 100,
   width: 100,
-  image: "resources/music_stop.png"
+  image: "resources/button_blue_stop.png"
 });
 
 music_stop.on(Events.Click, function() {
@@ -290,7 +290,7 @@ music_skipright = new Layer({
   x: 300,
   height: 100,
   width: 100,
-  image: "resources/music_skipright.png"
+  image: "resources/button_blue_last.png"
 });
 
 music_skipright.on(Events.Click, function() {
@@ -308,7 +308,7 @@ music_line = new Layer({
 program_open = new Layer({
   width: 100,
   height: 100,
-  image: "resources/program_open.png"
+  image: "resources/openFile.png"
 });
 
 program_open.fluid({
@@ -323,7 +323,7 @@ program_open.on(Events.Click, function() {
 program_save = new Layer({
   width: 100,
   height: 100,
-  image: "resources/program_save.png"
+  image: "resources/saveFile.png"
 });
 
 program_save.fluid({
@@ -338,7 +338,7 @@ program_save.on(Events.Click, function() {
 program_settings = new Layer({
   width: 100,
   height: 100,
-  image: "resources/program_settings.png"
+  image: "resources/settingsButton.png"
 });
 
 program_settings.fluid({
@@ -397,7 +397,7 @@ settings = new Layer({
   height: 700,
   x: window.innerWidth,
   y: 100,
-  image: "resources/Settings Project.png",
+  image: "resources/settingsButton.png",
   scale: 0
 });
 
@@ -437,7 +437,7 @@ Utils.labelLayer(settings_projekt, "Projekt");
 video_window = new Layer({
   x: 100,
   y: 100,
-  color: 'black'
+  color: 'red'
 });
 
 video_window.fluid({
@@ -449,7 +449,7 @@ video_window.fluid({
 
 video_close = new Layer({
   parent: video_window,
-  image: "resources/close.png",
+  image: "resources/closeButton_red.png",
   width: 50,
   height: 50
 });
@@ -459,7 +459,7 @@ video_close.fluid({
   yAlign: 'top'
 });
 
-video_player = new VideoPlayer({
+video = new VideoPlayer({
   parent: video_window,
   width: Screen.width / 2,
   height: Screen.height / 2,
@@ -468,13 +468,38 @@ video_player = new VideoPlayer({
   video: "resources/video.mp4"
 });
 
-video_player.parent = video_window;
+video.parent = video_window;
 
-video_player.playButtonImage = "resources/music_playpause.png";
+video.playButtonImage = "resources/PlayVideo.png";
 
-video_player.pauseButtonImage = "resources/music_stop.png";
+video.showProgress = true;
 
-video_player.showProgress = true;
+video.progressBar.width = video.width;
+
+video.progressBar.height = 10;
+
+video.progressBar.y = video.y + video.height + video.parent.y;
+
+video.progressBar.x = video.x + video.parent.x;
+
+video.progressBar.knobSize = 22;
+
+video.progressBar.borderRadius = 0;
+
+video.progressBar.knob.shadowColor = null;
+
+video.progressBar.backgroundColor = "#eee";
+
+video.progressBar.fill.backgroundColor = "#333";
+
+video.shyPlayButton = true;
+
+video_close.on(Events.Click, function() {
+  video_window.visible = false;
+  video.visible = false;
+  video.progressBar.visible = false;
+  return video_close.visible = false;
+});
 
 
 /*

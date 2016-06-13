@@ -67,7 +67,7 @@ for i in [1..5]
 newTone = new Layer
   height: 100
   width: 100
-  image: "resources/addTone.png"
+  image: "resources/addBubble.png"
 
 newTone.fluid
   xAlign: 'right'
@@ -186,7 +186,7 @@ inputPitch.fluid
 music_skipleft = new Layer
   height: 100
   width: 100
-  image: "resources/music_skipleft.png"
+  image: "resources/button_blue_first.png"
 
 music_skipleft.on Events.Click, ->
   minimapSelection.x = 0
@@ -196,7 +196,7 @@ music_playpause = new Layer
   x: 100
   height: 100
   width: 100
-  image: "resources/music_playpause.png"
+  image: "resources/button_blue_play.png"
 
 playing = false
 
@@ -222,7 +222,7 @@ music_stop = new Layer
   x: 200
   height: 100
   width: 100
-  image: "resources/music_stop.png"
+  image: "resources/button_blue_stop.png"
 
 music_stop.on Events.Click, ->
   playing = false
@@ -233,7 +233,7 @@ music_skipright = new Layer
   x: 300
   height: 100
   width: 100
-  image: "resources/music_skipright.png"
+  image: "resources/button_blue_last.png"
 
 music_skipright.on Events.Click, ->
   minimapSelection.x = Screen.width - minimapSelection.width
@@ -248,7 +248,7 @@ music_line = new Layer
 program_open = new Layer
   width: 100
   height: 100
-  image: "resources/program_open.png"
+  image: "resources/openFile.png"
 program_open.fluid
   xAlign: 'right'
   xOffset: -250
@@ -259,7 +259,7 @@ program_open.on Events.Click, ->
 program_save = new Layer
   width: 100
   height: 100
-  image: "resources/program_save.png"
+  image: "resources/saveFile.png"
 program_save.fluid
   xAlign: 'right'
   xOffset: -150
@@ -270,7 +270,7 @@ program_save.on Events.Click, ->
 program_settings = new Layer
   width: 100
   height: 100
-  image: "resources/program_settings.png"
+  image: "resources/settingsButton.png"
 program_settings.fluid
   xAlign: 'right'
   xOffset: -45
@@ -314,7 +314,7 @@ settings = new Layer
   height: 700
   x: window.innerWidth
   y: 100
-  image: "resources/Settings Project.png"
+  image: "resources/settingsButton.png"
   scale: 0
 
 settings.fluid
@@ -346,7 +346,7 @@ Utils.labelLayer settings_projekt, "Projekt"
 video_window = new Layer
   x: 100
   y: 100
-  color: 'black'
+  color: 'red'
 
 video_window.fluid
   widthOffset: -200
@@ -356,7 +356,7 @@ video_window.fluid
 
 video_close = new Layer
   parent: video_window
-  image: "resources/close.png"
+  image: "resources/closeButton_red.png"
   width: 50
   height: 50
 
@@ -364,7 +364,7 @@ video_close.fluid
   xAlign: 'right'
   yAlign: 'top'
 
-video_player = new VideoPlayer
+video = new VideoPlayer
   parent: video_window
   width: Screen.width/2
   height: Screen.height/2
@@ -372,10 +372,29 @@ video_player = new VideoPlayer
   y: 100
   video: "resources/video.mp4"
 
-video_player.parent = video_window
-video_player.playButtonImage = "resources/music_playpause.png"
-video_player.pauseButtonImage = "resources/music_stop.png"
-video_player.showProgress = true
+video.parent = video_window
+video.playButtonImage = "resources/PlayVideo.png"
+video.showProgress = true
+
+video.progressBar.width = video.width
+video.progressBar.height = 10
+video.progressBar.y = video.y + video.height + video.parent.y
+video.progressBar.x = video.x + video.parent.x
+
+video.progressBar.knobSize = 22
+video.progressBar.borderRadius = 0
+video.progressBar.knob.shadowColor = null
+video.progressBar.backgroundColor = "#eee"
+video.progressBar.fill.backgroundColor = "#333"
+
+video.shyPlayButton = true
+
+video_close.on Events.Click, ->
+  video_window.visible = false
+  video.visible = false
+  video.progressBar.visible = false
+  video_close.visible = false
+
 ###
 
 video = new VideoPlayer
