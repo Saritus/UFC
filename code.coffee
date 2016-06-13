@@ -1,5 +1,3 @@
-Canvas.background-color = "black"
-
 layerA = new Layer
   width: 3500
   height: 300
