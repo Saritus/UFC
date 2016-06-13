@@ -1,6 +1,21 @@
-var background, version;
+var background, logo, version;
 
-background = new BackgroundLayer;
+background = new Layer({
+  image: "resources/background2.png"
+});
+
+background.fluid({
+  autoWidth: true,
+  autoHeight: true
+});
+
+logo = new Layer({
+  width: 670,
+  height: 330,
+  image: "resources/UFCLogo.png"
+});
+
+logo.centerX();
 
 version = new Layer({
   backgroundColor: "rgba(0, 0, 0, 1)",
