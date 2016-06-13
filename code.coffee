@@ -27,7 +27,7 @@ for i in [1..5]
     y: 50
     width: 100
     height: 50
-    image: "resources/tone.png"
+    image: "resources/clean_long_blue.png"
   layerArray[i].id = layerArray.length
   layerA.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
@@ -41,8 +41,10 @@ for i in [1..5]
     layerA.draggable.enabled=false
     @oldX = @x
     @oldY = @y
+    @image = "resources/clean_long_orange.png"
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
+    @image = "resources/clean_long_blue.png"
   layerArray[i].onDragMove (event) ->
     newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
     newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
@@ -79,7 +81,7 @@ newTone.on Events.Click, ->
     y: 50
     width: 100
     height: 50
-    image: "resources/clean_long.png"
+    image: "resources/clean_long_blue.png"
   layerA.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
@@ -92,8 +94,10 @@ newTone.on Events.Click, ->
     layerA.draggable.enabled=false
     @oldX = @x
     @oldY = @y
+    @image = "resources/clean_long_orange"
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
+    @image = "resources/clean_long_blue"
   layerArray[i].onDragMove (event) ->
     newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
     newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
