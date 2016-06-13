@@ -20,7 +20,7 @@ logo.centerX();
 version = new Layer({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   height: 50,
-  html: "<p><center><b>Version: 0.4.35</b></center></p>"
+  html: "<p><center><b>Version: 0.4.37</b></center></p>"
 });
 
 version.fluid({
@@ -44,7 +44,8 @@ audio.fluid({
 label_audio = new Layer({
   parent: audio,
   width: 470,
-  height: 70
+  height: 70,
+  html: "<p><h1><center>Audio</center></h1></p>"
 });
 
 label_audio.centerX();
@@ -90,7 +91,8 @@ input_lyric.fluid({
 
 ufg = new Layer({
   width: 600,
-  height: 170
+  height: 170,
+  html: "<center><p><h1>UFG</h1></p></center>"
 });
 
 ufg.centerX();
