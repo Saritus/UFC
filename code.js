@@ -1,12 +1,11 @@
-var checkArray, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window;
+var color, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window;
 
-checkArray = function(x, y) {
-  return square(x) * x;
-};
+Canvas.background - (color = "black");
 
 layerA = new Layer({
   width: 3500,
-  height: 300
+  height: 300,
+  image: "resources/workfield2.png"
 });
 
 layerA.centerY();
@@ -41,7 +40,7 @@ for (i = j = 1; j <= 5; i = ++j) {
     y: 50,
     width: 100,
     height: 50,
-    image: "resources/Block1.png"
+    image: "resources/tone.png"
   });
   layerArray[i].id = layerArray.length;
   layerA.addSubLayer(layerArray[i]);
@@ -107,7 +106,7 @@ newTone.on(Events.Click, function() {
     y: 50,
     width: 100,
     height: 50,
-    image: "resources/Block1.png"
+    image: "resources/tone.png"
   });
   layerA.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
@@ -397,7 +396,7 @@ settings = new Layer({
   height: 700,
   x: window.innerWidth,
   y: 100,
-  image: "resources/settingsButton.png",
+  image: "resources/Settings Project.png",
   scale: 0
 });
 
@@ -435,14 +434,14 @@ settings_projekt = new Layer({
 Utils.labelLayer(settings_projekt, "Projekt");
 
 video_window = new Layer({
-  x: 100,
-  y: 100,
-  color: 'red'
+  x: 0,
+  y: 0,
+  backgroundColor: 'black'
 });
 
 video_window.fluid({
-  widthOffset: -200,
-  heightOffset: -200,
+  widthOffset: 0,
+  heightOffset: 0,
   autoWidth: true,
   autoHeight: true
 });
@@ -463,8 +462,8 @@ video = new VideoPlayer({
   parent: video_window,
   width: Screen.width / 2,
   height: Screen.height / 2,
-  x: 100,
-  y: 100,
+  x: Screen.width / 4,
+  y: Screen.height / 4,
   video: "resources/video.mp4"
 });
 
