@@ -116,6 +116,8 @@ window.addEventListener 'resize', ((event) ->
   logo.centerX()
 
   audio.centerX()
+  ufg.centerX()
+
 
   input_ufg.centerX()
   input_audio.centerX()
