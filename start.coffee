@@ -1,0 +1,2 @@
+background = new BackgroundLayer
+  #image: ""
