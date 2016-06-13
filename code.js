@@ -104,7 +104,7 @@ newTone.on(Events.Click, function() {
     y: 50,
     width: 100,
     height: 50,
-    image: "resources/tone.png"
+    image: "resources/clean_long.png"
   });
   layerA.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
