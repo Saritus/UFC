@@ -1,4 +1,4 @@
-var checkArray, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt;
+var checkArray, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video_close, video_player, video_window;
 
 checkArray = function(x, y) {
   return square(x) * x;
@@ -433,6 +433,48 @@ settings_projekt = new Layer({
 });
 
 Utils.labelLayer(settings_projekt, "Projekt");
+
+video_window = new Layer({
+  x: 100,
+  y: 100,
+  color: 'black'
+});
+
+video_window.fluid({
+  widthOffset: -200,
+  heightOffset: -200,
+  autoWidth: true,
+  autoHeight: true
+});
+
+video_close = new Layer({
+  parent: video_window,
+  image: "resources/close.png",
+  width: 50,
+  height: 50
+});
+
+video_close.fluid({
+  xAlign: 'right',
+  yAlign: 'top'
+});
+
+video_player = new VideoPlayer({
+  parent: video_window,
+  width: Screen.width / 2,
+  height: Screen.height / 2,
+  x: 100,
+  y: 100,
+  video: "resources/video.mp4"
+});
+
+video_player.parent = video_window;
+
+video_player.playButtonImage = "resources/music_playpause.png";
+
+video_player.pauseButtonImage = "resources/music_stop.png";
+
+video_player.showProgress = true;
 
 
 /*
