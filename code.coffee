@@ -1,3 +1,7 @@
+# Functions
+
+checkArray   = (x, y) -> square(x) * x
+
 layerA = new Layer
   width: 3500
   height: 300
@@ -27,6 +31,7 @@ for i in [1..5]
     width: 100
     height: 50
     image: "resources/Block1.png"
+  layerArray[i].id = layerArray.length
   layerA.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
@@ -37,13 +42,27 @@ for i in [1..5]
       height: layerA.height
   layerArray[i].onDragStart ->
     layerA.draggable.enabled=false
+    @oldX = @x
+    @oldY = @y
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
   layerArray[i].onDragMove (event) ->
-    if @x %% 50 isnt 0
-      @x = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
-    if @y %% 25 isnt 0
-      @y = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
+    newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
+    newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
+    equals = false
+    for bubble in layerArray
+      if (bubble.id isnt @id) and (Math.abs(newX - bubble.x) < @width) and (Math.abs(newY - bubble.y) < @height)
+        equals = true
+    if (newX < 0) or (newY < 0) or (newX > @parent.width) or (newY > @parent.height - @height)
+      equals = true
+    if equals
+      @x = @oldX
+      @y = @oldY
+    else
+      @x = newX
+      @y = newY
+      @oldX = newX
+      @oldY = newY
 
 newTone = new Layer
   height: 100
@@ -74,13 +93,27 @@ newTone.on Events.Click, ->
       height: layerA.height
   layerArray[i].onDragStart ->
     layerA.draggable.enabled=false
+    @oldX = @x
+    @oldY = @y
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
   layerArray[i].onDragMove (event) ->
-    if @x %% 50 isnt 0
-      @x = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
-    if @y %% 25 isnt 0
-      @y = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
+    newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
+    newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
+    equals = false
+    for bubble in layerArray
+      if (bubble.id isnt @id) and (Math.abs(newX - bubble.x) < @width) and (Math.abs(newY - bubble.y) < @height)
+        equals = true
+    if (newX < 0) or (newY < 0) or (newX > @parent.width) or (newY > @parent.height - @height)
+      equals = true
+    if equals
+      @x = @oldX
+      @y = @oldY
+    else
+      @x = newX
+      @y = newY
+      @oldX = newX
+      @oldY = newY
 
 inputFrame = new Layer
   height: 200
@@ -171,7 +204,6 @@ music_playpause.on Events.Click, ->
   if playing
     minimapSelection.animateStop()
     layerA.animateStop()
-    print 'animation aus'
   else
     minimapSelection.animate
       properties:
@@ -183,9 +215,7 @@ music_playpause.on Events.Click, ->
           x: Screen.width - layerA.width
       curve: "linear"
       time: 10
-    print 'animation an'
 
-  print playing
   playing = !playing
 
 music_stop = new Layer

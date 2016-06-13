@@ -1,5 +1,8 @@
-var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt,
-  modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
+var checkArray, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt;
+
+checkArray = function(x, y) {
+  return square(x) * x;
+};
 
 layerA = new Layer({
   width: 3500,
@@ -40,6 +43,7 @@ for (i = j = 1; j <= 5; i = ++j) {
     height: 50,
     image: "resources/Block1.png"
   });
+  layerArray[i].id = layerArray.length;
   layerA.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
   layerArray[i].draggable.overdrag = false;
@@ -50,17 +54,35 @@ for (i = j = 1; j <= 5; i = ++j) {
     height: layerA.height
   };
   layerArray[i].onDragStart(function() {
-    return layerA.draggable.enabled = false;
+    layerA.draggable.enabled = false;
+    this.oldX = this.x;
+    return this.oldY = this.y;
   });
   layerArray[i].onDragEnd(function() {
     return layerA.draggable.enabled = true;
   });
   layerArray[i].onDragMove(function(event) {
-    if (modulo(this.x, 50) !== 0) {
-      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
+    var bubble, equals, k, len, newX, newY;
+    newX = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
+    newY = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
+    equals = false;
+    for (k = 0, len = layerArray.length; k < len; k++) {
+      bubble = layerArray[k];
+      if ((bubble.id !== this.id) && (Math.abs(newX - bubble.x) < this.width) && (Math.abs(newY - bubble.y) < this.height)) {
+        equals = true;
+      }
     }
-    if (modulo(this.y, 25) !== 0) {
-      return this.y = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
+    if ((newX < 0) || (newY < 0) || (newX > this.parent.width) || (newY > this.parent.height - this.height)) {
+      equals = true;
+    }
+    if (equals) {
+      this.x = this.oldX;
+      return this.y = this.oldY;
+    } else {
+      this.x = newX;
+      this.y = newY;
+      this.oldX = newX;
+      return this.oldY = newY;
     }
   });
 }
@@ -97,17 +119,35 @@ newTone.on(Events.Click, function() {
     height: layerA.height
   };
   layerArray[i].onDragStart(function() {
-    return layerA.draggable.enabled = false;
+    layerA.draggable.enabled = false;
+    this.oldX = this.x;
+    return this.oldY = this.y;
   });
   layerArray[i].onDragEnd(function() {
     return layerA.draggable.enabled = true;
   });
   return layerArray[i].onDragMove(function(event) {
-    if (modulo(this.x, 50) !== 0) {
-      this.x = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
+    var bubble, equals, k, len, newX, newY;
+    newX = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
+    newY = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
+    equals = false;
+    for (k = 0, len = layerArray.length; k < len; k++) {
+      bubble = layerArray[k];
+      if ((bubble.id !== this.id) && (Math.abs(newX - bubble.x) < this.width) && (Math.abs(newY - bubble.y) < this.height)) {
+        equals = true;
+      }
     }
-    if (modulo(this.y, 25) !== 0) {
-      return this.y = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
+    if ((newX < 0) || (newY < 0) || (newX > this.parent.width) || (newY > this.parent.height - this.height)) {
+      equals = true;
+    }
+    if (equals) {
+      this.x = this.oldX;
+      return this.y = this.oldY;
+    } else {
+      this.x = newX;
+      this.y = newY;
+      this.oldX = newX;
+      return this.oldY = newY;
     }
   });
 });
@@ -214,7 +254,6 @@ music_playpause.on(Events.Click, function() {
   if (playing) {
     minimapSelection.animateStop();
     layerA.animateStop();
-    print('animation aus');
   } else {
     minimapSelection.animate({
       properties: {
@@ -230,9 +269,7 @@ music_playpause.on(Events.Click, function() {
       curve: "linear",
       time: 10
     });
-    print('animation an');
   }
-  print(playing);
   return playing = !playing;
 });
 
