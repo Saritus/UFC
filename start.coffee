@@ -15,9 +15,74 @@ version = new Layer
   backgroundColor: "rgba(0, 0, 0, 1)"
   width: 150
   height: 20
-  html: "<b>Version: 0.4.24</b>"
+  html: "<b>Version: 0.4.31</b>"
 
 version.fluid
   xAlign: 'left'
   yOffset: -5
   yAlign: 'bottom'
+
+label_audio = new Layer
+  width: 670
+  height: 70
+label_audio.centerX()
+
+label_audio.fluid
+  yAlign: 'bottom'
+  yOffset: -480
+
+input_audio = new Input
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Audio-Datei"
+  placeholderColor: "#fff"
+  type: "text"
+  width: 650
+  height: 50
+input_audio.centerX()
+
+input_audio.fluid
+  yAlign: 'bottom'
+  yOffset: -400
+
+input_lyric = new Input
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Lyric-Datei"
+  placeholderColor: "#fff"
+  type: "text"
+  width: 650
+  height: 50
+input_lyric.centerX()
+
+input_lyric.fluid
+  yAlign: 'bottom'
+  yOffset: -300
+
+label_ufg = new Layer
+  width: 670
+  height: 70
+label_ufg.centerX()
+
+label_ufg.fluid
+  yAlign: 'bottom'
+  yOffset: -180
+
+input_ufg = new Input
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "UFG-Datei"
+  placeholderColor: "#fff"
+  type: "text"
+  width: 650
+  height: 50
+input_ufg.centerX()
+
+input_ufg.fluid
+  yAlign: 'bottom'
+  yOffset: -100
+
+window.addEventListener 'resize', ((event) ->
+  logo.centerX()
+  input_ufg.centerX()
+  input_audio.centerX()
+  input_lyric.centerX()
+  label_ufg.centerX()
+), false
