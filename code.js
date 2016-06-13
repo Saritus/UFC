@@ -121,11 +121,11 @@ newTone.on(Events.Click, function() {
     layerA.draggable.enabled = false;
     this.oldX = this.x;
     this.oldY = this.y;
-    return this.image = "resources/clean_long_orange";
+    return this.image = "resources/clean_long_orange.png";
   });
   layerArray[i].onDragEnd(function() {
     layerA.draggable.enabled = true;
-    return this.image = "resources/clean_long_blue";
+    return this.image = "resources/clean_long_blue.png";
   });
   return layerArray[i].onDragMove(function(event) {
     var bubble, equals, k, len, newX, newY;

@@ -94,10 +94,10 @@ newTone.on Events.Click, ->
     layerA.draggable.enabled=false
     @oldX = @x
     @oldY = @y
-    @image = "resources/clean_long_orange"
+    @image = "resources/clean_long_orange.png"
   layerArray[i].onDragEnd ->
     layerA.draggable.enabled=true
-    @image = "resources/clean_long_blue"
+    @image = "resources/clean_long_blue.png"
   layerArray[i].onDragMove (event) ->
     newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
     newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
