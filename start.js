@@ -1,4 +1,4 @@
-var audio, background, input_audio, input_lyric, input_ufg, label_audio, label_ok, label_ufg, logo, ufg, version;
+var audio, background, button_ok, input_audio, input_lyric, input_ufg, label_audio, label_ufg, logo, ufg, version;
 
 background = new Layer({
   image: "resources/background2.png"
@@ -132,17 +132,21 @@ input_ufg.fluid({
   yOffset: -20
 });
 
-label_ok = new Layer({
+button_ok = new Layer({
   width: 470,
   height: 70,
   image: "resources/okButton.png"
 });
 
-label_ok.centerX();
+button_ok.centerX();
 
-label_ok.fluid({
+button_ok.fluid({
   yAlign: 'bottom',
   yOffset: -80
+});
+
+button_ok.on(Events.Click, function() {
+  return ok_button.click();
 });
 
 window.addEventListener('resize', (function(event) {

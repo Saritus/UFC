@@ -104,15 +104,18 @@ input_ufg.fluid
   yAlign: 'bottom'
   yOffset: -20
 
-label_ok = new Layer
+button_ok = new Layer
   width: 470
   height: 70
   image: "resources/okButton.png"
-label_ok.centerX()
+button_ok.centerX()
 
-label_ok.fluid
+button_ok.fluid
   yAlign: 'bottom'
   yOffset: -80
+
+button_ok.on Events.Click, ->
+  ok_button.click()
 
 window.addEventListener 'resize', ((event) ->
   logo.centerX()
