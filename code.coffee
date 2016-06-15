@@ -219,12 +219,12 @@ music_playpause.on Events.Click, ->
       properties:
           x: background.width - minimapSelection.width
       curve: "linear"
-      time: 10
+      time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
     workspace.animate
       properties:
           x: background.width - workspace.width
       curve: "linear"
-      time: 10
+      time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
     music_playpause.image = "blues/button_blue_pause.png"
 
   playing = !playing
@@ -258,6 +258,19 @@ music_line = new Layer
 music_line.fluid
     yAlign: 'bottom'
     yOffset: -350
+
+music_line.draggable.enabled = true
+music_line.draggable.enabled=true
+music_line.draggable.overdrag = false
+music_line.draggable.bounce = false
+music_line.draggable.momentum = false
+music_line.draggable.constraints = {
+  x: 0
+  y: Screen.height - 350 - workspace.height
+  width: Screen.width
+  height: workspace.height
+}
+
 
 program_open = new Layer
   parent: background
@@ -364,7 +377,7 @@ minimap.fluid
 
 minimapSelection = new Layer
   parent: minimap
-  width: 93
+  width: 185
   height: 100
   image: "blues/minimap_border.png"
 
@@ -402,7 +415,7 @@ settings_programm = new Layer
   height: 70
   x: 0
   y: 0
-  backgroundColor: "#f400ff"
+  backgroundColor: "rgba(255, 255, 255, 0.2)"
   html: '<center><h2>Programm</h2></center>'
 
 settings_projekt = new Layer
@@ -411,7 +424,7 @@ settings_projekt = new Layer
   height: 70
   x: 200
   y: 0
-  backgroundColor: "#1cff00"
+  backgroundColor: "rgba(0, 0, 0, 0.2)"
   html: '<center><h2>Projekt</h2></center>'
 
 # VIDEOANSICHT

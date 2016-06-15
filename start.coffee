@@ -14,7 +14,7 @@ logo.centerX()
 version = new Layer
   backgroundColor: "rgba(0, 0, 0, 0.5)"
   height: 50
-  html: "<p><center><b>Version: 0.4.42</b></center></p>"
+  html: "<p><center><b>Version: 0.4.57</b></center></p>"
 
 version.fluid
   xAlign: 'left'
@@ -123,11 +123,10 @@ window.addEventListener 'resize', ((event) ->
   audio.centerX()
   ufg.centerX()
 
-
   input_ufg.centerX()
   input_audio.centerX()
   input_lyric.centerX()
   label_ufg.centerX()
   label_audio.centerX()
-  label_ok.centerX()
+  button_ok.centerX()
 ), false

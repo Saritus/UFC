@@ -20,7 +20,7 @@ logo.centerX();
 version = new Layer({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   height: 50,
-  html: "<p><center><b>Version: 0.4.42</b></center></p>"
+  html: "<p><center><b>Version: 0.4.57</b></center></p>"
 });
 
 version.fluid({
@@ -158,5 +158,5 @@ window.addEventListener('resize', (function(event) {
   input_lyric.centerX();
   label_ufg.centerX();
   label_audio.centerX();
-  return label_ok.centerX();
+  return button_ok.centerX();
 }), false);

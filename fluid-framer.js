@@ -1,2 +1,183 @@
-(function(){var t;Layer.prototype.fluid=function(t){return null==t&&(t={}),Framer.Fluid.register(this,t)},Layer.prototype["static"]=function(){return Framer.Fluid.unregister(this)},Layer.prototype.fix=function(){return Framer.Fluid.fix(this)},Layer.prototype.unfix=function(){return Framer.Fluid.unfix(this)},t=function(){function t(){var t;t=this,window.onresize=function(t){return function(e){return t._respond()}}(this)}var e;return e=[],t.prototype.register=function(t,e){return null==e&&(e={}),this._addLayer(t,e)},t.prototype.unregister=function(t){return this._removeLayer(t)},t.prototype.fix=function(t){return t.style={position:"fixed"},t},t.prototype.unfix=function(t){return t.style={position:"absolute"},t},t.prototype.layers=function(){return e},t.prototype._respond=function(){var t;return t=this,_.each(e,function(e,r){return t._refreshLayer(e)})},t.prototype._refreshLayer=function(t){var e,r,n,i,o;switch(e=t.targetLayer,null!=t.autoWidth&&(n=null!=t.widthOffset?this._parentWidth(e)+t.widthOffset:this._parentWidth(e),e.width=n,e.style={backgroundPosition:"center"}),null!=t.autoHeight&&(r=null!=t.heightOffset?this._parentHeight(e)+t.heightOffset:this._parentHeight(e),e.height=r,e.style={backgroundPosition:"center"}),t.xAlign){case"left":e.x=this._xWithOffset(t,0);break;case"right":i=this._parentWidth(e)-e.width,e.x=this._xWithOffset(t,i);break;case"center":e.centerX(),e.x=this._xWithOffset(t,e.x);break;case"middle":e.centerX(),e.x=this._xWithOffset(t,e.x)}switch(t.yAlign){case"bottom":return o=this._parentHeight(e)-e.height,e.y=this._yWithOffset(t,o);case"top":return e.y=this._yWithOffset(t,0);case"middle":return e.centerY(),e.y=this._yWithOffset(t,e.y);case"center":return e.centerY(),e.y=this._yWithOffset(t,e.y)}},t.prototype._xWithOffset=function(t,e){return e=null!=t.xOffset?e+t.xOffset:e},t.prototype._yWithOffset=function(t,e){return e=null!=t.yOffset?e+t.yOffset:e},t.prototype._parentWidth=function(t){return null!=t.superLayer?t.superLayer.width:window.innerWidth},t.prototype._parentHeight=function(t){return null!=t.superLayer?t.superLayer.height:window.innerHeight},t.prototype._addLayer=function(t,r){var n,i;return null==r&&(r={}),n=_.extend(r,{targetLayer:t}),e.push(n),i=this,Utils.domComplete(function(){return i._refreshLayer(n,i)}),t},t.prototype._removeLayer=function(t){var r;return r=_.findWhere(e,{targetLayer:t}),null==r?t:((null!=r.autoWidth||null!=r.autoHeight)&&(r.style={backgroundPosition:"initial"}),e=_.without(e,r),r)},t}(),Framer.Fluid=new t}).call(this);
-//# sourceMappingURL=./fluid-framer.map
+var FluidFramer;
+
+Layer.prototype.fluid = function(options) {
+  if (options == null) {
+    options = {};
+  }
+  return Framer.Fluid.register(this, options);
+};
+
+Layer.prototype["static"] = function() {
+  return Framer.Fluid.unregister(this);
+};
+
+Layer.prototype.fix = function() {
+  return Framer.Fluid.fix(this);
+};
+
+Layer.prototype.unfix = function() {
+  return Framer.Fluid.unfix(this);
+};
+
+FluidFramer = (function() {
+  var registry;
+
+  registry = [];
+
+  function FluidFramer() {
+    var self;
+    self = this;
+    window.onresize = (function(_this) {
+      return function(evt) {
+        return _this._respond();
+      };
+    })(this);
+  }
+
+  FluidFramer.prototype.register = function(layer, options) {
+    if (options == null) {
+      options = {};
+    }
+    return this._addLayer(layer, options);
+  };
+
+  FluidFramer.prototype.unregister = function(layer) {
+    return this._removeLayer(layer);
+  };
+
+  FluidFramer.prototype.fix = function(layer) {
+    layer.style = {
+      position: 'fixed'
+    };
+    return layer;
+  };
+
+  FluidFramer.prototype.unfix = function(layer) {
+    layer.style = {
+      position: 'absolute'
+    };
+    return layer;
+  };
+
+  FluidFramer.prototype.layers = function() {
+    return registry;
+  };
+
+  FluidFramer.prototype._respond = function() {
+    var self;
+    self = this;
+    return _.each(registry, function(obj, index) {
+      return self._refreshLayer(obj);
+    });
+  };
+
+  FluidFramer.prototype._refreshLayer = function(obj) {
+    var layer, newHeight, newWidth, newX, newY;
+    layer = obj.targetLayer;
+    if (obj.autoWidth != null) {
+      newWidth = obj.widthOffset != null ? this._parentWidth(layer) + obj.widthOffset : this._parentWidth(layer);
+      layer.width = newWidth;
+      layer.style = {
+        backgroundPosition: 'center'
+      };
+    }
+    if (obj.autoHeight != null) {
+      newHeight = obj.heightOffset != null ? this._parentHeight(layer) + obj.heightOffset : this._parentHeight(layer);
+      layer.height = newHeight;
+      layer.style = {
+        backgroundPosition: 'center'
+      };
+    }
+    switch (obj.xAlign) {
+      case 'left':
+        layer.x = this._xWithOffset(obj, 0);
+        break;
+      case 'right':
+        newX = this._parentWidth(layer) - layer.width;
+        layer.x = this._xWithOffset(obj, newX);
+        break;
+      case 'center':
+        layer.centerX();
+        layer.x = this._xWithOffset(obj, layer.x);
+        break;
+      case 'middle':
+        layer.centerX();
+        layer.x = this._xWithOffset(obj, layer.x);
+    }
+    switch (obj.yAlign) {
+      case 'bottom':
+        newY = this._parentHeight(layer) - layer.height;
+        return layer.y = this._yWithOffset(obj, newY);
+      case 'top':
+        return layer.y = this._yWithOffset(obj, 0);
+      case 'middle':
+        layer.centerY();
+        return layer.y = this._yWithOffset(obj, layer.y);
+      case 'center':
+        layer.centerY();
+        return layer.y = this._yWithOffset(obj, layer.y);
+    }
+  };
+
+  FluidFramer.prototype._xWithOffset = function(obj, x) {
+    return x = obj.xOffset != null ? x + obj.xOffset : x;
+  };
+
+  FluidFramer.prototype._yWithOffset = function(obj, y) {
+    return y = obj.yOffset != null ? y + obj.yOffset : y;
+  };
+
+  FluidFramer.prototype._parentWidth = function(layer) {
+    if (layer.superLayer != null) {
+      return layer.superLayer.width;
+    } else {
+      return window.innerWidth;
+    }
+  };
+
+  FluidFramer.prototype._parentHeight = function(layer) {
+    if (layer.superLayer != null) {
+      return layer.superLayer.height;
+    } else {
+      return window.innerHeight;
+    }
+  };
+
+  FluidFramer.prototype._addLayer = function(layer, options) {
+    var obj, self;
+    if (options == null) {
+      options = {};
+    }
+    obj = _.extend(options, {
+      targetLayer: layer
+    });
+    registry.push(obj);
+    self = this;
+    Utils.domComplete(function() {
+      return self._refreshLayer(obj, self);
+    });
+    return layer;
+  };
+
+  FluidFramer.prototype._removeLayer = function(layer) {
+    var target;
+    target = _.findWhere(registry, {
+      targetLayer: layer
+    });
+    if (target == null) {
+      return layer;
+    }
+    if ((target.autoWidth != null) || (target.autoHeight != null)) {
+      target.style = {
+        backgroundPosition: 'initial'
+      };
+    }
+    registry = _.without(registry, target);
+    return target;
+  };
+
+  return FluidFramer;
+
+})();
+
+Framer.Fluid = new FluidFramer;
