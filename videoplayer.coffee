@@ -24,8 +24,8 @@ class VideoPlayer extends Layer
     @_controlsArray = []
 
     # play/pause control
-    @playimage = "images/play.png"
-    @pauseimage = "images/pause.png"
+    @playimage = "resources/play.png"
+    @pauseimage = "resources/pause.png"
 
     options.playButtonDimensions ?= 80
     options.backgroundColor ?= "#000"

@@ -75,7 +75,7 @@ newTone.fluid
   yOffset: -205
 
 newTone.on Events.Click, ->
-  i=layerArray.length
+  i = layerArray.length
   layerArray[i] = new Layer
     x: i*100
     y: 50
@@ -187,7 +187,7 @@ inputPitch.fluid
 music_skipleft = new Layer
   height: 100
   width: 100
-  image: "resources/button_blue_first.png"
+  image: "blues/button_blue_first.png"
 
 music_skipleft.on Events.Click, ->
   minimapSelection.x = 0
@@ -197,7 +197,7 @@ music_playpause = new Layer
   x: 100
   height: 100
   width: 100
-  image: "resources/button_blue_play.png"
+  image: "blues/button_blue_play.png"
 
 playing = false
 
@@ -205,6 +205,7 @@ music_playpause.on Events.Click, ->
   if playing
     minimapSelection.animateStop()
     layerA.animateStop()
+    music_playpause.image = "blues/button_blue_play.png"
   else
     minimapSelection.animate
       properties:
@@ -216,6 +217,7 @@ music_playpause.on Events.Click, ->
           x: Screen.width - layerA.width
       curve: "linear"
       time: 10
+    music_playpause.image = "blues/button_blue_pause.png"
 
   playing = !playing
 
@@ -223,7 +225,7 @@ music_stop = new Layer
   x: 200
   height: 100
   width: 100
-  image: "resources/button_blue_stop.png"
+  image: "blues/button_blue_stop.png"
 
 music_stop.on Events.Click, ->
   playing = false
@@ -234,22 +236,25 @@ music_skipright = new Layer
   x: 300
   height: 100
   width: 100
-  image: "resources/button_blue_last.png"
+  image: "blues/button_blue_last.png"
 
 music_skipright.on Events.Click, ->
   minimapSelection.x = Screen.width - minimapSelection.width
   layerA.x = Screen.width - layerA.width
 
 music_line = new Layer
-  parent: layerA
   width: 18
   height: 300
   image: "resources/music_line.png"
 
+music_line.fluid
+    yAlign: 'bottom'
+    yOffset: -350
+
 program_open = new Layer
   width: 100
   height: 100
-  image: "resources/openFile.png"
+  image: "blues/folder_open.png"
 program_open.fluid
   xAlign: 'right'
   xOffset: -250
@@ -260,7 +265,7 @@ program_open.on Events.Click, ->
 program_save = new Layer
   width: 100
   height: 100
-  image: "resources/saveFile.png"
+  image: "blues/save.png"
 program_save.fluid
   xAlign: 'right'
   xOffset: -150
@@ -271,7 +276,7 @@ program_save.on Events.Click, ->
 program_settings = new Layer
   width: 100
   height: 100
-  image: "resources/settingsButton.png"
+  image: "blues/gear.png"
 program_settings.fluid
   xAlign: 'right'
   xOffset: -45
@@ -374,23 +379,26 @@ video = new VideoPlayer
   video: "resources/video.mp4"
 
 video.parent = video_window
-video.playButtonImage = "resources/PlayVideo.png"
-video.showProgress = true
+video.playButtonImage = "resources/play.png"
+video.shyPlayButton = true
 
+### progressBar bringt Video zum laggen
+video.showProgress = true
 video.progressBar.width = video.width
 video.progressBar.height = 10
 video.progressBar.y = video.y + video.height + video.parent.y
 video.progressBar.x = video.x + video.parent.x
-
 video.progressBar.knobSize = 22
 video.progressBar.borderRadius = 0
 video.progressBar.knob.shadowColor = null
 video.progressBar.backgroundColor = "#eee"
 video.progressBar.fill.backgroundColor = "#333"
+###
 
-video.shyPlayButton = true
+
 
 video_close.on Events.Click, ->
+  video.player.pause()
   video_window.visible = false
   video.visible = false
   video.progressBar.visible = false

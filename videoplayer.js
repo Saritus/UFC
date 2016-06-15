@@ -30,8 +30,8 @@ VideoPlayer = (function(superClass) {
     this._showTimeLeft = null;
     this._showTimeTotal = null;
     this._controlsArray = [];
-    this.playimage = "images/play.png";
-    this.pauseimage = "images/pause.png";
+    this.playimage = "resources/play.png";
+    this.pauseimage = "resources/pause.png";
     if (options.playButtonDimensions == null) {
       options.playButtonDimensions = 80;
     }

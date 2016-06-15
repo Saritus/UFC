@@ -234,7 +234,7 @@ inputPitch.fluid({
 music_skipleft = new Layer({
   height: 100,
   width: 100,
-  image: "resources/button_blue_first.png"
+  image: "blues/button_blue_first.png"
 });
 
 music_skipleft.on(Events.Click, function() {
@@ -246,7 +246,7 @@ music_playpause = new Layer({
   x: 100,
   height: 100,
   width: 100,
-  image: "resources/button_blue_play.png"
+  image: "blues/button_blue_play.png"
 });
 
 playing = false;
@@ -255,6 +255,7 @@ music_playpause.on(Events.Click, function() {
   if (playing) {
     minimapSelection.animateStop();
     layerA.animateStop();
+    music_playpause.image = "blues/button_blue_play.png";
   } else {
     minimapSelection.animate({
       properties: {
@@ -270,6 +271,7 @@ music_playpause.on(Events.Click, function() {
       curve: "linear",
       time: 10
     });
+    music_playpause.image = "blues/button_blue_pause.png";
   }
   return playing = !playing;
 });
@@ -278,7 +280,7 @@ music_stop = new Layer({
   x: 200,
   height: 100,
   width: 100,
-  image: "resources/button_blue_stop.png"
+  image: "blues/button_blue_stop.png"
 });
 
 music_stop.on(Events.Click, function() {
@@ -291,7 +293,7 @@ music_skipright = new Layer({
   x: 300,
   height: 100,
   width: 100,
-  image: "resources/button_blue_last.png"
+  image: "blues/button_blue_last.png"
 });
 
 music_skipright.on(Events.Click, function() {
@@ -300,16 +302,20 @@ music_skipright.on(Events.Click, function() {
 });
 
 music_line = new Layer({
-  parent: layerA,
   width: 18,
   height: 300,
   image: "resources/music_line.png"
 });
 
+music_line.fluid({
+  yAlign: 'bottom',
+  yOffset: -350
+});
+
 program_open = new Layer({
   width: 100,
   height: 100,
-  image: "resources/openFile.png"
+  image: "blues/folder_open.png"
 });
 
 program_open.fluid({
@@ -324,7 +330,7 @@ program_open.on(Events.Click, function() {
 program_save = new Layer({
   width: 100,
   height: 100,
-  image: "resources/saveFile.png"
+  image: "blues/save.png"
 });
 
 program_save.fluid({
@@ -339,7 +345,7 @@ program_save.on(Events.Click, function() {
 program_settings = new Layer({
   width: 100,
   height: 100,
-  image: "resources/settingsButton.png"
+  image: "blues/gear.png"
 });
 
 program_settings.fluid({
@@ -471,31 +477,26 @@ video = new VideoPlayer({
 
 video.parent = video_window;
 
-video.playButtonImage = "resources/PlayVideo.png";
-
-video.showProgress = true;
-
-video.progressBar.width = video.width;
-
-video.progressBar.height = 10;
-
-video.progressBar.y = video.y + video.height + video.parent.y;
-
-video.progressBar.x = video.x + video.parent.x;
-
-video.progressBar.knobSize = 22;
-
-video.progressBar.borderRadius = 0;
-
-video.progressBar.knob.shadowColor = null;
-
-video.progressBar.backgroundColor = "#eee";
-
-video.progressBar.fill.backgroundColor = "#333";
+video.playButtonImage = "resources/play.png";
 
 video.shyPlayButton = true;
 
+
+/* progressBar bringt Video zum laggen
+video.showProgress = true
+video.progressBar.width = video.width
+video.progressBar.height = 10
+video.progressBar.y = video.y + video.height + video.parent.y
+video.progressBar.x = video.x + video.parent.x
+video.progressBar.knobSize = 22
+video.progressBar.borderRadius = 0
+video.progressBar.knob.shadowColor = null
+video.progressBar.backgroundColor = "#eee"
+video.progressBar.fill.backgroundColor = "#333"
+ */
+
 video_close.on(Events.Click, function() {
+  video.player.pause();
   video_window.visible = false;
   video.visible = false;
   video.progressBar.visible = false;
