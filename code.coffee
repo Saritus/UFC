@@ -70,6 +70,7 @@ for i in [1..5]
       @oldY = newY
 
 newTone = new Layer
+  parent: background
   height: 100
   width: 100
   image: "resources/addBubble.png"
@@ -123,6 +124,7 @@ newTone.on Events.Click, ->
       @oldY = newY
 
 inputFrame = new Layer
+  parent: background
   height: 200
 
 inputFrame.fluid
@@ -251,7 +253,7 @@ music_skipright.on Events.Click, ->
 music_line = new Layer
   width: 18
   height: 300
-  image: "resources/music_line.png"
+  image: "resources/music_line_2.png"
 
 music_line.fluid
     yAlign: 'bottom'
@@ -264,7 +266,7 @@ program_open = new Layer
   image: "blues/folder_open.png"
 program_open.fluid
   xAlign: 'right'
-  xOffset: -250
+  xOffset: -215
 
 program_open.on Events.Click, ->
   fileLoader.click()
@@ -276,7 +278,7 @@ program_save = new Layer
   image: "blues/save.png"
 program_save.fluid
   xAlign: 'right'
-  xOffset: -150
+  xOffset: -105
 
 program_save.on Events.Click, ->
   fileSaver.click()
@@ -288,7 +290,7 @@ program_settings = new Layer
   image: "blues/gear_blue.png"
 program_settings.fluid
   xAlign: 'right'
-  xOffset: -45
+  xOffset: -5
 
 settingsshow = false
 program_settings.on Events.Click, ->
@@ -304,35 +306,33 @@ program_settings.on Events.Click, ->
       autoWidth: true
       autoHeight: true
       widthOffset: 0
-    newTone.fluid
-      xAlign: 'right'
-      xOffset: -5
-      yAlign: 'bottom'
-      yOffset: -205
-    minimap.fluid
-      autoWidth: true
-    inputFrame.fluid
-      yAlign: 'bottom'
-      autoWidth: true
-
+    settings.opacity = 0
   else
     #Settings einblenden
     background.fluid
       autoWidth: true
       autoHeight: true
       widthOffset: -400
-    newTone.fluid
-      xAlign: 'right'
-      xOffset: -405
-      yAlign: 'bottom'
-      yOffset: -205
-    minimap.fluid
-      autoWidth: true
-      widthOffset: -400
-    inputFrame.fluid
-      yAlign: 'bottom'
-      autoWidth: true
-      widthOffset: -400
+    settings.opacity = 1
+  newTone.fluid
+    xAlign: 'right'
+    xOffset: -5
+    yAlign: 'bottom'
+    yOffset: -205
+  minimap.fluid
+    autoWidth: true
+  inputFrame.fluid
+    yAlign: 'bottom'
+    autoWidth: true
+  program_open.fluid
+    xAlign: 'right'
+    xOffset: -215
+  program_save.fluid
+    xAlign: 'right'
+    xOffset: -105
+  program_settings.fluid
+    xAlign: 'right'
+    xOffset: -5
 
   inputText.width = inputFrame.width / 2 - 35
   inputPitch.width = inputFrame.width / 2 - 35
@@ -341,6 +341,7 @@ program_settings.on Events.Click, ->
   settingsshow = not settingsshow
 
 minimap = new Layer
+  parent: background
   height: 100
   y: 100
   backgroundColor: 'rgb(210, 210, 210)'
@@ -363,46 +364,36 @@ minimapSelection.draggable.constraints =
   width: Screen.width
   height: minimap.height
 
-window.addEventListener 'resize', ((event) ->
-  minimapSelection.draggable.constraints =
-    width: minimap.width
-    height: minimap.height
-  video.centerX()
-), false
+# SETTINGS
 
 settings = new Layer
-  width: 545
-  height: 700
-  x: window.innerWidth
-  y: 100
-  image: "resources/Settings Project.png"
-  scale: 0
+  width: 400
+  backgroundColor: "rgb(41, 66, 143)"
+  opacity: 0
 
 settings.fluid
+  autoHeight: true
   xAlign: 'right'
-  xOffset: -10
-
-settings.states.add
-    fade:
-      scale: 1
 
 settings_programm = new Layer
   parent: settings
-  width: 222
-  height: 51
-  x: 273
-  y: 80
+  width: 200
+  height: 70
+  x: 0
+  y: 0
   backgroundColor: "#f400ff"
-Utils.labelLayer settings_programm, "Programm"
+  html: '<center><h2>Programm</h2></center>'
 
 settings_projekt = new Layer
   parent: settings
-  width: 222
-  height: 51
-  x: 50
-  y: 80
+  width: 200
+  height: 70
+  x: 200
+  y: 0
   backgroundColor: "#1cff00"
-Utils.labelLayer settings_projekt, "Projekt"
+  html: '<center><h2>Projekt</h2></center>'
+
+# VIDEOANSICHT
 
 video_window = new Layer
   x: 0
@@ -460,3 +451,10 @@ video_close.on Events.Click, ->
   video_window.visible = false
   video.visible = false
   video_close.visible = false
+
+window.addEventListener 'resize', ((event) ->
+  minimapSelection.draggable.constraints =
+    width: minimap.width
+    height: minimap.height
+  video.centerX()
+), false
