@@ -10,12 +10,11 @@ background.fluid({
 });
 
 workspace = new Layer({
+  parent: background,
   width: 3500,
   height: 300,
   image: "resources/workfield2.png"
 });
-
-workspace.centerY();
 
 workspace.fluid({
   yAlign: 'bottom',
@@ -322,6 +321,7 @@ music_line.fluid({
 });
 
 program_open = new Layer({
+  parent: background,
   width: 100,
   height: 100,
   image: "blues/folder_open.png"
@@ -337,6 +337,7 @@ program_open.on(Events.Click, function() {
 });
 
 program_save = new Layer({
+  parent: background,
   width: 100,
   height: 100,
   image: "blues/save.png"
@@ -352,6 +353,7 @@ program_save.on(Events.Click, function() {
 });
 
 program_settings = new Layer({
+  parent: background,
   width: 100,
   height: 100,
   image: "blues/gear_blue.png"
@@ -371,11 +373,23 @@ program_settings.on(Events.Click, function() {
       autoHeight: true,
       widthOffset: 0
     });
+    newTone.fluid({
+      xAlign: 'right',
+      xOffset: -5,
+      yAlign: 'bottom',
+      yOffset: -205
+    });
   } else {
     background.fluid({
       autoWidth: true,
       autoHeight: true,
       widthOffset: -400
+    });
+    newTone.fluid({
+      xAlign: 'right',
+      xOffset: -405,
+      yAlign: 'bottom',
+      yOffset: -205
     });
   }
   return settingsshow = !settingsshow;
@@ -383,7 +397,8 @@ program_settings.on(Events.Click, function() {
 
 minimap = new Layer({
   height: 100,
-  y: 100
+  y: 100,
+  backgroundColor: 'rgb(210, 210, 210)'
 });
 
 minimap.fluid({
@@ -391,9 +406,9 @@ minimap.fluid({
 });
 
 minimapSelection = new Layer({
-  width: 180,
+  width: 93,
   height: 100,
-  image: "resources/Overview.png",
+  image: "blues/minimap_border.png",
   parent: minimap
 });
 
@@ -413,10 +428,11 @@ minimapSelection.draggable.constraints = {
 };
 
 window.addEventListener('resize', (function(event) {
-  return minimapSelection.draggable.constraints = {
+  minimapSelection.draggable.constraints = {
     width: minimap.width,
     height: minimap.height
   };
+  return video.centerX();
 }), false);
 
 settings = new Layer({

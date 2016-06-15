@@ -10,7 +10,7 @@ workspace = new Layer
   height: 300
   image: "resources/workfield2.png"
 
-workspace.centerY()
+  parent: background
 workspace.fluid
   yAlign: 'bottom'
   yOffset: -350
@@ -258,6 +258,7 @@ music_line.fluid
     yOffset: -350
 
 program_open = new Layer
+  parent: background
   width: 100
   height: 100
   image: "blues/folder_open.png"
@@ -269,6 +270,7 @@ program_open.on Events.Click, ->
   fileLoader.click()
 
 program_save = new Layer
+  parent: background
   width: 100
   height: 100
   image: "blues/save.png"
@@ -280,6 +282,7 @@ program_save.on Events.Click, ->
   fileSaver.click()
 
 program_settings = new Layer
+  parent: background
   width: 100
   height: 100
   image: "blues/gear_blue.png"
@@ -298,24 +301,36 @@ program_settings.on Events.Click, ->
       autoWidth: true
       autoHeight: true
       widthOffset: 0
+    newTone.fluid
+      xAlign: 'right'
+      xOffset: -5
+      yAlign: 'bottom'
+      yOffset: -205
+
   else
     background.fluid
       autoWidth: true
       autoHeight: true
       widthOffset: -400
+    newTone.fluid
+      xAlign: 'right'
+      xOffset: -405
+      yAlign: 'bottom'
+      yOffset: -205
   settingsshow = not settingsshow
 
 minimap = new Layer
   height: 100
   y: 100
+  backgroundColor: 'rgb(210, 210, 210)'
 
 minimap.fluid
   autoWidth: true
 
 minimapSelection = new Layer
-  width: 180
+  width: 93
   height: 100
-  image: "resources/Overview.png"
+  image: "blues/minimap_border.png"
   parent: minimap
 
 minimapSelection.draggable.enabled = true
@@ -331,6 +346,7 @@ window.addEventListener 'resize', ((event) ->
   minimapSelection.draggable.constraints =
     width: minimap.width
     height: minimap.height
+  video.centerX()
 ), false
 
 settings = new Layer
