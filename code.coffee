@@ -287,11 +287,23 @@ program_settings.fluid
   xAlign: 'right'
   xOffset: -45
 
+settingsshow = false
 program_settings.on Events.Click, ->
-  settings.fluid
-    xAlign: 'right'
-    xOffset: -10
-  settings.states.next()
+  #settings.fluid
+  #  xAlign: 'right'
+  #  xOffset: -10
+  #settings.states.next()
+  if settingsshow
+    background.fluid
+      autoWidth: true
+      autoHeight: true
+      widthOffset: 0
+  else
+    background.fluid
+      autoWidth: true
+      autoHeight: true
+      widthOffset: -400
+  settingsshow = not settingsshow
 
 minimap = new Layer
   height: 100

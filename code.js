@@ -1,4 +1,4 @@
-var background, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window, workspace;
+var background, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, settingsshow, video, video_close, video_window, workspace;
 
 background = new Layer({
   image: "resources/blue_background.png"
@@ -362,12 +362,23 @@ program_settings.fluid({
   xOffset: -45
 });
 
+settingsshow = false;
+
 program_settings.on(Events.Click, function() {
-  settings.fluid({
-    xAlign: 'right',
-    xOffset: -10
-  });
-  return settings.states.next();
+  if (settingsshow) {
+    background.fluid({
+      autoWidth: true,
+      autoHeight: true,
+      widthOffset: 0
+    });
+  } else {
+    background.fluid({
+      autoWidth: true,
+      autoHeight: true,
+      widthOffset: -400
+    });
+  }
+  return settingsshow = !settingsshow;
 });
 
 minimap = new Layer({
