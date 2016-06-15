@@ -245,8 +245,8 @@ music_skipright = new Layer
   image: "blues/button_blue_last.png"
 
 music_skipright.on Events.Click, ->
-  minimapSelection.x = Screen.width - minimapSelection.width
-  workspace.x = Screen.width - workspace.width
+  minimapSelection.x = minimap.width - minimapSelection.width
+  workspace.x = minimap.width - workspace.width
 
 music_line = new Layer
   width: 18

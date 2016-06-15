@@ -305,8 +305,8 @@ music_skipright = new Layer({
 });
 
 music_skipright.on(Events.Click, function() {
-  minimapSelection.x = Screen.width - minimapSelection.width;
-  return workspace.x = Screen.width - workspace.width;
+  minimapSelection.x = minimap.width - minimapSelection.width;
+  return workspace.x = minimap.width - workspace.width;
 });
 
 music_line = new Layer({
