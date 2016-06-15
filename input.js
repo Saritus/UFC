@@ -40,7 +40,7 @@ Input = (function(superClass) {
       options.height = 60;
     }
     if (options.backgroundColor == null) {
-      options.backgroundColor = options.setup ? "rgba(255, 60, 47, .5)" : "transparent";
+      options.backgroundColor = options.setup ? "rgba(41, 66, 143, 1)" : "transparent";
     }
     if (options.fontSize == null) {
       options.fontSize = 30;

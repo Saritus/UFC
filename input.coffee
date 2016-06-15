@@ -14,7 +14,7 @@ class Input extends Layer
 		options.width ?= Screen.width
 		options.clip ?= false
 		options.height ?= 60
-		options.backgroundColor ?= if options.setup then "rgba(255, 60, 47, .5)" else "transparent"
+		options.backgroundColor ?= if options.setup then "rgba(41, 66, 143, 1)" else "transparent"
 		options.fontSize ?= 30
 		options.lineHeight ?= 30
 		options.padding ?= 10

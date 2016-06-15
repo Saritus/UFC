@@ -1,4 +1,4 @@
-var audio, background, button_ok, input_audio, input_lyric, input_ufg, label_audio, label_ufg, logo, ufg, version;
+var audio, background, button_audio, button_lyric, button_ok, button_ufg, input_audio, input_lyric, input_ufg, label_audio, label_ufg, logo, ufg, version;
 
 background = new Layer({
   image: "resources/background2.png"
@@ -31,7 +31,8 @@ version.fluid({
 
 audio = new Layer({
   width: 600,
-  height: 270
+  height: 270,
+  backgroundColor: "rgba(0, 0, 0, 0)"
 });
 
 audio.centerX();
@@ -43,17 +44,13 @@ audio.fluid({
 
 label_audio = new Layer({
   parent: audio,
-  width: 470,
+  width: audio.width,
   height: 70,
-  html: "<p><h1><center>Audio</center></h1></p>"
+  html: "<p><h1><center>Audio</center></h1></p>",
+  backgroundColor: "rgba(0, 0, 0, 0.35)"
 });
 
 label_audio.centerX();
-
-label_audio.fluid({
-  yAlign: 'bottom',
-  yOffset: -200
-});
 
 input_audio = new Input({
   parent: audio,
@@ -62,14 +59,21 @@ input_audio = new Input({
   placeholderColor: "#fff",
   type: "text",
   width: 450,
-  height: 50
+  height: 50,
+  y: audio.height - 170
 });
 
-input_audio.centerX();
+button_audio = new Layer({
+  parent: audio,
+  width: 70,
+  height: 70,
+  x: audio.width - 70,
+  y: audio.height - 170,
+  image: "blues/folder_open.png"
+});
 
-input_audio.fluid({
-  yAlign: 'bottom',
-  yOffset: -120
+button_audio.on(Events.Click, function() {
+  return load_audio.click();
 });
 
 input_lyric = new Input({
@@ -79,20 +83,27 @@ input_lyric = new Input({
   placeholderColor: "#fff",
   type: "text",
   width: 450,
-  height: 50
+  height: 50,
+  y: audio.height - 70
 });
 
-input_lyric.centerX();
+button_lyric = new Layer({
+  parent: audio,
+  width: 70,
+  height: 70,
+  x: audio.width - 70,
+  y: audio.height - 70,
+  image: "blues/folder_open.png"
+});
 
-input_lyric.fluid({
-  yAlign: 'bottom',
-  yOffset: -20
+button_lyric.on(Events.Click, function() {
+  return load_audio.click();
 });
 
 ufg = new Layer({
   width: 600,
   height: 170,
-  html: "<center><p><h1>UFG</h1></p></center>"
+  backgroundColor: "rgba(0, 0, 0, 0)"
 });
 
 ufg.centerX();
@@ -104,36 +115,40 @@ ufg.fluid({
 
 label_ufg = new Layer({
   parent: ufg,
-  width: 470,
-  height: 70
+  width: ufg.width,
+  height: 70,
+  html: "<p><h1><center>UFC</center></h1></p>",
+  backgroundColor: "rgba(0, 0, 0, 0.35)"
 });
 
 label_ufg.centerX();
 
-label_ufg.fluid({
-  yAlign: 'bottom',
-  yOffset: -100
-});
-
 input_ufg = new Input({
   parent: ufg,
   setup: true,
-  placeholder: "UFG-Datei",
+  placeholder: "UFC-Datei",
   placeholderColor: "#fff",
   type: "text",
   width: 450,
-  height: 50
+  height: 50,
+  y: ufg.height - 70
 });
 
-input_ufg.centerX();
+button_ufg = new Layer({
+  parent: ufg,
+  width: 70,
+  height: 70,
+  x: ufg.width - 70,
+  y: ufg.height - 70,
+  image: "blues/folder_open.png"
+});
 
-input_ufg.fluid({
-  yAlign: 'bottom',
-  yOffset: -20
+button_ufg.on(Events.Click, function() {
+  return load_ufg.click();
 });
 
 button_ok = new Layer({
-  width: 470,
+  width: audio.width,
   height: 70,
   image: "resources/okButton.png"
 });
@@ -153,10 +168,5 @@ window.addEventListener('resize', (function(event) {
   logo.centerX();
   audio.centerX();
   ufg.centerX();
-  input_ufg.centerX();
-  input_audio.centerX();
-  input_lyric.centerX();
-  label_ufg.centerX();
-  label_audio.centerX();
   return button_ok.centerX();
 }), false);
