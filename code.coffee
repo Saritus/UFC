@@ -217,12 +217,12 @@ music_playpause.on Events.Click, ->
   else
     minimapSelection.animate
       properties:
-          x: Screen.width - minimapSelection.width
+          x: background.width - minimapSelection.width
       curve: "linear"
       time: 10
     workspace.animate
       properties:
-          x: Screen.width - workspace.width
+          x: background.width - workspace.width
       curve: "linear"
       time: 10
     music_playpause.image = "blues/button_blue_pause.png"
@@ -336,6 +336,9 @@ program_settings.on Events.Click, ->
   program_settings.fluid
     xAlign: 'right'
     xOffset: -5
+  minimapSelection.draggable.constraints =
+    width: minimap.width
+    height: minimap.height
 
   inputText.width = inputFrame.width / 2 - 35
   inputPitch.width = inputFrame.width / 2 - 35
@@ -353,10 +356,10 @@ minimap.fluid
   autoWidth: true
 
 minimapSelection = new Layer
+  parent: minimap
   width: 93
   height: 100
   image: "blues/minimap_border.png"
-  parent: minimap
 
 minimapSelection.draggable.enabled = true
 minimapSelection.draggable.enabled=true
@@ -367,10 +370,15 @@ minimapSelection.draggable.constraints =
   width: Screen.width
   height: minimap.height
 
+minimapSelection.on Events.AnimationEnd, ->
+  music_playpause.image = "blues/button_blue_play.png"
+
 # SETTINGS
+
 
 settings = new Layer
   width: 400
+  #image: "resources/Sidebar.png"
   backgroundColor: "rgb(41, 66, 143)"
   opacity: 1
 
@@ -378,6 +386,8 @@ settings.fluid
   autoHeight: true
   xAlign: 'right'
   xOffset: 400
+
+
 
 settings_programm = new Layer
   parent: settings

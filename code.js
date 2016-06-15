@@ -269,14 +269,14 @@ music_playpause.on(Events.Click, function() {
   } else {
     minimapSelection.animate({
       properties: {
-        x: Screen.width - minimapSelection.width
+        x: background.width - minimapSelection.width
       },
       curve: "linear",
       time: 10
     });
     workspace.animate({
       properties: {
-        x: Screen.width - workspace.width
+        x: background.width - workspace.width
       },
       curve: "linear",
       time: 10
@@ -419,6 +419,10 @@ program_settings.on(Events.Click, function() {
     xAlign: 'right',
     xOffset: -5
   });
+  minimapSelection.draggable.constraints = {
+    width: minimap.width,
+    height: minimap.height
+  };
   inputText.width = inputFrame.width / 2 - 35;
   inputPitch.width = inputFrame.width / 2 - 35;
   inputStart.width = inputFrame.width / 2 - 35;
@@ -438,10 +442,10 @@ minimap.fluid({
 });
 
 minimapSelection = new Layer({
+  parent: minimap,
   width: 93,
   height: 100,
-  image: "blues/minimap_border.png",
-  parent: minimap
+  image: "blues/minimap_border.png"
 });
 
 minimapSelection.draggable.enabled = true;
@@ -458,6 +462,10 @@ minimapSelection.draggable.constraints = {
   width: Screen.width,
   height: minimap.height
 };
+
+minimapSelection.on(Events.AnimationEnd, function() {
+  return music_playpause.image = "blues/button_blue_play.png";
+});
 
 settings = new Layer({
   width: 400,
