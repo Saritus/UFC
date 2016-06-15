@@ -245,8 +245,8 @@ music_skipright = new Layer
   image: "blues/button_blue_last.png"
 
 music_skipright.on Events.Click, ->
-  minimapSelection.x = minimap.width - minimapSelection.width
-  workspace.x = minimap.width - workspace.width
+  minimapSelection.x = background.width - minimapSelection.width
+  workspace.x = background.width - workspace.width
 
 music_line = new Layer
   width: 18
@@ -292,11 +292,14 @@ program_settings.fluid
 
 settingsshow = false
 program_settings.on Events.Click, ->
+
   #settings.fluid
   #  xAlign: 'right'
   #  xOffset: -10
   #settings.states.next()
+
   if settingsshow
+    #Settings ausblenden
     background.fluid
       autoWidth: true
       autoHeight: true
@@ -313,6 +316,7 @@ program_settings.on Events.Click, ->
       autoWidth: true
 
   else
+    #Settings einblenden
     background.fluid
       autoWidth: true
       autoHeight: true
@@ -329,6 +333,11 @@ program_settings.on Events.Click, ->
       yAlign: 'bottom'
       autoWidth: true
       widthOffset: -400
+
+  inputText.width = inputFrame.width / 2 - 35
+  inputPitch.width = inputFrame.width / 2 - 35
+  inputStart.width = inputFrame.width / 2 - 35
+  inputLength.width = inputFrame.width / 2 - 35
   settingsshow = not settingsshow
 
 minimap = new Layer

@@ -305,8 +305,8 @@ music_skipright = new Layer({
 });
 
 music_skipright.on(Events.Click, function() {
-  minimapSelection.x = minimap.width - minimapSelection.width;
-  return workspace.x = minimap.width - workspace.width;
+  minimapSelection.x = background.width - minimapSelection.width;
+  return workspace.x = background.width - workspace.width;
 });
 
 music_line = new Layer({
@@ -408,6 +408,10 @@ program_settings.on(Events.Click, function() {
       widthOffset: -400
     });
   }
+  inputText.width = inputFrame.width / 2 - 35;
+  inputPitch.width = inputFrame.width / 2 - 35;
+  inputStart.width = inputFrame.width / 2 - 35;
+  inputLength.width = inputFrame.width / 2 - 35;
   return settingsshow = !settingsshow;
 });
 
