@@ -370,19 +370,29 @@ settingsshow = false;
 
 program_settings.on(Events.Click, function() {
   if (settingsshow) {
+    settings.animate({
+      properties: {
+        x: Screen.width
+      },
+      time: 1
+    });
     background.fluid({
       autoWidth: true,
       autoHeight: true,
       widthOffset: 0
     });
-    settings.opacity = 0;
   } else {
+    settings.animate({
+      properties: {
+        x: Screen.width - 400
+      },
+      time: 1
+    });
     background.fluid({
       autoWidth: true,
       autoHeight: true,
       widthOffset: -400
     });
-    settings.opacity = 1;
   }
   newTone.fluid({
     xAlign: 'right',
@@ -452,12 +462,13 @@ minimapSelection.draggable.constraints = {
 settings = new Layer({
   width: 400,
   backgroundColor: "rgb(41, 66, 143)",
-  opacity: 0
+  opacity: 1
 });
 
 settings.fluid({
   autoHeight: true,
-  xAlign: 'right'
+  xAlign: 'right',
+  xOffset: 400
 });
 
 settings_programm = new Layer({

@@ -295,25 +295,28 @@ program_settings.fluid
 settingsshow = false
 program_settings.on Events.Click, ->
 
-  #settings.fluid
-  #  xAlign: 'right'
-  #  xOffset: -10
-  #settings.states.next()
-
   if settingsshow
     #Settings ausblenden
+    settings.animate
+      properties:
+        x: Screen.width
+      time: 1
     background.fluid
       autoWidth: true
       autoHeight: true
       widthOffset: 0
-    settings.opacity = 0
+    #settings.opacity = 0
   else
     #Settings einblenden
+    settings.animate
+      properties:
+        x: Screen.width - 400
+      time: 1
     background.fluid
       autoWidth: true
       autoHeight: true
       widthOffset: -400
-    settings.opacity = 1
+    #settings.opacity = 1
   newTone.fluid
     xAlign: 'right'
     xOffset: -5
@@ -369,11 +372,12 @@ minimapSelection.draggable.constraints =
 settings = new Layer
   width: 400
   backgroundColor: "rgb(41, 66, 143)"
-  opacity: 0
+  opacity: 1
 
 settings.fluid
   autoHeight: true
   xAlign: 'right'
+  xOffset: 400
 
 settings_programm = new Layer
   parent: settings
