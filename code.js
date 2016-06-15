@@ -1,4 +1,13 @@
-var i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window;
+var background, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window;
+
+background = new Layer({
+  image: "resources/blue_background.png"
+});
+
+background.fluid({
+  autoWidth: true,
+  autoHeight: true
+});
 
 layerA = new Layer({
   width: 3500,
@@ -499,7 +508,6 @@ video_close.on(Events.Click, function() {
   video.player.pause();
   video_window.visible = false;
   video.visible = false;
-  video.progressBar.visible = false;
   return video_close.visible = false;
 });
 

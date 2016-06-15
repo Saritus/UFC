@@ -1,3 +1,10 @@
+background = new Layer
+  image: "resources/blue_background.png"
+
+background.fluid
+  autoWidth: true
+  autoHeight: true
+
 layerA = new Layer
   width: 3500
   height: 300
@@ -401,7 +408,6 @@ video_close.on Events.Click, ->
   video.player.pause()
   video_window.visible = false
   video.visible = false
-  video.progressBar.visible = false
   video_close.visible = false
 
 ###
