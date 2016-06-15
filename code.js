@@ -1,4 +1,4 @@
-var background, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerA, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window;
+var background, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_projekt, video, video_close, video_window, workspace;
 
 background = new Layer({
   image: "resources/blue_background.png"
@@ -9,37 +9,37 @@ background.fluid({
   autoHeight: true
 });
 
-layerA = new Layer({
+workspace = new Layer({
   width: 3500,
   height: 300,
   image: "resources/workfield2.png"
 });
 
-layerA.centerY();
+workspace.centerY();
 
-layerA.fluid({
+workspace.fluid({
   yAlign: 'bottom',
   yOffset: -350
 });
 
-layerA.draggable.enabled = true;
+workspace.draggable.enabled = true;
 
-layerA.draggable.overdrag = false;
+workspace.draggable.overdrag = false;
 
-layerA.draggable.bounce = false;
+workspace.draggable.bounce = false;
 
-layerA.draggable.momentum = false;
+workspace.draggable.momentum = false;
 
-layerA.draggable.horizontal = true;
+workspace.draggable.horizontal = true;
 
-layerA.draggable.vertical = false;
+workspace.draggable.vertical = false;
 
-layerA.draggable.constraints = {
-  x: Canvas.width - layerA.width,
-  width: 2 * layerA.width - Canvas.width
+workspace.draggable.constraints = {
+  x: Canvas.width - workspace.width,
+  width: 2 * workspace.width - Canvas.width
 };
 
-layerArray = [layerA];
+layerArray = [workspace];
 
 for (i = j = 1; j <= 5; i = ++j) {
   layerArray[i] = new Layer({
@@ -50,23 +50,23 @@ for (i = j = 1; j <= 5; i = ++j) {
     image: "resources/clean_long_blue.png"
   });
   layerArray[i].id = layerArray.length;
-  layerA.addSubLayer(layerArray[i]);
+  workspace.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
   layerArray[i].draggable.overdrag = false;
   layerArray[i].draggable.bounce = false;
   layerArray[i].draggable.momentum = false;
   layerArray[i].draggable.constraints = {
-    width: layerA.width,
-    height: layerA.height
+    width: workspace.width,
+    height: workspace.height
   };
   layerArray[i].onDragStart(function() {
-    layerA.draggable.enabled = false;
+    workspace.draggable.enabled = false;
     this.oldX = this.x;
     this.oldY = this.y;
     return this.image = "resources/clean_long_orange.png";
   });
   layerArray[i].onDragEnd(function() {
-    layerA.draggable.enabled = true;
+    workspace.draggable.enabled = true;
     return this.image = "resources/clean_long_blue.png";
   });
   layerArray[i].onDragMove(function(event) {
@@ -117,23 +117,23 @@ newTone.on(Events.Click, function() {
     height: 50,
     image: "resources/clean_long_blue.png"
   });
-  layerA.addSubLayer(layerArray[i]);
+  workspace.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
   layerArray[i].draggable.overdrag = false;
   layerArray[i].draggable.bounce = false;
   layerArray[i].draggable.momentum = false;
   layerArray[i].draggable.constraints = {
-    width: layerA.width,
-    height: layerA.height
+    width: workspace.width,
+    height: workspace.height
   };
   layerArray[i].onDragStart(function() {
-    layerA.draggable.enabled = false;
+    workspace.draggable.enabled = false;
     this.oldX = this.x;
     this.oldY = this.y;
     return this.image = "resources/clean_long_orange.png";
   });
   layerArray[i].onDragEnd(function() {
-    layerA.draggable.enabled = true;
+    workspace.draggable.enabled = true;
     return this.image = "resources/clean_long_blue.png";
   });
   return layerArray[i].onDragMove(function(event) {
@@ -248,7 +248,7 @@ music_skipleft = new Layer({
 
 music_skipleft.on(Events.Click, function() {
   minimapSelection.x = 0;
-  return layerA.x = 0;
+  return workspace.x = 0;
 });
 
 music_playpause = new Layer({
@@ -263,7 +263,7 @@ playing = false;
 music_playpause.on(Events.Click, function() {
   if (playing) {
     minimapSelection.animateStop();
-    layerA.animateStop();
+    workspace.animateStop();
     music_playpause.image = "blues/button_blue_play.png";
   } else {
     minimapSelection.animate({
@@ -273,9 +273,9 @@ music_playpause.on(Events.Click, function() {
       curve: "linear",
       time: 10
     });
-    layerA.animate({
+    workspace.animate({
       properties: {
-        x: Screen.width - layerA.width
+        x: Screen.width - workspace.width
       },
       curve: "linear",
       time: 10
@@ -295,7 +295,7 @@ music_stop = new Layer({
 music_stop.on(Events.Click, function() {
   playing = false;
   minimapSelection.animateStop();
-  return layerA.animateStop();
+  return workspace.animateStop();
 });
 
 music_skipright = new Layer({
@@ -307,7 +307,7 @@ music_skipright = new Layer({
 
 music_skipright.on(Events.Click, function() {
   minimapSelection.x = Screen.width - minimapSelection.width;
-  return layerA.x = Screen.width - layerA.width;
+  return workspace.x = Screen.width - workspace.width;
 });
 
 music_line = new Layer({
@@ -354,7 +354,7 @@ program_save.on(Events.Click, function() {
 program_settings = new Layer({
   width: 100,
   height: 100,
-  image: "blues/gear.png"
+  image: "blues/gear_blue.png"
 });
 
 program_settings.fluid({
@@ -491,7 +491,7 @@ video.playButtonImage = "resources/play.png";
 video.shyPlayButton = true;
 
 
-/* progressBar bringt Video zum laggen
+/* progressBar bringt VideoPlayer zum laggen
 video.showProgress = true
 video.progressBar.width = video.width
 video.progressBar.height = 10
@@ -502,6 +502,11 @@ video.progressBar.borderRadius = 0
 video.progressBar.knob.shadowColor = null
 video.progressBar.backgroundColor = "#eee"
 video.progressBar.fill.backgroundColor = "#333"
+
+video.on "video:play", ->
+  video.progressBar.enabled = false
+video.on "video:pause", ->
+  video.progressBar.enabled = true
  */
 
 video_close.on(Events.Click, function() {
@@ -510,16 +515,3 @@ video_close.on(Events.Click, function() {
   video.visible = false;
   return video_close.visible = false;
 });
-
-
-/*
-
-video = new VideoPlayer
-  x: 200
-  y: 200
-  video: "resources/video.mp4"
-
-video.playButtonImage = "resources/button_play.jpg"
-video.pauseButtonImage = "resources/button_stop.png"
-video.showProgress = true
- */

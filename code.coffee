@@ -5,29 +5,28 @@ background.fluid
   autoWidth: true
   autoHeight: true
 
-layerA = new Layer
+workspace = new Layer
   width: 3500
   height: 300
   image: "resources/workfield2.png"
 
-layerA.centerY()
-layerA.fluid
+workspace.centerY()
+workspace.fluid
   yAlign: 'bottom'
   yOffset: -350
 
-layerA.draggable.enabled=true
+workspace.draggable.enabled=true
+workspace.draggable.overdrag = false
+workspace.draggable.bounce = false
+workspace.draggable.momentum = false
+workspace.draggable.horizontal = true
+workspace.draggable.vertical = false
 
-layerA.draggable.overdrag = false
-layerA.draggable.bounce = false
-layerA.draggable.momentum = false
-layerA.draggable.horizontal = true
-layerA.draggable.vertical = false
+workspace.draggable.constraints =
+    x: Canvas.width - workspace.width
+    width: 2 * workspace.width - Canvas.width
 
-layerA.draggable.constraints =
-    x: Canvas.width - layerA.width
-    width: 2 * layerA.width - Canvas.width
-
-layerArray = [layerA]
+layerArray = [workspace]
 for i in [1..5]
   layerArray[i] = new Layer
     x: i*100
@@ -36,21 +35,21 @@ for i in [1..5]
     height: 50
     image: "resources/clean_long_blue.png"
   layerArray[i].id = layerArray.length
-  layerA.addSubLayer(layerArray[i])
+  workspace.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
   layerArray[i].draggable.bounce = false
   layerArray[i].draggable.momentum = false
   layerArray[i].draggable.constraints =
-      width: layerA.width
-      height: layerA.height
+      width: workspace.width
+      height: workspace.height
   layerArray[i].onDragStart ->
-    layerA.draggable.enabled=false
+    workspace.draggable.enabled=false
     @oldX = @x
     @oldY = @y
     @image = "resources/clean_long_orange.png"
   layerArray[i].onDragEnd ->
-    layerA.draggable.enabled=true
+    workspace.draggable.enabled=true
     @image = "resources/clean_long_blue.png"
   layerArray[i].onDragMove (event) ->
     newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
@@ -89,21 +88,21 @@ newTone.on Events.Click, ->
     width: 100
     height: 50
     image: "resources/clean_long_blue.png"
-  layerA.addSubLayer(layerArray[i])
+  workspace.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
   layerArray[i].draggable.bounce = false
   layerArray[i].draggable.momentum = false
   layerArray[i].draggable.constraints =
-      width: layerA.width
-      height: layerA.height
+      width: workspace.width
+      height: workspace.height
   layerArray[i].onDragStart ->
-    layerA.draggable.enabled=false
+    workspace.draggable.enabled=false
     @oldX = @x
     @oldY = @y
     @image = "resources/clean_long_orange.png"
   layerArray[i].onDragEnd ->
-    layerA.draggable.enabled=true
+    workspace.draggable.enabled=true
     @image = "resources/clean_long_blue.png"
   layerArray[i].onDragMove (event) ->
     newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
@@ -198,7 +197,7 @@ music_skipleft = new Layer
 
 music_skipleft.on Events.Click, ->
   minimapSelection.x = 0
-  layerA.x = 0
+  workspace.x = 0
 
 music_playpause = new Layer
   x: 100
@@ -211,7 +210,7 @@ playing = false
 music_playpause.on Events.Click, ->
   if playing
     minimapSelection.animateStop()
-    layerA.animateStop()
+    workspace.animateStop()
     music_playpause.image = "blues/button_blue_play.png"
   else
     minimapSelection.animate
@@ -219,9 +218,9 @@ music_playpause.on Events.Click, ->
           x: Screen.width - minimapSelection.width
       curve: "linear"
       time: 10
-    layerA.animate
+    workspace.animate
       properties:
-          x: Screen.width - layerA.width
+          x: Screen.width - workspace.width
       curve: "linear"
       time: 10
     music_playpause.image = "blues/button_blue_pause.png"
@@ -237,7 +236,7 @@ music_stop = new Layer
 music_stop.on Events.Click, ->
   playing = false
   minimapSelection.animateStop()
-  layerA.animateStop()
+  workspace.animateStop()
 
 music_skipright = new Layer
   x: 300
@@ -247,7 +246,7 @@ music_skipright = new Layer
 
 music_skipright.on Events.Click, ->
   minimapSelection.x = Screen.width - minimapSelection.width
-  layerA.x = Screen.width - layerA.width
+  workspace.x = Screen.width - workspace.width
 
 music_line = new Layer
   width: 18
@@ -283,7 +282,7 @@ program_save.on Events.Click, ->
 program_settings = new Layer
   width: 100
   height: 100
-  image: "blues/gear.png"
+  image: "blues/gear_blue.png"
 program_settings.fluid
   xAlign: 'right'
   xOffset: -45
@@ -389,7 +388,7 @@ video.parent = video_window
 video.playButtonImage = "resources/play.png"
 video.shyPlayButton = true
 
-### progressBar bringt Video zum laggen
+### progressBar bringt VideoPlayer zum laggen
 video.showProgress = true
 video.progressBar.width = video.width
 video.progressBar.height = 10
@@ -400,25 +399,15 @@ video.progressBar.borderRadius = 0
 video.progressBar.knob.shadowColor = null
 video.progressBar.backgroundColor = "#eee"
 video.progressBar.fill.backgroundColor = "#333"
+
+video.on "video:play", ->
+  video.progressBar.enabled = false
+video.on "video:pause", ->
+  video.progressBar.enabled = true
 ###
-
-
 
 video_close.on Events.Click, ->
   video.player.pause()
   video_window.visible = false
   video.visible = false
   video_close.visible = false
-
-###
-
-video = new VideoPlayer
-  x: 200
-  y: 200
-  video: "resources/video.mp4"
-
-video.playButtonImage = "resources/button_play.jpg"
-video.pauseButtonImage = "resources/button_stop.png"
-video.showProgress = true
-
-###
