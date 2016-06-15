@@ -381,6 +381,11 @@ program_settings.on(Events.Click, function() {
       autoHeight: true,
       widthOffset: 0
     });
+    settings.fluid({
+      autoHeight: true,
+      xAlign: 'right',
+      xOffset: 400
+    });
   } else {
     settings.animate({
       properties: {
@@ -392,6 +397,11 @@ program_settings.on(Events.Click, function() {
       autoWidth: true,
       autoHeight: true,
       widthOffset: -400
+    });
+    settings.fluid({
+      autoHeight: true,
+      xAlign: 'right',
+      xOffset: 0
     });
   }
   newTone.fluid({

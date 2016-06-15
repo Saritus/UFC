@@ -294,7 +294,6 @@ program_settings.fluid
 
 settingsshow = false
 program_settings.on Events.Click, ->
-
   if settingsshow
     #Settings ausblenden
     settings.animate
@@ -306,6 +305,10 @@ program_settings.on Events.Click, ->
       autoHeight: true
       widthOffset: 0
     #settings.opacity = 0
+    settings.fluid
+      autoHeight: true
+      xAlign: 'right'
+      xOffset: 400
   else
     #Settings einblenden
     settings.animate
@@ -317,6 +320,10 @@ program_settings.on Events.Click, ->
       autoHeight: true
       widthOffset: -400
     #settings.opacity = 1
+    settings.fluid
+      autoHeight: true
+      xAlign: 'right'
+      xOffset: 0
   newTone.fluid
     xAlign: 'right'
     xOffset: -5
