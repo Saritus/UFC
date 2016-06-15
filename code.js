@@ -379,6 +379,13 @@ program_settings.on(Events.Click, function() {
       yAlign: 'bottom',
       yOffset: -205
     });
+    minimap.fluid({
+      autoWidth: true
+    });
+    inputFrame.fluid({
+      yAlign: 'bottom',
+      autoWidth: true
+    });
   } else {
     background.fluid({
       autoWidth: true,
@@ -390,6 +397,15 @@ program_settings.on(Events.Click, function() {
       xOffset: -405,
       yAlign: 'bottom',
       yOffset: -205
+    });
+    minimap.fluid({
+      autoWidth: true,
+      widthOffset: -400
+    });
+    inputFrame.fluid({
+      yAlign: 'bottom',
+      autoWidth: true,
+      widthOffset: -400
     });
   }
   return settingsshow = !settingsshow;

@@ -6,11 +6,11 @@ background.fluid
   autoHeight: true
 
 workspace = new Layer
+  parent: background
   width: 3500
   height: 300
   image: "resources/workfield2.png"
 
-  parent: background
 workspace.fluid
   yAlign: 'bottom'
   yOffset: -350
@@ -306,6 +306,11 @@ program_settings.on Events.Click, ->
       xOffset: -5
       yAlign: 'bottom'
       yOffset: -205
+    minimap.fluid
+      autoWidth: true
+    inputFrame.fluid
+      yAlign: 'bottom'
+      autoWidth: true
 
   else
     background.fluid
@@ -317,6 +322,13 @@ program_settings.on Events.Click, ->
       xOffset: -405
       yAlign: 'bottom'
       yOffset: -205
+    minimap.fluid
+      autoWidth: true
+      widthOffset: -400
+    inputFrame.fluid
+      yAlign: 'bottom'
+      autoWidth: true
+      widthOffset: -400
   settingsshow = not settingsshow
 
 minimap = new Layer
