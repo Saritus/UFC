@@ -395,19 +395,17 @@ minimapSelection.on Events.AnimationEnd, ->
 
 # SETTINGS
 
-
 settings = new Layer
   width: 400
   #image: "resources/Sidebar.png"
-  backgroundColor: "rgb(41, 66, 143)"
+  #backgroundColor: "rgb(41, 66, 143)"
+  backgroundColor: "rgb(11, 56, 95)"
   opacity: 1
 
 settings.fluid
   autoHeight: true
   xAlign: 'right'
   xOffset: 400
-
-
 
 settings_programm = new Layer
   parent: settings

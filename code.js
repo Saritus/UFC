@@ -496,7 +496,7 @@ minimapSelection.on(Events.AnimationEnd, function() {
 
 settings = new Layer({
   width: 400,
-  backgroundColor: "rgb(41, 66, 143)",
+  backgroundColor: "rgb(11, 56, 95)",
   opacity: 1
 });
 
