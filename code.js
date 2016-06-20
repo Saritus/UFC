@@ -123,6 +123,7 @@ newTone.fluid({
 });
 
 newTone.on(Events.Click, function() {
+  var bubblenr, k, ref;
   i = layerArray.length;
   layerArray[i] = new Layer({
     x: i * 100,
@@ -177,13 +178,17 @@ newTone.on(Events.Click, function() {
       return this.oldY = newY;
     }
   });
-  return layerArray[i].on(Events.Click, function() {
+  layerArray[i].on(Events.Click, function() {
     var bubblenr, k, ref;
     for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
       layerArray[bubblenr].image = "resources/clean_long_blue.png";
     }
     return this.image = "resources/clean_long_orange.png";
   });
+  for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+    layerArray[bubblenr].image = "resources/clean_long_blue.png";
+  }
+  return layerArray[i].image = "resources/clean_long_orange.png";
 });
 
 inputFrame = new Layer({

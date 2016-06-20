@@ -138,6 +138,9 @@ newTone.on Events.Click, ->
     for bubblenr in [1..layerArray.length-1]
       layerArray[bubblenr].image = "resources/clean_long_blue.png"
     @image = "resources/clean_long_orange.png"
+  for bubblenr in [1..layerArray.length-1]
+    layerArray[bubblenr].image = "resources/clean_long_blue.png"
+  layerArray[i].image = "resources/clean_long_orange.png"
 
 inputFrame = new Layer
   parent: background
