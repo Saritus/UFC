@@ -20,7 +20,7 @@ logo.centerX();
 version = new Layer({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   height: 50,
-  html: "<p><center><b>Version: 0.4.57</b></center></p>"
+  html: "<p><center><b>Version: 0.4.66</b></center></p>"
 });
 
 version.fluid({
@@ -31,7 +31,7 @@ version.fluid({
 
 audio = new Layer({
   width: 600,
-  height: 270,
+  height: 250,
   backgroundColor: "rgba(0, 0, 0, 0)"
 });
 
@@ -39,7 +39,7 @@ audio.centerX();
 
 audio.fluid({
   yAlign: 'bottom',
-  yOffset: -380
+  yOffset: -340
 });
 
 label_audio = new Layer({
@@ -60,7 +60,7 @@ input_audio = new Input({
   type: "text",
   width: 450,
   height: 50,
-  y: audio.height - 170
+  y: audio.height - 160
 });
 
 button_audio = new Layer({
@@ -68,7 +68,7 @@ button_audio = new Layer({
   width: 70,
   height: 70,
   x: audio.width - 70,
-  y: audio.height - 170,
+  y: audio.height - 160,
   image: "blues/folder_open.png"
 });
 
@@ -102,7 +102,7 @@ button_lyric.on(Events.Click, function() {
 
 ufg = new Layer({
   width: 600,
-  height: 170,
+  height: 160,
   backgroundColor: "rgba(0, 0, 0, 0)"
 });
 
@@ -110,7 +110,7 @@ ufg.centerX();
 
 ufg.fluid({
   yAlign: 'bottom',
-  yOffset: -180
+  yOffset: -160
 });
 
 label_ufg = new Layer({
@@ -157,7 +157,7 @@ button_ok.centerX();
 
 button_ok.fluid({
   yAlign: 'bottom',
-  yOffset: -80
+  yOffset: -70
 });
 
 button_ok.on(Events.Click, function() {
