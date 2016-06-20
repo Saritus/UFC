@@ -141,16 +141,19 @@ newTone.on(Events.Click, function() {
     height: workspace.height
   };
   layerArray[i].onDragStart(function() {
+    var bubblenr, k, ref;
     workspace.draggable.enabled = false;
     this.oldX = this.x;
     this.oldY = this.y;
+    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+      layerArray[bubblenr].image = "resources/clean_long_blue.png";
+    }
     return this.image = "resources/clean_long_orange.png";
   });
   layerArray[i].onDragEnd(function() {
-    workspace.draggable.enabled = true;
-    return this.image = "resources/clean_long_blue.png";
+    return workspace.draggable.enabled = true;
   });
-  return layerArray[i].onDragMove(function(event) {
+  layerArray[i].onDragMove(function(event) {
     var bubble, equals, k, len, newX, newY;
     newX = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
     newY = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
@@ -173,6 +176,13 @@ newTone.on(Events.Click, function() {
       this.oldX = newX;
       return this.oldY = newY;
     }
+  });
+  return layerArray[i].on(Events.Click, function() {
+    var bubblenr, k, ref;
+    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+      layerArray[bubblenr].image = "resources/clean_long_blue.png";
+    }
+    return this.image = "resources/clean_long_orange.png";
   });
 });
 
