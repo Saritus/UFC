@@ -133,13 +133,12 @@ inputFrame.fluid
 
 
 inputText = new Input
-    setup: true # Change to true when positioning the input so you can see it
-    placeholder: "Text"
-    placeholderColor: "#fff"
-    type: "text"
-    width: window.innerWidth / 2 - 35
-    height: 50
-inputText.lyric = "Test"
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Text"
+  placeholderColor: "#fff"
+  type: "text"
+  width: window.innerWidth / 2 - 35
+  height: 50
 
 inputText.fluid
   xOffset: 10
@@ -148,13 +147,13 @@ inputText.fluid
   yAlign: 'bottom'
 
 inputStart = new Input
-    setup: true # Change to true when positioning the input so you can see it
-    placeholder: "Start"
-    placeholderColor: "#fff"
-    type: "number"
-    width: window.innerWidth / 2 - 35
-    height: 50
-    parent: inputFrame
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Start"
+  placeholderColor: "#fff"
+  type: "number"
+  width: window.innerWidth / 2 - 35
+  height: 50
+  parent: inputFrame
 
 inputStart.fluid
   xOffset: 10
@@ -163,13 +162,13 @@ inputStart.fluid
   yAlign: 'bottom'
 
 inputLength = new Input
-    setup: true # Change to true when positioning the input so you can see it
-    placeholder: "Länge"
-    placeholderColor: "#fff"
-    type: "number"
-    width: window.innerWidth / 2 - 35
-    height: 50
-    parent: inputFrame
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Länge"
+  placeholderColor: "#fff"
+  type: "number"
+  width: window.innerWidth / 2 - 35
+  height: 50
+  parent: inputFrame
 
 inputLength.fluid
   xOffset: -30
@@ -178,13 +177,13 @@ inputLength.fluid
   yAlign: 'bottom'
 
 inputPitch = new Input
-    setup: true # Change to true when positioning the input so you can see it
-    placeholder: "Tonhöhe"
-    placeholderColor: "#fff"
-    type: "number"
-    width: window.innerWidth / 2 - 35
-    height: 50
-    parent: inputFrame
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Tonhöhe"
+  placeholderColor: "#fff"
+  type: "number"
+  width: window.innerWidth / 2 - 35
+  height: 50
+  parent: inputFrame
 
 inputPitch.fluid
   xOffset: -30
@@ -416,14 +415,174 @@ settings_programm = new Layer
   backgroundColor: "rgba(255, 255, 255, 0.2)"
   html: '<center><h2>Programm</h2></center>'
 
+settings_programm.on Events.Click, ->
+  settings_programm.backgroundColor = "rgba(255, 255, 255, 0.2)"
+  settings_projekt.backgroundColor = "rgba(0, 0, 0, 0)"
+  settings_programm_sprache.visible = true
+  settings_programm_font.visible = true
+  settings_programm_farbe.visible = true
+  settings_projekt_titel.visible = false
+  settings_projekt_interpret.visible = false
+  settings_projekt_bpm.visible = false
+  settings_projekt_video_input.visible = false
+  settings_projekt_video_start.visible = false
+  settings_projekt_video_open.visible = false
+  settings_projekt_cover_input.visible = false
+  settings_projekt_cover_open.visible = false
+
+settings_programm_sprache = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Sprache"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 0
+  y: 100
+  width: 380
+  height: 50
+
+settings_programm_font = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Font"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 0
+  y: 200
+  width: 380
+  height: 50
+
+settings_programm_farbe = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Farbe"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 0
+  y: 300
+  width: 380
+  height: 50
+
 settings_projekt = new Layer
   parent: settings
   width: 200
   height: 70
   x: 200
   y: 0
-  backgroundColor: "rgba(0, 0, 0, 0.2)"
+  backgroundColor: "rgba(0, 0, 0, 0)"
   html: '<center><h2>Projekt</h2></center>'
+
+settings_projekt.on Events.Click, ->
+  settings_programm.backgroundColor = "rgba(0, 0, 0, 0)"
+  settings_projekt.backgroundColor = "rgba(255, 255, 255, 0.2)"
+  settings_programm_sprache.visible = false
+  settings_programm_font.visible = false
+  settings_programm_farbe.visible = false
+  settings_projekt_titel.visible = true
+  settings_projekt_interpret.visible = true
+  settings_projekt_bpm.visible = true
+  settings_projekt_video_input.visible = true
+  settings_projekt_video_start.visible = true
+  settings_projekt_video_open.visible = true
+  settings_projekt_cover_input.visible = true
+  settings_projekt_cover_open.visible = true
+
+settings_projekt_titel = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Titel"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 0
+  y: 100
+  width: 380
+  height: 50
+
+settings_projekt_interpret = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Interpret"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 0
+  y: 200
+  width: 380
+  height: 50
+
+settings_projekt_bpm = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "BPM"
+  placeholderColor: "#fff"
+  type: "number"
+  x: 0
+  y: 300
+  width: 380
+  height: 50
+
+settings_projekt_video_input = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Video"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 70
+  y: 400
+  width: 230
+  height: 50
+
+settings_projekt_video_open = new Layer
+  parent: settings
+  x: 330
+  y: 400
+  width: 70
+  height: 70
+  image: "blues/folder_open.png"
+
+settings_projekt_video_start = new Layer
+  parent: settings
+  x: 0
+  y: 400
+  width: 70
+  height: 70
+  image: "blues/button_blue_play.png"
+
+settings_projekt_video_start.on Events.Click, ->
+  video.video = "resources/" + settings_projekt_video_input.value + ".mp4"
+  video_window.visible = true
+  video.visible = true
+  video_close.visible = true
+
+settings_projekt_cover_input = new Input
+  parent: settings
+  setup: true # Change to true when positioning the input so you can see it
+  placeholder: "Cover"
+  placeholderColor: "#fff"
+  type: "text"
+  x: 0
+  y: 500
+  width: 300
+  height: 50
+
+settings_projekt_cover_open = new Layer
+  parent: settings
+  x: 330
+  y: 500
+  width: 70
+  height: 70
+  image: "blues/folder_open.png"
+
+settings_programm_sprache.visible = true
+settings_programm_font.visible = true
+settings_programm_farbe.visible = true
+settings_projekt_titel.visible = false
+settings_projekt_interpret.visible = false
+settings_projekt_bpm.visible = false
+settings_projekt_video_input.visible = false
+settings_projekt_video_start.visible = false
+settings_projekt_video_open.visible = false
+settings_projekt_cover_input.visible = false
+settings_projekt_cover_open.visible = false
 
 # VIDEOANSICHT
 
@@ -454,7 +613,7 @@ video = new VideoPlayer
   height: Screen.height/2
   x: Screen.width/4
   y: Screen.height/4
-  video: "resources/video.mp4"
+  #video: "resources/video.mp4"
 
 video.parent = video_window
 video.playButtonImage = "resources/play.png"
@@ -483,6 +642,10 @@ video_close.on Events.Click, ->
   video_window.visible = false
   video.visible = false
   video_close.visible = false
+
+video_window.visible = false
+video.visible = false
+video_close.visible = false
 
 window.addEventListener 'resize', ((event) ->
   minimapSelection.draggable.constraints =
