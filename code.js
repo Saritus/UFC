@@ -38,6 +38,10 @@ workspace.draggable.constraints = {
   width: 2 * workspace.width - Canvas.width
 };
 
+workspace.onDragMove(function() {
+  return minimapSelection.x = (workspace.x / (Canvas.width - workspace.width)) * (minimap.width - minimapSelection.width);
+});
+
 layerArray = [workspace];
 
 for (i = j = 1; j <= 5; i = ++j) {
@@ -294,7 +298,8 @@ music_stop = new Layer({
 music_stop.on(Events.Click, function() {
   playing = false;
   minimapSelection.animateStop();
-  return workspace.animateStop();
+  workspace.animateStop();
+  return music_playpause.image = "blues/button_blue_play.png";
 });
 
 music_skipright = new Layer({
@@ -487,6 +492,10 @@ minimapSelection.draggable.constraints = {
   width: Screen.width,
   height: minimap.height
 };
+
+minimapSelection.onDragMove(function() {
+  return workspace.x = (Canvas.width - workspace.width) * (minimapSelection.x / (minimap.width - minimapSelection.width));
+});
 
 minimapSelection.on(Events.AnimationEnd, function() {
   return music_playpause.image = "blues/button_blue_play.png";

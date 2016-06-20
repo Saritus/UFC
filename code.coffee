@@ -26,6 +26,10 @@ workspace.draggable.constraints =
     x: Canvas.width - workspace.width
     width: 2 * workspace.width - Canvas.width
 
+workspace.onDragMove ->
+  minimapSelection.x = (workspace.x / (Canvas.width - workspace.width)) * (minimap.width - minimapSelection.width)
+
+
 layerArray = [workspace]
 for i in [1..5]
   layerArray[i] = new Layer
@@ -238,6 +242,7 @@ music_stop.on Events.Click, ->
   playing = false
   minimapSelection.animateStop()
   workspace.animateStop()
+  music_playpause.image = "blues/button_blue_play.png"
 
 music_skipright = new Layer
   x: 300
@@ -388,6 +393,9 @@ minimapSelection.draggable.momentum = false
 minimapSelection.draggable.constraints =
   width: Screen.width
   height: minimap.height
+
+minimapSelection.onDragMove ->
+  workspace.x = (Canvas.width - workspace.width) * (minimapSelection.x / (minimap.width - minimapSelection.width))
 
 minimapSelection.on Events.AnimationEnd, ->
   music_playpause.image = "blues/button_blue_play.png"
