@@ -51,10 +51,12 @@ for i in [1..5]
     workspace.draggable.enabled=false
     @oldX = @x
     @oldY = @y
+    for bubblenr in [1..layerArray.length-1]
+      layerArray[bubblenr].image = "resources/clean_long_blue.png"
     @image = "resources/clean_long_orange.png"
   layerArray[i].onDragEnd ->
     workspace.draggable.enabled=true
-    @image = "resources/clean_long_blue.png"
+    #@image = "resources/clean_long_blue.png"
   layerArray[i].onDragMove (event) ->
     newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
     newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
@@ -72,6 +74,10 @@ for i in [1..5]
       @y = newY
       @oldX = newX
       @oldY = newY
+  layerArray[i].on Events.Click, ->
+    for bubblenr in [1..layerArray.length-1]
+      layerArray[bubblenr].image = "resources/clean_long_blue.png"
+    @image = "resources/clean_long_orange.png"
 
 newTone = new Layer
   parent: background

@@ -63,14 +63,17 @@ for (i = j = 1; j <= 5; i = ++j) {
     height: workspace.height
   };
   layerArray[i].onDragStart(function() {
+    var bubblenr, k, ref;
     workspace.draggable.enabled = false;
     this.oldX = this.x;
     this.oldY = this.y;
+    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+      layerArray[bubblenr].image = "resources/clean_long_blue.png";
+    }
     return this.image = "resources/clean_long_orange.png";
   });
   layerArray[i].onDragEnd(function() {
-    workspace.draggable.enabled = true;
-    return this.image = "resources/clean_long_blue.png";
+    return workspace.draggable.enabled = true;
   });
   layerArray[i].onDragMove(function(event) {
     var bubble, equals, k, len, newX, newY;
@@ -95,6 +98,13 @@ for (i = j = 1; j <= 5; i = ++j) {
       this.oldX = newX;
       return this.oldY = newY;
     }
+  });
+  layerArray[i].on(Events.Click, function() {
+    var bubblenr, k, ref;
+    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+      layerArray[bubblenr].image = "resources/clean_long_blue.png";
+    }
+    return this.image = "resources/clean_long_orange.png";
   });
 }
 
