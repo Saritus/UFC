@@ -182,7 +182,8 @@ inputText = new Input({
   placeholderColor: "#fff",
   type: "text",
   width: window.innerWidth / 2 - 35,
-  height: 50
+  height: 50,
+  parent: inputFrame
 });
 
 inputText.fluid({
@@ -299,7 +300,9 @@ music_stop.on(Events.Click, function() {
   playing = false;
   minimapSelection.animateStop();
   workspace.animateStop();
-  return music_playpause.image = "blues/button_blue_play.png";
+  music_playpause.image = "blues/button_blue_play.png";
+  minimapSelection.x = 0;
+  return workspace.x = 0;
 });
 
 music_skipright = new Layer({
@@ -396,10 +399,18 @@ program_settings.on(Events.Click, function() {
       },
       time: 1
     });
+    background.x = -400;
     background.fluid({
       autoWidth: true,
       autoHeight: true,
-      widthOffset: 0
+      xOffset: -400
+    });
+    background["static"]();
+    background.animate({
+      properties: {
+        x: 0
+      },
+      time: 1
     });
     settings.fluid({
       autoHeight: true,
@@ -413,10 +424,12 @@ program_settings.on(Events.Click, function() {
       },
       time: 1
     });
-    background.fluid({
-      autoWidth: true,
-      autoHeight: true,
-      widthOffset: -400
+    background["static"]();
+    background.animate({
+      properties: {
+        x: -400
+      },
+      time: 1
     });
     settings.fluid({
       autoHeight: true,
@@ -458,6 +471,56 @@ program_settings.on(Events.Click, function() {
   inputStart.width = inputFrame.width / 2 - 35;
   inputLength.width = inputFrame.width / 2 - 35;
   return settingsshow = !settingsshow;
+});
+
+background.onAnimationEnd(function() {
+  background.x = 0;
+  if (settingsshow) {
+    background.fluid({
+      autoWidth: true,
+      autoHeight: true,
+      widthOffset: -400
+    });
+  } else {
+    background.fluid({
+      autoWidth: true,
+      autoHeight: true,
+      widthOffset: 0
+    });
+  }
+  newTone.fluid({
+    xAlign: 'right',
+    xOffset: -5,
+    yAlign: 'bottom',
+    yOffset: -205
+  });
+  minimap.fluid({
+    autoWidth: true
+  });
+  inputFrame.fluid({
+    yAlign: 'bottom',
+    autoWidth: true
+  });
+  program_open.fluid({
+    xAlign: 'right',
+    xOffset: -215
+  });
+  program_save.fluid({
+    xAlign: 'right',
+    xOffset: -105
+  });
+  program_settings.fluid({
+    xAlign: 'right',
+    xOffset: -5
+  });
+  minimapSelection.draggable.constraints = {
+    width: minimap.width,
+    height: minimap.height
+  };
+  inputText.width = inputFrame.width / 2 - 35;
+  inputPitch.width = inputFrame.width / 2 - 35;
+  inputStart.width = inputFrame.width / 2 - 35;
+  return inputLength.width = inputFrame.width / 2 - 35;
 });
 
 minimap = new Layer({
