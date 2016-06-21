@@ -145,6 +145,7 @@ newTone.on Events.Click, ->
 inputFrame = new Layer
   parent: background
   height: 200
+  backgroundColor: "rgba(0, 0, 0, 0)"
 
 inputFrame.fluid
   yAlign: 'bottom'
@@ -231,7 +232,8 @@ playing = false
 music_playpause.on Events.Click, ->
   if playing
     minimapSelection.animateStop()
-    workspace.animateStop()
+    #workspace.animateStop()
+    music_line.animateStop()
     music_playpause.image = "blues/button_blue_play.png"
   else
     minimapSelection.animate
@@ -239,13 +241,17 @@ music_playpause.on Events.Click, ->
           x: background.width - minimapSelection.width
       curve: "linear"
       time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
-    workspace.animate
+    #workspace.animate
+    #  properties:
+    #      x: background.width - workspace.width
+    #  curve: "linear"
+    #  time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
+    music_line.animate
       properties:
-          x: background.width - workspace.width
+        x: Screen.width - music_line.width
       curve: "linear"
-      time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
+      time: 3 * ((Screen.width - music_line.width - music_line.x) / (Screen.width - music_line.width))
     music_playpause.image = "blues/button_blue_pause.png"
-
   playing = !playing
 
 music_stop = new Layer
@@ -257,10 +263,12 @@ music_stop = new Layer
 music_stop.on Events.Click, ->
   playing = false
   minimapSelection.animateStop()
-  workspace.animateStop()
+  #workspace.animateStop()
+  music_line.animateStop()
   music_playpause.image = "blues/button_blue_play.png"
   minimapSelection.x = 0
   workspace.x = 0
+  music_line.x = 0
 
 music_skipright = new Layer
   x: 300
@@ -273,6 +281,7 @@ music_skipright.on Events.Click, ->
   workspace.x = background.width - workspace.width
 
 music_line = new Layer
+  #parent: workspace
   width: 18
   height: 300
   image: "resources/music_line_2.png"
@@ -293,6 +302,14 @@ music_line.draggable.constraints = {
   height: workspace.height
 }
 
+music_line.onAnimationEnd ->
+  music_line.x = 0
+  workspace.x = workspace.x - background.width
+  music_line.animate
+    properties:
+      x: Screen.width - music_line.width
+    curve: "linear"
+    time: 3 * ((Screen.width - music_line.width - music_line.x) / (Screen.width - music_line.width))
 
 program_open = new Layer
   parent: background
@@ -389,10 +406,6 @@ program_settings.on Events.Click, ->
     width: minimap.width
     height: minimap.height
 
-  inputText.width = inputFrame.width / 2 - 35
-  inputPitch.width = inputFrame.width / 2 - 35
-  inputStart.width = inputFrame.width / 2 - 35
-  inputLength.width = inputFrame.width / 2 - 35
   settingsshow = not settingsshow
 
 background.onAnimationEnd ->

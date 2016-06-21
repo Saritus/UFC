@@ -193,7 +193,8 @@ newTone.on(Events.Click, function() {
 
 inputFrame = new Layer({
   parent: background,
-  height: 200
+  height: 200,
+  backgroundColor: "rgba(0, 0, 0, 0)"
 });
 
 inputFrame.fluid({
@@ -292,7 +293,7 @@ playing = false;
 music_playpause.on(Events.Click, function() {
   if (playing) {
     minimapSelection.animateStop();
-    workspace.animateStop();
+    music_line.animateStop();
     music_playpause.image = "blues/button_blue_play.png";
   } else {
     minimapSelection.animate({
@@ -302,12 +303,12 @@ music_playpause.on(Events.Click, function() {
       curve: "linear",
       time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
     });
-    workspace.animate({
+    music_line.animate({
       properties: {
-        x: background.width - workspace.width
+        x: Screen.width - music_line.width
       },
       curve: "linear",
-      time: 10 * ((minimap.width - minimapSelection.width - minimapSelection.x) / (minimap.width - minimapSelection.width))
+      time: 3 * ((Screen.width - music_line.width - music_line.x) / (Screen.width - music_line.width))
     });
     music_playpause.image = "blues/button_blue_pause.png";
   }
@@ -324,10 +325,11 @@ music_stop = new Layer({
 music_stop.on(Events.Click, function() {
   playing = false;
   minimapSelection.animateStop();
-  workspace.animateStop();
+  music_line.animateStop();
   music_playpause.image = "blues/button_blue_play.png";
   minimapSelection.x = 0;
-  return workspace.x = 0;
+  workspace.x = 0;
+  return music_line.x = 0;
 });
 
 music_skipright = new Layer({
@@ -369,6 +371,18 @@ music_line.draggable.constraints = {
   width: Screen.width,
   height: workspace.height
 };
+
+music_line.onAnimationEnd(function() {
+  music_line.x = 0;
+  workspace.x = workspace.x - background.width;
+  return music_line.animate({
+    properties: {
+      x: Screen.width - music_line.width
+    },
+    curve: "linear",
+    time: 3 * ((Screen.width - music_line.width - music_line.x) / (Screen.width - music_line.width))
+  });
+});
 
 program_open = new Layer({
   parent: background,
@@ -491,10 +505,6 @@ program_settings.on(Events.Click, function() {
     width: minimap.width,
     height: minimap.height
   };
-  inputText.width = inputFrame.width / 2 - 35;
-  inputPitch.width = inputFrame.width / 2 - 35;
-  inputStart.width = inputFrame.width / 2 - 35;
-  inputLength.width = inputFrame.width / 2 - 35;
   return settingsshow = !settingsshow;
 });
 
