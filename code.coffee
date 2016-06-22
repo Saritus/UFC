@@ -7,7 +7,7 @@ background.fluid
 
 workspace = new Layer
   parent: background
-  width: 3500
+  width: 7000
   height: 300
   image: "resources/workfield2.png"
 
