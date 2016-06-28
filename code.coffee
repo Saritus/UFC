@@ -31,53 +31,6 @@ workspace.onDragMove ->
 
 
 layerArray = [workspace]
-for i in [1..5]
-  layerArray[i] = new Layer
-    x: i*100
-    y: 50
-    width: 100
-    height: 50
-    image: "resources/clean_long_blue.png"
-  layerArray[i].id = layerArray.length
-  workspace.addSubLayer(layerArray[i])
-  layerArray[i].draggable.enabled=true
-  layerArray[i].draggable.overdrag = false
-  layerArray[i].draggable.bounce = false
-  layerArray[i].draggable.momentum = false
-  layerArray[i].draggable.constraints =
-      width: workspace.width
-      height: workspace.height
-  layerArray[i].onDragStart ->
-    workspace.draggable.enabled=false
-    @oldX = @x
-    @oldY = @y
-    for bubblenr in [1..layerArray.length-1]
-      layerArray[bubblenr].image = "resources/clean_long_blue.png"
-    @image = "resources/clean_long_orange.png"
-  layerArray[i].onDragEnd ->
-    workspace.draggable.enabled=true
-    #@image = "resources/clean_long_blue.png"
-  layerArray[i].onDragMove (event) ->
-    newX = Math.round((event.pointX - @parent.x - (@width / 2)) / 50) * 50
-    newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
-    equals = false
-    for bubble in layerArray
-      if (bubble.id isnt @id) and (Math.abs(newX - bubble.x) < @width) and (Math.abs(newY - bubble.y) < @height)
-        equals = true
-    if (newX < 0) or (newY < 0) or (newX > @parent.width) or (newY > @parent.height - @height)
-      equals = true
-    if equals
-      @x = @oldX
-      @y = @oldY
-    else
-      @x = newX
-      @y = newY
-      @oldX = newX
-      @oldY = newY
-  layerArray[i].on Events.Click, ->
-    for bubblenr in [1..layerArray.length-1]
-      layerArray[bubblenr].image = "resources/clean_long_blue.png"
-    @image = "resources/clean_long_orange.png"
 
 newTone = new Layer
   parent: background
@@ -99,6 +52,7 @@ newTone.on Events.Click, ->
     width: 100
     height: 50
     image: "resources/clean_long_blue.png"
+  layerArray[i].id = layerArray.length
   workspace.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
@@ -107,6 +61,9 @@ newTone.on Events.Click, ->
   layerArray[i].draggable.constraints =
       width: workspace.width
       height: workspace.height
+  for bubblenr in [1..layerArray.length-1]
+    layerArray[bubblenr].image = "resources/clean_long_blue.png"
+  layerArray[i].image = "resources/clean_long_orange.png"
   layerArray[i].onDragStart ->
     workspace.draggable.enabled=false
     @oldX = @x
@@ -138,9 +95,19 @@ newTone.on Events.Click, ->
     for bubblenr in [1..layerArray.length-1]
       layerArray[bubblenr].image = "resources/clean_long_blue.png"
     @image = "resources/clean_long_orange.png"
-  for bubblenr in [1..layerArray.length-1]
-    layerArray[bubblenr].image = "resources/clean_long_blue.png"
-  layerArray[i].image = "resources/clean_long_orange.png"
+    selected = @
+
+deleteTone = new Layer
+  parent: background
+  height: 100
+  width: 100
+  image: "resources/addBubble.png"
+
+deleteTone.fluid
+  xAlign: 'right'
+  xOffset: -105
+  yAlign: 'bottom'
+  yOffset: -205
 
 inputFrame = new Layer
   parent: background
@@ -388,6 +355,11 @@ program_settings.on Events.Click, ->
     xOffset: -5
     yAlign: 'bottom'
     yOffset: -205
+  deleteTone.fluid
+    xAlign: 'right'
+    xOffset: -105
+    yAlign: 'bottom'
+    yOffset: -205
   minimap.fluid
     autoWidth: true
   inputFrame.fluid
@@ -425,6 +397,11 @@ background.onAnimationEnd ->
     xOffset: -5
     yAlign: 'bottom'
     yOffset: -205
+  deleteTone.fluid
+    xAlign: 'right'
+    xOffset: -105
+    yAlign: 'bottom'
+    yOffset: -205
   minimap.fluid
     autoWidth: true
   inputFrame.fluid
@@ -443,6 +420,7 @@ background.onAnimationEnd ->
     width: minimap.width
     height: minimap.height
 
+  inputFrame.width = Screen.width - 400
   inputText.width = inputFrame.width / 2 - 35
   inputPitch.width = inputFrame.width / 2 - 35
   inputStart.width = inputFrame.width / 2 - 35

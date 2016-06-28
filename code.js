@@ -1,4 +1,4 @@
-var background, i, inputFrame, inputLength, inputPitch, inputStart, inputText, j, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_programm_farbe, settings_programm_font, settings_programm_sprache, settings_projekt, settings_projekt_bpm, settings_projekt_cover_input, settings_projekt_cover_open, settings_projekt_interpret, settings_projekt_titel, settings_projekt_video_input, settings_projekt_video_open, settings_projekt_video_start, settingsshow, video, video_close, video_window, workspace;
+var background, deleteTone, inputFrame, inputLength, inputPitch, inputStart, inputText, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_programm_farbe, settings_programm_font, settings_programm_sprache, settings_projekt, settings_projekt_bpm, settings_projekt_cover_input, settings_projekt_cover_open, settings_projekt_interpret, settings_projekt_titel, settings_projekt_video_input, settings_projekt_video_open, settings_projekt_video_start, settingsshow, video, video_close, video_window, workspace;
 
 background = new Layer({
   image: "resources/blue_background.png"
@@ -44,7 +44,23 @@ workspace.onDragMove(function() {
 
 layerArray = [workspace];
 
-for (i = j = 1; j <= 5; i = ++j) {
+newTone = new Layer({
+  parent: background,
+  height: 100,
+  width: 100,
+  image: "resources/addBubble.png"
+});
+
+newTone.fluid({
+  xAlign: 'right',
+  xOffset: -5,
+  yAlign: 'bottom',
+  yOffset: -205
+});
+
+newTone.on(Events.Click, function() {
+  var bubblenr, i, j, ref;
+  i = layerArray.length;
   layerArray[i] = new Layer({
     x: i * 100,
     y: 50,
@@ -62,12 +78,16 @@ for (i = j = 1; j <= 5; i = ++j) {
     width: workspace.width,
     height: workspace.height
   };
+  for (bubblenr = j = 1, ref = layerArray.length - 1; 1 <= ref ? j <= ref : j >= ref; bubblenr = 1 <= ref ? ++j : --j) {
+    layerArray[bubblenr].image = "resources/clean_long_blue.png";
+  }
+  layerArray[i].image = "resources/clean_long_orange.png";
   layerArray[i].onDragStart(function() {
-    var bubblenr, k, ref;
+    var k, ref1;
     workspace.draggable.enabled = false;
     this.oldX = this.x;
     this.oldY = this.y;
-    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+    for (bubblenr = k = 1, ref1 = layerArray.length - 1; 1 <= ref1 ? k <= ref1 : k >= ref1; bubblenr = 1 <= ref1 ? ++k : --k) {
       layerArray[bubblenr].image = "resources/clean_long_blue.png";
     }
     return this.image = "resources/clean_long_orange.png";
@@ -99,96 +119,28 @@ for (i = j = 1; j <= 5; i = ++j) {
       return this.oldY = newY;
     }
   });
-  layerArray[i].on(Events.Click, function() {
-    var bubblenr, k, ref;
-    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
+  return layerArray[i].on(Events.Click, function() {
+    var k, ref1, selected;
+    for (bubblenr = k = 1, ref1 = layerArray.length - 1; 1 <= ref1 ? k <= ref1 : k >= ref1; bubblenr = 1 <= ref1 ? ++k : --k) {
       layerArray[bubblenr].image = "resources/clean_long_blue.png";
     }
-    return this.image = "resources/clean_long_orange.png";
+    this.image = "resources/clean_long_orange.png";
+    return selected = this;
   });
-}
+});
 
-newTone = new Layer({
+deleteTone = new Layer({
   parent: background,
   height: 100,
   width: 100,
   image: "resources/addBubble.png"
 });
 
-newTone.fluid({
+deleteTone.fluid({
   xAlign: 'right',
-  xOffset: -5,
+  xOffset: -105,
   yAlign: 'bottom',
   yOffset: -205
-});
-
-newTone.on(Events.Click, function() {
-  var bubblenr, k, ref;
-  i = layerArray.length;
-  layerArray[i] = new Layer({
-    x: i * 100,
-    y: 50,
-    width: 100,
-    height: 50,
-    image: "resources/clean_long_blue.png"
-  });
-  workspace.addSubLayer(layerArray[i]);
-  layerArray[i].draggable.enabled = true;
-  layerArray[i].draggable.overdrag = false;
-  layerArray[i].draggable.bounce = false;
-  layerArray[i].draggable.momentum = false;
-  layerArray[i].draggable.constraints = {
-    width: workspace.width,
-    height: workspace.height
-  };
-  layerArray[i].onDragStart(function() {
-    var bubblenr, k, ref;
-    workspace.draggable.enabled = false;
-    this.oldX = this.x;
-    this.oldY = this.y;
-    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
-      layerArray[bubblenr].image = "resources/clean_long_blue.png";
-    }
-    return this.image = "resources/clean_long_orange.png";
-  });
-  layerArray[i].onDragEnd(function() {
-    return workspace.draggable.enabled = true;
-  });
-  layerArray[i].onDragMove(function(event) {
-    var bubble, equals, k, len, newX, newY;
-    newX = Math.round((event.pointX - this.parent.x - (this.width / 2)) / 50) * 50;
-    newY = Math.round((event.pointY - this.parent.y - (this.height / 2)) / 25) * 25;
-    equals = false;
-    for (k = 0, len = layerArray.length; k < len; k++) {
-      bubble = layerArray[k];
-      if ((bubble.id !== this.id) && (Math.abs(newX - bubble.x) < this.width) && (Math.abs(newY - bubble.y) < this.height)) {
-        equals = true;
-      }
-    }
-    if ((newX < 0) || (newY < 0) || (newX > this.parent.width) || (newY > this.parent.height - this.height)) {
-      equals = true;
-    }
-    if (equals) {
-      this.x = this.oldX;
-      return this.y = this.oldY;
-    } else {
-      this.x = newX;
-      this.y = newY;
-      this.oldX = newX;
-      return this.oldY = newY;
-    }
-  });
-  layerArray[i].on(Events.Click, function() {
-    var bubblenr, k, ref;
-    for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
-      layerArray[bubblenr].image = "resources/clean_long_blue.png";
-    }
-    return this.image = "resources/clean_long_orange.png";
-  });
-  for (bubblenr = k = 1, ref = layerArray.length - 1; 1 <= ref ? k <= ref : k >= ref; bubblenr = 1 <= ref ? ++k : --k) {
-    layerArray[bubblenr].image = "resources/clean_long_blue.png";
-  }
-  return layerArray[i].image = "resources/clean_long_orange.png";
 });
 
 inputFrame = new Layer({
@@ -482,6 +434,12 @@ program_settings.on(Events.Click, function() {
     yAlign: 'bottom',
     yOffset: -205
   });
+  deleteTone.fluid({
+    xAlign: 'right',
+    xOffset: -105,
+    yAlign: 'bottom',
+    yOffset: -205
+  });
   minimap.fluid({
     autoWidth: true
   });
@@ -529,6 +487,12 @@ background.onAnimationEnd(function() {
     yAlign: 'bottom',
     yOffset: -205
   });
+  deleteTone.fluid({
+    xAlign: 'right',
+    xOffset: -105,
+    yAlign: 'bottom',
+    yOffset: -205
+  });
   minimap.fluid({
     autoWidth: true
   });
@@ -552,6 +516,7 @@ background.onAnimationEnd(function() {
     width: minimap.width,
     height: minimap.height
   };
+  inputFrame.width = Screen.width - 400;
   inputText.width = inputFrame.width / 2 - 35;
   inputPitch.width = inputFrame.width / 2 - 35;
   inputStart.width = inputFrame.width / 2 - 35;
