@@ -68,7 +68,7 @@ newTone.on(Events.Click, function() {
     height: 50,
     image: "resources/clean_long_blue.png"
   });
-  layerArray[i].id = layerArray.length;
+  layerArray[i].index = layerArray.length;
   workspace.addSubLayer(layerArray[i]);
   layerArray[i].draggable.enabled = true;
   layerArray[i].draggable.overdrag = false;
@@ -82,6 +82,8 @@ newTone.on(Events.Click, function() {
     layerArray[bubblenr].image = "resources/clean_long_blue.png";
   }
   layerArray[i].image = "resources/clean_long_orange.png";
+  workspace.selected = layerArray[i].index;
+  deleteTone.visible = true;
   layerArray[i].onDragStart(function() {
     var k, ref1;
     workspace.draggable.enabled = false;
@@ -102,7 +104,7 @@ newTone.on(Events.Click, function() {
     equals = false;
     for (k = 0, len = layerArray.length; k < len; k++) {
       bubble = layerArray[k];
-      if ((bubble.id !== this.id) && (Math.abs(newX - bubble.x) < this.width) && (Math.abs(newY - bubble.y) < this.height)) {
+      if ((bubble.index !== this.index) && (Math.abs(newX - bubble.x) < this.width) && (Math.abs(newY - bubble.y) < this.height)) {
         equals = true;
       }
     }
@@ -120,12 +122,13 @@ newTone.on(Events.Click, function() {
     }
   });
   return layerArray[i].on(Events.Click, function() {
-    var k, ref1, selected;
+    var k, ref1;
     for (bubblenr = k = 1, ref1 = layerArray.length - 1; 1 <= ref1 ? k <= ref1 : k >= ref1; bubblenr = 1 <= ref1 ? ++k : --k) {
       layerArray[bubblenr].image = "resources/clean_long_blue.png";
     }
     this.image = "resources/clean_long_orange.png";
-    return selected = this;
+    workspace.selected = this.index;
+    return deleteTone.visible = true;
   });
 });
 
@@ -133,7 +136,8 @@ deleteTone = new Layer({
   parent: background,
   height: 100,
   width: 100,
-  image: "resources/addBubble.png"
+  image: "blues/block_blue.png",
+  visible: false
 });
 
 deleteTone.fluid({
@@ -141,6 +145,16 @@ deleteTone.fluid({
   xOffset: -105,
   yAlign: 'bottom',
   yOffset: -205
+});
+
+deleteTone.on(Events.Click, function() {
+  var bubblenr, j, ref, selected;
+  deleteTone.visible = false;
+  layerArray[workspace.selected].destroy();
+  for (bubblenr = j = 1, ref = layerArray.length; 1 <= ref ? j <= ref : j >= ref; bubblenr = 1 <= ref ? ++j : --j) {
+    layerArray[bubblenr].index = bubblenr;
+  }
+  return selected = -1;
 });
 
 inputFrame = new Layer({

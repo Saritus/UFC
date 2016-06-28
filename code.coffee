@@ -52,7 +52,7 @@ newTone.on Events.Click, ->
     width: 100
     height: 50
     image: "resources/clean_long_blue.png"
-  layerArray[i].id = layerArray.length
+  layerArray[i].index = layerArray.length
   workspace.addSubLayer(layerArray[i])
   layerArray[i].draggable.enabled=true
   layerArray[i].draggable.overdrag = false
@@ -64,6 +64,8 @@ newTone.on Events.Click, ->
   for bubblenr in [1..layerArray.length-1]
     layerArray[bubblenr].image = "resources/clean_long_blue.png"
   layerArray[i].image = "resources/clean_long_orange.png"
+  workspace.selected = layerArray[i].index
+  deleteTone.visible = true
   layerArray[i].onDragStart ->
     workspace.draggable.enabled=false
     @oldX = @x
@@ -79,7 +81,7 @@ newTone.on Events.Click, ->
     newY = Math.round((event.pointY - @parent.y - (@height / 2)) / 25) * 25
     equals = false
     for bubble in layerArray
-      if (bubble.id isnt @id) and (Math.abs(newX - bubble.x) < @width) and (Math.abs(newY - bubble.y) < @height)
+      if (bubble.index isnt @index) and (Math.abs(newX - bubble.x) < @width) and (Math.abs(newY - bubble.y) < @height)
         equals = true
     if (newX < 0) or (newY < 0) or (newX > @parent.width) or (newY > @parent.height - @height)
       equals = true
@@ -95,19 +97,28 @@ newTone.on Events.Click, ->
     for bubblenr in [1..layerArray.length-1]
       layerArray[bubblenr].image = "resources/clean_long_blue.png"
     @image = "resources/clean_long_orange.png"
-    selected = @
+    workspace.selected = this.index
+    deleteTone.visible = true
 
 deleteTone = new Layer
   parent: background
   height: 100
   width: 100
-  image: "resources/addBubble.png"
+  image: "blues/block_blue.png"
+  visible: false
 
 deleteTone.fluid
   xAlign: 'right'
   xOffset: -105
   yAlign: 'bottom'
   yOffset: -205
+
+deleteTone.on Events.Click, ->
+  deleteTone.visible = false
+  layerArray[workspace.selected].destroy()
+  for bubblenr in [1..layerArray.length]
+    layerArray[bubblenr].index = bubblenr
+  selected = -1
 
 inputFrame = new Layer
   parent: background
