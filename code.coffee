@@ -117,8 +117,8 @@ deleteTone.on Events.Click, ->
   deleteTone.visible = false
   layerArray[workspace.selected].destroy()
   for bubblenr in [1..layerArray.length]
-    layerArray[bubblenr].index = bubblenr
-  selected = -1
+    if layerArray[bubblenr] isnt undefined
+      layerArray[bubblenr].index = bubblenr
 
 inputFrame = new Layer
   parent: background

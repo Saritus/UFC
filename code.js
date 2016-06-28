@@ -148,13 +148,18 @@ deleteTone.fluid({
 });
 
 deleteTone.on(Events.Click, function() {
-  var bubblenr, j, ref, selected;
+  var bubblenr, j, ref, results;
   deleteTone.visible = false;
   layerArray[workspace.selected].destroy();
+  results = [];
   for (bubblenr = j = 1, ref = layerArray.length; 1 <= ref ? j <= ref : j >= ref; bubblenr = 1 <= ref ? ++j : --j) {
-    layerArray[bubblenr].index = bubblenr;
+    if (layerArray[bubblenr] !== void 0) {
+      results.push(layerArray[bubblenr].index = bubblenr);
+    } else {
+      results.push(void 0);
+    }
   }
-  return selected = -1;
+  return results;
 });
 
 inputFrame = new Layer({
