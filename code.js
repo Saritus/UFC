@@ -48,7 +48,7 @@ newTone = new Layer({
   parent: background,
   height: 100,
   width: 100,
-  image: "resources/addBubble.png"
+  image: "blues/button_blue_plus.png"
 });
 
 newTone.fluid({
@@ -138,7 +138,7 @@ deleteTone = new Layer({
   parent: background,
   height: 100,
   width: 100,
-  image: "blues/block_blue.png",
+  image: "blues/button_blue_minus.png",
   visible: false
 });
 
