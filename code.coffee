@@ -66,6 +66,7 @@ newTone.on Events.Click, ->
   layerArray[i].image = "resources/clean_long_orange.png"
   workspace.selected = layerArray[i].index
   deleteTone.visible = true
+  inputFrame.visible = true
   layerArray[i].onDragStart ->
     workspace.draggable.enabled=false
     @oldX = @x
@@ -99,6 +100,7 @@ newTone.on Events.Click, ->
     @image = "resources/clean_long_orange.png"
     workspace.selected = this.index
     deleteTone.visible = true
+    inputFrame.visible = true
 
 deleteTone = new Layer
   parent: background
@@ -115,6 +117,7 @@ deleteTone.fluid
 
 deleteTone.on Events.Click, ->
   deleteTone.visible = false
+  inputFrame.visible = false
   layerArray[workspace.selected].destroy()
   for bubblenr in [1..layerArray.length]
     if layerArray[bubblenr] isnt undefined
@@ -124,6 +127,7 @@ inputFrame = new Layer
   parent: background
   height: 200
   backgroundColor: "rgba(0, 0, 0, 0)"
+  visible: false
 
 inputFrame.fluid
   yAlign: 'bottom'

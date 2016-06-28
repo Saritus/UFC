@@ -84,6 +84,7 @@ newTone.on(Events.Click, function() {
   layerArray[i].image = "resources/clean_long_orange.png";
   workspace.selected = layerArray[i].index;
   deleteTone.visible = true;
+  inputFrame.visible = true;
   layerArray[i].onDragStart(function() {
     var k, ref1;
     workspace.draggable.enabled = false;
@@ -128,7 +129,8 @@ newTone.on(Events.Click, function() {
     }
     this.image = "resources/clean_long_orange.png";
     workspace.selected = this.index;
-    return deleteTone.visible = true;
+    deleteTone.visible = true;
+    return inputFrame.visible = true;
   });
 });
 
@@ -150,6 +152,7 @@ deleteTone.fluid({
 deleteTone.on(Events.Click, function() {
   var bubblenr, j, ref, results;
   deleteTone.visible = false;
+  inputFrame.visible = false;
   layerArray[workspace.selected].destroy();
   results = [];
   for (bubblenr = j = 1, ref = layerArray.length; 1 <= ref ? j <= ref : j >= ref; bubblenr = 1 <= ref ? ++j : --j) {
@@ -165,7 +168,8 @@ deleteTone.on(Events.Click, function() {
 inputFrame = new Layer({
   parent: background,
   height: 200,
-  backgroundColor: "rgba(0, 0, 0, 0)"
+  backgroundColor: "rgba(0, 0, 0, 0)",
+  visible: false
 });
 
 inputFrame.fluid({
