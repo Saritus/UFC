@@ -1,3 +1,12 @@
+DoubleToTime = (x) ->
+  '<center><h1 style="font-size:250%;">'+
+  (if x<0.33
+    "00:"
+  else if x<0.66
+    "01:"
+  else
+    "02:")+ "01" +"</h1></center>"
+
 background = new Layer
   image: "resources/blue_background.png"
 
@@ -284,6 +293,9 @@ music_line.draggable.constraints = {
   height: workspace.height
 }
 
+music_line.onDragMove ->
+  music_time.html = DoubleToTime(music_line.x/Screen.width)
+
 music_line.onAnimationEnd ->
   music_line.x = 0
   workspace.x = workspace.x - background.width
@@ -292,6 +304,13 @@ music_line.onAnimationEnd ->
       x: Screen.width - music_line.width
     curve: "linear"
     time: 3 * ((Screen.width - music_line.width - music_line.x) / (Screen.width - music_line.width))
+
+music_time = new Layer
+  width: 200
+  height: 100
+  x: 450
+  y: 0
+  html: DoubleToTime(music_line.x/Screen.width)
 
 program_open = new Layer
   parent: background

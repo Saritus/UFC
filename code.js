@@ -1,4 +1,8 @@
-var background, deleteTone, inputFrame, inputLength, inputPitch, inputStart, inputText, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_programm_farbe, settings_programm_font, settings_programm_sprache, settings_projekt, settings_projekt_bpm, settings_projekt_cover_input, settings_projekt_cover_open, settings_projekt_interpret, settings_projekt_titel, settings_projekt_video_input, settings_projekt_video_open, settings_projekt_video_start, settingsshow, video, video_close, video_window, workspace;
+var DoubleToTime, background, deleteTone, inputFrame, inputLength, inputPitch, inputStart, inputText, layerArray, minimap, minimapSelection, music_line, music_playpause, music_skipleft, music_skipright, music_stop, music_time, newTone, playing, program_open, program_save, program_settings, settings, settings_programm, settings_programm_farbe, settings_programm_font, settings_programm_sprache, settings_projekt, settings_projekt_bpm, settings_projekt_cover_input, settings_projekt_cover_open, settings_projekt_interpret, settings_projekt_titel, settings_projekt_video_input, settings_projekt_video_open, settings_projekt_video_start, settingsshow, video, video_close, video_window, workspace;
+
+DoubleToTime = function(x) {
+  return '<center><h1 style="font-size:250%;">' + (x < 0.33 ? "00:" : x < 0.66 ? "01:" : "02:") + "01" + "</h1></center>";
+};
 
 background = new Layer({
   image: "resources/blue_background.png"
@@ -347,6 +351,10 @@ music_line.draggable.constraints = {
   height: workspace.height
 };
 
+music_line.onDragMove(function() {
+  return music_time.html = DoubleToTime(music_line.x / Screen.width);
+});
+
 music_line.onAnimationEnd(function() {
   music_line.x = 0;
   workspace.x = workspace.x - background.width;
@@ -357,6 +365,14 @@ music_line.onAnimationEnd(function() {
     curve: "linear",
     time: 3 * ((Screen.width - music_line.width - music_line.x) / (Screen.width - music_line.width))
   });
+});
+
+music_time = new Layer({
+  width: 200,
+  height: 100,
+  x: 450,
+  y: 0,
+  html: DoubleToTime(music_line.x / Screen.width)
 });
 
 program_open = new Layer({
