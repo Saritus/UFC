@@ -22,7 +22,7 @@ workspace = new Layer
 
 workspace.fluid
   yAlign: 'bottom'
-  yOffset: -350
+  yOffset: -275
 
 workspace.draggable.enabled=true
 workspace.draggable.overdrag = false
@@ -51,7 +51,7 @@ newTone.fluid
   xAlign: 'right'
   xOffset: -5
   yAlign: 'bottom'
-  yOffset: -205
+  yOffset: -155
 
 newTone.on Events.Click, ->
   i = layerArray.length
@@ -122,7 +122,7 @@ deleteTone.fluid
   xAlign: 'right'
   xOffset: -105
   yAlign: 'bottom'
-  yOffset: -205
+  yOffset: -155
 
 deleteTone.on Events.Click, ->
   deleteTone.visible = false
@@ -141,7 +141,6 @@ inputFrame = new Layer
 inputFrame.fluid
   yAlign: 'bottom'
   autoWidth: true
-
 
 inputText = new Input
   setup: true # Change to true when positioning the input so you can see it
@@ -279,7 +278,7 @@ music_line = new Layer
 
 music_line.fluid
     yAlign: 'bottom'
-    yOffset: -350
+    yOffset: -275
 
 music_line.draggable.enabled = true
 music_line.draggable.enabled=true
@@ -288,7 +287,7 @@ music_line.draggable.bounce = false
 music_line.draggable.momentum = false
 music_line.draggable.constraints = {
   x: 0
-  y: Screen.height - 350 - workspace.height
+  y: Screen.height - 275 - workspace.height
   width: Screen.width
   height: workspace.height
 }
@@ -311,6 +310,7 @@ music_time = new Layer
   x: 450
   y: 0
   html: DoubleToTime(music_line.x/Screen.width)
+  backgroundColor: "rgba(11, 56, 95, 0.5)"
 
 program_open = new Layer
   parent: background
@@ -388,12 +388,12 @@ program_settings.on Events.Click, ->
     xAlign: 'right'
     xOffset: -5
     yAlign: 'bottom'
-    yOffset: -205
+    yOffset: -155
   deleteTone.fluid
     xAlign: 'right'
     xOffset: -105
     yAlign: 'bottom'
-    yOffset: -205
+    yOffset: -155
   minimap.fluid
     autoWidth: true
   inputFrame.fluid
@@ -430,12 +430,12 @@ background.onAnimationEnd ->
     xAlign: 'right'
     xOffset: -5
     yAlign: 'bottom'
-    yOffset: -205
+    yOffset: -155
   deleteTone.fluid
     xAlign: 'right'
     xOffset: -105
     yAlign: 'bottom'
-    yOffset: -205
+    yOffset: -155
   minimap.fluid
     autoWidth: true
   inputFrame.fluid

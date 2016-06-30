@@ -22,7 +22,7 @@ workspace = new Layer({
 
 workspace.fluid({
   yAlign: 'bottom',
-  yOffset: -350
+  yOffset: -275
 });
 
 workspace.draggable.enabled = true;
@@ -59,7 +59,7 @@ newTone.fluid({
   xAlign: 'right',
   xOffset: -5,
   yAlign: 'bottom',
-  yOffset: -205
+  yOffset: -155
 });
 
 newTone.on(Events.Click, function() {
@@ -150,7 +150,7 @@ deleteTone.fluid({
   xAlign: 'right',
   xOffset: -105,
   yAlign: 'bottom',
-  yOffset: -205
+  yOffset: -155
 });
 
 deleteTone.on(Events.Click, function() {
@@ -331,7 +331,7 @@ music_line = new Layer({
 
 music_line.fluid({
   yAlign: 'bottom',
-  yOffset: -350
+  yOffset: -275
 });
 
 music_line.draggable.enabled = true;
@@ -346,7 +346,7 @@ music_line.draggable.momentum = false;
 
 music_line.draggable.constraints = {
   x: 0,
-  y: Screen.height - 350 - workspace.height,
+  y: Screen.height - 275 - workspace.height,
   width: Screen.width,
   height: workspace.height
 };
@@ -372,7 +372,8 @@ music_time = new Layer({
   height: 100,
   x: 450,
   y: 0,
-  html: DoubleToTime(music_line.x / Screen.width)
+  html: DoubleToTime(music_line.x / Screen.width),
+  backgroundColor: "rgba(11, 56, 95, 0.5)"
 });
 
 program_open = new Layer({
@@ -471,13 +472,13 @@ program_settings.on(Events.Click, function() {
     xAlign: 'right',
     xOffset: -5,
     yAlign: 'bottom',
-    yOffset: -205
+    yOffset: -155
   });
   deleteTone.fluid({
     xAlign: 'right',
     xOffset: -105,
     yAlign: 'bottom',
-    yOffset: -205
+    yOffset: -155
   });
   minimap.fluid({
     autoWidth: true
@@ -524,13 +525,13 @@ background.onAnimationEnd(function() {
     xAlign: 'right',
     xOffset: -5,
     yAlign: 'bottom',
-    yOffset: -205
+    yOffset: -155
   });
   deleteTone.fluid({
     xAlign: 'right',
     xOffset: -105,
     yAlign: 'bottom',
-    yOffset: -205
+    yOffset: -155
   });
   minimap.fluid({
     autoWidth: true

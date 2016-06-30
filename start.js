@@ -20,7 +20,7 @@ logo.centerX();
 version = new Layer({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   height: 50,
-  html: "<p><center><b>Version: 0.4.74</b></center></p>"
+  html: "<p><center><b>Version: 0.4.94</b></center></p>"
 });
 
 version.fluid({
@@ -150,7 +150,8 @@ button_ufg.on(Events.Click, function() {
 button_ok = new Layer({
   width: audio.width,
   height: 70,
-  image: "resources/okButton.png"
+  image: "resources/blue_button_long.png",
+  html: '<center><h1>OK</h1></center>'
 });
 
 button_ok.centerX();
